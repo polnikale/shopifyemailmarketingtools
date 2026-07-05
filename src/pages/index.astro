@@ -8,28 +8,32 @@ const desc = description(site, path);
 const recommended = APPS.filter(a => a.channels.includes(site.channel) || a.channels.includes('marketing')).slice(0,10);
 ---
 <BaseLayout title={title} description={desc} site={site} path="/">
-  <section class="relative overflow-hidden border-b border-emerald-900/10 bg-[radial-gradient(circle_at_top_left,#d9f99d,transparent_30%),linear-gradient(135deg,#f7faf5,#ecfdf5_45%,#ffffff)] py-16 md:py-24">
-    <div class="container grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
+  <section class="relative overflow-hidden border-b border-cyan-900/10 bg-[#eefdfa] py-20 md:py-28">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,#67e8f9_0,transparent_30%),radial-gradient(circle_at_80%_10%,#a7f3d0_0,transparent_26%),linear-gradient(135deg,#ecfeff,#f0fdfa_45%,#fff)]"></div>
+    <div class="container relative grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
       <div>
-        <span class="badge">Updated for Shopify stores in 2026</span>
-        <h1 class="hero-title mt-5">Best {site.primaryKeyword} for stores that care about repeat revenue</h1>
-        <p class="mt-6 max-w-2xl text-xl text-slate-700">{site.heroPromise} {site.intro}</p>
-        <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="/apps">Compare apps</a><a class="btn btn-secondary" href="/use-cases/abandoned-cart">Start with cart recovery</a></div>
+        <span class="badge">Operator-built research desk · updated for 2026</span>
+        <h1 class="hero-title mt-6">Shopify email marketing tools for stores that want a real retention operating system</h1>
+        <p class="mt-6 max-w-3xl text-xl text-slate-700">{site.heroPromise} This rebuilt guide treats email marketing as a merchandising discipline: audience capture, lifecycle timing, product storytelling, cart recovery, post-purchase education, replenishment, loyalty, and revenue analytics all need to work together instead of living in separate campaign folders.</p>
+        <div class="mt-8 flex flex-wrap gap-3"><a class="btn btn-primary" href="/apps">Compare the app shortlist</a><a class="btn btn-secondary" href="/guides">Read the selection playbook</a></div>
       </div>
-      <div class="card bg-white/80">
-        <div class="text-sm font-bold uppercase tracking-wide text-emerald-700">Quick verdict</div>
-        <h2 class="mt-3 text-3xl font-bold text-slate-950">Shopify-native beats generic automation.</h2>
-        <p class="mt-4 text-slate-700">The best {site.keywordPlural} understand customers, products, orders, discount codes, inventory, checkout events, consent, and repeat purchase timing. {site.bestOverallReason}</p>
-        <ul class="mt-6 space-y-3 text-sm text-slate-700">
-          <li>✓ Built around Shopify customer and order data</li><li>✓ Includes lifecycle, cart recovery, and post-purchase flows</li><li>✓ Prioritizes revenue quality over vanity open rates</li>
-        </ul>
+      <div class="card bg-white/85 p-0">
+        <div class="border-b border-cyan-900/10 p-6"><div class="text-sm font-black uppercase tracking-[.22em] text-cyan-800">Retention stack briefing</div><h2 class="mt-3 text-3xl font-black text-slate-950">The best platform is the one that makes weekly lifecycle work unavoidable.</h2></div>
+        <div class="grid gap-0 divide-y divide-cyan-900/10">
+          <div class="p-6"><strong>1. Data depth.</strong><p class="mt-2 text-sm text-slate-600">Shopify events, products, order history, discount behavior, consent, and customer tags must be usable without exporting CSVs.</p></div>
+          <div class="p-6"><strong>2. Campaign craft.</strong><p class="mt-2 text-sm text-slate-600">Email marketing tools should help a team write product-led messages, not merely schedule generic blasts.</p></div>
+          <div class="p-6"><strong>3. Revenue quality.</strong><p class="mt-2 text-sm text-slate-600">{site.bestOverallReason}</p></div>
+        </div>
       </div>
     </div>
   </section>
-  <section class="container py-14">
-    <div class="mb-8 flex items-end justify-between gap-6"><div><span class="badge">Ranked shortlist</span><h2 class="mt-3 text-3xl font-bold">Top {site.shortName.toLowerCase()} to evaluate first</h2></div><a class="link" href="/apps">View all apps →</a></div>
-    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{recommended.map((app, i) => <a class="card hover:-translate-y-1 transition" href={`/apps/${app.slug}`}><div class="text-sm font-bold text-emerald-700">#{i+1}</div><h3 class="mt-2 text-xl font-bold text-slate-950">{app.name}</h3><p class="mt-2 text-sm text-slate-600">{app.bestFor}</p><p class="mt-4 text-sm font-semibold text-slate-900">{app.pricing}</p></a>)}</div>
+
+  <section class="container py-16">
+    <div class="mb-8 max-w-3xl"><span class="badge">Ranked shortlist</span><h2 class="mt-3 text-4xl font-black tracking-tight">Top Shopify email marketing tools to evaluate first</h2><p class="mt-4 text-slate-600">This ranking favors tools that can support a complete retention calendar: acquisition forms, welcome offers, educational drips, cart and browse recovery, customer segmentation, post-purchase care, and winback measurement.</p></div>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{recommended.map((app, i) => <a class="card group" href={`/apps/${app.slug}`}><div class="flex items-center justify-between"><div class="text-sm font-black text-cyan-800">#{i+1}</div><span class="rounded-full bg-cyan-50 px-3 py-1 text-xs font-bold text-cyan-900">{app.category}</span></div><h3 class="mt-4 text-2xl font-black text-slate-950 group-hover:text-cyan-900">{app.name}</h3><p class="mt-3 text-sm text-slate-600">{app.bestFor}</p><p class="mt-5 text-sm font-bold text-slate-900">{app.pricing}</p></a>)}</div>
   </section>
-  <section class="bg-white py-14"><div class="container grid gap-8 md:grid-cols-3"><div class="md:col-span-1"><span class="badge">SEO map</span><h2 class="mt-3 text-3xl font-bold">100+ unique pages per domain</h2><p class="mt-4 text-slate-600">Each domain renders its own titles, intros, recommendations, internal links, and Shopify-specific copy for the exact keyword family.</p></div><div class="grid gap-4 md:col-span-2 sm:grid-cols-2">{USE_CASES.slice(0,8).map(u=><a class="card" href={`/use-cases/${u.slug}`}><h3 class="font-bold text-slate-950">{u.name}</h3><p class="mt-2 text-sm text-slate-600">{u.job}</p></a>)}</div></div></section>
-  <section class="container py-14"><h2 class="text-3xl font-bold">Popular store-type guides</h2><div class="mt-6 grid gap-4 md:grid-cols-3">{SEGMENTS.slice(0,9).map(s=><a class="card" href={`/for/${s.slug}`}><h3 class="font-bold">{s.name}</h3><p class="mt-2 text-sm text-slate-600">Handles {s.pain}.</p></a>)}</div></section>
+
+  <section class="bg-white py-16"><div class="container grid gap-10 lg:grid-cols-[.9fr_1.1fr]"><div><span class="badge">How to use this site</span><h2 class="mt-3 text-4xl font-black tracking-tight">Built as a topic map, not a cloned app directory.</h2><p class="mt-4 text-slate-600">The homepage is only the briefing. The deeper pages separate app reviews, comparison pages, use-case guides, and store-type guides so a Shopify operator can match tools to actual work. A fashion brand launching weekly drops needs different email marketing capabilities than a supplement brand managing compliance-safe education and reorder windows.</p><p class="mt-4 text-slate-600">Each page explains the buying context, the implementation risk, and the measurement model behind the keyword. The goal is to help merchants choose a tool that improves repeat purchase behavior rather than another dashboard that looks impressive during onboarding and gathers dust by month three.</p></div><div class="grid gap-4 sm:grid-cols-2">{USE_CASES.slice(0,10).map(u=><a class="card" href={`/use-cases/${u.slug}`}><h3 class="font-black text-slate-950">{u.name}</h3><p class="mt-2 text-sm text-slate-600">Use the email marketing stack to {u.job}.</p></a>)}</div></div></section>
+
+  <section class="container py-16"><div class="mb-8"><span class="badge">Store-type guides</span><h2 class="mt-3 text-4xl font-black tracking-tight">Choose by merchandising reality</h2></div><div class="grid gap-4 md:grid-cols-3">{SEGMENTS.map(s=><a class="card" href={`/for/${s.slug}`}><h3 class="text-xl font-black">{s.name}</h3><p class="mt-2 text-sm text-slate-600">Email marketing decisions change when the store is managing {s.pain}.</p></a>)}</div></section>
 </BaseLayout>
