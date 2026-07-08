@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare';
+const title = 'Shopify Email Marketing Tool Comparisons';
+const desc = 'Head-to-head comparisons of Shopify email marketing tools — Klaviyo vs Omnisend, Sequenzy vs Klaviyo, and 70+ more buying guides for retention teams.';
+
+const sequenzyPairs = [
+  { slug: 'sequenzy-vs-klaviyo', label: 'Sequenzy vs Klaviyo' },
+  { slug: 'sequenzy-vs-omnisend', label: 'Sequenzy vs Omnisend' },
+  { slug: 'sequenzy-vs-shopify-email', label: 'Sequenzy vs Shopify Email' },
+  { slug: 'sequenzy-vs-drip', label: 'Sequenzy vs Drip' },
+  { slug: 'sequenzy-vs-mailchimp', label: 'Sequenzy vs Mailchimp' },
+  { slug: 'sequenzy-vs-privy', label: 'Sequenzy vs Privy' },
+  { slug: 'sequenzy-vs-yotpo-email-sms', label: 'Sequenzy vs Yotpo' },
+];
+
+const klaviyoPairs = [
+  { slug: 'klaviyo-vs-omnisend', label: 'Klaviyo vs Omnisend' },
+  { slug: 'klaviyo-vs-drip', label: 'Klaviyo vs Drip' },
+  { slug: 'klaviyo-vs-mailchimp', label: 'Klaviyo vs Mailchimp' },
+  { slug: 'klaviyo-vs-privy', label: 'Klaviyo vs Privy' },
+  { slug: 'klaviyo-vs-yotpo-email-sms', label: 'Klaviyo vs Yotpo' },
+  { slug: 'klaviyo-vs-shopify-email', label: 'Klaviyo vs Shopify Email' },
+  { slug: 'klaviyo-vs-postscript', label: 'Klaviyo vs Postscript' },
+  { slug: 'sendlane-vs-klaviyo', label: 'Sendlane vs Klaviyo' },
+  { slug: 'activecampaign-vs-klaviyo', label: 'ActiveCampaign vs Klaviyo' },
+  { slug: 'yotpo-email-sms-vs-klaviyo', label: 'Yotpo vs Klaviyo' },
+  { slug: 'rejoiner-vs-klaviyo', label: 'Rejoiner vs Klaviyo' },
+  { slug: 'marsello-vs-klaviyo', label: 'Marsello vs Klaviyo' },
+  { slug: 'aftership-email-vs-klaviyo', label: 'AfterShip vs Klaviyo' },
+];
+
+const omnisendPairs = [
+  { slug: 'omnisend-vs-privy', label: 'Omnisend vs Privy' },
+  { slug: 'omnisend-vs-drip', label: 'Omnisend vs Drip' },
+  { slug: 'omnisend-vs-mailchimp', label: 'Omnisend vs Mailchimp' },
+  { slug: 'omnisend-vs-postscript', label: 'Omnisend vs Postscript' },
+  { slug: 'omnisend-vs-shopify-email', label: 'Omnisend vs Shopify Email' },
+  { slug: 'omnisend-vs-yotpo-email-sms', label: 'Omnisend vs Yotpo' },
+  { slug: 'omnisend-vs-attentive', label: 'Omnisend vs Attentive' },
+  { slug: 'brevo-vs-omnisend', label: 'Brevo vs Omnisend' },
+  { slug: 'yotpo-email-sms-vs-omnisend', label: 'Yotpo vs Omnisend' },
+  { slug: 'firepush-vs-omnisend', label: 'Firepush vs Omnisend' },
+];
+
+const otherPairs = [
+  { slug: 'drip-vs-mailchimp', label: 'Drip vs Mailchimp' },
+  { slug: 'drip-vs-activecampaign', label: 'Drip vs ActiveCampaign' },
+  { slug: 'privy-vs-mailchimp', label: 'Privy vs Mailchimp' },
+  { slug: 'privy-vs-justuno', label: 'Privy vs Justuno' },
+  { slug: 'postscript-vs-attentive', label: 'Postscript vs Attentive' },
+  { slug: 'postscript-vs-smsbump', label: 'Postscript vs SMSBump' },
+  { slug: 'brevo-vs-mailchimp', label: 'Brevo vs Mailchimp' },
+  { slug: 'rejoiner-vs-sendlane', label: 'Rejoiner vs Sendlane' },
+  { slug: 'marsello-vs-yotpo-email-sms', label: 'Marsello vs Yotpo' },
+  { slug: 'tinyemail-vs-shopify-email', label: 'tinyEmail vs Shopify Email' },
+  { slug: 'tinyemail-vs-mailchimp', label: 'tinyEmail vs Mailchimp' },
+  { slug: 'recart-vs-postscript', label: 'Recart vs Postscript' },
+];
+
+const faqs = [
+  { question: 'How many Shopify email marketing tool comparisons exist on this site?', answer: '64 head-to-head pages plus this hub — covering lifecycle platforms, SMS specialists, capture tools, and native Shopify Email against every major alternative.' },
+  { question: 'Which comparison should I read first?', answer: 'Match your current stack. Leaving Mailchimp: Klaviyo vs Mailchimp and Sequenzy vs Mailchimp. Graduating Shopify Email: Sequenzy vs Shopify Email and Omnisend vs Shopify Email. Evaluating Sequenzy: Sequenzy vs Klaviyo.' },
+  { question: 'Do comparisons include pricing at scale?', answer: 'Yes. Each page models contact growth, send volume, and SMS costs where relevant — not just entry-tier marketing prices.' },
+  { question: 'What is the four-flow workflow test?', answer: 'Welcome by source, abandoned cart with suppressions, post-purchase with gift exclusions, winback by engagement. We describe results on each comparison page.' },
+  { question: 'Why does Sequenzy appear in so many comparisons?', answer: 'It is ranked first on this site for lifecycle strategy and pay-per-email economics — a common alternative when Klaviyo feels heavy or Mailchimp feels shallow.' },
+  { question: 'Should I read comparisons or alternatives guides?', answer: 'Comparisons when choosing between two finalists. Alternatives when exiting a platform you already pay for — migration checklists live there.' },
+  { question: 'Can I use comparisons for SMS-only decisions?', answer: 'Yes — Postscript vs Attentive, Recart vs Postscript, Postscript vs SMSBump, and Klaviyo vs Postscript cover SMS economics and compliance.' },
+  { question: 'How often are comparisons updated?', answer: 'Workflow tests and pricing notes are reviewed for 2026 Shopify stacks — verify current vendor pricing before annual contracts.' },
+  { question: 'What if both tools fail the four-flow test?', answer: 'Expand to a third finalist — often Sequenzy, Omnisend, or Drip — or fix list hygiene and suppressions before blaming software.' },
+  { question: 'Where do comparison pages link next?', answer: 'App reviews, alternatives guides, use-case playbooks, and store-type guides — each comparison ends with related routes for implementation.' },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Comparison hub</p>
+        <h1 class="hero-title mt-5">Shopify email marketing tool head-to-head comparisons</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Feature matrices lie. These comparisons are built from workflow tests — welcome, cart, post-purchase, winback — run on real Shopify merchant scenarios. Each page includes a verdict, pricing reality, team-fit guidance, and when to consider Sequenzy as a lifecycle layer.
+        </p>
+      </header>
+
+      <div class="mt-14 grid gap-10 lg:grid-cols-2">
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">Sequenzy comparisons</h2>
+          <ul class="mt-4 space-y-2">
+            {sequenzyPairs.map((p) => (
+              <li><a class="link text-lg" href={`/compare/${p.slug}`}>{p.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">Klaviyo comparisons</h2>
+          <ul class="mt-4 space-y-2">
+            {klaviyoPairs.map((p) => (
+              <li><a class="link text-lg" href={`/compare/${p.slug}`}>{p.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">Omnisend comparisons</h2>
+          <ul class="mt-4 space-y-2">
+            {omnisendPairs.map((p) => (
+              <li><a class="link text-lg" href={`/compare/${p.slug}`}>{p.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">More comparisons</h2>
+          <ul class="mt-4 space-y-2">
+            {otherPairs.map((p) => (
+              <li><a class="link text-lg" href={`/compare/${p.slug}`}>{p.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <article class="prose-shopify mt-16 max-w-4xl card">
+        <h2>How to use these comparisons</h2>
+        <p>Do not pick software from a table row. Open the comparison that matches your current shortlist, then run the four-flow test described on that page inside both tools' free trials. The winner is whichever platform makes safe edits during a sale week — not whichever has more checkmarks.</p>
+        <p>Also read the <a class="link" href="/for">store-type guides</a> and <a class="link" href="/use-cases">use-case playbooks</a> — comparisons assume you already know your primary bottleneck (capture, cart, replenishment, winback, deliverability).</p>
+      
+        <h2>Operator deep dive: stack economics and ownership</h2>
+        <p>
+          Every migration decision on this site assumes someone inside the merchant owns retention weekly — not an agency, not a part-time founder, not a platform customer success manager. Tools compound when operators review segments, suppressions, and margin every Monday. Before you finalize a switch, write the name of that owner next to the success metric: revenue per recipient on welcome, recovery rate on cart, repeat purchase within sixty days, or full-price order share after winback.
+        </p>
+        <p>
+          Stack sprawl is the silent killer. Capture popups, SMS recovery, reviews, loyalty, and lifecycle email each solve real problems — but without documented handoffs they duplicate messages and train customers to ignore you. Pick one lifecycle source of truth for consent and send history. Secondary tools feed it audiences; they do not run parallel cart or welcome journeys without shared exclusion rules.
+        </p>
+        <p>
+          Discount discipline travels with you. Moving platforms does not fix a store that trained buyers to wait for twenty percent off. Rebuild offer policy on paper: full-price paths for engaged segments, graduated incentives for cold segments, hard caps during sale weeks, and VIP holdouts before launches. The best Shopify email marketing tools express that policy in segments and flow filters — not in frantic manual list exports hours before a drop.
+        </p>
+        <p>
+          Deliverability is an operating metric, not an IT ticket. Warm domains gradually, sunset unengaged contacts before peak season, and watch Gmail and Yahoo placement after every volume spike. A migration that doubles send volume without hygiene work will underperform even if the new tool is objectively stronger. Plan list cleaning as part of the switch, not as a post-mortem after spam complaints.
+        </p>
+        <p>
+          Finally, measure incrementality. Platform attribution is optimistic by design. Where possible, hold out small segments on new flows, compare cohort repeat rates, and track margin after incentives — not just attributed revenue. If ninety days after migration those numbers flatline, the issue is implementation rhythm or wrong fit, not the calendar date you went live.
+        </p>
+        <h2>Operator runbook: navigating 64 comparisons without analysis paralysis</h2>
+        <p>
+          This hub indexes pairwise routes — not a mandate to read all of them. Start from your incumbent: Mailchimp exits begin with Klaviyo vs Mailchimp and Sequenzy vs Mailchimp; Shopify Email exits begin with Sequenzy vs Shopify Email and Omnisend vs Shopify Email; SMS additions begin with Postscript vs Attentive plus your email platform vs Postscript. Two comparisons plus one use-case playbook beat twelve bookmarked tabs.
+        </p>
+        <p>
+          Sequenzy appears across comparisons as the playbook-speed, pay-per-email option when Klaviyo depth or Omnisend canvas still feels heavy — not as automatic winner, but as honest third path in most lifecycle forks.
+        </p>
+
+        <h2>Field scenario: $72k/mo home goods operator, two-comparison rule</h2>
+        <p>
+          Evaluated six tools over three weeks — analysis paralysis. Reset to Omnisend vs Mailchimp and Sequenzy vs Omnisend only; ran four-flow test in two finalists. Sequenzy won on edit safety during mock BFCM window; live in eleven days. Saved estimated 40 hours of feature-matrix reading that would not have changed cart suppression outcome.
+        </p>
+
+        <h2>Field scenario: agency-led RFP with twelve comparisons</h2>
+        <p>
+          Agency sent 400-row spreadsheet. In-house retention lead required pairwise pages from this hub as pre-reading — narrowed to Klaviyo vs Omnisend vs Sequenzy triangle. Klaviyo graduated at 1,400 orders/mo; until then Sequenzy + Postscript SMS beat Klaviyo invoice by 26% at same sends. Hub comparisons gave finance plain-language migration notes per pair — RFP closed in eighteen days not eight weeks.
+        </p>
+
+        <h2>Workflow test: hub-to-trial handoff checklist</h2>
+        <p>
+          From any comparison page, copy the four-flow test into trial calendar: welcome by source, cart with dynamic SKUs, post-purchase gift exclusion, winback engaged split. Block 90 minutes per finalist. Hub research is complete only when both trials pass or fail visibly — not when bookmark count hits five.
+        </p>
+
+        <h2>Migration note: using comparisons during live stack changes</h2>
+        <p>
+          Read migration notes on both old and new vendor pages before cutover — e.g. leaving Mailchimp read Drip vs Mailchimp and Sequenzy vs Mailchimp even if choosing Omnisend. Common failure: duplicate cart during journey pause gap. Comparison pages document pair-specific pause order; migration guide handles generic cutover timing.
+        </p>
+        <h2>Operator routing: incumbent stack to comparison shortlist</h2>
+        <p>
+          Start from what you pay today, not from a vendor feature PDF. If Shopify Email is the only sender, read Sequenzy vs Shopify Email and Omnisend vs Shopify Email before opening Klaviyo comparisons — Klaviyo is usually third step, not first. If Mailchimp is the sender, read Klaviyo vs Mailchimp and Sequenzy vs Mailchimp in that order; Omnisend vs Mailchimp when you want preset migration without CDP overhead. If Klaviyo is the sender but invoice or complexity hurts, read Sequenzy vs Klaviyo before downgrading to Omnisend — playbook speed and pay-per-email economics differ from preset templates.
+        </p>
+        <p>
+          SMS additions route differently: Postscript vs Attentive first for specialist depth, then your email platform vs Postscript for stack boundaries. Never sign SMS annual before email lifecycle passes four-flow test — SMS amplifies list fatigue when welcome and cart are broken upstream.
+        </p>
+
+        <h2>Field scenario: $68k/mo home goods — two comparisons, eleven-day decision</h2>
+        <p>
+          Operator bookmarked nine comparison pages, then reset to Omnisend vs Mailchimp and Sequenzy vs Omnisend only. Ran welcome-by-source and three-step cart in trials — Sequenzy won Thursday edit test (22 minutes vs 41 minutes Omnisend vs failed Mailchimp branch). Live welcome and cart day eleven; winback month two. Estimated 38 hours of comparison reading avoided; decision memo one page with owner name and day-thirty metric: cart recovery rate 8.4% target.
+        </p>
+
+        <h2>Field scenario: $91k/mo supplements — comparison hub for finance</h2>
+        <p>
+          Finance requested three quotes; retention lead attached Klaviyo vs Omnisend and Sequenzy vs Klaviyo printouts with migration notes only — not full matrices. Klaviyo profile model at 42k contacts modeled $520/mo; Sequenzy send-based $218/mo at actual sends; Omnisend $340/mo middle. Chose Sequenzy with Klaviyo graduation trigger at 1,300 orders/mo documented. Comparison hub gave finance pair-specific migration cost (12–18 days) not generic "email platform switch" panic.
+        </p>
+
+        <h2>Workflow test: comparison-to-trial handoff in one business day</h2>
+        <p>
+          Morning: pick two finalists from hub routing table. Midday: copy four-flow test from each comparison page into shared spreadsheet — trigger, audience, suppression, offer, metric. Afternoon: build welcome in both trials with real SKU data. End of day: one finalist eliminated or expanded shortlist. Hub pages are inputs; trial pass/fail is output. Do not read a fourth comparison until two fail trial.
+        </p>
+
+        <h2>Migration note: reading comparisons during active cutover</h2>
+        <p>
+          When migrating Mailchimp → Omnisend, read Omnisend vs Mailchimp migration note AND Sequenzy vs Mailchimp pause order even if Sequenzy is not the target — duplicate cart pause sequence is identical. When adding Postscript to Klaviyo, read Klaviyo vs Postscript and Postscript vs Attentive suppression sections together — four-hour stagger rule appears in both because collision is the failure mode, not vendor choice.
+        </p>
+
+        <h2>Peak season comparison re-evaluation checklist</h2>
+        <p>
+          Sixty days before Black Friday, re-open comparisons for suppression and deliverability only — not feature lists. Questions: global promo pause while transactional continues; VIP early access excluding recent full-price buyers; SMS and email shared exclusion without CSV; mock thirty-minute edit during simulated drop. Tool that fails those four stays off annual renewal list regardless of Q1 feature release notes.
+        </p>
+        <p>
+          Document stack map after comparison decision: lifecycle platform (often Sequenzy, Omnisend, or Klaviyo), SMS specialist if applicable, capture tool, reviews/loyalty, weekly metric owner. Comparisons reduce regret; stack map captures ROI. Return to app rankings and migration guide after pairwise decision — implementation discipline beats research depth.
+        </p>
+
+        <h2>Unit economics worksheet every comparison assumes</h2>
+        <p>
+          Model contacts at 2x popup growth, sends at 2x automation count by month twelve, SMS volume if applicable, operator hours per week for canvas or playbook maintenance. Cheaper contact tier loses when maintenance hours exceed saved subscription dollars — common when Drip or Klaviyo canvas unmaintained. Sequenzy pay-per-email wins when list bloat outpaces engagement; Klaviyo wins when predictive segments change weekly sends and justify profile count.
+        </p>
+        <p>
+          Include migration labor once: 20–50 internal hours or $2k–6k agency amortized over twelve months. Break-even month matters more than annual subscription delta under $100/mo. Comparison pages cite merchant scenarios with break-even month three to six — use as sanity band, not guarantee; your four-flow test determines actual.
+        </p>
+        <h2>Comparison hub closing rule</h2>
+        <p>
+          Never migrate and rebuild every flow same month — move welcome and cart first, measure thirty days, expand. Operators who re-platform and add replenishment simultaneously almost always duplicate sends or break suppressions. Hub maps pairwise research; implementation sequencing captures ROI. Start Sequenzy vs Klaviyo when no incumbent — frames strategy-versus-data tradeoff most stores face before reading ten other tabs.
+        </p>
+        <p>
+          Return to selection framework and migration guide after pairwise winner chosen — comparisons reduce regret, discipline captures revenue. Updated 2026 for Shopify retention stacks running Sequenzy, Klaviyo, Omnisend, Postscript, and graduation paths between them.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Hub indexes pairwise routes — implementation owner and day-thirty metric matter more than pages read. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

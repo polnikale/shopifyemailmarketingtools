@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const path = '/guides/discount-discipline';
+const title = 'Shopify Email Discount Discipline — Operator Playbook';
+const desc = description(site, 'guides/discount-discipline');
+
+const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'privy'].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'Should abandoned cart email one include a discount?',
+    answer: 'No by default. Email one recovers intent with product reminder, trust, shipping clarity. Reserve discounts for email two or three, capped by cart value and prior redemption history. See abandoned-cart use case for value-band ladder.',
+  },
+  {
+    question: 'What is a discount governance ladder?',
+    answer: 'Documented rules: which flows can offer discounts, maximum percentage by segment and cart value, minimum margin floor approved by finance, and mutual exclusion when multiple flows active. Ladder lives in ops wiki, not scattered Klaviyo flow notes.',
+  },
+  {
+    question: 'How do I stop training coupon hunters?',
+    answer: 'Delay first discount touch in welcome to email 4+. Never discount VIP full-price loyalists in cart. Cap combined incentive exposure per customer per 30 days. Track full-price repeat rate alongside attributed revenue — margin matters.',
+  },
+  {
+    question: 'Should welcome series lead with 10% off?',
+    answer: 'Rarely. Popup discount subscribers convert fast then churn. Brand story and product education first; discount for non-buyers after 7–14 days. Jewelry and high-AOV stores may never discount welcome — financing and trust instead.',
+  },
+  {
+    question: 'How does Sequenzy help discount discipline?',
+    answer: 'Playbooks encode value-based discount caps and collision suppression by default — agent prompts express "no cart discount for customers with 2+ full-price orders" without manual boolean hunting. Strategy layer before creative defaults to 10% off everyone.',
+  },
+  {
+    question: 'Winback discount escalation — what is sane?',
+    answer: 'Email one: full-price "we miss you" with hero product. Email two: social proof. Email three: 10% capped once per 180 days for discount responders only. Never start winback at 25% — sets anchor for next lapse.',
+  },
+  {
+    question: 'How do I audit discount leakage?',
+    answer: 'Monthly: redemption rate by flow, average discount depth by segment, full-price order rate trend, stacked code incidents from support tickets. Finance margin report cross-check. Spike in redemption without revenue lift signals discipline failure.',
+  },
+  {
+    question: 'BFCM discount versus lifecycle discount — conflict?',
+    answer: 'Yes. Lifecycle flows should suppress promotional codes during BFCM window or use exclusive single-use BFCM codes — not stack 15% welcome with 30% sitewide. Flow collision prevention guide covers peak calendar rules.',
+  },
+  {
+    question: 'Free shipping versus percentage discount?',
+    answer: 'Free shipping preserves AOV perception better for orders above $75 — test by margin band. Percentage discounts erode brand for luxury and jewelry. Document which incentive type each segment receives in governance ladder.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
+      <p class="editorial-kicker mt-6">Discount discipline</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Stop training Shopify customers to wait for the next code</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Email revenue grows while margin collapses — the hidden failure mode of undisciplined lifecycle programs. Welcome 15%, cart 10%, browse 20%, and winback 25% stack silently when flows lack governance. Discount discipline is the operating system: which automations may offer incentives, maximum depth by segment and cart value, margin floors finance approves, and collision rules when multiple flows touch the same customer within 72 hours.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Sequenzy playbooks default to reminder-first cart and delayed welcome discounts — strategy encoded before creative discussion. Klaviyo predictive discount sensitivity automates discipline at scale when data is clean. Privy popup culture is the enemy of discipline unless capture feeds segmented offer logic downstream.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/use-cases/discount-strategy">Discount strategy use case</a>
+        <a class="btn btn-secondary" href="/guides/flow-collision-prevention">Collision prevention</a>
+        <a class="btn btn-secondary" href="/guides/revenue-attribution">Revenue attribution</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Discount governance principles"
+      picks={[
+        { label: 'Default', tool: 'No discount email one', reason: 'Cart, browse, welcome — trust and product context first.' },
+        { label: 'Cap by value', tool: 'Cart value bands', reason: '$840 cart and $38 cart do not get same 15% — margin math differs.' },
+        { label: 'VIP exempt', tool: 'Full-price loyalists', reason: '3+ orders no code redemption — never cart discount by default.' },
+        { label: '30-day ceiling', tool: 'Combined exposure', reason: 'Max one incentive touch per customer per 30 days across flows.' },
+        { label: 'Best encoded defaults', tool: 'Sequenzy', reason: 'Playbooks ship with value-based caps and suppression — not blank 10% templates.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three discount disasters and fixes</h2>
+      <p>
+        <strong>Disaster A — Outdoor gear, Omnisend.</strong> Every automation included 15% code. Full-price repeat rate dropped from 62% to 41% in two quarters. Fix: governance ladder — welcome no code emails 1–3, cart reminder-only email one, winback starts full-price. Repeat rate recovered to 54% in four months; email-attributed revenue flat but margin up 18%.
+      </p>
+      <p>
+        <strong>Disaster B — Candle DTC, Klaviyo.</strong> Popup 20% fed welcome; cart added 10% same week for new subscribers. Support tickets about "which code works." Fix: collision matrix — cart suppresses welcome offer 48 hours. Privy popup changed to content offer for blog traffic, discount only on product-page exit intent.
+      </p>
+      <p>
+        <strong>Disaster C — Streetwear, margin-positive "success."</strong> Cart recovery rate 14% with 20% code — finance review showed negative margin on recovered carts under $55. Fix: cart value floor $70 for discount branch; below floor reminder-only with free shipping threshold messaging. Recovery rate dropped to 9%; profit on recovered carts positive.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Governance ladder template</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Document in ops wiki</h2>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full min-w-[640px] text-left text-sm text-slate-700">
+          <thead>
+            <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+              <th class="py-3 pr-4">Flow</th>
+              <th class="py-3 pr-4">Email 1</th>
+              <th class="py-3 pr-4">Email 2+</th>
+              <th class="py-3 pr-4">Max discount</th>
+              <th class="py-3">Excluded segments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Welcome</td><td class="py-3 pr-4">No code</td><td class="py-3 pr-4">10% non-buyers only</td><td class="py-3 pr-4">10%</td><td class="py-3">VIP, wholesale</td></tr>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Cart</td><td class="py-3 pr-4">No code</td><td class="py-3 pr-4">5–10% by value band</td><td class="py-3 pr-4">10%</td><td class="py-3">Full-price loyalist, active welcome offer</td></tr>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Browse</td><td class="py-3 pr-4">No code</td><td class="py-3 pr-4">Social proof only</td><td class="py-3 pr-4">5%</td><td class="py-3">In cart flow, VIP</td></tr>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Winback</td><td class="py-3 pr-4">No code</td><td class="py-3 pr-4">10% once/180d</td><td class="py-3 pr-4">15%</td><td class="py-3">Active subscriber, recent purchaser</td></tr>
+            <tr><td class="py-3 pr-4 font-bold">Post-purchase</td><td class="py-3 pr-4">No code</td><td class="py-3 pr-4">Cross-sell full price</td><td class="py-3 pr-4">0%</td><td class="py-3">All — education first</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-[17px] leading-8 text-slate-700">Finance signs margin floor row. Retention lead owns quarterly review. Violations require ticket before flow edit.</p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Monthly audit checklist</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Discount health metrics</h2>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Redemption rate by flow — spike without revenue lift = problem</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Full-price order % among repeat buyers — trending down = discipline leak</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Average discount depth on email-attributed orders</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Support tickets mentioning multiple codes</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Single-use code enforcement — no evergreen SAVE15 in automations</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Collision matrix compliance — stacked offers in staff test accounts</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Tool support for discipline</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five platforms — discount control</h2>
+
+    <ToolReview
+      app={featuredApps[0]}
+      rank={1}
+      badge="Best default discipline"
+      paragraphs={[
+        'Sequenzy cart and welcome playbooks ship reminder-first, value-capped discount escalation — not 10% email one templates. Agent edits express governance rules in plain language: "skip cart discount for VIP and repeat full-price buyers."',
+        'Collision suppression between welcome offer and cart is explicit in playbook defaults — operational detail generic builders leave undocumented until incidents occur.',
+        'Discount discipline is strategy layer. Sequenzy positions strategy before creative — correct default for teams that previously trained coupon hunters via Klaviyo template library.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[1]}
+      rank={2}
+      paragraphs={[
+        'Klaviyo predicted discount sensitivity automates who gets offers — powerful when order history is clean. Full-price loyalists skip discount branches; predicted responders receive capped offers. Requires setup discipline; blank flows default to everyone-gets-code.',
+        'Flow A/B test discount timing and depth — optimize within governance ladder, not outside it. Finance should approve test variants exceeding ladder max.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[2]}
+      rank={3}
+      paragraphs={[
+        'Drip visual branches make discount governance visible — cart value split paths explicit on canvas. Good for operators who audit flows quarterly and need boolean clarity.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[3]}
+      rank={4}
+      paragraphs={[
+        'Omnisend prebuilt templates often include discount email one — disable defaults and rebuild per governance ladder. Fast setup risk is indiscipline by template.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[4]}
+      rank={5}
+      paragraphs={[
+        'Privy capture culture incentivizes popup discounts — discipline requires feeding signup source tags to ESP and branching offer logic. Blog exit intent should not offer 20% if product-page subscribers get delayed discount in welcome.',
+      ]}
+    />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Common mistakes</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Discount anti-patterns</h2>
+      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
+        <li><strong>Evergreen automation codes.</strong> SAVE10 works forever — customers share, reuse, wait for cart email knowing code exists.</li>
+        <li><strong>Same discount every flow.</strong> 15% everywhere — no price anchoring differentiation between welcome and winback.</li>
+        <li><strong>Ignoring margin floor.</strong> Recovery rate KPI without profit per recovered cart.</li>
+        <li><strong>VIP discounts.</strong> Best customers get biggest codes — inverted loyalty logic.</li>
+        <li><strong>Popup-training.</strong> Aggressive capture discount before brand relationship — attracts one-time discount buyers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Vertical discount nuance</h2>
+      <p>
+        <a class="link" href="/for/jewelry">Jewelry</a> and <a class="link" href="/for/high-aov">high-AOV</a>: minimize discounts; financing and trust content instead. <a class="link" href="/for/supplements">Supplements</a>: subscribe-and-save value over one-time codes. <a class="link" href="/for/fashion">Fashion</a> drops: VIP early access beats public discount. Governance ladder adapts by vertical — template above is starting point.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/guides">All guides →</a>
+      <a class="link" href="/guides/flow-collision-prevention">Collision prevention →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Cart recovery →</a>
+    </div>
+  </section>
+
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for discount discipline</h2>
+      <p><strong>Scenario A — Beauty enterprise DTC, Attentive SMS volume.</strong> Two-tap opt-in and concierge onboarding justified custom pricing above five hundred monthly — tiny stores should not apply. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Protein subscription shop, $38 starter cart.</strong> Klaviyo cart with Postscript SMS branch at four hours when email unopened. OOS flavor swap prevented sends when seasonal SKU depleted mid-flow. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Jewelry store, thin margins.</strong> Privy capture grew list thirty-four percent in sixty days before pairing with Sequenzy for lifecycle execution. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers discount discipline inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Implementation discipline</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Guide-to-production handoff</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Each guide maps to a live workflow owner. Selection framework without implementation plan is shelfware. Flow collision prevention without discount discipline is half a fix.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste checklists into Notion with last-reviewed date. Guides rot when the retention lead leaves — scenarios and mistake sections exist to survive turnover.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy-first recommendations assume lean teams; Klaviyo deviations documented when data depth binds.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Discount discipline FAQ" />
+</BaseLayout>

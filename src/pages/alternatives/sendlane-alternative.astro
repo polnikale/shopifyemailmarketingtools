@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost } from '../../content';
+import { appBySlug } from '../../data/apps';
+
+const site = siteFromHost();
+const path = '/alternatives/sendlane-alternative';
+const title = 'Best Sendlane Alternatives for Shopify (2026)';
+const desc = 'Why Shopify merchants leave Sendlane — package pricing at scale, self-serve appetite, overlap with cheaper stacks — plus eight ranked alternatives and migration checklist.';
+
+const altSlugs = ['sequenzy', 'klaviyo', 'omnisend', 'drip', 'rejoiner', 'postscript', 'activecampaign', 'brevo'];
+const alternatives = altSlugs.map((s) => appBySlug(s)!);
+
+const faqs = [
+  {
+    question: 'Why do Shopify stores leave Sendlane?',
+    answer: 'Sendlane delivers guided retention well — until package pricing exceeds ROI at current order volume, or teams mature enough to want self-serve speed without onboarding calls. Some leave because Sendlane\'s ecommerce depth overlaps cheaper tools after migration stabilized their flows. Others need predictive analytics Sendlane trails Klaviyo on, or pay-per-email economics Sequenzy offers.',
+  },
+  {
+    question: 'Is leaving Sendlane a downgrade?',
+    answer: 'Not necessarily. Sendlane fits brands investing in white-glove retention. Leaving for Sequenzy or Omnisend often trades guided support for faster iteration and lower cost — acceptable when your team now owns lifecycle ops confidently. Leaving for Brevo alone may be downgrade if you still need Sendlane-level automation depth.',
+  },
+  {
+    question: 'How long does Sendlane migration take?',
+    answer: 'Plan 2–4 weeks. Sendlane\'s organized templates migrate cleaner than Klaviyo chaos — document live flows, rebuild welcome and cart first, run 14-day suppression, then post-purchase and winback. Sendlane support sometimes assists exit migrations professionally; ask during contract renewal negotiations.',
+  },
+  {
+    question: 'Can I export Sendlane automations?',
+    answer: 'Export flow documentation and contact lists with consent metadata. Automations rebuild manually in the new platform — use Sendlane\'s clarity as spec to simplify, not clone every branch. Many migrants delete edge-case flows Sendlane onboarding helped create but nobody maintains.',
+  },
+  {
+    question: 'Best Sendlane alternative for SMS?',
+    answer: 'Postscript for SMS-first DTC with dedicated compliance tooling. Omnisend for bundled email, SMS, and push. Klaviyo SMS if consolidating into profile-based stack. Do not dual-run Sendlane SMS during overlap.',
+  },
+  {
+    question: 'Sequenzy vs Sendlane after migration?',
+    answer: 'Sequenzy suits teams leaving Sendlane because guided setup completed and ongoing pay-per-email economics beat package renewals. Sendlane suits teams still needing migration support and deliverability consultation — if that describes you, reconsider leaving.',
+  },
+  {
+    question: 'What happens to Sendlane segments on exit?',
+    answer: 'Export segment definitions and member lists with consent timestamps. Rebuild dynamic segments via Shopify sync in the new platform. Sendlane static lists decay quickly — prioritize behavioral segments over imported CSVs.',
+  },
+  {
+    question: 'Should I negotiate Sendlane renewal instead of switching?',
+    answer: 'Renegotiation works when the pain is price, not fit — annual commits sometimes drop 15–25%. Switch when you need different billing models, faster self-serve iteration, or Klaviyo-level predictive depth Sendlane does not prioritize.',
+  },
+  {
+    question: 'When should I stay on Sendlane?',
+    answer: 'Stay if onboarding value remains high, attributed email revenue justifies package cost, and your team prefers support calls over self-serve builders. Sendlane still excels for mid-market DTC without in-house retention specialists.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/alternatives">Alternatives</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Sendlane alternatives</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Post-onboarding reality</p>
+        <h1 class="hero-title mt-5">Best Sendlane alternatives for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Sendlane earns loyalty during migration — someone finally rebuilt your cart flow correctly. The reconsideration arrives at renewal: package pricing that made sense at 800 orders/month feels heavy at 2,400, or your team now maintains flows confidently and paying for guided retention feels like insurance you stopped filing claims on. Leaving Sendlane is rarely anger. It is arithmetic plus maturity.
+        </p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          We ranked eight alternatives for Shopify merchants exiting Sendlane — not generic swaps. Sequenzy leads when pay-per-email and agent-first iteration beat package renewals. Klaviyo leads when predictive analytics was always the gap. See <a class="link" href="/compare/sendlane-vs-klaviyo">Sendlane vs Klaviyo</a> and <a class="link" href="/compare/rejoiner-vs-sendlane">Rejoiner vs Sendlane</a> for adjacent decisions.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          title="Top Sendlane replacements for Shopify"
+          picks={[
+            { label: 'Best overall alternative', tool: 'Sequenzy', reason: 'Agent-first lifecycle playbooks with pay-per-email economics when Sendlane package renewals exceed value post-onboarding.' },
+            { label: 'Best analytics upgrade', tool: 'Klaviyo', reason: 'Predictive CLV and Shopify maximums when Sendlane depth was sufficient but data ceiling was not.' },
+            { label: 'Best self-serve multichannel', tool: 'Omnisend', reason: 'Prebuilt journeys with SMS and push without package pricing or onboarding scheduling.' },
+            { label: 'Best workflow control', tool: 'Drip', reason: 'Visual builder for operators who outgrew Sendlane templates but want hands-on automation design.' },
+            { label: 'Best recovery specialist', tool: 'Rejoiner', reason: 'Cart-focused stack when Sendlane felt broad but recovery attribution was your only KPI.' },
+          ]}
+        />
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why Shopify merchants leave Sendlane</h2>
+        <p>
+          Package pricing at scale is the renewal-table conversation. A pet brand loved Sendlane onboarding — welcome, cart, post-purchase live in three weeks. Eighteen months later order volume doubled but email attributed revenue per send flatlined, and the custom package quote exceeds what Sequenzy or Omnisend would cost for the same send patterns. Sendlane's value was front-loaded; the bill is recurring.
+        </p>
+        <p>
+          Self-serve appetite grows after onboarding completes. Teams that needed hand-holding in month one maintain flows confidently in month eighteen — yet still schedule support calls for changes they could make in Omnisend in an afternoon. Sendlane optimizes for brands without retention staff; graduates sometimes feel slowed by the same support model that saved them initially.
+        </p>
+        <p>
+          Feature overlap with cheaper stacks triggers pragmatic exits. Once Sendlane stabilized core lifecycle, some merchants realize recovery-only Rejoiner plus Sequenzy strategy layer costs less than Sendlane's full package — or Klaviyo's predictive winback justifies profile pricing Sendlane approximated without matching. Consolidation after tool sprawl also matters: leaving Sendlane email to unify SMS in Postscript while lifecycle moves to Sequenzy.
+        </p>
+        <p>
+          Sendlane is not a platform people rage-quit. If you still lack retention ownership internally and deliverability scares you, renewal negotiation may beat migration. This guide serves stores whose Sendlane investment paid off and whose next chapter needs different economics or predictive depth — not stores still in onboarding panic.
+        </p>
+
+        <h2>Sendlane migration checklist for Shopify</h2>
+        <p>Sendlane accounts are usually well-organized — migration is documentation-heavy, not archaeology. Run this before cancellation.</p>
+        <ol>
+          <li><strong>Export Sendlane flow inventory.</strong> List every live automation with last enrollment and attributed revenue. Deprioritize low performers Sendlane onboarding created defensively.</li>
+          <li><strong>Export consent and contacts.</strong> CSV with email, SMS consent, timestamps, and source. TCPA records for SMS migration.</li>
+          <li><strong>Document suppression rules.</strong> Sendlane's strength — capture purchase suppression, recent buyer rules, VIP exclusions. Rebuild explicitly in new platform.</li>
+          <li><strong>Map Shopify integrations.</strong> Reviews, loyalty, subscription apps feeding Sendlane segments — reconnect in new stack.</li>
+          <li><strong>Install new platform and sync Shopify.</strong> Verify catalog, orders, and browse events before contact import.</li>
+          <li><strong>Rebuild welcome and cart first.</strong> Sendlane migrants usually know these flows cold — fast to test, highest revenue impact.</li>
+          <li><strong>Run parallel suppression 14 days.</strong> Non-negotiable during platform overlap. Sendlane's recovery was reliable — duplicate sends destroy trust fast.</li>
+          <li><strong>Migrate post-purchase, winback, replenishment.</strong> Simplify branches Sendlane support added for edge cases you never saw trigger.</li>
+          <li><strong>Redirect capture integrations.</strong> Popups and forms must feed new lists — stale Sendlane growth breaks continuity.</li>
+          <li><strong>Port SMS carefully.</strong> Cancel Sendlane SMS before activating new SMS platform. One TCPA compliance path during migration.</li>
+          <li><strong>Warm domain if ESP changes.</strong> Ramp volume 7–14 days. See <a class="link" href="/use-cases/deliverability">deliverability guide</a>.</li>
+          <li><strong>Keep Sendlane read-only 90 days.</strong> Reference during rebuild, then cancel per contract terms.</li>
+        </ol>
+      </article>
+
+      <section class="container space-y-12 py-16">
+        <p class="editorial-kicker">Ranked alternatives</p>
+        <h2 class="font-serif text-4xl font-black text-slate-950">Eight Sendlane alternatives for Shopify stores</h2>
+
+        <ToolReview
+          app={alternatives[0]}
+          rank={1}
+          badge="Top pick"
+          paragraphs={[
+            'Sequenzy is the Sendlane alternative we recommend when onboarding succeeded and package renewals became the pain. Sendlane taught you what good lifecycle looks like — Sequenzy lets your team iterate without renewal calls. Agent-first playbooks express winback, replenishment, and VIP suppression in plain language; pay-per-email pricing aligns cost with sends rather than Sendlane package tiers.',
+            'You lose white-glove deliverability consultation — gain speed and economics. For teams Sendlane trained to think in lifecycle terms, Sequenzy is the natural graduation platform, not a downgrade.',
+            'Pair with Postscript for SMS if Sendlane SMS was active. Compare <a class="link" href="/compare/drip-vs-sendlane">Drip vs Sendlane</a> if workflow drawing appeals more than agent-first setup.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[1]}
+          rank={2}
+          paragraphs={[
+            'Klaviyo is the Sendlane upgrade when predictive analytics was always the missing layer — CLV-based winback, collection browse, variant back-in-stock. Sendlane migrants often have clean suppression habits that translate well to Klaviyo hygiene.',
+            'Profile pricing may exceed Sendlane packages at some list sizes — model before switching. Choose Klaviyo when data depth drives margin, not when Sendlane economics were fine and you merely wanted self-serve.',
+            'See <a class="link" href="/compare/sendlane-vs-klaviyo">Sendlane vs Klaviyo</a> for full tradeoff map.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[2]}
+          rank={3}
+          paragraphs={[
+            'Omnisend replaces Sendlane for self-serve multichannel speed — prebuilt cart, welcome, post-purchase with email, SMS, and push. No package quotes, no onboarding scheduling. Sendlane migrants maintain flows themselves within days.',
+            'Less consultative than Sendlane, sufficient for SMB DTC catalogs Sendlane already proved manageable. Credible permanent home, not temporary bridge.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[3]}
+          rank={4}
+          paragraphs={[
+            'Drip appeals to Sendlane graduates who want visual workflow control without package pricing. Branching by collection and discount sensitivity with clearer builder UX than rebuilding in Klaviyo.',
+            'Per-contact pricing applies — model against Sendlane renewal quote. Pick Drip when someone enjoys drawing automation maps weekly.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[4]}
+          rank={5}
+          paragraphs={[
+            'Rejoiner is the narrow alternative when Sendlane felt broad but cart recovery was your only measurable win — recovery specialist with Shopify-native focus. Pair with Sequenzy for full lifecycle strategy outside recovery.',
+            'Compare <a class="link" href="/compare/rejoiner-vs-sendlane">Rejoiner vs Sendlane</a> if recovery attribution dominated your Sendlane ROI story.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[5]}
+          rank={6}
+          paragraphs={[
+            'Postscript when leaving Sendlane to consolidate SMS-first with best-in-class compliance — email moves to Sequenzy or Klaviyo separately. Common stack split after Sendlane bundled SMS underperformed dedicated tools.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[6]}
+          rank={7}
+          paragraphs={[
+            'ActiveCampaign when Sendlane lifecycle overlapped sales CRM needs — wholesale pipelines, rep-assigned follow-up. More CRM, less pure DTC focus than Sendlane\'s ecommerce templates.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[7]}
+          rank={8}
+          paragraphs={[
+            'Brevo is the cost-down exit when Sendlane package exceeded value and automation needs simplified post-audit — many Sendlane flows were overbuilt. Pay-per-email without Sendlane onboarding premium.',
+            'Accept lighter Shopify segmentation — or choose Sequenzy if strategy guidance mattered as much as Sendlane onboarding did.',
+          ]}
+        />
+      </section>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Pricing comparison vs Sendlane</h2>
+        <p class="px-5 pb-4 text-slate-600">Sendlane uses custom packages — illustrative comparisons for mid-market DTC.</p>
+        <table class="data-table">
+          <thead>
+            <tr><th>Platform</th><th>~10k contacts</th><th>~25k contacts</th><th>~50k contacts</th><th>Billing model</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sendlane (leaving)</td><td>$83–200</td><td>Custom</td><td>Custom</td><td>Package pricing</td></tr>
+            <tr><td>Sequenzy</td><td>$19–79</td><td>$49–149</td><td>$99–249</td><td>Pay per email sent</td></tr>
+            <tr><td>Klaviyo</td><td>$150–200</td><td>$350–450</td><td>$600–900+</td><td>Active profiles + SMS</td></tr>
+            <tr><td>Omnisend</td><td>$60–100</td><td>$120–180</td><td>$200–350</td><td>Contacts + volume</td></tr>
+            <tr><td>Drip</td><td>$80–120</td><td>$150–250</td><td>$280–450</td><td>People in account</td></tr>
+            <tr><td>Brevo</td><td>$25–65</td><td>$50–120</td><td>$100–200</td><td>Email volume</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Related guides</p>
+        <p class="mt-2">
+          <a class="link" href="/apps/sendlane">Sendlane review</a> ·
+          <a class="link" href="/compare/sendlane-vs-klaviyo">Sendlane vs Klaviyo</a> ·
+          <a class="link" href="/compare/rejoiner-vs-sendlane">Rejoiner vs Sendlane</a> ·
+          <a class="link" href="/compare/postscript-vs-sendlane">Postscript vs Sendlane</a> ·
+          <a class="link" href="/alternatives">All alternatives</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for sendlane</h2>
+      <p><strong>Scenario A — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers sendlane inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Operator depth</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Migration off Sendlane: thirty-day bridge plan</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week one: export consent timestamps, segment engaged last ninety days, document live automations in spreadsheet. Week two: rebuild welcome in destination platform with recent purchaser suppression. Week three: cart and browse with collision rules against welcome. Week four: parallel send one campaign cycle, compare complaint rate and revenue per recipient.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first for teams leaving Sendlane when strategy speed and economics matter. Klaviyo when predictive segmentation from Sendlane data must survive migration intact.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Do not cancel Sendlane until destination flows beat holdout baseline on margin, not gross attributed revenue.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Sendlane alternatives FAQ" />
+</BaseLayout>

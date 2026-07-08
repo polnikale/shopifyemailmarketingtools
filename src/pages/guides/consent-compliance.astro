@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const path = '/guides/consent-compliance';
+const title = 'Shopify Email Consent & Compliance — Operator Playbook';
+const desc = description(site, 'guides/consent-compliance');
+
+const featuredApps = ['sequenzy', 'klaviyo', 'postscript', 'omnisend', 'privy'].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What consent do I need for Shopify marketing email?',
+    answer: 'CAN-SPAM: clear identification, physical address, one-click unsubscribe, no deceptive subject lines. GDPR/UK GDPR if EU/UK customers: lawful basis typically consent or legitimate interest with opt-out; document which. Marketing email to non-consented EU profiles is high risk. US-focused DTC still needs documented consent for deliverability and TCPA-adjacent best practice.',
+  },
+  {
+    question: 'Does Shopify checkout marketing checkbox count as consent?',
+    answer: 'Yes when unchecked by default, label clear ("Email me news and offers"), and syncs to ESP with timestamp. Pre-checked boxes are non-compliant in EU and poor practice US. Verify Klaviyo, Sequenzy, or Omnisend receives Shopify marketing consent property — not all sync paths automatic.',
+  },
+  {
+    question: 'TCPA and SMS on Shopify — what is required?',
+    answer: 'Express written consent before marketing SMS — not email opt-in alone. Checkout SMS checkbox separate from email. Postscript and Attentive provide compliance tooling; quiet hours, opt-out keywords, consent logging. Two-party consent states need extra care on message content.',
+  },
+  {
+    question: 'Can I email purchased customers without separate opt-in?',
+    answer: 'Transactional order emails yes. Marketing post-purchase cross-sell depends on jurisdiction and checkout consent. US practice: soft opt-in from purchase relationship common but include unsubscribe and honor opt-out immediately. EU: typically requires marketing consent unless documented legitimate interest assessment.',
+  },
+  {
+    question: 'Double opt-in — required or optional?',
+    answer: 'Required for clear GDPR consent proof. Optional US but improves list quality and deliverability — popup single opt-in attracts typos and bots. Recommended for giveaway and high-incentive capture; product-page single opt-in acceptable with engagement monitoring.',
+  },
+  {
+    question: 'How do I handle unsubscribe versus suppression?',
+    answer: 'Unsubscribe is legal permanent marketing stop — sync to ESP within 48 hours maximum, ideally real-time. Suppression is operational — in cart flow, temporary hold. Never email marketing to unsubscribed profiles even if "suppression expired."',
+  },
+  {
+    question: 'Re-permission campaigns — compliance safe?',
+    answer: 'Yes to engaged-ish profiles who have not unsubscribed — "want to stay on list?" Non-openers 180 days, not cold imports. Never re-permission purchased lists or scraped addresses. Include easy opt-out; honor immediately.',
+  },
+  {
+    question: 'Privy popup consent — what to verify?',
+    answer: 'Checkbox not pre-checked, privacy policy linked, incentive does not obscure consent language, SMS separate checkbox if collecting phone. Tags passed to ESP should include consent timestamp and source URL.',
+  },
+  {
+    question: 'International Shopify stores — multi-region consent?',
+    answer: 'Segment EU/UK customers for stricter consent rules. Canada CASL needs documented consent or implied from purchase with unsubscribe. Australia Spam Act similar identification requirements. Geo-segment at capture when possible.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
+      <p class="editorial-kicker mt-6">Consent & compliance</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Shopify email consent — collect it right, sync it everywhere</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Consent failures are legal risk and deliverability risk simultaneously. EU customer emailed without documented basis, SMS sent from email opt-in alone, popup pre-checked by default, Shopify checkout marketing consent not syncing to Klaviyo — each produces complaints, fines exposure, and Gmail throttling. This playbook maps capture points, sync verification, SMS TCPA requirements, unsubscribe architecture, and re-permission protocols for Shopify merchants operating across US and international customers.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Postscript leads SMS compliance tooling. Sequenzy and Klaviyo handle email consent properties when Shopify sync configured correctly. Privy is the highest-risk capture layer — incentives obscure consent language if templates not audited.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/guides/deliverability">Deliverability guide</a>
+        <a class="btn btn-secondary" href="/guides/migration">Migration playbook</a>
+        <a class="btn btn-secondary" href="/compare/klaviyo-vs-postscript">Klaviyo vs Postscript</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Consent architecture"
+      picks={[
+        { label: 'Capture', tool: 'Unchecked checkboxes', reason: 'Popup, checkout, SMS — separate consent per channel.' },
+        { label: 'Sync', tool: 'Shopify → ESP', reason: 'Verify marketing_consent property with timestamp in Sequenzy/Klaviyo.' },
+        { label: 'SMS', tool: 'Postscript TCPA', reason: 'Written consent before marketing text — not email opt-in.' },
+        { label: 'Opt-out', tool: 'One-click unsubscribe', reason: 'RFC 8058; honor within 48h; sync Shopify customer record.' },
+        { label: 'Documentation', tool: 'Consent log', reason: 'Source URL, timestamp, IP where available — GDPR proof.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three consent failures — real exposure</h2>
+      <p>
+        <strong>Failure A — Giveaway popup, US + EU traffic.</strong> Email required for entry, no separate marketing consent checkbox, pre-checked "send me promos" in footer fine print. EU complaint to supervisory authority; merchant received inquiry letter. Fix: unchecked marketing opt-in, double opt-in for EU geo, giveaway entry separated from marketing list unless explicit consent.
+      </p>
+      <p>
+        <strong>Failure B — Skincare brand SMS.</strong> Klaviyo email subscribers imported to Postscript without SMS consent capture. TCPA exposure from 12,000 messages. Fix: SMS consent only from checkout SMS checkbox and keyword opt-in; email list not SMS list. Postscript compliance audit flagged historical sends; settlement avoided by immediate stop and consent rebuild.
+      </p>
+      <p>
+        <strong>Failure C — Migration list import.</strong> Mailchimp export included unsubscribed profiles marked "active" in CSV error. 400 marketing sends to unsubscribed users week one. Complaint rate spike. Fix: migration checklist excludes unsubscribed, cleaned, and complaint profiles; parallel test on staff accounts before cutover.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Capture point audit</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Every entry point checklist</h2>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Shopify checkout marketing checkbox unchecked default, label clear</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Shopify SMS checkbox separate if collecting phone for marketing</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Privy/Justuno popup: marketing consent not bundled with discount claim without checkbox</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Footer newsletter: single opt-in acceptable US; double opt-in EU segment</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>ESP receives consent source tag and timestamp</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Physical mailing address in email footer — CAN-SPAM</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Privacy policy linked at capture with email/SMS data use explained</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Unsubscribe sync tested: ESP unsub → Shopify customer marketing opt-out</li>
+      </ul>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">SMS TCPA quick reference</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Before first marketing text</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Express written consent required — checkbox at checkout with SMS-specific language, or keyword opt-in with confirmation message. Consent log: phone, timestamp, source, message type agreed. Quiet hours configured — typically 8am–9pm recipient local. STOP keyword honored immediately. Cart transactional texts versus marketing texts — different consent paths on some interpretations; Postscript templates distinguish.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Never SMS purchased customers who only consented email. Never SMS EU numbers without documented SMS consent equivalent to marketing permission.
+      </p>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Platform compliance tooling</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five tools — consent handling</h2>
+
+    <ToolReview
+      app={featuredApps[0]}
+      rank={1}
+      paragraphs={[
+        'Sequenzy syncs Shopify customer marketing consent when integration configured — verify consent property maps on implementation week one. Suppression respects unsubscribed profiles across lifecycle flows.',
+        'Agent-first welcome setup should branch EU geo to double opt-in path when identifiable — document in consent architecture.',
+        'Unified transactional and marketing reputation requires transactional emails do not contain promotional content without consent — post-purchase education OK; sale banner in shipping confirmation not OK.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[1]}
+      rank={2}
+      paragraphs={[
+        'Klaviyo Shopify integration pulls email marketing consent and SMS consent separately — audit integration settings after every Shopify theme change affecting checkout.',
+        'List suppression global excludes unsubscribed automatically when configured — migration imports must not reactivate unsubscribed profiles.',
+        'GDPR deletion requests: Klaviyo profile deletion workflow plus Shopify customer record alignment.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[2]}
+      rank={3}
+      badge="Best SMS compliance"
+      paragraphs={[
+        'Postscript built for TCPA — consent logging, quiet hours, two-way opt-out, Shopify checkout SMS integration. Selection as SMS layer when compliance rigor is non-negotiable.',
+        'Compliance audit available for brands scaling SMS — worth running before first drop week blast.',
+        'Pair with Sequenzy or Klaviyo email — consent databases remain separate per channel law.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[3]}
+      rank={4}
+      paragraphs={[
+        'Omnisend bundles email and SMS — verify separate SMS consent capture before enabling SMS automations. Prebuilt SMS cart flows should not fire to email-only consented profiles.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[4]}
+      rank={5}
+      paragraphs={[
+        'Privy popup templates often prioritize conversion over consent clarity — audit every active popup quarterly. Spin-to-win and giveaway entries need explicit marketing checkbox not buried in rules.',
+        'Pass consent metadata to downstream ESP — source=privy-popup-product-page, timestamp, incentive type.',
+      ]}
+    />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Common mistakes</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Compliance violations we see</h2>
+      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
+        <li><strong>Pre-checked boxes.</strong> EU unlawful; US deliverability risk when users did not actively choose.</li>
+        <li><strong>Email list → SMS.</strong> TCPA violation pattern — separate consent always.</li>
+        <li><strong>Migration reactivation.</strong> Importing unsubscribed as subscribed — complaint spike.</li>
+        <li><strong>Delayed unsubscribe sync.</strong> 72+ hour lag — CAN-SPAM and user trust failure.</li>
+        <li><strong>Giveaway blur.</strong> Entry email treated as marketing consent without checkbox.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">GDPR practical steps for Shopify DTC</h2>
+      <p>
+        Document lawful basis per segment — consent for popup subscribers, legitimate interest assessment for post-purchase if used. EU customer data export and deletion process with ESP. Double opt-in for EU-unknown geo or explicit EU shipping addresses. Privacy policy updated with email/SMS processors listed — Klaviyo, Sequenzy, Postscript as applicable. Data processing agreements signed with ESP vendors.
+      </p>
+      <p>
+        This is operational guidance not legal advice — counsel review for EU-heavy revenue mix. Cross-read <a class="link" href="/guides/deliverability">deliverability</a> for re-permission sunset protocol and <a class="link" href="/guides/migration">migration</a> for import hygiene.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/guides">All guides →</a>
+      <a class="link" href="/guides/deliverability">Deliverability →</a>
+      <a class="link" href="/apps/postscript">Postscript review →</a>
+    </div>
+  </section>
+
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for consent compliance</h2>
+      <p><strong>Scenario A — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Coffee subscription, Mailchimp to Klaviyo.</strong> Skipped warmup, imported forty-percent inactive profiles. Fourteen-day warmup protocol recovered inbox placement over three weeks. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers consent compliance inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Implementation discipline</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Guide-to-production handoff</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Each guide maps to a live workflow owner. Selection framework without implementation plan is shelfware. Flow collision prevention without discount discipline is half a fix.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste checklists into Notion with last-reviewed date. Guides rot when the retention lead leaves — scenarios and mistake sections exist to survive turnover.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy-first recommendations assume lean teams; Klaviyo deviations documented when data depth binds.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Cross-links</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Read next in this site</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">App rankings at /apps/ for full ToolReview depth. Comparisons at /compare/ for head-to-head trials. Use-case playbooks at /use-cases/ for workflow-specific execution. Store-type guides at /for/ when vertical constraints bind.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first across this property unless a specialist clearly wins the workflow — SMS-native recovery, enterprise acquisition, or loyalty-core retail.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Consent & compliance FAQ" />
+</BaseLayout>

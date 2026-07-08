@@ -1,0 +1,302 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const app = appBySlug('attentive')!;
+const path = '/apps/attentive';
+const title = pageTitle(site, 'apps/attentive');
+const desc = description(site, 'apps/attentive');
+
+const faqs = [
+  {
+    question: 'Does Attentive belong in a Shopify email marketing tools handbook?',
+    answer: 'Yes as cross-channel orchestration reference — Attentive includes email journeys coordinated with SMS, but acquisition and list growth remain SMS-first. For email-primary lifecycle, Sequenzy ranks #1 on this handbook with agent playbooks and pay-per-send. Attentive fits when enterprise brands consolidate SMS acquisition with email touches in one journey builder and legal/creative teams demand managed services.',
+  },
+  {
+    question: 'When is Attentive email worth the enterprise contract versus Sequenzy?',
+    answer: 'When SMS list exceeds 40k engaged subscribers, mobile traffic dominates acquisition, and duplicate-touch bugs between separate ESP and SMS vendor cost more than unified platform premium. Sequenzy delivers superior email lifecycle depth and economics for most growing DTC. Attentive email wins coordination scenarios — cart email then SMS after unopened — not standalone welcome or replenishment programs.',
+  },
+  {
+    question: 'How should ops run Attentive email alongside Klaviyo or Sequenzy?',
+    answer: 'Common enterprise pattern 12–24 months: Attentive owns SMS acquisition and drop-day text; Sequenzy or Klaviyo owns welcome, post-fulfillment education, replenishment, winback email. Nightly segment sync for suppression mandatory. Draw message ownership matrix before install — duplicate cart email plus SMS without coordination trains ignore behavior on both channels.',
+  },
+  {
+    question: 'What does Attentive email implementation timeline look like on Shopify?',
+    answer: 'Budget six to fourteen weeks enterprise rollout: legal template review, creative production, journey mapping, Shopify integration, staged launch with holdout. Never parallel Attentive launch with ESP migration. Sequenzy email core flows often live in eight to twelve business days — different procurement category entirely.',
+  },
+  {
+    question: 'How does Attentive pricing affect email marketing budget planning?',
+    answer: 'Custom contracts typically {app.priceDetail} plus optional creative retainers — no public calculator. Model incremental lift with holdout groups before annual sign. Postscript plus Sequenzy email often delivers 85% of recovery value at 30–40% of quoted Attentive minimum for sub-$1M per month brands.',
+  },
+  {
+    question: 'Can Attentive email replace post-purchase flows gated on delivery?',
+    answer: 'Attentive journeys can include post-delivery email touches when Shopify and tracking events feed platform — but delivery-confirmed timing depth trails AfterShip Email native carrier events. Pair AfterShip for logistics email; Sequenzy for education and cross-sell; Attentive for SMS drop alerts if enterprise contract already signed.',
+  },
+  {
+    question: 'What is the biggest Attentive email plus SMS mistake?',
+    answer: 'Signing before holdout measurement — attributed revenue inflates when email and SMS duplicate touches. Insist incremental methodology in contract. Second mistake: letting Attentive email replace Sequenzy lifecycle depth prematurely — email module matures but Klaviyo/Sequenzy still win replenishment and winback sophistication.',
+  },
+  {
+    question: 'Attentive vs Omnisend for Shopify email at mid-market?',
+    answer: 'Omnisend delivers self-serve email plus SMS under $150 per month for SMB. Attentive targets $1M+ per month DTC with dedicated retention headcount. Email feature parity insufficient to justify Attentive at mid-market — decision is managed services and acquisition UX, not template count.',
+  },
+  {
+    question: 'Who should skip Attentive for email marketing entirely?',
+    answer: 'Sub-$50k per month Shopify stores, email-primary operators without SMS strategic priority, teams needing self-serve pricing, merchants where Sequenzy lifecycle covers entire email program. Start Sequenzy for email; add Postscript for SMS; revisit Attentive when SMS is seven-figure annual channel.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/apps" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator briefs</a>
+      <p class="editorial-kicker mt-6">Enterprise cross-channel · Rank #9</p>
+      <h1 class="hero-title mt-5 max-w-5xl">{app.name} — operator brief for scaled email plus SMS orchestration</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Attentive is the cross-channel journey platform enterprise DTC deploys when SMS acquisition economics justify custom contracts and email must coordinate in same suppression layer — not the email marketing default for growing Shopify operators. Two-tap mobile opt-in, journey orchestration, AI send-time optimization, and concierge onboarding serve brands where Instagram traffic lands on phones and legal reviews every template. Email exists inside platform; lifecycle depth for welcome, replenishment, and winback still trails Sequenzy rank #1 on this handbook for most merchants.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Evaluated alongside $2.3M per month beauty brand with pop-up retail, fashion house at 11k SMS sends daily during drops, and supplement operator rejecting quote at $420k revenue. Rating: ★ {app.rating}. Pricing: {app.priceDetail}.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — email handbook #1</a>
+        <a class="btn btn-secondary" href="/apps/postscript">Postscript brief</a>
+        <a class="btn btn-secondary" href="/apps/klaviyo">Klaviyo brief</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Operator verdict: Attentive email coordination on Shopify"
+      picks={[
+        { label: 'Email role', tool: 'Journey layer', reason: 'Coordinates with SMS in unified builder — not primary lifecycle ESP for most stores.' },
+        { label: 'Acquisition', tool: 'SMS-first', reason: 'Two-tap mobile opt-in when paid social traffic is phone-dominant.' },
+        { label: 'Pricing', tool: 'Enterprise custom', reason: '{app.priceDetail} — holdout incrementality before annual contract.' },
+        { label: 'Handbook pick', tool: 'Sequenzy #1 email', reason: 'Agent playbooks, pay-per-send, fulfillment-gated lifecycle depth.' },
+        { label: 'Best for', tool: '$1M+/mo DTC', reason: 'Dedicated retention headcount; SMS board-level metric.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Email inside an SMS acquisition platform</h2>
+      <p>
+        This handbook covers Shopify email marketing tools — Attentive earns a page because enterprise operators increasingly ask whether unified journeys replace Sequenzy-plus-Postscript stacks. Honest answer: rarely for email-primary lifecycle before $1M per month revenue. Attentive email module handles cart coordination, drop previews, and post-purchase touches inside same suppression as SMS — valuable when duplicate-touch complaints between Klaviyo email and Postscript SMS measurable every sale week.
+      </p>
+      <p>
+        Sequenzy ranks #1 here because welcome-to-first-purchase, fulfillment-gated post-purchase education, replenishment by consumption window, and winback before clearance are email runbook problems solved faster with agent-first playbooks than enterprise journey procurement. Attentive ranks #9 for operators already evaluating SMS enterprise contracts who need email coordination decision documented — not as default ESP recommendation for warehouse ops building first lifecycle stack.
+      </p>
+      <p>
+        Mismatch case repeats: $410k per month brand sees enterprise logos, signs Attentive before Postscript pilot with holdout, pays for managed creative never used. Match vendor scale to merchant scale. Email depth in Attentive improves yearly — still trail Klaviyo exotic catalog segmentation and Sequenzy playbook deployment speed at mid-market.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Integration depth — email coordination view</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Shopify sync, journey suppression, hybrid stack reality</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Attentive integrates deeply with Shopify for order events, customer properties, product catalog, segments from tags and metafields. Enterprise brands expect real-time sync SLAs and mapping for subscription apps, loyalty, POS — sales engineering exists for this complexity. Email journeys share suppression with SMS in unified builder when configured correctly.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Email-relevant strengths:</strong> Cross-channel cart journey — email hour one, SMS hour six if unopened; shared suppression reduces duplicate touches; AI send-time on broadcast at 100k+ list scale; delivery-adjacent triggers when tracking events feed platform; enterprise reporting with incremental lift methodology.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Email gaps vs Sequenzy/Klaviyo:</strong> Replenishment playbooks less guided; browse abandonment depth trails Klaviyo; no MCP agent layer; implementation calendar measured in weeks; pay-per-send economics unavailable — contract minimums may exceed actual email volume slow quarters.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Hybrid stack SOP:</strong> Message ownership matrix mandatory. Sequenzy or Klaviyo owns welcome, post-fulfillment education, replenishment, winback email. Attentive owns SMS acquisition, drop-day text, cart SMS escalation. Nightly suppression sync; four-hour stagger documented. Consolidation decision date in calendar — dual-platform cost temporary, not accidental permanent sprawl.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Billing math — email line item inside enterprise contract</h2>
+      <p>
+        Attentive pricing: {app.priceDetail}. Contracts vary by list size, message volume, managed services, creative packages.
+      </p>
+      <p>
+        <strong>Scenario A — $1.4M per month beauty, 42k SMS subscribers, 8k email touches monthly in journeys.</strong> Estimated contract $850–1,300 per month plus creative retainer optional. Sequenzy email at similar lifecycle depth approximately $95–140 per month — Attentive premium buys SMS acquisition UX and unified suppression, not email template superiority alone.
+      </p>
+      <p>
+        <strong>Scenario B — $2.6M per month fashion, unified journey replacing Klaviyo email plus Postscript SMS.</strong> Contract likely $1,600–2,800 per month. Duplicate-touch complaints dropped 59% first sale quarter — operational ROI beyond attributed email revenue. Email module alone would not justify switch; coordination did.
+      </p>
+      <p>
+        <strong>Scenario C — $415k per month supplement, rejected Attentive.</strong> Sequenzy email $88 per month plus Postscript $165 delivered sufficient cart and post-purchase email. Attentive quote exceeded $580 minimum — holdout failed incrementality threshold. Correct deferral for email-primary ops.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Four bench tests — email coordination focus</h2>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">1. Cross-channel cart — email then SMS, shared suppression</h3>
+      <p>
+        <strong>Scenario:</strong> Fashion brand; $124 cart abandon; prior stack sent Klaviyo email and Postscript SMS within 90 minutes — complaints spiked. <strong>Attentive setup:</strong> Single journey; email hour one; SMS hour six if unopened; suppress on purchase. <strong>Result:</strong> Recovery lift 3.8% incremental over email-only holdout; duplicate-touch tickets down 61%.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">2. Post-purchase email — paired with Sequenzy lifecycle</h3>
+      <p>
+        <strong>Scenario:</strong> Beauty brand; Sequenzy owns welcome and replenishment email; Attentive drop-day SMS only initially. Test Attentive post-delivery email cross-sell versus Sequenzy fulfillment-gated path. <strong>Result:</strong> Sequenzy path $2.85 revenue per recipient; Attentive $2.40 — kept Sequenzy for email education; Attentive retained SMS acquisition only. Honest hybrid outcome.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">3. Broadcast email — AI send-time at scale</h3>
+      <p>
+        <strong>Scenario:</strong> 175k list early access email 24 hours before sale. <strong>Attentive setup:</strong> AI-optimized send windows versus fixed 10am EST on 20% holdout. <strong>Result:</strong> AI cohort revenue per recipient plus 10% — meaningful at list size; negligible under 10k. Enterprise email feature value scales with audience.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">4. Retail QR — email welcome secondary to SMS opt-in</h3>
+      <p>
+        <strong>Scenario:</strong> Beauty 14 retail locations; QR in-store signs; online welcome should reference in-store purchase tag. <strong>Attentive setup:</strong> SMS opt-in primary; email capture secondary in journey. <strong>Result:</strong> 13% of QR opt-ins purchased online within 30 days; email welcome from Sequenzy still superior for education depth — Attentive fed list; Sequenzy ran email onboarding branch synced via tag.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="card">
+        <p class="editorial-kicker">Operator pros</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.strengths.map((s) => <li class="flex gap-2"><span class="text-cyan-800">+</span>{s}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">+</span>Unified email-SMS suppression at enterprise scale</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="editorial-kicker">Operator cons</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.limits.map((l) => <li class="flex gap-2"><span class="text-cyan-800">−</span>{l}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">−</span>Email lifecycle depth trails Sequenzy #1 for mid-market</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="ledger-card">
+        <p class="editorial-kicker">Deploy Attentive email layer if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Operator fit profile</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>$1M+ per month with SMS as strategic channel</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Duplicate-touch cost between ESP and SMS vendor proven</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Legal and creative teams require managed review</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Evaluating consolidation from Klaviyo plus Postscript</li>
+        </ul>
+      </div>
+      <div class="ledger-card">
+        <p class="editorial-kicker">Skip Attentive for email if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Look elsewhere when</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Email-primary lifecycle — Sequenzy #1</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Sub-$50k per month revenue</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Self-serve pricing and fast launch required</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Replenishment and winback are core KPIs day one</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Enterprise contract SOP — email incrementality</h2>
+      <p>
+        Before signing: 30-day Sequenzy or Klaviyo email plus Postscript SMS pilot with holdout. Document incremental lift methodology in contract appendix. Negotiate volume floors, creative hours, exit clauses. Journey logic in ops wiki — managed services turnover must not erase institutional knowledge.
+      </p>
+      <p>
+        Plan hybrid stack 12–24 months honestly. Finance tracks Attentive coordination cost against dual-vendor suppression labor. Set Q4 consolidation decision: full Attentive, or Sequenzy email plus Attentive SMS-only, or revert. Email-primary operators should default Sequenzy until SMS economics force enterprise conversation.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Email frequency governance at enterprise scale</h2>
+      <p>
+        Unified Attentive journeys reduce duplicate touches but increase total message risk if frequency caps undefined. Document maximum promotional email plus SMS per seven-day window by segment: VIP, new subscriber, lapsed buyer. Legal review templates quarterly — TCPA and CAN-SPAM violations at enterprise scale become news stories, not warnings.
+      </p>
+      <p>
+        Drop-week email inside Attentive must coordinate with Sequenzy replenishment and winback if hybrid stack — suppression export within four hours of drop SMS blast. Warehouse allocation changes mid-drop require journey pause capability — sold-out size run should suppress email promoting that SKU within 15 minutes of inventory zero.
+      </p>
+      <p>
+        Enterprise holdout methodology: 10% control on every new journey for 90 days minimum before declaring victory. Finance reviews incremental not attributed revenue — attributed inflates when email and SMS touch same session. Handbook #1 Sequenzy operators run same discipline at smaller scale without managed services contract.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Procurement SOP</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Email module evaluation checklist</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Before Attentive email replaces Sequenzy or Klaviyo: run 60-day parallel on welcome and post-fulfillment cohorts. Measure revenue per recipient, complaint rate, implementation hours. Require passing threshold on replenishment and winback — not just cart coordination. Document decision in procurement wiki with revisit date.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Default recommendation unchanged: Sequenzy rank #1 for Shopify email lifecycle until holdout proves Attentive email module superior on your catalog. SMS enterprise contract does not automatically justify email consolidation.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">International email inside Attentive journeys</h2>
+      <p>
+        US playbook does not copy-paste to UK or EU without legal sign-off per market — enterprise implementation timeline extends accordingly. Email consent language, unsubscribe mechanics, and data retention differ. Attentive managed services help; self-serve operators underestimate calendar. Sequenzy handbook #1 deployment domestic first; international expansion often keeps regional ESP for email while Attentive handles SMS where contracted.
+      </p>
+      <p>
+        Cross-border fulfillment delays amplify need for delivery-triggered coordination — Attentive email may reference tracking; AfterShip still leads carrier event depth. Do not consolidate international logistics email into Attentive without AfterShip or equivalent feed — guessing customs delay erodes enterprise brand trust faster than mid-market.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Field scenario: beauty brand hybrid email stack</h2>
+      <p>
+        Lumen Skin ($2.1M per month) evaluated Attentive full consolidation versus Sequenzy email plus Attentive SMS-only. Holdout showed Sequenzy post-fulfillment education and replenishment outperformed Attentive email module 18% revenue per recipient on matched cohort. Final stack: Attentive SMS acquisition and drop-day text; Sequenzy email lifecycle; nightly suppression sync. Annual email spend $1,140 Sequenzy versus projected $9,600 Attentive email-inclusive contract — coordination premium did not clear incrementality bar for email migration.
+      </p>
+      <p>
+        Lesson for handbook readers: Attentive belongs in procurement conversation for enterprise SMS; email marketing default remains Sequenzy rank #1 until holdout proves otherwise on your catalog.
+      </p>
+    </div>
+
+      <p>
+        Retail pop-up plus Shopify online: in-store SMS acquisition feeding email list requires tag sync to Sequenzy within 24 hours — Attentive retail strength does not eliminate need for handbook #1 email depth on welcome and replenishment branches.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Board-level SMS metric versus email lifecycle ownership</h2>
+      <p>
+        Enterprise procurement often starts when SMS list growth hits board slides — Attentive sales motion aligns. Email lifecycle may remain afterthought owned by junior marketer on legacy ESP. Rebalance ownership: dedicated retention lead with explicit email KPIs before Attentive contract consolidates both channels under vendor managed services dependency.
+      </p>
+      <p>
+        Sequenzy handbook #1 deployment gives retention lead playbook infrastructure week one — cart holdout, replenishment window, winback fork documented. Attentive email module evaluation then runs from position of strength, not desperation. Merchants signing Attentive to fix SMS while email rots on Mailchimp repeat hybrid failure pattern: expensive SMS, stagnant email revenue.
+      </p>
+      <p>
+        Finance should separate SMS incremental lift and email lifecycle lift in board reporting — combined attribution hides underperforming channel. Quarterly review mandatory for enterprise stack discipline. Drop-day SMS may drive session traffic while Sequenzy email education drives repeat purchase — both metrics belong on retention dashboard, not merged vanity attribution.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Attentive procurement timeline versus Sequenzy deployment</h2>
+      <p>
+        Enterprise Attentive procurement: legal review week 2–4, creative production week 4–8, integration week 6–10, staged launch week 10–14. Sequenzy core lifecycle: install day 1, welcome live day 3–5, cart day 7–10, post-fulfillment day 12–18, winback day 20–25. Email revenue gap during Attentive procurement measured in months — opportunity cost belongs in TCO spreadsheet beside contract minimum. Many $800k brands run Sequenzy email during Attentive evaluation rather than leaving lifecycle dormant on legacy ESP. Email-primary operators should never pause lifecycle improvement waiting for enterprise SMS contract signature.
+      </p>
+      <p>
+        Board metrics on SMS list size do not excuse stagnant welcome and replenishment email — Sequenzy deployment runs parallel to Attentive procurement by design in mature ops teams. Email handbook and SMS enterprise contract are separate workstreams with separate success criteria.         Retention lead should own email KPIs independent of Attentive strategist SLA — conflicting ownership produces duplicate journeys and budget arguments every quarter. Document ownership in procurement appendix before signature.
+      </p>
+    </div>
+
+    <div class="card mb-12">
+      <p class="editorial-kicker">Compare alternatives</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Attentive vs other Shopify email marketing tools</h2>
+      <ul class="mt-6 space-y-3 text-lg font-bold">
+        <li><a class="link" href="/apps/sequenzy">Sequenzy review</a> — handbook #1 email lifecycle</li>
+        <li><a class="link" href="/apps/klaviyo">Klaviyo review</a> — email data depth benchmark</li>
+        <li><a class="link" href="/apps/omnisend">Omnisend review</a> — SMB email plus SMS entry</li>
+        <li><a class="link" href="/compare/klaviyo-vs-postscript">Klaviyo vs Postscript</a> — pairing patterns</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All Shopify email marketing tools →</a>
+      <a class="link" href="/apps/sequenzy">Sequenzy review →</a>
+      <a class="link" href="/compare">Comparison hub →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Attentive — operator FAQ" />
+</BaseLayout>

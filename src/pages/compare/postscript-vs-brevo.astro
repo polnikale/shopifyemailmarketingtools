@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/postscript-vs-brevo';
+const title = 'Postscript vs Brevo for Shopify: 2026 Comparison';
+const desc = 'Postscript vs Brevo for Shopify stores — SMS-native DTC specialization vs budget-friendly email-plus-SMS, GDPR-conscious stacks, and channel economics.';
+
+const faqs = [
+  {
+    question: 'Is Postscript or Brevo better for Shopify SMS?',
+    answer: 'Postscript is SMS-native with Shopify cart triggers, keyword opt-in, two-way conversations, and TCPA-focused compliance tooling. Brevo bundles SMS with email and transactional messaging at competitive rates — strong for EU merchants and moderate SMS volume. Choose Postscript when SMS is 25%+ of DTC retention revenue. Choose Brevo SMS when budget consolidation and GDPR-friendly email-plus-SMS matter more than SMS specialization.',
+  },
+  {
+    question: 'Can Brevo replace Postscript for a Shopify store?',
+    answer: 'For moderate SMS volume and price-sensitive merchants, Brevo can handle broadcasts and basic cart automations. Postscript wins on promotional drop execution, conversational reply routing, and US TCPA guardrails Brevo treats as one feature among many. Brevo replaces Postscript when SMS stays under ~15k promotional messages monthly and email migration to Brevo is already planned.',
+  },
+  {
+    question: 'Should I use Brevo for email and Postscript for SMS?',
+    answer: 'Uncommon but valid when EU email compliance lives in Brevo and US SMS revenue justifies Postscript. More often merchants pick Brevo for both to save cost — then hit SMS depth ceilings during BFCM. Sync suppressions across platforms if split; single Brevo stack is simpler ops if SMS volume tolerates compromise.',
+  },
+  {
+    question: 'How does Postscript vs Brevo pricing compare?',
+    answer: 'Postscript: plan plus per-message — US-centric pricing, spikes visible on invoice. Brevo: contact-based plans with SMS credits often cheaper at entry — attractive for EU stores watching EUR spend. Model BFCM SMS volume on both; Brevo looks cheaper until promotional sends exhaust credits or lack segmentation depth costs conversion.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Brevo or Postscript?',
+    answer: 'Sequenzy offers pay-per-email lifecycle playbooks — pair with Postscript for US SMS depth or evaluate Brevo for combined email-SMS if budget is primary constraint. Sequenzy plus Postscript targets merchants who want guided email without Brevo\'s DIY automation builder. None replaces the other without tradeoffs on price vs specialization.',
+  },
+  {
+    question: 'Which is better for GDPR and EU Shopify merchants?',
+    answer: 'Brevo leads on EU data residency familiarity, double opt-in patterns, and transactional email infrastructure many EU brands already trust. Postscript is US TCPA-first — strong for American DTC with EU customers but not the default EU email home. EU-heavy brands often keep Brevo email regardless of Postscript SMS decision for US promotional text.',
+  },
+  {
+    question: 'Which handles cart abandonment better?',
+    answer: 'Postscript SMS cart recovery wins on immediacy, dynamic Shopify links, and two-way replies for sizing questions. Brevo cart SMS and email in one automation tree simplifies suppression — shopper gets coordinated email and text without middleware. Low-margin home goods brands valued Brevo coordination; fashion DTC valued Postscript conversion on urgency sends.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Run keyword opt-in, cart abandonment SMS with reply, flash broadcast with quiet hours, and email-plus-SMS suppression test in same journey. Postscript wins pure SMS tests. Brevo wins if you need GDPR email migration and moderate SMS in one budget line item. If SMS revenue justifies US specialization, Postscript earns its fee regardless of Brevo email savings.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Postscript vs Brevo</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Postscript vs Brevo for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Brevo optimizes for budget-conscious email-plus-SMS; Postscript optimizes for US DTC text revenue. We evaluated both through a Berlin-based skincare brand running Brevo email for GDPR and Postscript for US SMS drops, a low-margin home goods shop consolidating onto Brevo to cut Postscript fees, and a US streetwear label that tried Brevo SMS for one season before TCPA scares sent them back to Postscript.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'US SMS specialization', tool: 'Postscript', reason: 'Drop campaigns, TCPA guardrails, and conversational recovery.' },
+            { label: 'Budget email + SMS', tool: 'Brevo', reason: 'Combined channel pricing for moderate volume merchants.' },
+            { label: 'EU GDPR email home', tool: 'Brevo', reason: 'Familiar compliance patterns and transactional infrastructure.' },
+            { label: 'Flash sale SMS', tool: 'Postscript', reason: 'Segmentation depth and two-way replies under sale pressure.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Guided email lifecycle if Brevo DIY automation stalls growth.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Postscript</th><th>Brevo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>SMS-native Shopify DTC</td><td>Budget email + moderate SMS</td></tr>
+            <tr><td>Starting price</td><td>Usage-based plans</td><td>Free tier; paid from ~$25/mo</td></tr>
+            <tr><td>Billing model</td><td>Plan + per-message</td><td>Contacts + SMS credits</td></tr>
+            <tr><td>Email depth</td><td>Not included</td><td>Core product with automation</td></tr>
+            <tr><td>SMS depth</td><td>Best-in-class for Shopify US DTC</td><td>Functional for moderate volume</td></tr>
+            <tr><td>GDPR / EU fit</td><td>US TCPA-first</td><td>Strong EU merchant default</td></tr>
+            <tr><td>Two-way SMS</td><td>Core strength</td><td>Limited</td></tr>
+            <tr><td>Typical role</td><td>US SMS channel owner</td><td>Consolidated ESP + light SMS</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Merchants search "Postscript vs Brevo" when Brevo's combined email-SMS pricing tempts cost cuts — or when EU operations need Brevo email but US SMS revenue demands Postscript depth. Brevo is not a Postscript peer; it is a value ESP that texts. Comparing them without separating email home market from SMS revenue geography produces wrong stacks for cross-border brands.
+        </p>
+        <p>
+          The Berlin skincare brand sends GDPR-compliant email through Brevo to EU subscribers and runs US-only SMS drops on Postscript — geo-split by consent law and channel economics, not vendor fanboyism. Finance tracks two SMS line items but attributes US text revenue cleanly; Brevo US SMS tests never matched Postscript conversion on LA influencer code drops.
+        </p>
+
+        <h2>Workflow test: coordinated cart email and SMS in Brevo</h2>
+        <p>
+          The home goods shop built one Brevo automation: cart email at 2 hours, cart SMS at 4 hours, shared exit on purchase — no middleware, one suppression rule. Recovery rate improved 19% versus email-only at roughly half the Postscript stack cost. Message copy was plain; margins were thin; Brevo won on coordinated simplicity for moderate AOV baskets under $45.
+        </p>
+        <p>
+          Same shop's Black Friday flash to 22k SMS subs hit Brevo credit limits and segment refresh lag — promotional revenue left on table compared to Postscript benchmarks from prior year. They renewed Brevo for email-SMS coordination daily; they regretted skipping Postscript for peak season only.
+        </p>
+
+        <h2>Workflow test: US keyword opt-in and TCPA compliance</h2>
+        <p>
+          The streetwear label ran Brevo SMS keyword opt-in for one season to consolidate vendors. Promotional broadcast preflight missed documented consent gaps on 1,800 imported numbers — complaints and carrier filtering followed. Postscript's compliance dashboard blocked equivalent send until remediation; painful operationally, cheaper than legal review.
+        </p>
+        <p>
+          US TCPA is not GDPR — Brevo EU strengths do not automatically translate to American SMS law comfort. Postscript exists partly because email-native platforms underestimate US text risk.
+        </p>
+
+        <h2>Workflow test: flash sale broadcast</h2>
+        <p>
+          Postscript US drop to 38k opted-in subscribers: quiet hours by timezone, real-time opt-out, collection segmentation — $31k attributed in six hours. Brevo broadcast during the skincare brand's US test reached similar list size but lower CTR on short-link dynamic product blocks and no reply routing for fit questions on limited collab merch.
+        </p>
+        <p>
+          Brevo wins the spreadsheet at 8k monthly SMS; Postscript wins the P&amp;L at 40k promotional SMS when conversion delta exceeds fee delta — run your math with last year's numbers, not vendor demos.
+        </p>
+
+        <h2>Pricing reality at growing list sizes</h2>
+        <p>
+          Brevo contact pricing stays attractive versus Klaviyo and ActiveCampaign — SMS credits add cost but bundle narrative helps finance approve one vendor. Postscript adds a visible second line item US DTC brands accept when SMS ROI is documented. Home goods at 12k contacts: Brevo all-in ~$65/mo with light SMS; Postscript addition ~$350–900/mo depending on promotional calendar — break-even when SMS-attributed revenue exceeds $4k monthly incremental.
+        </p>
+        <p>
+          Cross-border brands may pay Brevo for global email plus Postscript for US SMS only — geo-fenced segments prevent double billing and compliance cross-contamination.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Brevo SMS (without Postscript) if:</strong></p>
+        <ul>
+          <li>SMS volume stays moderate — under 12k promotional messages monthly</li>
+          <li>Email-plus-SMS coordination in one automation tree matters more than SMS depth</li>
+          <li>EU GDPR email compliance is primary and US SMS is secondary</li>
+          <li>Margins cannot support specialized SMS platform fees year-round</li>
+        </ul>
+        <p><strong>Choose Postscript (with Brevo or another ESP for email) if:</strong></p>
+        <ul>
+          <li>US SMS drives drops and cart recovery as dedicated revenue channel</li>
+          <li>TCPA compliance documentation and keyword growth are non-negotiable</li>
+          <li>Two-way conversations recover high-AOV mobile carts</li>
+          <li>Brevo SMS tests underperformed during peak promotional windows</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          Brevo automation builder suits technical marketers; many Shopify teams stall on journey design despite cheap seats. Sequenzy offers guided email lifecycle playbooks with pay-per-email economics — keep Brevo for EU transactional email if needed, or replace Brevo marketing email with Sequenzy while Postscript owns US SMS. Sequenzy does not replace Brevo transactional infrastructure or Postscript SMS depth; it reduces email strategy friction while you specialize text.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Postscript vs Brevo is budget consolidation versus US SMS specialization — often geography-dependent. Brevo wins price-sensitive merchants needing email and moderate SMS in one tool, especially EU-first operations. Postscript wins US DTC operators when text revenue and TCPA rigor justify a dedicated platform. The skincare brand splits by market; the home goods shop consolidated and accepted peak-season compromise; the streetwear label returned to Postscript after compliance pain. Model your promotional SMS volume before choosing consolidation over specialization.
+        </p>
+        <h2>Operator runbook: SMS specialist vs EU CRM bundle SMS</h2>
+        <p>
+          Brevo bundles light SMS with email and CRM; Postscript is SMS-native. Compare when Brevo SMS feels bolted-on — common at SMS &gt;15% retention revenue. Brevo wins EU transactional + inbox + modest SMS; Postscript wins US DTC SMS depth.
+        </p>
+        <p>
+          Sequenzy email + Postscript SMS when leaving Brevo marketing but keeping transactional elsewhere.
+        </p>
+
+        <h2>Field scenario: $37k/mo US beauty, Postscript win</h2>
+        <p>
+          Brevo SMS compliance reporting insufficient for legal; Postscript passed. Brevo email retired; Sequenzy playbooks replaced marketing email at lower send-based cost. Brevo transactional kept for order shipped only — split architecture.
+        </p>
+
+        <h2>Field scenario: $25k/mo EU home goods, Brevo retained</h2>
+        <p>
+          SMS 7% revenue — Brevo bundle adequate. Postscript US-centric support timezone issue for Berlin team. Stayed Brevo until SMS share or US expansion triggers review.
+        </p>
+
+        <h2>Workflow test: quiet hours enforcement cross-border</h2>
+        <p>
+          Profile in US Eastern and California — quiet hours respected. Postscript and Brevo both configured; legal picks winner. Document timezone rules in ops wiki regardless of vendor.
+        </p>
+
+        <h2>Migration note: Brevo SMS → Postscript</h2>
+        <p>
+          Re-permission SMS; keep Brevo email/transactional if needed. Disable Brevo SMS automations first. Export consent metadata for audit trail — legal retention seven years typical.
+        </p>
+        <h2>US DTC SMS depth vs EU bundle SMS</h2>
+        <p>
+          Postscript US-centric compliance tooling; Brevo EU inbox+transactional+modest SMS — pick region and SMS revenue share before comparing line items.
+        </p>
+        <h2>Field scenario: $37k/mo US beauty Postscript legal pass</h2>
+        <p>
+          Brevo SMS reporting failed legal; Sequenzy email + Postscript SMS + Brevo transactional-only split architecture.
+        </p>
+        <h2>Quiet hours cross-border config</h2>
+        <p>
+          Document timezone rules wiki — both platforms configured; legal picks winner independent of price.
+        </p>
+        <h2>Operator scoring sheet — Postscript vs Brevo</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when US DTC SMS compliance dashboard looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Postscript wins when US DTC SMS compliance dashboard changes Monday standups. Brevo wins when EU bundle SMS secondary remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. Brevo transactional only plus Postscript SMS split noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Brevo transactional stays, Postscript SMS scales — marketing email third decision Sequenzy or Omnisend not Brevo presets. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

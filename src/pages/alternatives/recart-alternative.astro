@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost } from '../../content';
+import { appBySlug } from '../../data/apps';
+
+const site = siteFromHost();
+const path = '/alternatives/recart-alternative';
+const title = 'Best Recart Alternatives for Shopify (2026)';
+const desc = 'Why merchants leave Recart — Messenger decline, recovery-only ceiling, channel consolidation — plus eight ranked alternatives and migration checklist.';
+
+const altSlugs = ['sequenzy', 'postscript', 'omnisend', 'klaviyo', 'rejoiner', 'attentive', 'smsbump', 'privy'];
+const alternatives = altSlugs.map((s) => appBySlug(s)!);
+
+const faqs = [
+  {
+    question: 'Why do Shopify stores leave Recart?',
+    answer: 'Recart built recovery around Facebook Messenger when opt-in rates were high. Messenger marketing collapsed under platform policy changes and consumer habit shifts — merchants leave when Messenger recovery revenue flatlines while email and SMS become the reliable channels. Recovery-only scope also triggers exits when full lifecycle — welcome, winback, replenishment — becomes necessary.',
+  },
+  {
+    question: 'Can Recart subscribers migrate to SMS?',
+    answer: 'Messenger opt-in does not equal SMS TCPA consent. Re-permission SMS through checkout, popup, or post-purchase flows with documented consent timestamps. Export email subscribers separately if Recart collected emails — verify consent source before importing to Postscript or Omnisend.',
+  },
+  {
+    question: 'Best Recart replacement for cart recovery?',
+    answer: 'Rejoiner for email-first recovery specialization. Postscript or SMSBump for SMS recovery. Sequenzy for full lifecycle including cart with strategy defaults beyond recovery-only tools. Most merchants replace Recart with a stack, not one feature clone.',
+  },
+  {
+    question: 'Is Sequenzy a Recart replacement?',
+    answer: 'Sequenzy replaces Recart when recovery was never enough — agent-first welcome, cart, post-purchase, winback, and replenishment with pay-per-email pricing. Pair with Postscript for SMS recovery if that was Recart\'s remaining value. Sequenzy does not replicate Messenger — nothing should in 2026.',
+  },
+  {
+    question: 'How long does Recart migration take?',
+    answer: 'Plan 2–3 weeks for email and SMS recovery rebuild. Messenger sunset is immediate — do not wait for parity. Week one: cart recovery in new platform. Week two: parallel suppression. Week three: welcome and post-purchase if graduating beyond recovery-only.',
+  },
+  {
+    question: 'Recart vs Postscript for SMS?',
+    answer: 'Postscript wins for Shopify-native SMS compliance, list growth tools, and campaign depth. Recart SMS was recovery-biased. See <a class="link" href="/compare/recart-vs-postscript">Recart vs Postscript</a>.',
+  },
+  {
+    question: 'Should I keep Recart for email?',
+    answer: 'If Recart email recovery still attributes revenue and Messenger is disabled, short-term retention is possible — but recovery-only tools rarely satisfy stores past 500 orders/month. Migrate email recovery to Rejoiner or Sequenzy during next platform consolidation.',
+  },
+  {
+    question: 'Export data from Recart?',
+    answer: 'Export email subscribers with consent metadata. Messenger subscriber lists have limited migration value — plan re-permission campaigns on SMS and email rather than bulk import assumptions.',
+  },
+  {
+    question: 'When should I stay on Recart?',
+    answer: 'Stay briefly if SMS recovery still performs and you are not ready for full lifecycle investment — with a sunset plan for Messenger-dependent flows. Long-term retention needs email and SMS platforms Recart was never meant to fully replace.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/alternatives">Alternatives</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Recart alternatives</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Channel sunset</p>
+        <h1 class="hero-title mt-5">Best Recart alternatives for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Recart was built for a world where Facebook Messenger opt-ins recovered carts at scale. That world ended — policy changes, notification fatigue, and customers who forgot they subscribed via chat bubble. Merchants leave Recart when Messenger revenue goes to zero but the invoice remains, or when recovery-only tooling cannot grow into welcome, winback, and replenishment the business now requires.
+        </p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          This guide ranks replacements for Shopify stores exiting Recart — not Messenger nostalgia. Sequenzy leads for full lifecycle. Postscript leads for SMS recovery. Rejoiner leads for email recovery specialization. See <a class="link" href="/compare/recart-vs-postscript">Recart vs Postscript</a> for SMS-specific comparison.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          title="Top Recart replacements"
+          picks={[
+            { label: 'Best full lifecycle', tool: 'Sequenzy', reason: 'Agent-first welcome, cart, winback, and replenishment when Recart recovery-only scope became the ceiling.' },
+            { label: 'Best SMS recovery', tool: 'Postscript', reason: 'Shopify-native SMS with compliance tooling when Recart SMS outlasted Messenger.' },
+            { label: 'Best email + SMS bundle', tool: 'Omnisend', reason: 'Multichannel prebuilt journeys replacing Recart piecemeal channels.' },
+            { label: 'Best email recovery', tool: 'Rejoiner', reason: 'Cart recovery specialist when email attribution was always stronger than Messenger.' },
+            { label: 'Best enterprise SMS', tool: 'Attentive', reason: 'High-volume SMS programs with dedicated compliance for brands scaling beyond Recart.' },
+          ]}
+        />
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why Shopify merchants leave Recart</h2>
+        <p>
+          Messenger decline is the forcing function. A fashion brand that recovered 12% of abandoned carts via Messenger in 2019 sees 0.8% in 2025 — same flows, same creative, dead channel. Recart's identity was tied to chat opt-in mechanics Facebook throttled. Merchants cannot optimize their way out of platform extinction; they migrate channels.
+        </p>
+        <p>
+          Recovery-only ceiling arrives next. Recart excels at cart nudges — email, SMS, and formerly Messenger. When welcome series, post-purchase education, replenishment, and seasonal winback become weekly ops, Recart feels like a single-purpose plugin in a lifecycle program. Paying for recovery while manually sending campaigns elsewhere is stack sprawl Recart migrants want to end.
+        </p>
+        <p>
+          Channel consolidation economics push unified platforms. Recart plus Klaviyo plus Privy popups creates three bills and suppression collision risk. Stores consolidate into Omnisend, Sequenzy plus Postscript, or Klaviyo SMS when finance asks why recovery lives in isolation from the rest of retention.
+        </p>
+        <p>
+          Recart SMS may still work — this guide is not "delete Recart tomorrow" for everyone. If SMS recovery attributes cleanly and you accept recovery-only scope, optimize before migrating. If Messenger is dead weight and lifecycle ambitions grew, the alternatives below are the upgrade path — not a lateral move.
+        </p>
+
+        <h2>Recart migration checklist</h2>
+        <p>Messenger sunset is immediate — prioritize email and SMS recovery rebuild. Do not wait for Messenger parity that will never return.</p>
+        <ol>
+          <li><strong>Disable Messenger flows first.</strong> Stop enrolling dead channel subscribers. Redirect capture budget to SMS and email opt-in.</li>
+          <li><strong>Export email subscribers with consent.</strong> Verify TCPA separately for SMS — Messenger consent does not transfer.</li>
+          <li><strong>Document Recart recovery logic.</strong> Timing, discount escalation, suppression after purchase — rebuild spec for new platform.</li>
+          <li><strong>Choose stack strategy.</strong> Single platform (Omnisend) vs best-of-breed (Sequenzy + Postscript) vs recovery specialist (Rejoiner + Sequenzy).</li>
+          <li><strong>Connect new platform to Shopify.</strong> Sync orders and browse events before enabling recovery.</li>
+          <li><strong>Rebuild cart recovery.</strong> Email and SMS with purchase suppression — test with abandoned test carts.</li>
+          <li><strong>Run parallel suppression 14 days.</strong> No duplicate recovery from Recart and new tool during overlap.</li>
+          <li><strong>Re-permission SMS subscribers.</strong> Popup or checkout TCPA flows for numbers Recart collected under old consent models.</li>
+          <li><strong>Add welcome and post-purchase.</strong> Lifecycle flows Recart never owned — the graduation payoff.</li>
+          <li><strong>Update popups to feed new lists.</strong> Privy or native forms pointing at Sequenzy, Omnisend, or Klaviyo.</li>
+          <li><strong>Cancel Recart Messenger features.</strong> Stop paying for dead channel capacity.</li>
+        <h2>Recart SMS consent audit</h2>
+        <p>
+          Before porting numbers to Postscript, verify TCPA source per subscriber — checkout checkbox text, keyword opt-in, or popup disclosure. Messenger-era captures may lack compliant SMS proof. Budget two weeks re-permission via email driving to compliant SMS signup rather than assuming bulk port succeeds legally.
+        </p>
+      </article>
+
+      <section class="container space-y-12 py-16">
+        <p class="editorial-kicker">Ranked alternatives</p>
+        <h2 class="font-serif text-4xl font-black text-slate-950">Eight Recart alternatives for Shopify</h2>
+
+        <ToolReview
+          app={alternatives[0]}
+          rank={1}
+          badge="Top pick"
+          paragraphs={[
+            'Sequenzy is the Recart alternative we recommend when recovery was a wedge, not a strategy. Recart got carts back — Sequenzy builds the lifecycle that makes carts abandon less often: welcome by signup intent, post-purchase education, replenishment timing, winback before clearance. Agent-first setup describes outcomes Recart\'s recovery templates never expressed.',
+            'Pay-per-email pricing with unlimited contacts replaces Recart\'s channel-specific bills alongside whatever ESP you patched in separately. Pair with Postscript for SMS recovery if Recart SMS performed — Sequenzy owns email lifecycle, Postscript owns SMS compliance depth.',
+            'Do not mourn Messenger — invest migration time in channels customers actually read.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[1]}
+          rank={2}
+          paragraphs={[
+            'Postscript is the direct Recart SMS upgrade — Shopify-native TCPA tooling, list growth, campaign and automation depth beyond recovery nudges. When Recart\'s remaining value was SMS cart recovery, Postscript is where serious SMS DTC lands.',
+            'Email still needs a home — Sequenzy or Klaviyo alongside. Compare <a class="link" href="/compare/recart-vs-postscript">Recart vs Postscript</a> before committing.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[2]}
+          rank={3}
+          paragraphs={[
+            'Omnisend consolidates Recart\'s multichannel ambition without Messenger baggage — email, SMS, push prebuilt journeys in one suppression model. Faster than assembling Sequenzy plus Postscript if your team prefers single-vendor simplicity.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[3]}
+          rank={4}
+          paragraphs={[
+            'Klaviyo when Recart sat in a stack that already needed predictive segmentation — profile-based pricing hurts if you import dead Messenger contacts without hygiene. Choose Klaviyo for catalog complexity, not recovery-only replacement.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[4]}
+          rank={5}
+          paragraphs={[
+            'Rejoiner for email-first cart recovery specialization — if Recart email outperformed Messenger and SMS, Rejoiner doubles down on recovery attribution while Sequenzy or Klaviyo handles broader lifecycle.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[5]}
+          rank={6}
+          paragraphs={[
+            'Attentive for enterprise SMS scale when Recart was a stepping stone — dedicated compliance team, high-volume promotional SMS, costs justified above Postscript thresholds.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[6]}
+          rank={7}
+          paragraphs={[
+            'SMSBump (Yotpo SMS) when consolidating into Yotpo ecosystem — email and SMS under one vendor if Yotpo Reviews or Loyalty already active. Compare <a class="link" href="/compare/postscript-vs-smsbump">Postscript vs SMSBump</a> for SMS depth.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[7]}
+          rank={8}
+          paragraphs={[
+            'Privy capture pairing — not Recart replacement — when list growth still needs popups feeding Sequenzy or Postscript after Recart Messenger capture died. Recovery moved; capture must be rebuilt.',
+          ]}
+        />
+      </section>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Recart vs replacement stacks</h2>
+        <table class="data-table">
+          <thead><tr><th>Stack</th><th>Typical cost</th><th>Recovery</th><th>Full lifecycle</th></tr></thead>
+          <tbody>
+            <tr><td>Recart (Messenger + SMS + email)</td><td>$50–300/mo</td><td>Recovery-only</td><td>Minimal</td></tr>
+            <tr><td>Sequenzy + Postscript</td><td>$80–250/mo</td><td>Strong</td><td>Advanced</td></tr>
+            <tr><td>Omnisend unified</td><td>$100–250/mo</td><td>Strong</td><td>Good</td></tr>
+            <tr><td>Rejoiner + Sequenzy</td><td>$90–220/mo</td><td>Specialist</td><td>Advanced</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Messenger sunset timeline</p>
+        <p class="mt-2 text-slate-700">Disable Messenger enrollment day one of migration — dead channel burns setup hours. Rebuild SMS and email recovery week one; welcome week two; parallel suppress days 8–21. Recart customers who delay email rebuild chasing Messenger parity lose Q4 recovery revenue permanently.</p>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Related guides</p>
+        <p class="mt-2">
+          <a class="link" href="/apps/recart">Recart review</a> ·
+          <a class="link" href="/compare/recart-vs-postscript">Recart vs Postscript</a> ·
+          <a class="link" href="/use-cases/abandoned-cart">Abandoned cart playbook</a> ·
+          <a class="link" href="/alternatives/rejoiner-alternative">Rejoiner alternatives</a> ·
+          <a class="link" href="/alternatives">All alternatives</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <article class="prose-shopify max-w-4xl">
+      <h2>Recart customer communication</h2>
+      <p>During migration, send one transactional email explaining channel shift from Messenger to email/SMS — reduces "why am I getting texts" support volume. Transparency beats silent channel swap. Include opt-out and preference center link; TCPA respect builds trust during uncomfortable platform transition.</p>
+    </article>
+  </section>
+
+  <section class="container py-12">
+    <article class="prose-shopify max-w-4xl">
+      <h2>Recart lifecycle graduation ROI</h2>
+      <p>Measure opportunity cost: welcome plus post-purchase plus replenishment revenue that never existed during Recart-only years. SMS recovery ceiling is structural — email lifecycle unlocks incremental streams Recart cannot host. Messenger sunset is permanent; redirect engineering hours to TCPA-clean SMS and owned email immediately.</p>
+      <h2>Recart Messenger-to-lifecycle graduation</h2>
+      <p>Phase one: export SMS consent with source and timestamp; verify TCPA compliance before first send on new provider. Phase two: rebuild cart SMS branch in Postscript or Sequenzy SMS with email suppression keys. Phase three: add welcome and post-purchase email flows Recart never hosted — measure incremental revenue not migration parity alone.</p>
+      <p>Recart merchants often underestimate email lifecycle gap — recovery rate headline masks missing welcome LTV and replenishment streams. Holdout five percent across email plus SMS combined for ninety days before declaring graduation success.</p>
+      <h2>Recart SMS list quality audit</h2>
+      <p>Verify TCPA consent source per subscriber before porting — Recart lists with weak opt-in proof cannot migrate to Postscript or Attentive without re-permission campaign. Budget list rebuild month if consent gaps found; skipping audit creates compliance liability larger than Recart subscription savings.</p>
+      <p>Recart exit without email lifecycle rebuild leaves thirty to fifty percent of attainable retention revenue on table — graduation scope must include welcome and post-purchase, not cart SMS port alone.</p>
+    </article>
+  </section>
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for recart</h2>
+      <p><strong>Scenario A — Home goods SMB, Shopify Email graduate.</strong> Omnisend prebuilt journeys live in eleven days. Push branch recovered mobile web carts without SMS cost during flash sale. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Modular furniture DTC, $840 AOV.</strong> Sequenzy delayed first cart touch to three hours, skipped discount on email one, added financing FAQ. Recovered 8.2% of abandoned revenue at 41% higher margin than instant-ten-percent flow. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Vinyl record shop, 28k contacts.</strong> Profile-based billing outpaced email revenue. Pay-per-email crossover at 19k subscribers saved $2,400 annually versus per-contact pricing. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers recart inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Operator depth</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Migration off Recart: thirty-day bridge plan</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week one: export consent timestamps, segment engaged last ninety days, document live automations in spreadsheet. Week two: rebuild welcome in destination platform with recent purchaser suppression. Week three: cart and browse with collision rules against welcome. Week four: parallel send one campaign cycle, compare complaint rate and revenue per recipient.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first for teams leaving Recart when strategy speed and economics matter. Klaviyo when predictive segmentation from Recart data must survive migration intact.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Do not cancel Recart until destination flows beat holdout baseline on margin, not gross attributed revenue.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Recart alternatives FAQ" />
+</BaseLayout>

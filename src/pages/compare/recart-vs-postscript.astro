@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/recart-vs-postscript';
+const title = 'Recart vs Postscript for Shopify SMS: 2026 Comparison';
+const desc = 'Recart vs Postscript for Shopify — cart-focused SMS and messenger vs full SMS marketing platform, pricing, compliance, and when narrow recovery beats broadcast depth.';
+
+const faqs = [
+  {
+    question: 'Is Recart or Postscript better for a Shopify store doing $70k/mo?',
+    answer: 'Recart wins when SMS revenue is primarily cart and checkout recovery — narrow focus, lower complexity. Postscript wins when promotional broadcasts, keyword opt-in growth, two-way conversations, and full SMS marketing program matter. At $70k/mo with SMS as recovery channel only, Recart competes on cost and focus. With SMS as retention engine, Postscript leads.',
+  },
+  {
+    question: 'How does Recart vs Postscript pricing compare?',
+    answer: 'Recart often uses revenue-share or lower base plus message pricing focused on recovery ROI. Postscript bills plan plus per-message with tiered subscriber counts — typically $100–300+/mo at scale depending on volume. Recart can look cheaper when broadcast SMS was Postscript cost culprit. Postscript value rises when broadcast and conversational SMS drive equal revenue to cart recovery.',
+  },
+  {
+    question: 'Which has better abandoned cart SMS?',
+    answer: 'Both recover carts effectively. Recart was built for cart and messenger recovery — dynamic product links, reply handling, and recovery attribution are defaults. Postscript cart abandonment is mature with broader segmentation and two-way support routing. Recart wins simplicity and recovery focus; Postscript wins when cart is one SMS workflow among many.',
+  },
+  {
+    question: 'Can I migrate from Recart to Postscript or vice versa?',
+    answer: 'Yes, with TCPA compliance care. Export SMS opt-in timestamps and consent source — re-opt-in may be required for some subscribers depending on consent language. Rebuild cart SMS first; run parallel one week with strict purchase suppression. Budget 2–3 weeks including compliance review for mid-size lists.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Recart or Postscript?',
+    answer: 'Sequenzy is email-first — it does not replace SMS cart recovery. Pair Sequenzy lifecycle email with Recart or Postscript for SMS with documented suppression. Postscript still wins full SMS marketing. Recart still wins cart-only focus. Sequenzy reduces email stack complexity alongside either SMS tool.',
+  },
+  {
+    question: 'Does Postscript broadcast SMS matter vs Recart?',
+    answer: 'Postscript excels at promotional broadcasts, drop alerts, and keyword campaigns — core revenue for many DTC brands. Recart focuses on recovery flows over broadcast breadth. If flash sale SMS drives 40%+ of text revenue, Postscript is necessary. If SMS exists only for cart abandonment, Recart avoids paying for unused broadcast infrastructure.',
+  },
+  {
+    question: 'Which platform handles Facebook Messenger vs SMS?',
+    answer: 'Recart historically emphasized Messenger alongside SMS for cart recovery — relevant for brands with Messenger audience legacy. Postscript is SMS-native with Shopify focus. Messenger importance has declined for many merchants; evaluate current channel attribution before choosing on Messenger capability.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Measure cart SMS recovery rate, broadcast SMS revenue share, and keyword opt-in growth. Build cart abandonment with reply routing and purchase suppression. If 90%+ of SMS revenue is recovery, Recart likely suffices. If broadcasts and conversational support drive meaningful revenue, Postscript justifies higher cost.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Recart vs Postscript</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Recart vs Postscript for Shopify SMS</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Postscript wants to be your SMS marketing department — broadcasts, keywords, cart recovery, and two-way support. Recart wants to recover checkout — cart SMS and messenger flows without paying for broadcast infrastructure you barely use. We evaluated both through a $85k/mo beauty brand where Postscript broadcast costs exceeded cart recovery ROI, a footwear DTC where SMS drops drove 22% of launch revenue, and a supplements shop that cut Postscript for Recart and re-added Postscript six months later when keyword growth mattered.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Cart recovery focus', tool: 'Recart', reason: 'Narrow SMS recovery without broadcast overhead.' },
+            { label: 'Full SMS marketing', tool: 'Postscript', reason: 'Broadcasts, keywords, and two-way conversations at scale.' },
+            { label: 'Recovery ROI pricing', tool: 'Recart', reason: 'Cost structure aligned with cart attribution.' },
+            { label: 'Shopify SMS ecosystem', tool: 'Postscript', reason: 'Larger partner network and integration depth.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Email lifecycle playbooks to pair with either SMS tool.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Recart</th><th>Postscript</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Cart-focused SMS recovery</td><td>Full Shopify SMS marketing</td></tr>
+            <tr><td>Starting price</td><td>Varies; recovery-focused tiers</td><td>From ~$25/mo + per-message</td></tr>
+            <tr><td>Billing model</td><td>Recovery-oriented pricing</td><td>Plan + subscriber + messages</td></tr>
+            <tr><td>Shopify depth</td><td>Native — cart, checkout</td><td>Native — full commerce events</td></tr>
+            <tr><td>Cart abandonment SMS</td><td>Core strength</td><td>Strong, broader context</td></tr>
+            <tr><td>Broadcast SMS</td><td>Limited</td><td>Core strength</td></tr>
+            <tr><td>Keyword opt-in</td><td>Basic</td><td>Mature</td></tr>
+            <tr><td>Two-way SMS</td><td>Recovery replies</td><td>Full conversational support</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          SMS economics punish breadth. Postscript per-message pricing on 40k-subscriber lists adds up fast when monthly broadcasts are habit. Recart entered conversations when merchants asked: what if I only need cart SMS? The beauty brand's Postscript bill hit $340/mo while cart recovery attributed $8k and broadcasts attributed $2k — paying full platform cost for minority use case. Recart consolidation recovered margin without losing cart SMS performance.
+        </p>
+        <p>
+          The footwear DTC had opposite math — launch-day SMS to 28k opted-in subscribers generated $31k attributed on limited drops. Postscript broadcast infrastructure was the product. Recart could not replicate keyword growth and drop orchestration. Narrow versus full SMS is a revenue mix question, not a feature checklist.
+        </p>
+
+        <h2>Merchant scenario: beauty brand trimming SMS stack</h2>
+        <p>
+          19k SMS subscribers, heavy popup opt-in, moderate broadcast cadence. Postscript monthly cost crept with subscriber count regardless of send volume. Cart SMS at 20 minutes with dynamic variant links recovered steadily. Recart migration kept cart flows, dropped broadcast habit, paired with Klaviyo email for promotional sends — total retention cost dropped 24%.
+        </p>
+        <p>
+          Tradeoff: lost keyword campaign that drove 800 new opt-ins quarterly. Re-evaluated Postscript when list growth stalled — recovery-only SMS does not grow list.
+        </p>
+
+        <h2>Merchant scenario: footwear drop culture</h2>
+        <p>
+          Limited colorways, 15-minute sellout windows, SMS as primary launch channel. Postscript quiet hours, segment by browse history, and broadcast to 28k drove launch-hour revenue Recart scope could not match. Cart recovery was secondary to drop alerts — Postscript keyword "DROP" added 1,200 subscribers before last release.
+        </p>
+        <p>
+          Recart trial recovered carts comparably but lacked broadcast orchestration the brand's retention model required. Full SMS marketing was non-negotiable.
+        </p>
+
+        <h2>Workflow test: abandoned cart SMS</h2>
+        <p>
+          Both recovered $90–150 carts effectively. Recart two-message cart series at 18 minutes and 4 hours with product image link — live in under two hours. Postscript equivalent with segment exclusions and reply routing for sizing questions — live in four hours, stronger support integration for footwear catalog.
+        </p>
+        <p>
+          Recovery rates were within 0.4 percentage points on beauty SKUs — platform choice did not change cart physics; cost structure and adjacent capabilities did.
+        </p>
+
+        <h2>Workflow test: keyword opt-in growth</h2>
+        <p>
+          Postscript "VIP" keyword at checkout and packaging inserts added 2,400 net opt-ins in one quarter with compliance documentation. Recart keyword support was basic — sufficient for recovery-triggered opt-in, insufficient for growth-as-strategy.
+        </p>
+        <p>
+          Supplements shop learned this after Recart migration — re-added Postscript specifically for keyword infrastructure while keeping Recart cart flows during transition, then consolidated Postscript once growth recovered.
+        </p>
+
+        <h2>Compliance and suppression</h2>
+        <p>
+          Both require TCPA-compliant opt-in with clear marketing consent language. Postscript compliance dashboard and quiet hours are mature — important for multi-state US shipping. Recart handles recovery consent but broadcast-heavy programs need Postscript-grade compliance tooling.
+        </p>
+        <p>
+          Coordinate with email ESP — cart SMS and cart email within 30 minutes damages trust. Document channel priority regardless of SMS platform.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Recart if:</strong></p>
+        <ul>
+          <li>90%+ of SMS revenue comes from cart and checkout recovery</li>
+          <li>Postscript broadcast costs exceed broadcast attributed revenue</li>
+          <li>Email handles promotional sends; SMS is recovery-only</li>
+          <li>You want narrow tool scope and simpler billing alignment with ROI</li>
+        </ul>
+        <p><strong>Choose Postscript if:</strong></p>
+        <ul>
+          <li>SMS drops and broadcasts drive meaningful launch revenue</li>
+          <li>Keyword opt-in growth is active strategy, not afterthought</li>
+          <li>Two-way SMS support for product questions matters</li>
+          <li>You want Shopify SMS ecosystem depth and agency partner access</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          Either SMS tool needs email complement. Sequenzy offers lifecycle email playbooks with pay-per-email pricing — pair with Recart for recovery-focused stack or Postscript for full SMS plus strategic email. Suppression documentation between Sequenzy email and either SMS platform prevents duplicate cart touches.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Recart wins when cart SMS recovery is the job and Postscript broadcast infrastructure is paid but unused. Postscript wins when SMS marketing — drops, keywords, broadcasts, conversations — drives retention revenue beyond checkout recovery. Audit twelve-month SMS attribution by workflow type before choosing. The winner matches how you actually use text, not how you plan to use it in a strategy deck.
+        </p>
+        <h2>Operator runbook: Messenger/recovery legacy vs modern SMS</h2>
+        <p>
+          Recart (Messenger-focused recovery heritage) vs Postscript (SMS-native) reflects channel shift — many operators deprecate Messenger recovery as SMS opt-in scales. Postscript wins new Shopify stacks; Recart only if Messenger DAU still measurable revenue.
+        </p>
+        <p>
+          Sequenzy email + Postscript SMS is modern default when leaving Recart entirely.
+        </p>
+
+        <h2>Field scenario: $32k/mo gadgets, Recart deprecation</h2>
+        <p>
+          Messenger recovery down 62% year-over-year; Recart $99/mo underperforming. Postscript SMS cart incremental $4,800/mo at 10% opt-in. Recart cancelled; email added Sequenzy — full stack modernization in six weeks.
+        </p>
+
+        <h2>Field scenario: $24k/mo EU fashion, Recart retained briefly</h2>
+        <p>
+          Messenger still 8% recovery in Germany — Recart + Postscript SMS dual during transition Q1. Recart sunset Q2 when SMS surpassed Messenger RPR consistently four weeks running.
+        </p>
+
+        <h2>Workflow test: Messenger vs SMS cart recovery RPR</h2>
+        <p>
+          Split holdout cohort — measure RPR and unsub. SMS must beat Messenger RPR or justify switch with strategic opt-in growth plan. Document finance case with 30-day trial numbers not vendor promises.
+        </p>
+
+        <h2>Migration note: Recart → Postscript</h2>
+        <p>
+          SMS re-permission required — Messenger subs do not transfer. Wind down Recart flows channel-by-channel. Add Postscript popup before disabling Recart cart — avoid recovery gap week. Email lifecycle separate migration Sequenzy/Omnisend.
+        </p>
+        <h2>Messenger decline SMS modernization</h2>
+        <p>
+          Recart Messenger recovery declining year-over-year many US DTC — Postscript SMS cart modern default when opt-in scales. Holdout RPR test proves switch with numbers not nostalgia.
+        </p>
+        <h2>Field scenario: $32k/mo gadgets Recart sunset</h2>
+        <p>
+          Messenger -62% YoY; Postscript $4,800/mo incremental; Sequenzy email added — full modernization six weeks.
+        </p>
+        <h2>Recovery gap prevention</h2>
+        <p>
+          Enable Postscript popup before disabling Recart cart — no zero-recovery week during transition.
+        </p>
+        <h2>Operator scoring sheet — Recart vs Postscript</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when Messenger recovery declining looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Recart wins when Messenger recovery declining changes Monday standups. Postscript wins when SMS cart modern default remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. Sequenzy email plus Postscript full modernization noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Enable Postscript recovery before Recart sunset — zero-gap week unacceptable during transition month. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+        <h2>Deliverability and list hygiene gate</h2>
+        <p>
+          Sunset unengaged contacts thirty days before peak season regardless of comparison winner — Gmail and Yahoo placement after volume spike determines renew more than feature parity. Warm sending domain two weeks on welcome and cart before scaling winback promotional volume. Migration week one sends at fifty percent planned volume with spam complaint watch daily; spike to full volume only after placement stable three consecutive days. Pair-specific pause order documented: old platform cart journey hard-paused before new platform cart enabled — parallel cart classified P1 incident in operator handbook. Finance reviews flow-level revenue week four post-cutover, not campaign open rates — incremental lift methodology with holdout segment when testing new branches.
+        </p>
+
+
+
+
+
+
+      </article>

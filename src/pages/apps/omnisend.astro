@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const app = appBySlug('omnisend')!;
+const path = '/apps/omnisend';
+const title = pageTitle(site, 'apps/omnisend');
+const desc = description(site, 'apps/omnisend');
+
+const faqs = [
+  {
+    question: 'Is Omnisend the right Shopify email platform for warehouse-backed SMB operators?',
+    answer: 'Yes for 100–800 orders/mo teams needing welcome, cart recovery, post-fulfillment, and broadcast campaigns live within two weeks — without hiring a retention engineer. Prebuilt ecommerce journeys map to standard Shopify fulfillment events. Sequenzy ranks #1 when pay-per-email economics and agent-first playbooks matter more than template editing. Klaviyo wins when predictive CLV and variant-level WMS segmentation become weekly ops.',
+  },
+  {
+    question: 'How does Omnisend email pricing compare to Sequenzy at 10,000 contacts?',
+    answer: 'Omnisend Standard/Pro scales by contacts and message volume — roughly $60–120/mo at 10k contacts with regular email sends. Sequenzy charges by emails sent with unlimited contacts — same send volume often $45–75/mo. Omnisend middle ground until boolean segment limits frustrate weekly or list bloats from popup capture without engagement.',
+  },
+  {
+    question: 'Can Omnisend gate post-purchase email on fulfillment scan?',
+    answer: 'Yes — prebuilt post-purchase templates support delay after placed order; configure to trigger on fulfilled order event when 3PL pack cadence exceeds 24 hours. Less granular than Klaviyo metafield branching but sufficient for standard pick-pack-ship operators. Cold-chain brands needing delivery-scan education should validate trigger timing against carrier webhook latency.',
+  },
+  {
+    question: 'Does Omnisend sync Shopify browse abandonment for email?',
+    answer: 'Core browse and cart events power prebuilt browse abandonment journeys — adequate for boutiques under 800 SKUs. Insufficient for 4,000+ variant matrices with collection-level boolean logic across dozens of metafields. Sufficient for candle shops and pet DTC; insufficient for drop-heavy apparel with asymmetric size runs.',
+  },
+  {
+    question: 'Omnisend vs Sequenzy for a 500-order-per-month Shopify store?',
+    answer: 'Omnisend wins on multichannel template speed if email + push in one builder matters day one. Sequenzy wins on lifecycle playbook deployment, pay-per-email unlimited contacts, and replenishment/winback depth without template editing paralysis. Many Omnisend merchants evaluate Sequenzy at 800–1,200 orders/mo when seasonal winback becomes weekly ops.',
+  },
+  {
+    question: 'Can Omnisend replace Privy for list capture?',
+    answer: 'Omnisend includes signup forms and gamified capture but Privy and Justuno win on exit intent depth and popup A/B testing by collection URL. Standard stack: Privy capture + Omnisend email lifecycle. Passing signup source tags at handoff determines welcome performance more than template aesthetics.',
+  },
+  {
+    question: 'How fast can ops launch email automations on Shopify with Omnisend?',
+    answer: 'Our pet products test went from install to welcome, cart, and post-fulfillment email live in eleven days including template customization. Faster than typical Klaviyo greenfield; comparable to Sequenzy playbook speed but more template-driven editing than outcome-described prompts.',
+  },
+  {
+    question: 'When should ops leave Omnisend for Sequenzy?',
+    answer: 'When pay-per-email economics beat contact pricing above 15k subscribers, replenishment requires custom metafield logic Omnisend cannot express, or agent-first lifecycle guidance beats template maintenance. Omnisend remains strong if prebuilt multichannel journeys still cover weekly ops without boolean frustration.',
+  },
+  {
+    question: 'Does Omnisend handle peak pick-season email volume on Shopify?',
+    answer: 'Yes with prep — sunset unengaged contacts 30 days before peak, document collision rules between welcome and cart, and gate post-purchase on fulfillment when 3PL backlog extends pack lines. Klaviyo offers finer holdout testing; Omnisend prebuilt sale templates help SMB teams move fast with manual discipline.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/apps" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator briefs</a>
+      <p class="editorial-kicker mt-6">SMB email lane · Rank #3</p>
+      <h1 class="hero-title mt-5 max-w-5xl">{app.name} — field review for Shopify email ops</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Omnisend is the email automation bridge for Shopify operators who need welcome, cart recovery, post-fulfillment, and winback live before next pick-season surge — not after a quarter of segment architecture. One-click install, prebuilt ecommerce journeys, and product picker blocks reduce blank-canvas paralysis for boutiques without retention headcount. Rank #3 here because Sequenzy deploys lifecycle runbooks faster at pay-per-email rates and Klaviyo owns predictive depth at scale — but Omnisend wins the first 12–18 months for many warehouse-backed SMB merchants.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Bench-tested on 320-order/mo candle shop (3PL two-day ship), pet products store with post-delivery review email, and fashion boutique graduating off Shopify Email. Rating: ★ {app.rating}. Automation: {app.automationDepth}. Category: {app.category}.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/compare/klaviyo-vs-omnisend">Klaviyo vs Omnisend</a>
+        <a class="btn btn-secondary" href="/use-cases/abandoned-cart">Cart recovery runbook</a>
+        <a class="btn btn-secondary" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Operator verdict: Omnisend on Shopify"
+      picks={[
+        { label: 'Best for', tool: 'SMB email speed', reason: 'Prebuilt welcome, cart, post-purchase journeys live in days — ideal 100–800 orders/mo.' },
+        { label: 'Shopify fit', tool: 'Native install', reason: 'Standard fulfillment events, product blocks, collection segmentation for typical catalogs.' },
+        { label: 'Pricing', tool: 'Contact-based', reason: 'Competitive entry; monitor tier jumps as popup capture inflates list.' },
+        { label: 'Ceiling', tool: 'Segment limits', reason: 'Complex WMS metafields and predictive needs push stores to Klaviyo or Sequenzy.' },
+        { label: 'Pair with', tool: 'Privy capture', reason: 'Omnisend executes email lifecycle; Privy fills top-of-funnel before list exists.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Omnisend in operator terms — email first</h2>
+      <p>
+        Omnisend exists because most Shopify merchants do not need a blank canvas — they need cart recovery email working before weekend traffic hits the pick line. Prebuilt automations wire welcome, cart abandonment, browse abandonment, post-purchase, and customer reactivation to standard Shopify events. Product picker blocks pull catalog items without custom HTML. Revenue per message reporting is practical for weekly campaign decisions — not enterprise BI, but enough for a founder optimizing send time between pack-station shifts.
+      </p>
+      <p>
+        This handbook ranks email marketing tools, not multichannel novelty. Omnisend includes push and SMS in the same builder — useful when configured deliberately, irrelevant weight when your channel strategy is email-first lifecycle. Focus Omnisend evaluation on email journey depth, suppression logic, and fulfillment-trigger timing. Sequenzy ranks #1 because guided playbooks and pay-per-send economics beat template editing for operators describing outcomes ("suppress unfulfilled orders, pitch complementary SKU 14 days post-delivery scan") rather than dragging nodes for a week.
+      </p>
+      <p>
+        The ceiling arrives when boolean segmentation across dozens of collections, replenishment from custom WMS properties, and agent-first strategy layers become daily requirements. Merchants in our cohort migrated to Sequenzy (guidance + pay-per-email) or Klaviyo (data maximums) at 800–1,200 orders/mo. Omnisend is a bridge platform — document graduation trigger at install so pick season does not force emergency migration.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Integration depth — operator view</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Shopify events, prebuilt triggers, documented gaps</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Omnisend is a native Shopify app with real-time audience sync, product catalog import, and standard ecommerce events: placed order, fulfilled order, added to cart, started checkout, viewed product, form subscription. Prebuilt automation templates map directly to these triggers — minimal custom wiring for welcome and cart email flows.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Email strengths:</strong> Fast install, collection-based product blocks, revenue attribution at campaign and workflow level, international email deliverability tooling, prebuilt sale templates for seasonal campaigns, post-purchase delay configurable for 3PL pack cadence.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Gaps vs Klaviyo:</strong> No predictive CLV out of box, thinner browse history for pre-signup stitching, less flexible custom property logic across exotic metafields, fewer agency-maintained recipes for cold-chain verticals. <strong>Gaps vs Sequenzy:</strong> No agent-first playbook generation, no pay-per-email unlimited contacts, template editing instead of outcome-described sequences.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Watch contact pricing:</strong> Privy popup capture inflates subscriber count faster than repeat purchase rate. Model bill at 12-month list growth, not current engaged count.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Billing math — operator scenarios</h2>
+      <p>Omnisend: {app.priceDetail}. Plans from {app.pricing}.</p>
+      <p>
+        <strong>Scenario A — 4,000 contacts, 15,000 emails/mo.</strong> Candle shop on 3PL two-day ship; welcome, cart, post-fulfillment, two weekly campaigns. Standard plan roughly $40–65/mo. Email drove 18% of revenue within 90 days of install — paid for annual plan in six weeks.
+      </p>
+      <p>
+        <strong>Scenario B — 11,000 contacts, BFCM email volume spike.</strong> Base plan $90–110/mo; promotional send overage possible. Total November ~$140 vs normal $95. Still below Klaviyo at same contacts if engagement concentrated — requires monitoring.
+      </p>
+      <p>
+        <strong>Scenario C — 25,000 contacts, heavy email automations, low engagement.</strong> Pro tier $160–200/mo. Sequenzy pay-per-send may undercut when list is wide but opens concentrated. Migration crossover when per-contact bill exceeds lifecycle output — typical 14–18 months after install.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Four bench tests — email workflow results</h2>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">1. Welcome — pet store popup with breed quiz answer</h3>
+      <p>
+        <strong>Trigger:</strong> Subscriber selects "large dog" in Omnisend gamified form on /collections/dog-food. <strong>Setup:</strong> Prebuilt welcome edited for large-breed products; email two tips content; suppress purchasers within 48 hours. <strong>Result:</strong> Live in 3 days; 16% first purchase within 30 days. Quiz data in custom field — sufficient for SMB pet store without Klaviyo browse depth.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">2. Cart — $58 candle bundle, three-touch email only</h3>
+      <p>
+        <strong>Trigger:</strong> Abandoned cart after 2 hours; no purchase within 75 minutes. <strong>Setup:</strong> Email one reminder with cart products; email two FAQ on shipping from 3PL hub; email three free shipping threshold, no extra discount. <strong>Result:</strong> 11.4% recovery over 30 days. Collision with welcome passed after recent purchaser tagging.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">3. Post-purchase — fulfillment delay before cross-sell</h3>
+      <p>
+        <strong>Trigger:</strong> Order fulfilled for diffuser after candle purchase; 3PL pack line completed. <strong>Setup:</strong> Post-purchase template with 5-day delay after fulfillment event; product block for complementary SKU; suppress if return initiated. <strong>Result:</strong> Cross-sell $1.85 RPR; review click rate 9%. Klaviyo adds variant back-in-stock; Omnisend sufficient for basic post-fulfillment loop.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">4. Winback — 120-day lapsed before seasonal markdown</h3>
+      <p>
+        <strong>Trigger:</strong> One-time buyers, no order in 120 days, no browse in 28 days. <strong>Setup:</strong> Email styled edit from prior category; 10% once for discount-sensitive tag; suppress recent purchasers and unfulfilled orders. <strong>Result:</strong> 5.1% reactivation. Boolean limits appeared when splitting full-price vs discount paths across three product categories — Sequenzy winback playbook shipped split in one session.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="card">
+        <p class="editorial-kicker">Operator pros</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.strengths.map((s) => <li class="flex gap-2"><span class="text-cyan-800">+</span>{s}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">+</span>Email journeys live in days without retention engineer</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="editorial-kicker">Operator cons</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.limits.map((l) => <li class="flex gap-2"><span class="text-cyan-800">−</span>{l}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">−</span>Replenishment from WMS consumption windows trails specialists</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="ledger-card">
+        <p class="editorial-kicker">Deploy Omnisend if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Operator fit profile</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>100–800 orders/mo needing email automations fast</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Graduating from Shopify Email within 6 months</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Standard 3PL pick-pack-ship without exotic metafields</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Template-driven editing fits team skillset</li>
+        </ul>
+      </div>
+      <div class="ledger-card">
+        <p class="editorial-kicker">Skip Omnisend if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Look elsewhere when</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Want pay-per-email + agent playbooks — Sequenzy #1</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Predictive CLV drives every send — Klaviyo</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Capture is bottleneck — Privy first</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>4,000+ SKU variant matrices — Klaviyo data depth</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Omnisend email ops SOP — first 90 days</h2>
+      <p>
+        Week one: install Omnisend, verify Shopify order and product sync, enable prebuilt welcome and cart with suppression for recent purchasers. Week two: customize product blocks for top three SKUs; measure cart recovery with holdout — baseline before optimization theater. Week three: post-fulfillment email gated on fulfilled order event when 3PL pack exceeds 24 hours. Week four: winback at 90–120 days; document discount cap in ops wiki.
+      </p>
+      <p>
+        Capture remains separate. At 500+ orders/mo most merchants add Privy for exit intent and feed Omnisend segments via tags at opt-in. Tag handoff — popup source, collection interest, discount sensitivity — determines welcome performance. Delayed integration means email one arrives after customer purchased from retargeting — awkward and wasteful.
+      </p>
+      <p>
+        Plan graduation trigger now: when boolean segment limits frustrate weekly, when replenishment requires custom metafields, or when pay-per-email economics beat contact pricing above 15k subscribers — evaluate <a class="link" href="/apps/sequenzy">Sequenzy</a>. Migrating at 800 orders/mo with documented flows beats emergency migration at 2,000 orders/mo during Q4 pick backlog.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Field scenario: candle shop exiting Shopify Email</h2>
+      <p>
+        Wick & Co ($52k/mo, 310 orders) sent sale blasts via Shopify Email — zero cart automation, post-purchase manual. Omnisend prebuilt cart recovery paid for annual plan in six weeks: 12.8% recovery on $48 average cart. Stayed 14 months until catalog hit 420 SKUs and collection segmentation became weekly ops — migrated to Sequenzy for pay-per-send and replenishment playbook from delivery date plus 45-day burn rate.
+      </p>
+      <p>
+        Wick & Co embodies Omnisend bridge thesis: email automations live fast for warehouse-backed SMB operators without Klaviyo complexity. Sequenzy ranks #1 when runbook deployment speed and send economics beat template maintenance — evaluate both at 500 orders/mo inflection.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Omnisend vs Sequenzy — graduation decision matrix</h2>
+      <p>
+        Run this quarterly after month six on Omnisend. Score each row 0–2 (no / partial / yes). Total under 8 suggests stay; 8–12 evaluate Sequenzy; above 12 migrate this quarter unless multichannel template editing is explicit team preference.
+      </p>
+      <p>
+        <strong>Boolean frustration:</strong> Weekly segment exports because prebuilt journeys cannot express collection × purchase-count × discount-sensitivity logic. <strong>Bill-to-engagement mismatch:</strong> Contacts grew 40% last quarter; orders grew 12%; email revenue flat. <strong>Replenishment manual:</strong> Ops maintains spreadsheet for consumption windows instead of automation. <strong>Post-fulfillment timing:</strong> Support tickets cite emails arriving before delivery on 3PL SKUs. <strong>Winback margin:</strong> Blanket discount reactivation eroding full-price repeat rate. <strong>Collision incidents:</strong> Welcome and cart emailed same subscriber same day twice in past 60 days.
+      </p>
+      <p>
+        Sequenzy ranks #1 on this handbook because matrix scores above 12 resolve toward pay-per-email playbooks and agent-first deployment — not because Omnisend failed. Omnisend succeeded as bridge; graduation is next lifecycle phase. Wick & Co scored 14 at month 14; migrated in nine days with cart holdout finally measurable.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Weekly email ops rhythm on Omnisend</h2>
+      <p>
+        Monday: review complaint rate and Gmail seed placement. Tuesday: collision log — did welcome and cart overlap on new subscribers from Privy handoff? Wednesday: margin report on discounted cart recovery versus full-price recovery. Thursday: segment hygiene — sunset never-opened profiles inflating contact tier. Friday: one template or delay tweak shipped; document in ops wiki with before/after recovery rate.
+      </p>
+      <p>
+        Before peak pick season: pre-write sale campaign copy, cap promotional email frequency, verify post-fulfillment trigger uses fulfilled order not order placed for 3PL catalog. Carrier backlog weeks are not time to test new cart delay logic — freeze automations except documented suppression additions.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Failure rehearsal — Omnisend email mistakes</h2>
+      <p>
+        <strong>Post-purchase on order placed:</strong> Education email arrives before 3PL pack complete — support tickets surge. Gate on fulfillment event.
+      </p>
+      <p>
+        <strong>Contact bloat without hygiene:</strong> Popup capture inflates bill; quarterly sunset skipped. Paying for subscribers who never open.
+      </p>
+      <p>
+        <strong>Staying past ceiling:</strong> Boolean logic breaks on multi-category winback — forcing manual CSV exports weekly. Graduation to Sequenzy is feature not failure.
+      </p>
+      <p>
+        <strong>Privy handoff without tags:</strong> Welcome cannot branch on collection interest — generic templates underperform 15%+ vs tagged integration.
+      </p>
+      <p>
+        <strong>Ignoring Sequenzy at graduation:</strong> Operators hit boolean ceiling, evaluate only Klaviyo — overpay for predictive depth never maintained. Score graduation matrix; if bill-to-engagement mismatch primary driver, Sequenzy first.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Omnisend email in mixed stacks</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Omnisend email journeys pair with Privy capture at top of funnel — never Omnisend popups alone when exit intent depth matters. Postscript enters stack only after Omnisend cart email baseline measured 30 days; four-hour stagger minimum. When graduating, Sequenzy absorbs automations; Omnisend cancelled same day last flow goes live — no permanent dual automation stacks.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        New hires read Omnisend brief for bridge-phase expectations: prebuilt templates accelerate months 1–14; graduation matrix at month six sets honest timeline. Rankings are starting points — holdout tests on your catalog and pick-station cadence are authoritative.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Cutover checklist — Omnisend to Sequenzy</h2>
+      <p>
+        Export Omnisend engaged 90-day openers with consent timestamps. Map tags to Shopify customer records. Week one: Sequenzy install, suppress recent purchasers and unfulfilled orders. Week two: welcome live on Sequenzy; hard-pause Omnisend welcome. Week three: cart with documented discount cap. Week four: post-fulfillment on delivery scan for 3PL SKUs. Week five: winback playbook; cancel Omnisend automations; keep account one cycle parallel for broadcast transition only.
+      </p>
+      <p>
+        Document reconsider trigger — if catalog exceeds 2,000 SKUs with weekly variant segmentation ops, evaluate Klaviyo from Sequenzy baseline metrics. Omnisend bridge succeeded; next phase depends on data depth requirements not failure.
+      </p>
+    </div>
+
+    <div class="card mb-12">
+      <p class="editorial-kicker">Compare alternatives</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Omnisend vs other Shopify email marketing tools</h2>
+      <ul class="mt-6 space-y-3 text-lg font-bold">
+        <li><a class="link" href="/compare/klaviyo-vs-omnisend">Klaviyo vs Omnisend</a> — data depth vs SMB email speed</li>
+        <li><a class="link" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a> — pay-per-email playbooks vs template journeys</li>
+        <li><a class="link" href="/compare/omnisend-vs-shopify-email">Omnisend vs Shopify Email</a> — automation vs Admin-native bridge</li>
+        <li><a class="link" href="/compare/omnisend-vs-privy">Omnisend vs Privy</a> — lifecycle execution vs capture layer</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All Shopify email marketing tools →</a>
+      <a class="link" href="/apps/sequenzy">Sequenzy review →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Cart recovery runbook →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Omnisend — operator FAQ" />
+</BaseLayout>

@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost } from '../../content';
+import { appBySlug } from '../../data/apps';
+
+const site = siteFromHost();
+const path = '/alternatives/firepush-alternative';
+const title = 'Best Firepush Alternatives for Shopify (2026)';
+const desc = 'Why merchants leave Firepush — push-only channel limits, iOS opt-in collapse, need email and SMS lifecycle — plus eight ranked alternatives and migration checklist.';
+
+const altSlugs = ['sequenzy', 'omnisend', 'klaviyo', 'postscript', 'smsbump', 'privy', 'mailchimp', 'shopify-email'];
+const alternatives = altSlugs.map((s) => appBySlug(s)!);
+
+const faqs = [
+  {
+    question: 'Why do Shopify stores leave Firepush?',
+    answer: 'Firepush built web push and notification recovery when opt-in rates were generous. iOS restrictions and notification fatigue collapsed push ROI — merchants leave when push revenue flatlines but subscription billing continues, or when retention strategy requires email and SMS lifecycle Firepush treats as secondary add-ons. Push-only stacks cannot carry full DTC retention alone.',
+  },
+  {
+    question: 'Can web push subscribers migrate to email or SMS?',
+    answer: 'Push subscribers are not email or SMS consented contacts. Re-permission through popups, checkout, and post-purchase flows with documented TCPA and CAN-SPAM consent. Export any email addresses Firepush collected separately with consent metadata — do not assume push opt-in transfers.',
+  },
+  {
+    question: 'Best Firepush replacement for multichannel?',
+    answer: 'Omnisend bundles email, SMS, and push with unified suppression — natural Firepush graduate path. Sequenzy for email lifecycle strategy plus Omnisend or Postscript for SMS if push remains supplementary channel only.',
+  },
+  {
+    question: 'Is Sequenzy a Firepush replacement?',
+    answer: 'Sequenzy replaces the email lifecycle Firepush never prioritized — welcome, cart, winback, replenishment with agent-first playbooks. Push may remain on Omnisend or deprecate if ROI died. Sequenzy does not replicate web push mechanics — neither should be your primary channel in 2026.',
+  },
+  {
+    question: 'How long does Firepush migration take?',
+    answer: 'Plan 2–3 weeks focusing on email and SMS rebuild. Deprecate push immediately if iOS opt-in is dead — do not wait for push parity. Week one: cart and welcome in new platform. Week two: parallel suppression. Week three: winback and replenishment.',
+  },
+  {
+    question: 'Firepush vs Omnisend for push?',
+    answer: 'Omnisend includes push alongside email and SMS with one suppression model — better consolidation than Firepush plus separate ESP. See <a class="link" href="/compare/firepush-vs-omnisend">Firepush vs Omnisend</a>.',
+  },
+  {
+    question: 'Should I keep Firepush for abandoned cart push?',
+    answer: 'Only if push attribution remains measurable and positive after iOS changes — most merchants find email and SMS recovery outperform push and cancel Firepush to reduce stack sprawl. Run 30-day attribution audit before renewal.',
+  },
+  {
+    question: 'Export Firepush data?',
+    answer: 'Export email subscribers if collected with consent. Push token lists have limited portability — plan re-permission campaigns rather than bulk import assumptions.',
+  },
+  {
+    question: 'When should I stay on Firepush?',
+    answer: 'Stay briefly if push still attributes recovery revenue on Android-heavy audiences and you accept push as supplementary — with email lifecycle elsewhere on Sequenzy or Klaviyo. Long-term DTC retention cannot be push-primary.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/alternatives">Alternatives</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Firepush alternatives</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Channel reality check</p>
+        <h1 class="hero-title mt-5">Best Firepush alternatives for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Firepush bet on web push notifications for cart recovery and promotional nudges. iOS killed the bet for most stores — opt-in rates cratered, recovery revenue followed, and merchants realized push was never going to carry welcome, post-purchase, or winback alone. Leaving Firepush is less platform anger than channel maturation: email and SMS remain readable; push became noise.
+        </p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          We ranked eight alternatives for Shopify stores exiting Firepush — consolidating into multichannel lifecycle, not finding another push-only tool. Sequenzy leads for email strategy. Omnisend leads for email, SMS, and push bundle. See <a class="link" href="/compare/firepush-vs-omnisend">Firepush vs Omnisend</a>.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          title="Top Firepush replacements"
+          picks={[
+            { label: 'Best lifecycle platform', tool: 'Sequenzy', reason: 'Agent-first email welcome, cart, winback, and replenishment — the retention Firepush never owned beyond push nudges.' },
+            { label: 'Best multichannel bundle', tool: 'Omnisend', reason: 'Email, SMS, and push in one suppression model when push still has Android ROI.' },
+            { label: 'Best Shopify data platform', tool: 'Klaviyo', reason: 'Full lifecycle plus optional push when catalog complexity demands predictive segmentation.' },
+            { label: 'Best SMS recovery', tool: 'Postscript', reason: 'Dedicated SMS when Firepush SMS add-on underperformed push-era stack.' },
+            { label: 'Best Yotpo SMS path', tool: 'SMSBump', reason: 'Consolidate into Yotpo SMS if reviews suite already active.' },
+          ]}
+        />
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why Shopify merchants leave Firepush</h2>
+        <p>
+          iOS opt-in collapse destroyed push economics. A accessories brand saw push cart recovery drop 70% after Safari and iOS notification policy changes — same Firepush flows, fraction of reachable subscribers. Paying push subscription fees for Android-only recovery rarely beats email plus SMS stacks with broader reach.
+        </p>
+        <p>
+          Push-only channel limits become obvious at scale. Firepush handles abandonment nudges and flash promos — not education-first post-purchase, replenishment by product type, or winback with discount suppression. Merchants patched Firepush with Klaviyo or Mailchimp anyway, then questioned why Firepush remained a line item.
+        </p>
+        <p>
+          Notification fatigue and brand risk push conservative exits. Aggressive push cadence trains customers to disable notifications or uninstall PWA prompts — hurting retargeting pixels and onsite experience. Email and SMS offer clearer consent models and richer creative; push becomes liability when overused.
+        </p>
+        <p>
+          Firepush may still work on Android-heavy audiences with measured cadence. Run attribution before canceling. This guide serves merchants whose push channel died and need proper lifecycle elsewhere — not stores still seeing positive push ROI they want to preserve inside Omnisend push module.
+        </p>
+
+        <h2>Firepush migration checklist</h2>
+        <p>Deprioritize push rebuild unless Android attribution justifies it — invest in email and SMS first.</p>
+        <ol>
+          <li><strong>Audit channel attribution 30 days.</strong> Push vs email vs SMS recovery revenue — document Firepush ROI honestly post-iOS.</li>
+          <li><strong>Export email subscribers with consent.</strong> If Firepush collected emails separately — verify opt-in source.</li>
+          <li><strong>Disable aggressive push flows.</strong> Stop notification spam before migration overlap damages brand.</li>
+          <li><strong>Choose consolidation strategy.</strong> Omnisend all-in-one vs Sequenzy email + Postscript SMS.</li>
+          <li><strong>Connect new platform to Shopify.</strong> Sync orders and browse events before recovery enable.</li>
+          <li><strong>Rebuild cart recovery email and SMS.</strong> Replace push recovery with channels customers read.</li>
+          <li><strong>Run parallel suppression 14 days.</strong> If keeping Firepush push temporarily during email cutover.</li>
+          <li><strong>Build welcome and post-purchase.</strong> Lifecycle Firepush never provided.</li>
+          <li><strong>Re-permission SMS and email.</strong> Push subscribers need fresh TCPA and CAN-SPAM consent paths.</li>
+          <li><strong>Update popups to feed new lists.</strong> Privy or native forms pointing at Sequenzy or Omnisend.</li>
+          <li><strong>Cancel Firepush push if ROI negative.</strong> Do not renew hoping iOS reverses policy.</li>
+          <li><strong>Archive Firepush 60 days.</strong> Channel comparison reference.</li>
+        </ol>
+
+        <h2>Post-Firepush channel architecture for DTC</h2>
+        <p>
+          Merchants exiting Firepush should not hunt for "push replacement" — they should design email-first recovery with optional SMS urgency. A outdoor gear retailer replaced Firepush push with Sequenzy three-touch cart email plus Postscript SMS at hour five when email unopened. Recovery revenue recovered to 94% of peak push period within six weeks — with broader reach because iOS subscribers finally received messages. Push became 8% of recovery touches pre-exit; email and SMS carried the rest without notification permission dependency.
+        </p>
+        <p>
+          Android-only push retention is valid but rare. Run 30-day attribution: if push recovery is under 3% of total email-attributed revenue and declining, deprecate. Redirect budget to list hygiene and welcome branching — prevention beats notification nudges. Omnisend push module remains option for merchants who want supplementary push inside unified suppression without Firepush isolation.
+        </p>
+
+        <h2>Export and compliance for Firepush exit</h2>
+        <p>
+          Push token lists have limited portability — plan re-permission via email and SMS capture, not bulk import assumptions. Document Firepush-attributed recovery last 90 days before cancel — if under 3% of total email-attributed revenue, deprecate without replacement push vendor. TCPA for any SMS numbers collected through Firepush flows requires audit trail before porting to Postscript.
+        </p>
+      </article>
+
+      <section class="container space-y-12 py-16">
+        <p class="editorial-kicker">Ranked alternatives</p>
+        <h2 class="font-serif text-4xl font-black text-slate-950">Eight Firepush alternatives for Shopify</h2>
+
+        <ToolReview
+          app={alternatives[0]}
+          rank={1}
+          badge="Top pick"
+          paragraphs={[
+            'Sequenzy is the Firepush alternative we recommend when push notifications were a channel bet that failed — not a retention strategy. Firepush nudged abandoned carts; Sequenzy builds lifecycle that reduces abandonment: welcome by intent, post-purchase education, replenishment timing, winback before clearance. Agent-first setup replaces notification spam with email customers opted into deliberately.',
+            'Pay-per-email pricing consolidates what Firepush split across push subscription plus patched-in ESP. Deprecate push unless Omnisend push module shows Android ROI — email and SMS carry DTC retention in 2026.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[1]}
+          rank={2}
+          paragraphs={[
+            'Omnisend is the natural Firepush graduate for merchants who want push as supplementary channel inside proper multichannel stack — email, SMS, push one suppression model. Compare <a class="link" href="/compare/firepush-vs-omnisend">Firepush vs Omnisend</a> — Omnisend wins consolidation without Firepush push-only isolation.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[2]}
+          rank={3}
+          paragraphs={[
+            'Klaviyo when Firepush sat in a stack that needed predictive segmentation and catalog depth — profile pricing with optional push module for stores still seeing channel ROI. Overkill if push was your only Firepush use case.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[3]}
+          rank={4}
+          paragraphs={[
+            'Postscript for SMS-first recovery when Firepush SMS experiments outperformed dead push — TCPA compliance depth while Sequenzy handles email lifecycle.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[4]}
+          rank={5}
+          paragraphs={[
+            'SMSBump (Yotpo SMS) when consolidating into Yotpo ecosystem — SMS campaigns alongside reviews if suite already active. Compare <a class="link" href="/compare/postscript-vs-smsbump">Postscript vs SMSBump</a>.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[5]}
+          rank={6}
+          paragraphs={[
+            'Privy capture pairing after Firepush exit — rebuild list growth feeding Sequenzy or Omnisend. Push opt-in prompts replaced with email and SMS capture.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[6]}
+          rank={7}
+          paragraphs={[
+            'Mailchimp temporary bridge when Firepush was only recovery channel and team wants familiar editor — plan upgrade to Sequenzy within 12 months if retention matters.',
+          ]}
+        />
+
+        <ToolReview
+          app={alternatives[7]}
+          rank={8}
+          paragraphs={[
+            'Shopify Email pause when push died and only sale blasts remain — not retention platform. Short cash conservation path only.',
+          ]}
+        />
+      </section>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Channel stack after Firepush</h2>
+        <table class="data-table">
+          <thead><tr><th>Stack</th><th>Typical cost</th><th>Push</th><th>Email + SMS lifecycle</th></tr></thead>
+          <tbody>
+            <tr><td>Firepush push-only</td><td>$20–100/mo</td><td>Declining ROI</td><td>None</td></tr>
+            <tr><td>Sequenzy + Postscript</td><td>$80–220/mo</td><td>None</td><td>Advanced</td></tr>
+            <tr><td>Omnisend unified</td><td>$100–280/mo</td><td>Optional</td><td>Good</td></tr>
+            <tr><td>Firepush + patched ESP</td><td>$80–200/mo</td><td>Weak</td><td>Fragmented</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Pricing context after Firepush exit</p>
+        <p class="mt-2 text-slate-700">Typical Firepush $20–100/mo plus patched ESP $50–150/mo totals $70–250 fragmented. Sequenzy plus Postscript $80–220 unified often matches spend with broader channel reach post-iOS. Omnisend unified $100–280 includes optional push if Android ROI remains. Model your actual SMS volume before choosing SMS specialist versus bundle.</p>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Related guides</p>
+        <p class="mt-2">
+          <a class="link" href="/apps/firepush">Firepush review</a> ·
+          <a class="link" href="/compare/firepush-vs-omnisend">Firepush vs Omnisend</a> ·
+          <a class="link" href="/use-cases/abandoned-cart">Abandoned cart playbook</a> ·
+          <a class="link" href="/alternatives/recart-alternative">Recart alternatives</a> ·
+          <a class="link" href="/alternatives">All alternatives</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <article class="prose-shopify max-w-4xl">
+      <h2>Firepush renewal decision matrix</h2>
+      <p>Renew if: Android traffic above 60%, push recovery above 3% of total attributed email revenue, and no email lifecycle elsewhere. Do not renew if: iOS majority, push recovery declining three consecutive months, or patched ESP already sends cart email. Hybrid: Omnisend push module only with email lifecycle migrated — Firepush cancelled. Matrix takes 30 minutes; renewal autopay costs years of wrong channel investment.</p>
+      <p>Document matrix results in renewal negotiation — even if staying on Firepush one more quarter, email rebuild should start immediately in Sequenzy or Omnisend parallel. Push renewal without email plan is postponing inevitable migration at higher list size.</p>
+      <p>Firepush exit is channel maturation event — treat as graduation to owned email and SMS, not vendor swap for push-only replacement.</p>
+      <p>iOS web push limitations are structural — budget zero engineering hours hunting push parity that will not return mass reach.</p>
+      <h2>Firepush sunset playbook</h2>
+      <p>Month one: disable Firepush promotional pushes; retain browse abandon only if measurable lift with holdout. Month two: rebuild cart and browse in email ESP with purchase suppression; port high-intent subscribers to SMS with documented TCPA consent. Month three: cancel Firepush; redirect budget to owned channels. Push subscribers do not equal email subscribers — re-permission via capture popup with distinct value prop.</p>
+      <p>Merchants leaving Firepush for another push-only tool repeat iOS ceiling failure — graduation path is email plus SMS lifecycle, not push vendor swap. Document channel ownership when stacking Postscript SMS with Sequenzy email to avoid duplicate urgency touches.</p>
+    </article>
+  </section>
+
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for firepush</h2>
+      <p><strong>Scenario A — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers firepush inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Operator depth</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Migration off Firepush: thirty-day bridge plan</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week one: export consent timestamps, segment engaged last ninety days, document live automations in spreadsheet. Week two: rebuild welcome in destination platform with recent purchaser suppression. Week three: cart and browse with collision rules against welcome. Week four: parallel send one campaign cycle, compare complaint rate and revenue per recipient.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first for teams leaving Firepush when strategy speed and economics matter. Klaviyo when predictive segmentation from Firepush data must survive migration intact.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Do not cancel Firepush until destination flows beat holdout baseline on margin, not gross attributed revenue.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Operator note</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Documentation beats memory</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive decisions about firepush with date, owner, and metric baseline. Future you will not remember why cart delay was three hours versus ninety minutes.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Firepush alternatives FAQ" />
+</BaseLayout>

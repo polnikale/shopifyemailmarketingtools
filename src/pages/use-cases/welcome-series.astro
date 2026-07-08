@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { useCaseBySlug } from '../../data/use-cases';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const uc = useCaseBySlug('welcome-series')!;
+const path = '/use-cases/welcome-series';
+const title = pageTitle(site, 'use-cases/welcome-series');
+const desc = description(site, 'use-cases/welcome-series');
+
+const featuredSlugs = ['sequenzy', 'klaviyo', 'omnisend', 'privy', 'drip'];
+const featuredApps = featuredSlugs.map((s) => appBySlug(s)!).filter(Boolean);
+
+const comparisonApps = [
+  'sequenzy', 'klaviyo', 'omnisend', 'privy', 'drip', 'shopify-email',
+  'yotpo-email-sms', 'mailchimp', 'brevo', 'tinyemail',
+].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for welcome series?',
+    answer: 'Sequenzy ranks first because welcome is a runbook problem before a design problem — source branching, proof-before-discount logic, and existing-customer suppression require lifecycle thinking, not a three-email template. Klaviyo wins when signup metadata spans multiple popup tools and predictive first-purchase scoring drives weekly iteration.',
+  },
+  {
+    question: 'How many welcome emails should ops deploy?',
+    answer: 'Three to five emails over 7–14 days for most DTC. Email one within five minutes delivers promised incentive and brand story. Email two at 24 hours builds proof. Email three at 72 hours handles objections. High-AOV and subscription stores often extend to five touches over three weeks. Never send discount escalation before proof lands for cold-traffic subscribers.',
+  },
+  {
+    question: 'Should welcome offer a discount on email one?',
+    answer: 'Only when signup source signals discount intent — spin-to-win, coupon popup, checkout capture. Product-page and content subscribers get proof-first welcome: social proof, education, curated entry SKU. Leading every welcome with 20% off trains the file to ignore full-price sends within two months.',
+  },
+  {
+    question: 'How do ops branch welcome by signup source?',
+    answer: 'Pass popup ID, landing page URL, or UTM source into Shopify customer metafields or ESP custom properties at opt-in. Branch email one creative and offer logic by source. Giveaway entrants differ from serum PDP subscribers. Klaviyo, Sequenzy, and Drip support property-based branching when capture tools pass metadata cleanly.',
+  },
+  {
+    question: 'What if an existing customer re-subscribes?',
+    answer: 'Exclude from new-buyer welcome immediately. Route to loyalty acknowledgment or replenishment if order history exists. Re-subscribed customers receiving "10% off your first order" destroy trust and inflate discount dependency metrics. Sync Shopify tag has_placed_order before welcome fires.',
+  },
+  {
+    question: 'Can Privy run the full welcome series?',
+    answer: 'Privy handles capture and basic welcome — sufficient under 150 orders per month with simple offers. Lacks sophisticated branching, collision suppression with cart flows, and long nurture for high-consideration catalogs. Pair Privy capture with Sequenzy or Klaviyo execution once list growth outpaces basic automation.',
+  },
+  {
+    question: 'What metrics prove welcome success for ops?',
+    answer: 'First purchase within 14 days, welcome revenue per subscriber, unsubscribe rate by source, full-price versus discounted first order ratio. Click rate alone misleads — aggressive discount drives clicks that erode margin. Track whether email-acquired buyers repurchase without incentive within 60 days.',
+  },
+  {
+    question: 'How does welcome interact with abandoned cart?',
+    answer: 'Suppress welcome discount offers for subscribers who enter cart abandonment within 48 hours of opt-in — they receive cart recovery, not competing incentives. Priority: cart flow wins over welcome email three. Document collision logic before launch; overlap causes double-discount support tickets.',
+  },
+  {
+    question: 'Is Shopify Email enough for welcome automation?',
+    answer: 'Shopify Email can send a single welcome-style campaign manually. It cannot branch by source, suppress existing customers automatically, or run multi-touch nurture with behavioral triggers. Stores serious about first-purchase conversion graduate within months.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/use-cases" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All runbooks</a>
+      <p class="editorial-kicker mt-6">Welcome series · SOP 01</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Best Shopify email marketing tools for welcome series</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Welcome is where list quality meets revenue quality — the first SOP new retention hires should read. A cold-chain meal kit brand capturing subscribers from a recipe blog needs prep education and box-size benefits before any offer. A workwear operator growing list from a pre-season sizing guide needs fit proof and return-window clarity, not the same three-email template as a spin-to-win popup. The right email marketing tool branches by signup intent, delays discounts until trust lands, and suppresses customers who already ordered — before anyone opens the template editor.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        This runbook ranks Shopify email marketing tools for {uc.job}. We evaluated trigger accuracy, source branching, collision control with cart flows, and whether lean ops can rewrite welcome logic when the next collection launches — not which platform has the prettiest gallery.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/apps">Full app rankings</a>
+        <a class="btn btn-secondary" href="/for/food-and-beverage">Food and beverage</a>
+        <a class="btn btn-secondary" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Top Shopify email marketing tools for welcome series"
+      picks={[
+        { label: 'Best overall', tool: 'Sequenzy', reason: 'Agent-first welcome runbooks with source branching, proof-before-discount logic, pay-per-email economics when lists grow faster than first-purchase rate.' },
+        { label: 'Best data depth', tool: 'Klaviyo', reason: 'Deep signup metadata, predictive first-purchase scoring, flow A/B testing when welcome creative iterates weekly.' },
+        { label: 'Best fast setup', tool: 'Omnisend', reason: 'Prebuilt welcome journeys live in hours with optional SMS branch for mobile-first subscribers.' },
+        { label: 'Best capture pairing', tool: 'Privy', reason: 'Passes popup source into welcome when paired with lifecycle platform — essential top-of-funnel for list growth.' },
+        { label: 'Best workflow control', tool: 'Drip', reason: 'Visual branching for explicit paths: giveaway vs PDP vs footer vs sizing-guide subscribers.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three welcome field scenarios</h2>
+      <p>
+        <strong>Scenario A — Cold-chain meal kit, footer capture on recipe blog.</strong> Sequenzy agent prompt described three-email arc: cold-chain story, prep tips with UGC, social proof with box-size benefits. Branch suppressed anyone purchasing within 36 hours of signup. Dynamic block pulled starter box SKU, not bestseller bundle. 16.8% click-to-purchase on email two among non-buyers; 34% of first purchases used no discount code.
+      </p>
+      <p>
+        <strong>Scenario B — Workwear brand, sizing-guide PDF gate.</strong> Drip built four-email nurture over 14 days — fit guide recap, fabric durability proof, return-window FAQ, curated entry SKU. Discount appeared only in email four for subscribers with zero browse activity. Sizing-guide subscribers converted at 13% higher AOV than spin-to-win popup subscribers on first order.
+      </p>
+      <p>
+        <strong>Scenario C — Supplement shop, podcast landing page UTM.</strong> Klaviyo branched welcome by UTM: podcast listeners received founder story and third-party testing proof; generic footer subscribers received bestseller grid. Omnisend SMS reminder at 48 hours when email one unopened — coordinated suppression prevented double touch within four hours. Migration to Sequenzy at 600 orders/month preserved branches via agent rebuild in four business days.
+      </p>
+      <p>
+        Ops failure mode: single welcome path for giveaway wheel and product-page opt-ins. Giveaway subscribers expect coupon in email one; PDP subscribers need proof first. Mismatch drives unsubscribes in first 48 hours — before cart or replenishment ever fires.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Execution playbook</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Welcome series operating contract</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 text-slate-700">
+        <div>
+          <h3 class="font-black text-slate-950">Trigger</h3>
+          <p class="mt-2 text-[17px] leading-8">{uc.trigger}</p>
+        </div>
+        <div>
+          <h3 class="font-black text-slate-950">Timing</h3>
+          <p class="mt-2 text-[17px] leading-8">{uc.timing}</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <h3 class="font-black text-slate-950">Exclusions</h3>
+        <ul class="mt-3 space-y-2">
+          {uc.exclusions.map((e) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{e}</li>)}
+        </ul>
+      </div>
+      <div class="mt-8">
+        <h3 class="font-black text-slate-950">Metrics</h3>
+        <ul class="mt-3 space-y-2">
+          {uc.metrics.map((m) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{m}</li>)}
+        </ul>
+      </div>
+      <p class="mt-8 text-[17px] leading-8 text-slate-700">
+        Common mistakes: {uc.mistakes.join('; ')}. See <a class="link" href="/use-cases/discount-strategy">discount strategy</a> and <a class="link" href="/use-cases/segmentation">segmentation</a> for guardrails.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12 overflow-x-auto">
+      <p class="editorial-kicker">Comparison table</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">10 Shopify email marketing tools for welcome series</h2>
+      <table class="mt-8 w-full min-w-[720px] text-left text-sm">
+        <thead>
+          <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+            <th class="py-3 pr-4">App</th>
+            <th class="py-3 pr-4">Welcome fit</th>
+            <th class="py-3 pr-4">Pricing</th>
+            <th class="py-3 pr-4">Shopify depth</th>
+            <th class="py-3 pr-4">Automation</th>
+            <th class="py-3">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-700">
+          {comparisonApps.map((app, i) => (
+            <tr class="border-b border-cyan-900/8">
+              <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
+              <td class="py-3 pr-4">{app.bestFor}</td>
+              <td class="py-3 pr-4">{app.pricing}</td>
+              <td class="py-3 pr-4">{app.shopifyDepth}</td>
+              <td class="py-3 pr-4">{app.automationDepth}</td>
+              <td class="py-3">★ {app.rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Detailed reviews</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five email marketing tools for welcome series</h2>
+
+    <ToolReview app={featuredApps[0]} rank={1} badge="Editor's choice" paragraphs={[
+      'Sequenzy earns top spot because most ops teams know they need source branching and proof-before-discount logic — they stall on blank flow builders. Describe outcomes in plain language ("welcome blog subscribers with prep education, popup subscribers with honored coupon, exclude anyone with paid order") and Sequenzy generates working sequence with suppression baked in.',
+      'Pay-per-email pricing changes welcome economics. Lists grow fast from popups and paid social; first-purchase rate lags until trust builds. Per-contact platforms bill subscribers who may never open email three. Sequenzy aligns cost with sends delivered — critical for brands running aggressive list growth ahead of seasonal pick ramps.',
+      'Welcome playbooks emphasize revenue quality: delay discount escalation for engaged openers, route high-intent PDP subscribers toward product-specific proof, suppress customers who purchased in same session they subscribed. MCP server helps wire external quiz or sizing tools into branches without manual CSV uploads.',
+      'Not Klaviyo for predictive first-purchase modeling at 50k profiles. If welcome depends on CLV decile branching and agency holdout tests, evaluate Klaviyo in parallel. For 500–5,000 orders/month band, Sequenzy is fastest path to welcome that protects margin.',
+    ]} />
+
+    <ToolReview app={featuredApps[1]} rank={2} paragraphs={[
+      'Klaviyo benchmark when welcome complexity scales with catalog and channel mix. Multiple popup tools, influencer landing pages, Shopify Markets each need distinct branches — custom properties and segment boolean logic handle without brittle workarounds.',
+      'Predictive analytics change welcome prioritization at volume. Predicted first-purchase date lets ops throttle discount depth for subscribers modeled as full-price likely. Requires clean profile hygiene and order history — young stores may not benefit for six months.',
+      'Flow A/B testing is welcome-specific gold when iterating subject lines and proof blocks weekly. Revenue per recipient by variant beats open rate.',
+      'Choose Klaviyo when welcome ties to collection launches, variant-level recommendations in email one, and SMS welcome in same journey. Profile pricing stings on giveaway-imported lists — sunset non-openers after 90 days.',
+    ]} />
+
+    <ToolReview app={featuredApps[2]} rank={3} paragraphs={[
+      'Omnisend wins when welcome must go live before next week\'s drop. Prebuilt templates with Shopify product blocks and optional SMS branch reduce implementation from days to hours — acceptable when source branching is two paths, not twelve.',
+      'Multichannel welcome matters for mobile-first traffic. SMS reminder at 48 hours when email unopened — coordinated in one builder with shared suppression.',
+      'Struggles when welcome logic crosses many custom properties from quiz or B2B account states. Adequate when paths are simple and speed is constraint.',
+      'Fits 100–600 orders/month graduating from Shopify Email. Run 12–18 months, migrate to Sequenzy or Klaviyo when branches multiply.',
+    ]} />
+
+    <ToolReview app={featuredApps[3]} rank={4} paragraphs={[
+      'Privy is capture infrastructure, not welcome depth — but welcome fails without clean opt-in metadata. Privy passes popup ID, coupon outcome, page URL into Shopify customer records downstream platforms read for branching.',
+      'Pre-launch list building: Privy delivers incentive in-popup while Sequenzy or Klaviyo welcome confirms brand story. Spin-to-win outcomes must match welcome email one exactly.',
+      'Native Privy welcome handles single-path with basic delays. Insufficient for collision suppression with cart or five-touch nurture. Treat as top-of-funnel feeding lifecycle executor.',
+      'Bottleneck is subscribers not welcome emails? Start Privy. Subscribers exist but first-purchase flatlines? Problem is welcome strategy — add Sequenzy or Klaviyo.',
+    ]} />
+
+    <ToolReview app={featuredApps[4]} rank={5} paragraphs={[
+      'Drip appeals to operators who want every welcome branch visible on canvas. Visual workflows make obvious when giveaway subscribers merge into PDP paths incorrectly — silent bug in template-only tools.',
+      'Tag-based welcome: welcomed-quiz, welcomed-popup, welcomed-footer. Trigger education by tag with explicit wait steps and goal conversions at first purchase.',
+      'Per-contact pricing follows Klaviyo list-growth trap. Smaller ecosystem means fewer agency templates for niche verticals.',
+      'Pick Drip when team enjoys workflow design and welcome needs custom logic. Compare <a class="link" href="/compare/sequenzy-vs-drip">Sequenzy vs Drip</a> if strategy speed matters more.',
+    ]} />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Source branching</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Welcome is four series, not one</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Popup discount seekers, product-page browsers, content subscribers, checkout email captures — different intents. Popup: honor coupon email one, proof email two, urgency email three only if no purchase. PDP: product-specific social proof first, complementary collection email two, soft incentive email four. Content: education arc before product push. Checkout: suppress discount — they nearly bought; welcome supports completion.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Map sources in spreadsheet before building. Each row: source, first-email job, discount rule, suppression, success metric. <a class="link" href="/for/print-on-demand">POD stores</a> add pre-drop waitlist as fifth path — see <a class="link" href="/use-cases/product-launch">product launch runbook</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="grid gap-8 lg:grid-cols-3">
+      <div class="card lg:col-span-2">
+        <p class="editorial-kicker">Collision control</p>
+        <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Welcome versus cart recovery</h2>
+        <p class="mt-4 text-[17px] leading-8 text-slate-700">
+          New subscribers who add to cart within 48 hours of opt-in exit welcome discount paths and enter <a class="link" href="/use-cases/abandoned-cart">cart recovery</a> with priority. Double incentives cause margin leakage. Global suppression: active in cart flow → skip welcome emails containing offers. Test with staff account monthly.
+        </p>
+      </div>
+      <div class="ledger-card">
+        <p class="editorial-kicker">Proof blocks</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Email two ingredients</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>One review with photo matching subscriber interest</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Founder or ops paragraph — not corporate boilerplate</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Single entry SKU or collection anchor</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Shipping, fulfillment, and return policy for objection handling</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Vertical notes</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Welcome timing by store type</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Food and cold-chain:</strong> prep education, delivery window clarity before cross-sell. <a class="link" href="/for/food-and-beverage">Food guide →</a> · <strong>Workwear and high-AOV:</strong> extend to five emails over three weeks; fit and return proof before product grid. <strong>Digital products:</strong> compress to activation — delivery and onboarding in email one. <a class="link" href="/for/digital-products">Digital guide →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-3xl font-black text-slate-950">Welcome QA before peak pick season</h2>
+      <p>Create four test accounts: popup, PDP, blog footer, checkout capture. Verify branch creative, exclusion of existing customer, purchase-within-session suppression. Log in retention wiki. Re-run after popup vendor change or UTM structure update. Welcome errors scale with list growth — fix before BFCM list import, not after complaint spike.</p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All tools →</a>
+      <a class="link" href="/compare">Comparison hub →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Abandoned cart →</a>
+      <a class="link" href="/use-cases/post-purchase">Post-purchase →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Welcome series FAQ" />
+</BaseLayout>

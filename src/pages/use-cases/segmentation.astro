@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { useCaseBySlug } from '../../data/use-cases';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const uc = useCaseBySlug('segmentation')!;
+const path = '/use-cases/segmentation';
+const title = pageTitle(site, 'use-cases/segmentation');
+const desc = description(site, 'use-cases/segmentation');
+
+const featuredSlugs = ['sequenzy', 'klaviyo', 'drip', 'activecampaign', 'omnisend'];
+const featuredApps = featuredSlugs.map((s) => appBySlug(s)!).filter(Boolean);
+
+const comparisonApps = [
+  'sequenzy', 'klaviyo', 'drip', 'activecampaign', 'omnisend', 'sendlane',
+  'yotpo-email-sms', 'mailchimp', 'brevo', 'marsello',
+].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for segmentation?',
+    answer: 'Sequenzy ranks first for lifecycle segmentation strategy — behavioral segments with defined actions, not tag clutter. Klaviyo wins with deepest Shopify event history and predictive segments at scale. ActiveCampaign fits CRM-overlapping stores needing pipeline segments alongside ecommerce.',
+  },
+  {
+    question: 'What segments should every Shopify store start with?',
+    answer: 'Buyers versus non-buyers, recency bands (0–30, 31–90, 91–180, 180+ days), discount-sensitive versus full-price, VIP threshold, engaged email (opened/clicked 90 days) versus unengaged. Build actions for each before exotic segments.',
+  },
+  {
+    question: 'How often should ops audit segments?',
+    answer: 'Weekly for active campaign segments; monthly for automation enrollment; quarterly full RFM recalc and overlap review. Stale segments cause wrong offers and deliverability damage.',
+  },
+  {
+    question: 'Are Shopify tags enough for segmentation?',
+    answer: 'Tags supplement but do not replace behavioral segments from order and browse events. Tags drift when staff apply manually. Event-based segments from Shopify sync stay current if triggers are configured correctly.',
+  },
+  {
+    question: 'What is segment overlap and why does it matter?',
+    answer: 'Customers matching multiple segments receive conflicting emails if priority rules absent. Document priority: cart > welcome > browse > promotional. Measure overlap percentage monthly.',
+  },
+  {
+    question: 'Should ops delete unengaged contacts or segment them?',
+    answer: 'Segment first for sunset re-engagement; suppress from paid plans after failed re-engagement. Deletion without sunset risks deliverability if re-imported later. See <a class="link" href="/use-cases/deliverability">deliverability runbook</a>.',
+  },
+  {
+    question: 'How does segmentation support replenishment?',
+    answer: 'Per-SKU buyer segments with consumption timers — not "all customers." Subscription-active segments exclude from replenishment. See <a class="link" href="/use-cases/replenishment">replenishment runbook</a>.',
+  },
+  {
+    question: 'Can Mailchimp segment Shopify behavior deeply?',
+    answer: 'Basic order and tag sync; lacks browse depth, predictive metrics, real-time event granularity of Klaviyo or Sequenzy. Adequate for simple lists; insufficient for complex lifecycle programs.',
+  },
+  {
+    question: 'How many segments is too many?',
+    answer: 'When operators cannot name segment purpose and last send date from memory — too many. Prune quarterly. Under twenty active segments with clear actions beats fifty stale boolean definitions.',
+  },
+  {
+    question: 'What is segment priority documentation?',
+    answer: 'Written rule when customer matches cart abandon and winback simultaneously — cart wins. Store in team wiki and replicate as suppression flags in platform. Undocumented overlap causes double sends weekly at scale.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/use-cases" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All runbooks</a>
+      <p class="editorial-kicker mt-6">Segmentation · SOP 08</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Best Shopify email marketing tools for segmentation</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Segmentation is the routing logic for your retention warehouse — which customers enter which flow, in what priority, with what exclusion. Without documented segment priority, the same person receives welcome discount, cart recovery, and winback in one afternoon because three boolean definitions all evaluated true. Ops that treats segments as marketing labels instead of operational routes gets collision tickets instead of incremental revenue — same chaos as unprioritized rush orders on a single pick line.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        This runbook ranks Shopify email marketing tools for {uc.job}. We evaluated behavioral event depth, overlap visibility, priority suppression, segment freshness workflows, and whether lean teams can maintain definitions without a dedicated data engineer.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/apps">Full app rankings</a>
+        <a class="btn btn-secondary" href="/use-cases/deliverability">Deliverability</a>
+        <a class="btn btn-secondary" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Top Shopify email marketing tools for segmentation"
+      picks={[
+        { label: 'Best overall', tool: 'Sequenzy', reason: 'Lifecycle segmentation runbooks with defined actions per segment, collision priority documentation, pay-per-send without profile hoarding.' },
+        { label: 'Best data depth', tool: 'Klaviyo', reason: 'Deepest Shopify event history, predictive segments, RFM, real-time boolean logic at scale.' },
+        { label: 'Best workflow control', tool: 'Drip', reason: 'Visual segment-to-workflow mapping — ops sees routing on canvas.' },
+        { label: 'Best CRM overlap', tool: 'ActiveCampaign', reason: 'Ecommerce plus sales pipeline segments for hybrid B2B/DTC operators.' },
+        { label: 'Best fast setup', tool: 'Omnisend', reason: 'Core segments live fast for SMB with manageable complexity.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three segmentation field scenarios</h2>
+      <p>
+        <strong>Scenario A — Meal kit operator, six active flows.</strong> Sequenzy priority matrix documented: cart > welcome > replenishment > browse > winback > promotional. Overlap audit found 11% of list in conflicting segments — pruned stale booleans, added suppression flags. Collision tickets dropped from 9/week to zero. Engaged segment defined: opened 90 days OR purchased 120 days — synced with deliverability sunset policy.
+      </p>
+      <p>
+        <strong>Scenario B — Workwear brand, RFM quarterly refresh.</strong> Klaviyo Champions, Loyal, At Risk, Lost segments drive winback and VIP creative. Per-SKU buyer tags for replenishment-ineligible durable goods. Discount-sensitive segment isolated — full-price loyalists excluded from promotional blasts. Segment freshness score tracked: any segment not used in 90 days flagged for prune review.
+      </p>
+      <p>
+        <strong>Scenario C — Hybrid B2B/DTC, sales pipeline overlap.</strong> ActiveCampaign ecommerce segments synced with deal stage — wholesale accounts excluded from DTC promotional. Drip used for DTC lifecycle after CRM complexity split. Migration lesson: tag-based segments without behavioral backing drifted within 60 days — rebuilt on order events.
+      </p>
+      <p>
+        Starter segment set every store needs before exotic definitions: buyers/non-buyers, recency bands, engaged/unengaged, discount-sensitive/full-price, VIP threshold, active-in-flow flags. Each row in wiki: segment name, definition, owning flow, last audit date, priority rank.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Execution playbook</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Segmentation operating contract</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 text-slate-700">
+        <div><h3 class="font-black text-slate-950">Trigger</h3><p class="mt-2 text-[17px] leading-8">{uc.trigger}</p></div>
+        <div><h3 class="font-black text-slate-950">Timing</h3><p class="mt-2 text-[17px] leading-8">{uc.timing}</p></div>
+      </div>
+      <div class="mt-8"><h3 class="font-black text-slate-950">Exclusions</h3>
+        <ul class="mt-3 space-y-2">{uc.exclusions.map((e) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{e}</li>)}</ul>
+      </div>
+      <div class="mt-8"><h3 class="font-black text-slate-950">Metrics</h3>
+        <ul class="mt-3 space-y-2">{uc.metrics.map((m) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{m}</li>)}</ul>
+      </div>
+    </div>
+
+    <div class="ledger-card mb-12 overflow-x-auto">
+      <p class="editorial-kicker">Comparison table</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">10 Shopify email marketing tools for segmentation</h2>
+      <table class="mt-8 w-full min-w-[720px] text-left text-sm">
+        <thead>
+          <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+            <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Segmentation fit</th><th class="py-3 pr-4">Pricing</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-700">
+          {comparisonApps.map((app, i) => (
+            <tr class="border-b border-cyan-900/8">
+              <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
+              <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
+              <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
+              <td class="py-3">★ {app.rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Detailed reviews</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five email marketing tools for segmentation</h2>
+
+    <ToolReview app={featuredApps[0]} rank={1} badge="Editor's choice" paragraphs={[
+      'Sequenzy leads segmentation because segments without defined actions are vanity — ops builds "VIP" boolean then never sends VIP-specific flow. Runbooks pair segment definitions with owning workflow, priority rank, and exclusion flags.',
+      'Collision priority matrix is runbook artifact — cart > welcome > browse documented before flow enable, not discovered via customer complaint.',
+      'Pay-per-email reduces profile hoarding — ops sunsets unengaged without keeping dead contacts for segment size vanity on per-contact platforms.',
+      'Behavioral segments from Shopify orders, tags, cart, browse adequate for standard ecommerce. Klaviyo leads predictive CLV and exotic metafield depth at enterprise scale.',
+    ]} />
+
+    <ToolReview app={featuredApps[1]} rank={2} paragraphs={[
+      'Klaviyo segmentation depth is industry reference — real-time events, predictive metrics, RFM, custom properties from any integrated tool.',
+      'Power enables segment sprawl — quarterly prune mandatory. Fifty stale segments worse than ten maintained ones.',
+      'Overlap analysis via segment intersection reports — ops should run monthly at 500+ orders.',
+      'Choose when data maximum is binding constraint and someone audits segments weekly.',
+    ]} />
+
+    <ToolReview app={featuredApps[2]} rank={3} paragraphs={[
+      'Drip visual mapping from segment to workflow — ops sees routing graphically, catches orphan segments with no attached flow.',
+      'Tag plus behavior hybrid works when capture tools apply tags at opt-in. Revenue dashboard by segment path clear.',
+      'Manual RFM refresh — no predictive layer out of box.',
+      'Strong for operators who want segmentation documentation that doubles as wiki screenshot.',
+    ]} />
+
+    <ToolReview app={featuredApps[3]} rank={4} paragraphs={[
+      'ActiveCampaign when ecommerce segments must coexist with sales pipeline stages — wholesale, quote-request, account-based.',
+      'Shopify sync adequate for order-based segments; browse depth less than Klaviyo.',
+      'Evaluate for hybrid B2B/DTC — pure DTC usually better served by Sequenzy or Klaviyo.',
+    ]} />
+
+    <ToolReview app={featuredApps[4]} rank={5} paragraphs={[
+      'Omnisend core segments deploy fast — buyers, cart abandoners, engaged — sufficient for SMB.',
+      'Complex boolean trees and predictive segments not strength.',
+      'Graduate when active segments exceed fifteen or overlap audit shows conflict.',
+    ]} />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Priority matrix template</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Flow collision documentation</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Rank flows 1–6: cart recovery, welcome (offer emails), replenishment, browse, winback, promotional campaign. Higher rank suppresses lower when customer matches both. Replicate as platform suppression flags. Review quarterly and after any new flow launch. Post in retention wiki next to <a class="link" href="/use-cases/abandoned-cart">cart</a> and <a class="link" href="/use-cases/welcome-series">welcome</a> runbooks.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Segment hygiene</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Quarterly prune SOP</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Export segment list with last send date and attached flow. Flag: no send 90 days, no attached flow, overlaps >15% with higher-priority segment. Prune or merge. Rebuild from scratch after platform migration or catalog restructure. Pair with <a class="link" href="/use-cases/deliverability">deliverability</a> review if engagement metrics dropped during drift.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Segments power every other runbook</h2>
+      <p><a class="link" href="/use-cases/replenishment">Replenishment</a> requires per-SKU buyer segments. <a class="link" href="/use-cases/vip-segments">VIP</a> requires RFM or LTV threshold. <a class="link" href="/use-cases/holiday-gifting">Holiday gifting</a> requires gift-intent versus self-purchase. <a class="link" href="/use-cases/deliverability">Deliverability</a> requires engaged definition. Build foundation segments before deploying downstream flows — same sequencing as warehouse slot assignment before pick season.</p>
+      <p>Ad audience export optional — separate from lifecycle segments. Email suppression rules must override ad retargeting logic; never re-import sunset list to ads without consent review.</p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Onboarding template</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Segment wiki page for new hires</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Every new retention hire should receive one wiki page listing: segment name, SQL-plain definition, attached flow, priority rank, last audit date, owner. Screenshot from Sequenzy or Klaviyo segment builder attached. Without this, contractor rebuilds "VIP" with different threshold six months later and collision returns. Segment documentation is as mandatory as warehouse slot map for seasonal temp workers.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Score platform 1–5 on segment maintainability quarterly: can current owner explain every active segment in under 30 minutes? Below three triggers prune sprint or platform evaluation via <a class="link" href="/compare">comparison hub</a>.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Behavioral segments beat static tags because tags drift — ops applies VIP manually, forgets removal after chargeback, customer receives VIP early access inappropriately. Event-based definitions from Shopify order and engagement data self-update when sync healthy. Tags supplement for capture source, not replace recency or LTV logic.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Active-in-flow flags are segments too: in_cart_recovery, in_welcome_offer, in_replenishment_timer — used for suppression, not sends. Missing active-flow flags cause collision more often than missing VIP definition.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Export segment definitions to JSON or CSV during platform migration — rebuild from documentation, not memory, when contractor turnover hits mid-year. Segment wiki is living document, not onboarding PDF from 2023. Review monthly with retention lead and document all changes.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All tools →</a>
+      <a class="link" href="/use-cases/deliverability">Deliverability →</a>
+      <a class="link" href="/use-cases/analytics">Analytics →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Segmentation FAQ" />
+</BaseLayout>

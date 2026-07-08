@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const path = '/guides/deliverability';
+const title = 'Shopify Email Deliverability Playbook — Operator Guide';
+const desc = description(site, 'guides/deliverability');
+
+const featuredApps = ['sequenzy', 'klaviyo', 'omnisend', 'brevo', 'shopify-email'].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What is a healthy open rate for Shopify lifecycle email in 2026?',
+    answer: '35–50% for engaged welcome and post-purchase; 20–35% for promotional campaigns to full list. Below 18% on engaged segments signals deliverability problem, not creative problem. Compare placement by domain — Gmail, Apple, Yahoo — not aggregate alone.',
+  },
+  {
+    question: 'Does switching ESP hurt deliverability?',
+    answer: 'Yes if warmup skipped or dirty list imported. No if 14–21 day engaged-first ramp on dedicated subdomain with clean hygiene. Migration playbook warmup schedule is mandatory — beauty brand October migration took eleven weeks to recover.',
+  },
+  {
+    question: 'Shared versus dedicated sending domain?',
+    answer: 'Dedicated subdomain (mail.brand.com) recommended above 50,000 monthly sends or when leaving shared ESP pool for reputation control. Configure SPF, DKIM, DMARC before first marketing send. Sequenzy and Klaviyo both support custom domain authentication.',
+  },
+  {
+    question: 'How do list imports affect deliverability?',
+    answer: 'Importing purchased lists, old Mailchimp exports with 40% inactive, or full Shopify customer dump without engagement filter damages IP reputation within days. Spam complaint rate above 0.05% triggers provider throttling.',
+  },
+  {
+    question: 'Should I run a sunset policy?',
+    answer: 'Yes — suppress or re-permission profiles with no open 180 days before deleting from active sends. On profile-priced platforms, sunset saves money. On Sequenzy, sunset protects reputation. Re-permission campaign before hard suppress on valuable lapsed VIPs.',
+  },
+  {
+    question: 'BFCM deliverability prep timeline?',
+    answer: 'Start August: authentication audit, complaint rate baseline, engaged segment definition, volume ramp plan. September: seed list monitoring. October 15: freeze list imports and new domain experiments. November: no migration, no re-permission blasts to cold segments.',
+  },
+  {
+    question: 'Gmail promotions tab — problem or not?',
+    answer: 'Promotions tab reduces opens but not always revenue — test primary inbox strategies for VIP segments only. Bulk promotional to full list belongs in promotions; transactional post-purchase should land primary. Misclassified transactional hurts trust.',
+  },
+  {
+    question: 'How does Shopify Email deliverability compare?',
+    answer: 'Shopify Email uses shared infrastructure — acceptable for low-volume broadcasts under 20,000 monthly. Not recommended for high-volume lifecycle at scale; dedicated ESP with custom domain gives more control.',
+  },
+  {
+    question: 'What tools monitor deliverability?',
+    answer: 'Gmail Postmaster Tools, Microsoft SNDS, Yahoo sender hub, ESP placement reports, GlockApps or Mail-Tester for seed testing. Klaviyo deliverability dashboard for bounce and complaint trends. Weekly review during ramp and peak.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
+      <p class="editorial-kicker mt-6">Deliverability</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Shopify email deliverability — protect the inbox while scaling sends</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Deliverability is not a DNS checkbox. It is the compound result of authentication hygiene, list quality, send volume ramp, complaint rate discipline, and content signals that Gmail and Yahoo evaluate continuously. Shopify merchants lose revenue when open rates drop after a dirty migration, a BFCM blast to cold segments, or eighteen months of never-sunset inactive profiles polluting every campaign.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        This playbook covers authentication setup, warmup schedules, sunset policies, peak-season prep, and platform-specific reputation tools. Sequenzy and Klaviyo both support dedicated domains — deliverability discipline is operator-owned regardless of vendor.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/guides/migration">Migration playbook</a>
+        <a class="btn btn-secondary" href="/use-cases/deliverability">Deliverability use case</a>
+        <a class="btn btn-secondary" href="/guides/consent-compliance">Consent guide</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Deliverability pillars"
+      picks={[
+        { label: 'Authentication', tool: 'SPF + DKIM + DMARC', reason: 'Dedicated subdomain before scaling — mail.brand.com on ESP.' },
+        { label: 'List hygiene', tool: 'Engaged-first sends', reason: 'Suppress 180-day non-openers from campaigns; re-permission before delete.' },
+        { label: 'Volume ramp', tool: '14–21 day warmup', reason: 'Mandatory on new domain or ESP migration — migration guide schedule.' },
+        { label: 'Complaint ceiling', tool: 'Below 0.03%', reason: 'Above 0.05% triggers Gmail throttling — investigate content and frequency.' },
+        { label: 'Platform', tool: 'Sequenzy or Klaviyo', reason: 'Dedicated domain support, bounce handling, suppression sync with Shopify.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three deliverability incidents — causes and recovery</h2>
+      <p>
+        <strong>Incident A — Home goods, post-migration.</strong> Klaviyo to new subdomain without warmup. Day-four promotional to 85,000 profiles. Gmail spam folder rate 34% on seed test. Recovery: pause promotional 21 days, engaged-only post-purchase ramp, sunset 52,000 non-openers. Open rates normalized week nine.
+      </p>
+      <p>
+        <strong>Incident B — Supplement brand, BFCM 2024.</strong> Triple send frequency to full list including 90-day inactive. Complaint rate 0.09%. Yahoo deferred delivery for eight days. Recovery: engaged-only December campaigns, VIP apology send primary inbox, sunset policy enacted January. Lost estimated $43k attributed revenue — cheap lesson on peak discipline.
+      </p>
+      <p>
+        <strong>Incident C — Jewelry DTC, gradual decline.</strong> Open rate slid 42% to 26% over eight months without incident. Root cause: list growth from popup with single-use emails and no engagement filter; inactive majority dragged domain reputation. Recovery: sunset 40% list, popup double opt-in, engaged segment campaigns only. Three-month climb back to 38%.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Authentication checklist</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">DNS before scale</h2>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Dedicated sending subdomain configured — not root domain</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>SPF record includes ESP authorized senders only</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>DKIM signing enabled and verified in ESP</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>DMARC policy at p=none minimum, progress toward quarantine</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Custom domain aligned with brand — not generic ESP default</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Gmail Postmaster Tools domain verified</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>From-name and from-address consistent across flows</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Unsubscribe link one-click functional — RFC 8058 compliance</li>
+      </ul>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Sunset policy</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">180-day non-engagement protocol</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Day 150: tag "sunset-candidate" — no promotional sends. Day 180: re-permission campaign "still want emails?" to sunset-candidate segment only. Day 210: no response → suppress from all marketing; retain for transactional if purchaser. VIP and repeat buyers get extended 270-day window with different winback attempt first.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Sequenzy: suppress without deleting — no profile cost penalty. Klaviyo: suppression improves engaged ratio and may lower tier. Both: reputation improves when cold profiles stop receiving promotional weight.
+      </p>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Platform deliverability tooling</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five ESPs — reputation features</h2>
+
+    <ToolReview
+      app={featuredApps[0]}
+      rank={1}
+      paragraphs={[
+        'Sequenzy supports dedicated domain authentication and unified transactional plus marketing reputation — order emails and campaigns share domain warmth when configured correctly. Post-purchase transactional should send before promotional ramp on new domains.',
+        'Pay-per-email economics align with sunset policy — suppress cold profiles without delete anxiety. Deliverability improves when you stop mailing 180-day non-openers; Sequenzy billing does not punish keeping suppressed profiles for future winback.',
+        'Bounce and complaint handling integrated — weekly ops review should include Sequenzy suppression sync verification with Shopify customer tags.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[1]}
+      rank={2}
+      paragraphs={[
+        'Klaviyo deliverability dashboard is industry standard for DTC — bounce categories, spam complaint trends, deliverability hub recommendations. Use it weekly during migration and BFCM.',
+        'Smart sending and quiet hours reduce fatigue complaints. Predictive send time optimization can improve engagement signals Gmail uses for placement.',
+        'Profile bloat from inactive contacts hurts deliverability AND pricing — sunset policy is dual economic and reputation imperative on Klaviyo.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[2]}
+      rank={3}
+      paragraphs={[
+        'Omnisend solid SMB deliverability on shared infrastructure at low volume. Custom domain recommended above 40,000 monthly sends. Push and SMS channels do not repair email reputation damage — fix list hygiene first.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[3]}
+      rank={4}
+      paragraphs={[
+        'Brevo transactional and marketing reputation separation useful for brands with high transactional volume. Deliverability acceptable for budget-conscious stores with disciplined list hygiene — lighter Shopify-specific guidance than Klaviyo.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[4]}
+      rank={5}
+      paragraphs={[
+        'Shopify Email shared pool — fine for starter broadcasts, not lifecycle at scale. Graduate to Sequenzy or Klaviyo when monthly sends exceed 25,000 or automations multiply — reputation control requires dedicated ESP.',
+      ]}
+    />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Common mistakes</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Deliverability self-inflicted wounds</h2>
+      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
+        <li><strong>Skipping warmup.</strong> New domain, full list, day one. Gmail throttling within 72 hours.</li>
+        <li><strong>BFCM cold blast.</strong> Inactive profiles included for "maximum reach." Complaint spike.</li>
+        <li><strong>Purchased lists.</strong> Never. No ESP feature fixes purchased list reputation damage.</li>
+        <li><strong>Authentication neglect.</strong> Sending from unauthenticated domain at volume. Promotions tab becomes spam folder.</li>
+        <li><strong>No sunset.</strong> Three years of inactive profiles on every campaign. Gradual open rate erosion.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">14-day domain warmup schedule — post-migration</h2>
+      <p>
+        Warmup is not optional when you move ESPs, add a dedicated subdomain, or resume sending after a three-month pause. Day 1–3: engaged purchasers only — post-purchase and order confirmation traffic on the new domain. No promotional. Day 4–7: welcome series to profiles who opened in last 30 days. Volume cap at 15% of normal daily sends. Day 8–10: cart recovery to engaged segment; still exclude 90-day inactive. Day 11–14: first promotional to engaged-only at 40% normal volume. Week three: scale to 70%. Week four: full volume if complaint rate stays under 0.02% and seed placement holds.
+      </p>
+      <p>
+        A cookware brand skipped day 1–7 engaged ramp and blasted 62,000 promotional on day two of a Klaviyo subdomain migration. Gmail Postmaster spam rate hit 0.41% within 48 hours. Recovery required 28 days of transactional-only sends plus sunset of 38,000 cold profiles. The migration saved $0 in ESP costs and cost six weeks of promotional revenue. Follow the schedule even when marketing demands immediate BFCM prep — deliverability debt compounds faster than subscription savings.
+      </p>
+
+      <h2 class="font-serif text-4xl font-black text-slate-950">Weekly deliverability ops review</h2>
+      <p>
+        Retention leads should run a 20-minute deliverability standup every Monday during ramp periods and peak season; monthly during steady state. Checklist: complaint rate trend (ESP dashboard), hard bounce rate by domain (Gmail, Yahoo, Outlook), open rate on engaged segment only (not full list), spam placement seed test if volume changed more than 25% week-over-week, suppression sync verification with Shopify (unsubscribes reflected within 24 hours), DMARC aggregate report anomalies, new list source audit (popup, import, checkout).
+      </p>
+      <p>
+        Red flags that demand same-day action: complaint rate crosses 0.04%, hard bounces spike above 0.5% on a single domain, engaged open rate drops 8+ points week-over-week without creative change, promotional sends to profiles with no open in 120 days. Response playbook: pause promotional 72 hours, audit last three campaigns for misleading subject lines or frequency spikes, sunset candidates tagged, re-permission only if legal/compliance requires — not as reputation band-aid.
+      </p>
+
+      <h2 class="font-serif text-4xl font-black text-slate-950">Placement by provider — what operators actually watch</h2>
+      <p>
+        <strong>Gmail:</strong> Postmaster Tools domain reputation, spam rate, authentication alignment. Promotions tab is acceptable for bulk promotional; primary inbox pursuit for VIP only. Mislabeling marketing as transactional triggers harsh penalties. <strong>Yahoo/AOL:</strong> Complaint rate sensitivity higher than Gmail — deferrals cascade on list hygiene failures. <strong>Apple Mail:</strong> Open rates inflated by MPP — measure clicks and revenue per send, not opens alone. <strong>Microsoft:</strong> SNDS data for bulk senders; slower reputation recovery than Gmail after incidents.
+      </p>
+      <p>
+        Aggregate open rate lies. Segment reporting by recipient domain reveals whether Gmail engagement collapsed while Apple looks fine — a pattern that indicates content or frequency problem on Google specifically, not universal list decay. Sequenzy and Klaviyo both export domain-level metrics when configured; export weekly during Q4.
+      </p>
+
+      <h2 class="font-serif text-4xl font-black text-slate-950">Content signals that trigger filters</h2>
+      <p>
+        Authentication gets you to the door; content and engagement get you through. Spam triggers operators underestimate: ALL CAPS subject lines on promotional blasts, URL shorteners in body, image-only emails with no text ratio, identical subject lines across three sends in five days, misleading "Re:" or "Fwd:" prefixes, excessive exclamation marks paired with discount percentages, broken unsubscribe links, sending from display name that does not match brand domain.
+      </p>
+      <p>
+        Frequency fatigue masquerades as deliverability failure. A pet supplies merchant saw Gmail spam folder placement rise after doubling send frequency without sunset — not DNS issue. Reducing sends to engaged segment and pausing 180-day non-openers fixed placement in nine days without touching authentication. Deliverability is list behavior plus content discipline, not a one-time IT project.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">BFCM deliverability calendar</h2>
+      <p>
+        August: authentication audit, sunset inactive, define engaged segment for peak. September: seed monitoring baseline, complaint rate under 0.02%. October: volume ramp test at 1.5x normal week. November 1–15: engaged-heavy early access; cold segments suppressed from promotional. November 16–30: no list experiments, no migration, no re-permission blasts. December: recovery sends engaged only; winback delayed to January.
+      </p>
+      <p>
+        Cross-read <a class="link" href="/use-cases/black-friday">Black Friday use case</a> for campaign logic and <a class="link" href="/guides/migration">migration playbook</a> if platform change planned — never Q4.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/guides">All guides →</a>
+      <a class="link" href="/guides/migration">Migration →</a>
+      <a class="link" href="/guides/consent-compliance">Consent →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Deliverability FAQ" />
+</BaseLayout>

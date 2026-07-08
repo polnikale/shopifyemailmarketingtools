@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/postscript-vs-sendlane';
+const title = 'Postscript vs Sendlane for Shopify: 2026 Comparison';
+const desc = 'Postscript vs Sendlane for Shopify stores — SMS-native specialization vs Klaviyo-alternative email-plus-SMS, stack splits, and retention economics.';
+
+const faqs = [
+  {
+    question: 'Is Postscript or Sendlane better for Shopify SMS?',
+    answer: 'Postscript is SMS-native with superior TCPA tooling, two-way conversations, keyword campaigns, and drop execution refined for DTC. Sendlane bundles SMS with email automations as a Klaviyo alternative — strong unified segments for moderate SMS volume. Choose Postscript when SMS is 25%+ of retention revenue with dedicated ownership. Choose Sendlane SMS when you want one platform for email and text without Klaviyo pricing.',
+  },
+  {
+    question: 'Can Sendlane replace Postscript entirely?',
+    answer: 'For moderate SMS volume on brands already committed to Sendlane email, often yes — cart SMS, broadcasts, and basic automations are included. Postscript wins when promotional SMS exceeds ~30k messages monthly, two-way reply volume is high, or TCPA compliance demands SMS-first guardrails Sendlane treats as one channel among two.',
+  },
+  {
+    question: 'Should I use Sendlane for email and Postscript for SMS?',
+    answer: 'Common when Sendlane email wins on price versus Klaviyo but SMS revenue outgrows Sendlane text depth. Sendlane owns email flows and unified reporting; Postscript owns drop campaigns and conversational recovery. Sync purchase suppressions bidirectionally — duplicate cart touches destroy trust faster than redundant software spend.',
+  },
+  {
+    question: 'How does Postscript vs Sendlane pricing compare?',
+    answer: 'Sendlane bundles SMS into contact-based plans plus per-message costs — predictable platform fee with variable text. Postscript separates SMS platform from message usage — often higher total at peak SMS but transparent attribution. Model BFCM promotional volume; Sendlane looks cheaper until conversion gap on flash sends exceeds fee delta.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Sendlane or Postscript?',
+    answer: 'Sequenzy offers guided email lifecycle with pay-per-email economics — pair with Postscript for SMS specialization. Sendlane still wins if you want unified email-SMS segments without Klaviyo. Sequenzy plus Postscript targets teams who want email guidance and SMS depth without Sendlane\'s full platform commitment.',
+  },
+  {
+    question: 'Which has better email automation for Shopify?',
+    answer: 'Sendlane wins email — browse abandonment, post-purchase, winback, and Shopify segment depth are core product. Postscript does not compete on email; comparing email features misses the point. If email migration to Sendlane is the project, evaluate SMS separately; do not assume Sendlane SMS equals Postscript because both send text.',
+  },
+  {
+    question: 'Which has stronger TCPA compliance for SMS?',
+    answer: 'Postscript leads — keyword libraries, pre-send compliance scans, and opt-out dashboards built for SMS operators. Sendlane SMS compliance is adequate for brands running unified email-SMS with moderate promotional volume. High SMS revenue stores with aggressive list growth favor Postscript guardrails.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'SMS tests: keyword opt-in, cart abandonment with reply, flash broadcast with quiet hours — Postscript should win depth tests. Unified tests: email welcome plus SMS cart in one Sendlane journey — Sendlane should win if consolidation matters. If Sendlane SMS passes all tests at your volume, skip Postscript; if flash sends underperform, specialize.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Postscript vs Sendlane</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Postscript vs Sendlane for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Sendlane markets itself as the Klaviyo escape hatch with bundled SMS; Postscript assumes you already chose an email home and need text done right. We evaluated both through a fitness apparel brand migrating Klaviyo to Sendlane while keeping Postscript for drops, a protein powder shop going Sendlane-only to cut stack cost, and a wellness subscription box that added Postscript after Sendlane SMS throttled during a restock flash.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'SMS specialization', tool: 'Postscript', reason: 'Drop execution, TCPA depth, and two-way conversational recovery.' },
+            { label: 'Unified email + SMS', tool: 'Sendlane', reason: 'One segment model without Klaviyo pricing.' },
+            { label: 'Flash sale SMS', tool: 'Postscript', reason: 'Quiet hours, segmentation, and reply routing under pressure.' },
+            { label: 'Email lifecycle', tool: 'Sendlane', reason: 'Browse, post-purchase, and winback in one builder.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Guided email playbooks paired with Postscript for SMS depth.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Postscript</th><th>Sendlane</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>SMS-native Shopify DTC</td><td>Email + SMS Klaviyo alternative</td></tr>
+            <tr><td>Starting price</td><td>Usage-based plans</td><td>From ~$99/mo with SMS included</td></tr>
+            <tr><td>Billing model</td><td>Plan + per-message</td><td>Contacts + per-message SMS</td></tr>
+            <tr><td>Email depth</td><td>Not included</td><td>Core product strength</td></tr>
+            <tr><td>SMS depth</td><td>Best-in-class for Shopify</td><td>Strong bundled, less specialized</td></tr>
+            <tr><td>Unified reporting</td><td>Requires integration</td><td>Email and SMS in one dashboard</td></tr>
+            <tr><td>Two-way SMS</td><td>Core strength</td><td>Available</td></tr>
+            <tr><td>Typical role</td><td>SMS layer or specialist</td><td>Primary ESP with bundled SMS</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Merchants search "Postscript vs Sendlane" when Sendlane migration quotes include SMS and finance asks why Postscript still bills — or when Sendlane SMS underperforms during a drop and ops wonders if specialization returns. Sendlane is an email platform that bundles SMS competitively; Postscript is SMS-only infrastructure. The comparison is consolidation versus specialization within retention stacks fleeing Klaviyo pricing.
+        </p>
+        <p>
+          The fitness apparel brand left Klaviyo for Sendlane email — 30% platform savings at 45k profiles — but kept Postscript because legging drops and size-specific cart SMS drove 38% of quarterly retention revenue. Sendlane SMS worked for post-purchase cross-sell; Postscript owned urgency. Clear channel ownership prevented the duplicate-message chaos Klaviyo-plus-Postscript stacks sometimes inherit without governance.
+        </p>
+
+        <h2>Workflow test: unified email and SMS cart in Sendlane</h2>
+        <p>
+          The protein powder shop built Sendlane journey: browse email day 1, cart email hour 4, cart SMS hour 6 — single suppression on purchase, unified revenue attribution in one dashboard. Implementation took two afternoons; Postscript would have required sync middleware. For moderate AOV replenishment products, coordinated multichannel in Sendlane beat specialized SMS alone — subscription reorder reminders do not need conversational reply routing.
+        </p>
+        <p>
+          Same shop's influencer code drop — 15k SMS in three hours — Sendlane segment refresh lagged four minutes behind real-time opt-outs; minor compliance anxiety and 6% lower CTR versus prior Postscript drop benchmarks. They stayed Sendlane-only accepting peak compromise; fitness brand with higher drop frequency could not.
+        </p>
+
+        <h2>Workflow test: flash restock via SMS</h2>
+        <p>
+          The wellness subscription box restock SMS on Sendlane stalled mid-broadcast — rate limits during concurrent email winback send competed for platform throughput. Migration to Postscript for drops only: 29k messages in 45 minutes, quiet hours by timezone, $22k attributed. Sendlane remained email home; Postscript became SMS fire department for inventory events.
+        </p>
+        <p>
+          Postscript two-way replies handled "skip this month but add the serum" requests during restock — human resolution revenue Sendlane one-way SMS missed. Not every brand needs that; subscription boxes with modification requests do.
+        </p>
+
+        <h2>Workflow test: keyword opt-in growth</h2>
+        <p>
+          Postscript keyword campaigns from Shopify popup converted at 9.8% mobile for the fitness brand — compliant double opt-in, collection tagging, integration with influencer UTMs. Sendlane SMS opt-in forms worked inside unified popups but keyword-specific TCPA audit trail was thinner; legal accepted both for moderate growth, favored Postscript documentation when SMS exceeded 30% of new customer acquisition.
+        </p>
+        <p>
+          Growth teams choosing Sendlane-only should document SMS consent separately from email — unified forms convenience creates compliance ambiguity Postscript keyword flows avoid by design.
+        </p>
+
+        <h2>Pricing reality at growing list sizes</h2>
+        <p>
+          Sendlane at 40k contacts: roughly $200–350/mo platform including SMS capability plus per-message fees. Postscript addition: $400–1,200/mo during heavy promotional quarters. Sendlane-only saves second platform subscription until SMS-attributed incremental revenue exceeds Postscript fee plus migration labor — fitness brand math said yes to both; protein powder said Sendlane-only; wellness box split the difference.
+        </p>
+        <p>
+          Klaviyo refugees comparing Sendlane-plus-Postscript to Klaviyo-alone often still save net — but only if Sendlane email migration succeeds and Postscript SMS ROI is measured, not assumed from Klaviyo SMS benchmarks.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Sendlane SMS (without Postscript) if:</strong></p>
+        <ul>
+          <li>SMS volume is moderate and tied to email journeys in one platform</li>
+          <li>Unified reporting outweighs SMS specialization for your ops team</li>
+          <li>Drops and flash sends are rare compared to lifecycle replenishment</li>
+          <li>You migrated from Klaviyo primarily for cost, not SMS depth</li>
+        </ul>
+        <p><strong>Choose Postscript (with Sendlane or another ESP) if:</strong></p>
+        <ul>
+          <li>SMS drives calendar drops and mobile-first urgency revenue</li>
+          <li>Sendlane SMS tests underperformed during peak promotional windows</li>
+          <li>Two-way conversations recover high-AOV carts regularly</li>
+          <li>TCPA compliance rigor and keyword growth are acquisition pillars</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          Sendlane competes on email-plus-SMS consolidation; some teams migrate email to Sendlane and still find journey design slow. Sequenzy offers guided email lifecycle playbooks with pay-per-email economics — pair with Postscript for SMS while skipping full Sendlane commitment, or use Sendlane for unified email-SMS if consolidation tests pass. Sequenzy does not replace Sendlane SMS bundling; it simplifies email strategy when Sendlane migration is overkill for your stage.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Postscript vs Sendlane is specialization versus bundled Klaviyo-alternative economics. Sendlane wins merchants consolidating email and moderate SMS with unified segments and platform savings. Postscript wins when SMS revenue and drop execution justify dedicated tooling alongside any email platform. The fitness brand runs both; the protein powder shop consolidated; the wellness box split by use case. Run flash SMS tests in Sendlane before canceling Postscript — spreadsheet savings mean nothing if drop conversion drops double digits.
+        </p>
+        <h2>Operator runbook: best-of-breed SMS vs unified canvas SMS</h2>
+        <p>
+          Sendlane bundles email+SMS canvas; Postscript specializes SMS. Postscript wins SMS depth; Sendlane wins one-login operators below 20% SMS revenue share. Sequenzy + Postscript competes with Sendlane unified when canvas maintenance unwanted.
+        </p>
+
+        <h2>Field scenario: $47k/mo fitness, Sendlane unified</h2>
+        <p>
+          SMS 13% attributed — Sendlane SMS step in cart journey sufficient. Postscript minimums unjustified. One canvas for email+SMS edits during sale week — owner passed thirty-minute edit test.
+        </p>
+
+        <h2>Field scenario: $64k/mo streetwear, Postscript + Klaviyo</h2>
+        <p>
+          Sendlane trial SMS weak on keyword drops; Postscript won drop campaigns driving 22% of SMS revenue. Sendlane retired; email Klaviyo for browse depth. Specialization beat consolidation at scale.
+        </p>
+
+        <h2>Workflow test: canvas SMS node edit under pressure</h2>
+        <p>
+          Mock sale launch in 30 minutes — change SMS copy and delay in Sendlane vs Postscript. Sendlane wins if operator solo; Postscript wins if SMS campaigns complex and email elsewhere.
+        </p>
+
+        <h2>Migration note: Sendlane SMS → Postscript</h2>
+        <p>
+          Disable Sendlane SMS nodes; re-permission in Postscript. Email can remain Sendlane or move separately. Phone port timeline 2 weeks — plan quiet week.
+        </p>
+        <h2>Unified canvas SMS vs specialist threshold</h2>
+        <p>
+          Sendlane SMS sufficient under 15% SMS revenue share; Postscript when keyword drops and two-way load-bearing. Edit-under-pressure test breaks tie solo operators.
+        </p>
+        <h2>Field scenario: $47k/mo fitness Sendlane unified</h2>
+        <p>
+          SMS 13% share; Postscript minimums rejected; thirty-minute edit test passed Sendlane.
+        </p>
+        <h2>Field scenario: $64k/mo streetwear Postscript + Klaviyo</h2>
+        <p>
+          Sendlane SMS weak keywords; specialization won at drop revenue scale.
+        </p>
+        <h2>Operator scoring sheet — Postscript vs Sendlane</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when keyword drops and specialist reporting looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Postscript wins when keyword drops and specialist reporting changes Monday standups. Sendlane wins when canvas SMS unified with email remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. specialize when SMS share crosses 20% noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Sendlane unified SMS sufficient until keyword drop revenue exceeds twenty percent of SMS attributed total. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

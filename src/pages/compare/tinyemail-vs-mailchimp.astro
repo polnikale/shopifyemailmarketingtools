@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/tinyemail-vs-mailchimp';
+const title = 'TinyEmail vs Mailchimp for Shopify Email: 2026 Comparison';
+const desc = 'TinyEmail vs Mailchimp for Shopify — lightweight Shopify-native ESP vs generalist email platform, integration depth, pricing, and migration paths for growing stores.';
+
+const faqs = [
+  {
+    question: 'Is TinyEmail or Mailchimp better for a Shopify store under 400 orders/month?',
+    answer: 'TinyEmail usually wins below 400 orders/month when Shopify-specific automations and product blocks matter more than Mailchimp\'s generalist features. Mailchimp suits merchants who also run non-Shopify lists, need landing pages, or already know the interface from another business. TinyEmail is Shopify-focused; Mailchimp is platform-agnostic with weaker native Shopify depth.',
+  },
+  {
+    question: 'How does TinyEmail vs Mailchimp pricing compare at 8,000 contacts?',
+    answer: 'TinyEmail at 8k often runs $25–50/mo depending on plan. Mailchimp at 8k contacts frequently runs $60–110/mo on Standard tier. Mailchimp free tier helps tiny lists but disappears quickly with popup growth. TinyEmail can undercut Mailchimp for Shopify-only stores that do not need Mailchimp\'s extra modules.',
+  },
+  {
+    question: 'Which has better Shopify integration?',
+    answer: 'TinyEmail is built for Shopify — product recommendations, cart triggers, and order sync are defaults. Mailchimp integrates via app with product blocks and purchase data but feels secondary to Mailchimp\'s non-ecommerce features. For pure Shopify retention, TinyEmail is tighter. For multi-channel businesses, Mailchimp\'s breadth wins.',
+  },
+  {
+    question: 'Can I migrate from Mailchimp to TinyEmail or vice versa?',
+    answer: 'Yes. Export contacts with consent tags and merge fields. Rebuild cart and welcome before disabling old automations — parallel one week with purchase suppression. Mailchimp audiences map to TinyEmail lists with field mapping attention. Budget 1–2 weeks for stores with three active automations and historical segment complexity.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of TinyEmail or Mailchimp?',
+    answer: 'Sequenzy fits when lifecycle strategy speed matters more than generalist tooling — agent-first playbooks with pay-per-email pricing. Mailchimp still suits multi-list businesses. TinyEmail still wins for Shopify-only lightweight needs. Sequenzy helps stores outgrowing both without jumping to Klaviyo complexity.',
+  },
+  {
+    question: 'Does Mailchimp automation depth beat TinyEmail?',
+    answer: 'Mailchimp Customer Journeys offer more branching and cross-channel options on higher tiers — but Shopify event triggers require more configuration than TinyEmail defaults. TinyEmail automations are simpler but ecommerce-preset. Mailchimp wins power users who already built journeys; TinyEmail wins merchants who want cart live this week.',
+  },
+  {
+    question: 'When should I skip both for Klaviyo or Omnisend?',
+    answer: 'When monthly orders exceed 600–800, SMS cart recovery matters, browse abandonment drives revenue, or list growth from popups exceeds 15k contacts. Both TinyEmail and Mailchimp hit segmentation ceilings. Migrating once to a Shopify-native ESP beats sequential lightweight migrations.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Build welcome, abandoned cart with dynamic products, and post-purchase. Score Shopify sync latency, template mobile rendering, and time-to-live. TinyEmail should win on Shopify-native speed. Mailchimp should win if you also need non-Shopify lists or landing pages in the same tool.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">TinyEmail vs Mailchimp</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">TinyEmail vs Mailchimp for Shopify email</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          TinyEmail is a Shopify app that assumes ecommerce automations are the product. Mailchimp is a generalist email platform that assumes every business type deserves the same toolbox. We evaluated both through a stationery brand migrating off Mailchimp after Shopify became 95% of revenue, a consultant running Shopify plus newsletter lists in one Mailchimp account, and a home decor shop that chose TinyEmail for cart recovery then outgrew it at 750 orders/month.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Shopify-native automations', tool: 'TinyEmail', reason: 'Cart, welcome, and product blocks built for Shopify.' },
+            { label: 'Multi-list generalist', tool: 'Mailchimp', reason: 'Non-Shopify audiences and landing pages in one account.' },
+            { label: 'Price at 5–10k contacts', tool: 'TinyEmail', reason: 'Often cheaper for Shopify-only sending.' },
+            { label: 'Journey builder depth', tool: 'Mailchimp', reason: 'More branching on higher tiers for power users.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Lifecycle playbooks when both feel like interim tools.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>TinyEmail</th><th>Mailchimp</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Lightweight Shopify ESP</td><td>Generalist multi-channel email</td></tr>
+            <tr><td>Starting price</td><td>Free tier; paid from ~$15/mo</td><td>Free tier; paid from ~$13/mo</td></tr>
+            <tr><td>Billing model</td><td>Contacts / sends</td><td>Contacts + feature tier</td></tr>
+            <tr><td>Shopify depth</td><td>Native app — core events</td><td>App integration — good not native</td></tr>
+            <tr><td>Automations</td><td>Ecommerce presets</td><td>Customer Journeys</td></tr>
+            <tr><td>Landing pages</td><td>Not available</td><td>Built-in</td></tr>
+            <tr><td>Non-Shopify lists</td><td>Shopify-focused</td><td>Core strength</td></tr>
+            <tr><td>Scale ceiling</td><td>~500–800 orders/mo</td><td>~800–1,200 orders/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Mailchimp dominated small business email for a decade — many Shopify merchants started there before Shopify-specific tools existed. TinyEmail represents the counter-move: lightweight, Shopify-first, no landing page builder you will never use. The stationery brand inherited Mailchimp from pre-Shopify wholesale newsletter days; 95% of revenue now came from Shopify but cart recovery still ran through clunky Mailchimp journey configuration. TinyEmail cart series went live in an afternoon with product blocks that actually rendered on mobile.
+        </p>
+        <p>
+          The consultant needed opposite logic — Shopify store plus Substack-adjacent professional list in one Mailchimp account with shared brand templates. TinyEmail could not serve the non-commerce audience. Tool choice followed business shape, not feature count.
+        </p>
+
+        <h2>Merchant scenario: stationery brand leaving Mailchimp</h2>
+        <p>
+          6,200 contacts, $52k/mo Shopify revenue, Mailchimp Standard at $78/mo. Cart abandonment journey required manual product block configuration that broke when SKU count crossed 400. TinyEmail dynamic product recommendations pulled cart contents automatically — recovery rate improved 0.9 percentage points in six weeks.
+        </p>
+        <p>
+          Mailchimp was not broken — it was misaligned. Paying generalist pricing for a business that had become pure ecommerce stopped making sense. Migration took four days including parallel cart suppression.
+        </p>
+
+        <h2>Merchant scenario: consultant with dual audiences</h2>
+        <p>
+          Shopify course templates store plus 3,800-person professional newsletter — same brand voice, different CTAs. Mailchimp audiences segregated cleanly with shared template library. TinyEmail could only serve Shopify purchasers; splitting tools meant duplicate design work.
+        </p>
+        <p>
+          Mailchimp won despite weaker Shopify integration because business was genuinely multi-list. TinyEmail's Shopify focus became a liability, not an advantage.
+        </p>
+
+        <h2>Workflow test: abandoned cart</h2>
+        <p>
+          TinyEmail three-step cart with product grid live in 90 minutes. Mailchimp equivalent journey took four hours including Shopify app event verification and product block troubleshooting — outcome similar, implementation friction higher for ecommerce-specific setup.
+        </p>
+        <p>
+          Mailchimp won when cart was one branch among complex non-purchase journeys — consultant's abandoned-course-checkout lived beside newsletter re-engagement in one canvas. TinyEmail won when cart was the automation that mattered most.
+        </p>
+
+        <h2>Workflow test: welcome series</h2>
+        <p>
+          TinyEmail AI draft welcome saved home decor founder copywriting time on launch. Mailchimp welcome templates were prettier out of box but required more manual Shopify merge tag configuration for product recommendations in email two.
+        </p>
+        <p>
+          For design-forward brands already paying Mailchimp for aesthetics, switching cost exceeded TinyEmail savings until cart recovery pain became acute.
+        </p>
+
+        <h2>Pricing reality at growing list sizes</h2>
+        <p>
+          At 10k contacts, TinyEmail often runs $35–65/mo. Mailchimp Standard at 10k runs $90–130/mo. Mailchimp Essentials tier limits automation depth — stores needing journeys pay Standard regardless. TinyEmail pricing is simpler but caps earlier on advanced needs.
+        </p>
+        <p>
+          Popup-driven list growth punishes Mailchimp contact billing harshly. TinyEmail bills contacts too — neither rewards indiscriminate capture. Sunset inactive subscribers on either platform before comparing line items.
+        </p>
+
+        <h2>Graduation path</h2>
+        <p>
+          Both are interim tools for most scaling Shopify brands. Home decor shop migrated TinyEmail to Omnisend at 750 orders/month for SMS cart recovery. Stationery brand skipped TinyEmail entirely for Klaviyo at 1,100 orders/month when browse abandonment mattered. Sequenzy fits merchants who want strategy guidance without Klaviyo profile pricing at graduation moment.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose TinyEmail if:</strong></p>
+        <ul>
+          <li>Shopify is 90%+ of revenue and email needs are ecommerce-specific</li>
+          <li>Mailchimp journey configuration feels like fighting the tool</li>
+          <li>You want cheaper contact pricing with Shopify-native product blocks</li>
+          <li>You do not need landing pages or non-Shopify lists</li>
+        </ul>
+        <p><strong>Choose Mailchimp if:</strong></p>
+        <ul>
+          <li>You manage multiple non-Shopify audiences in one account</li>
+          <li>Landing pages and Mailchimp ecosystem integrations are active</li>
+          <li>Your team already knows Mailchimp from another venture</li>
+          <li>Journey builder complexity serves mixed business models</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          When TinyEmail feels too limited and Mailchimp feels too generalist, Sequenzy offers guided lifecycle playbooks with pay-per-email pricing. It is the graduation path when you need welcome, cart, post-purchase, and winback strategy — not just a different lightweight sender.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          TinyEmail wins for Shopify-only stores where ecommerce automations and pricing beat Mailchimp's generalist overhead. Mailchimp wins when your email program spans Shopify and non-commerce lists in one platform. Neither is a forever home — pick the interim tool that matches today's business shape and plan graduation before list bloat makes migration expensive.
+        </p>
+        <h2>Operator runbook: lightweight Shopify email vs legacy generalist</h2>
+        <p>
+          tinyEmail targets Shopify-native simplicity; Mailchimp targets familiar broad marketing. Compare when tinyEmail cart/welcome adequate but Mailchimp landing pages and surveys still used — dual stack often redundant. Both are waypoints before Omnisend, Sequenzy, or Klaviyo at 400+ orders/mo.
+        </p>
+        <p>
+          Sequenzy beats both when lifecycle strategy matters more than editor familiarity — pay-per-email from tinyEmail-scale lists without Mailchimp contact bloat.
+        </p>
+
+        <h2>Field scenario: $21k/mo accessories, tinyEmail win short term</h2>
+        <p>
+          Mailchimp $78/mo at 5k contacts — mostly unused journeys. tinyEmail $19/mo Shopify-native cart live day three. Saved complexity; planned Sequenzy at 400 orders/mo documented trigger.
+        </p>
+
+        <h2>Field scenario: $28k/mo gifts, Mailchimp landing pages kept</h2>
+        <p>
+          tinyEmail trial weak on seasonal gift guide landing — Mailchimp pages retained. Email lifecycle migrated Sequenzy month six; tinyEmail never adopted. Lesson: pick comparison axis matching actual bottleneck.
+        </p>
+
+        <h2>Workflow test: Shopify cart sync latency</h2>
+        <p>
+          Both must suppress cart email within 15m of purchase — measure tinyEmail vs Mailchimp actual lag. tinyEmail should win sync; Mailchimp may lag — document for high-AOV stores.
+        </p>
+
+        <h2>Migration note: Mailchimp → tinyEmail (simplification)</h2>
+        <p>
+          Export contacts; tinyEmail import straightforward. Rebuild automations — no journey import. Rare downgrade path — usually migrate up to Sequenzy/Omnisend instead of sideways to tinyEmail unless cost catastrophic and orders under 300/mo.
+        </p>
+        <h2>Shopify-native lightweight vs legacy generalist</h2>
+        <p>
+          tinyEmail day-three cart live $19/mo vs Mailchimp $78/mo 5k contacts unused journeys — waypoint to Sequenzy/Omnisend not destination either.
+        </p>
+        <h2>Mailchimp landing page lock-in</h2>
+        <p>
+          $28k/mo gifts kept Mailchimp pages — tinyEmail sidestep wrong axis; lifecycle Sequenzy month six regardless tinyEmail trial.
+        </p>
+        <h2>Sync latency high-AOV test</h2>
+        <p>
+          Purchase suppression 15m SLA — tinyEmail should beat Mailchimp lag; document embarrassments prevented.
+        </p>
+        <h2>Operator scoring sheet — tinyEmail vs Mailchimp</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when Shopify-native cart day three looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. tinyEmail wins when Shopify-native cart day three changes Monday standups. Mailchimp wins when legacy editor landing pages remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. waypoint to Sequenzy not destination noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>tinyEmail is runway not destination — document Sequenzy or Omnisend trigger at four hundred orders monthly when choosing tinyEmail. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

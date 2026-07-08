@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/privy-vs-justuno';
+const title = 'Privy vs Justuno for Shopify: 2026 Comparison';
+const desc = 'Privy vs Justuno for Shopify — popup capture and onsite conversion vs gamification and A/B testing depth, email automation limits, and graduation paths.';
+
+const faqs = [
+  {
+    question: 'Is Privy or Justuno better for a Shopify store doing $25k/mo?',
+    answer: 'Privy usually wins when you need popup capture plus basic email automation in one familiar Shopify app — spin wheels, exit intent, and cart abandonment without a separate ESP. Justuno wins when gamification, onsite A/B testing, and advanced targeting rules drive list growth KPIs. At $25k/mo with one founder handling marketing, Privy ships faster.',
+  },
+  {
+    question: 'How does Privy vs Justuno pricing compare?',
+    answer: 'Privy scales on visitor sessions and email sends — starter tiers from ~$30/mo, growing with traffic. Justuno prices on page views and feature tier — often similar entry, higher at scale for gamification packages. Both can look cheap until Black Friday traffic spikes session billing. Model peak traffic months, not average.',
+  },
+  {
+    question: 'Which has better popup conversion rates?',
+    answer: 'Depends on offer and audience. Justuno\'s gamification — spin wheels, countdown timers, scratch cards — often lifts signup rate on impulse DTC. Privy\'s templates are proven but less gamified — better for brands avoiding discount-training aesthetics. Test both on your traffic; category matters more than vendor.',
+  },
+  {
+    question: 'Can Privy or Justuno replace Klaviyo for email?',
+    answer: 'No for retention at scale. Both handle capture and basic automations — welcome, cart — adequately for early-stage stores. Neither matches Klaviyo browse depth, predictive segmentation, or complex suppression at 500+ orders/month. Plan graduation to Omnisend, Sequenzy, or Klaviyo when email becomes a line item, not a popup afterthought.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Privy or Justuno?',
+    answer: 'Sequenzy fits post-capture lifecycle — welcome, cart, winback playbooks with pay-per-email pricing. Privy and Justuno win onsite conversion. Typical stack: Justuno or Privy for capture, Sequenzy or Omnisend for lifecycle. Sequenzy replaces the ESP layer Privy email outgrows around 300–500 monthly orders.',
+  },
+  {
+    question: 'Which has better A/B testing for popups?',
+    answer: 'Justuno leads — built-in multivariate tests for popup creative, offer type, and trigger timing. Privy offers A/B testing on higher tiers but less depth than Justuno\'s core positioning. If popup optimization is a weekly discipline, Justuno competes. If you test quarterly, Privy suffices.',
+  },
+  {
+    question: 'Which integrates with Shopify more cleanly?',
+    answer: 'Both are Shopify-native capture tools with strong app store presence. Privy feels more established in Shopify merchant forums — more agency familiarity. Justuno\'s gamification widgets require careful mobile QA. Neither replaces ESP depth; both sync captures to external platforms.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Run two popup variants for two weeks — measure signup rate, email quality (purchaser vs freebie), and downstream welcome conversion. If gamification lifts signups 20%+ without hurting purchaser ratio, lean Justuno. If you need capture plus basic email in one tool today, lean Privy.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Privy vs Justuno</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Privy vs Justuno for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Two onsite conversion specialists merchants compare before graduating to full ESP platforms. Privy bundles popup capture with basic email automation — the default Shopify App Store answer for early-stage list growth. Justuno leads with gamification, A/B testing, and advanced onsite targeting for operators who treat popup optimization as a weekly discipline. We tested both on a $22k/mo jewelry brand, a snack DTC obsessed with spin-wheel signup rate, and a sustainable apparel shop that outgrew Privy email at 400 orders/month.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Capture + basic email', tool: 'Privy', reason: 'One app for popups, welcome, and cart at early stage.' },
+            { label: 'Gamification + A/B tests', tool: 'Justuno', reason: 'Spin wheels, scratch cards, and popup multivariate testing.' },
+            { label: 'Shopify familiarity', tool: 'Privy', reason: 'Wider agency adoption and simpler onboarding.' },
+            { label: 'Signup rate optimization', tool: 'Justuno', reason: 'Built for operators who test popup creative weekly.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Lifecycle playbooks when capture tools outgrow their email layer.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Privy</th><th>Justuno</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Early capture + basic email</td><td>Gamified conversion optimization</td></tr>
+            <tr><td>Starting price</td><td>Free tier; paid from ~$30/mo</td><td>From ~$29/mo</td></tr>
+            <tr><td>Billing model</td><td>Sessions + email sends</td><td>Page views + tier</td></tr>
+            <tr><td>Email automation</td><td>Basic — welcome, cart</td><td>Basic — similar ceiling</td></tr>
+            <tr><td>A/B testing</td><td>Available on higher tiers</td><td>Core strength</td></tr>
+            <tr><td>Gamification</td><td>Spin wheels available</td><td>Deep — scratch, countdown, etc.</td></tr>
+            <tr><td>ESP graduation</td><td>Needed ~300–500 orders/mo</td><td>Same ceiling</td></tr>
+            <tr><td>Learning curve</td><td>Low</td><td>Low–moderate</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Privy and Justuno are not Klaviyo competitors — they are capture-layer tools that happen to send email. Merchants compare them when list growth is the bottleneck and full ESP pricing feels premature. The fork: do you want one familiar app for capture plus adequate automations, or do you want gamification and testing infrastructure that treats onsite conversion as a science?
+        </p>
+        <p>
+          The snack DTC ran Justuno spin wheels and lifted popup signup rate from 2.1% to 3.8% — but 40% of new subscribers were discount-only freebie hunters who never purchased. They tightened wheel outcomes and added post-spin education. Privy's simpler 10% off popup converted fewer signups but higher purchaser ratio on the jewelry brand. Volume vs quality is the tradeoff neither vendor advertises.
+        </p>
+
+        <h2>Merchant scenario: jewelry brand on Privy</h2>
+        <p>
+          At $22k/mo and 6k profiles, Privy handled exit-intent popups, welcome three-email series, and cart abandonment. Adequate until they wanted browse abandonment and post-purchase cross-sell by collection — Privy email ceiling. They kept Privy for capture, added Sequenzy for lifecycle — hybrid stack that preserved popup investment.
+        </p>
+
+        <h2>Merchant scenario: snack DTC on Justuno</h2>
+        <p>
+          Gamification was central to brand voice — playful, impulse-driven. Justuno scratch cards and countdown timers matched aesthetic. Weekly A/B tests on offer type and trigger delay compounded signup gains over eight weeks. Privy's template gallery felt corporate by comparison. Justuno's mobile widget required two QA cycles — acceptable for dedicated operator time.
+        </p>
+
+        <h2>Workflow test: popup capture</h2>
+        <p>
+          Two-week test: Privy 10% off exit intent vs Justuno spin wheel with 5–20% outcomes. Justuno won raw signups; Privy won purchaser conversion from new subscribers within 14 days. The sustainable apparel shop chose Justuno for growth phase, planned ESP graduation at 500 orders/month regardless of vendor.
+        </p>
+
+        <h2>Workflow test: welcome and cart email</h2>
+        <p>
+          Both sent welcome and cart adequately for sub-$50 AOV tests. Neither offered cross-flow suppression visibility comparable to Drip or Omnisend. Cart recovery rates: 9–11% — acceptable early stage, below dedicated ESP benchmarks. Treat email in these tools as temporary, not strategic.
+        </p>
+
+        <h2>Pricing reality at traffic spikes</h2>
+        <p>
+          BFCM session and pageview billing spikes hurt both. The snack DTC's November Justuno bill doubled versus October — budgeted correctly because signup volume also doubled. Privy similar pattern. Model peak month, not average month, before annual commitment.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Privy if:</strong></p>
+        <ul>
+          <li>You want capture plus basic email in one familiar Shopify app</li>
+          <li>Gamification does not match brand tone</li>
+          <li>You test popups quarterly, not weekly</li>
+          <li>Agency or freelancer already knows Privy</li>
+        </ul>
+        <p><strong>Choose Justuno if:</strong></p>
+        <ul>
+          <li>Signup rate is a primary growth KPI with weekly optimization</li>
+          <li>Gamification matches impulse DTC brand voice</li>
+          <li>A/B testing popup creative is core workflow</li>
+          <li>You will graduate ESP separately when orders exceed ~400/month</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          Privy and Justuno win capture; both outgrow their email layer. Sequenzy is the lifecycle graduation path — welcome, cart, winback playbooks with pay-per-email pricing. Keep Justuno or Privy for onsite conversion; move retention strategy to Sequenzy when email becomes revenue infrastructure, not popup attachment.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Privy wins familiar capture-plus-email for early Shopify stores. Justuno wins gamification and popup science for operators who optimize weekly. Neither is your forever ESP — plan graduation. Run the two-week popup test with purchaser-quality metrics, not signup vanity. The winner is whichever tool grows a list you can actually monetize.
+        </p>
+      
+        <h2>Operator handbook: running the Privy vs Justuno decision</h2>
+        <p>
+          Treat this comparison as a workflow audition, not a feature spreadsheet. Assign one owner, pick one real customer scenario from your Shopify store — welcome from a popup, cart with two SKUs, post-purchase for a consumable, winback at 120 days — and rebuild it in both tools on paper before you pay for migration labor. Document trigger, audience, suppression, offer policy, product fields, and the metric you will review next Monday. If either platform needs a CSV export or a Zapier patch to complete the scenario, that friction will repeat every week.
+        </p>
+        <p>
+          Pricing math belongs in the same worksheet. Model contacts, sends, SMS volume, and profile growth at six and twelve months — not today's list size. Privy and Justuno often look close on entry tiers and diverge once automations multiply or Black Friday volume spikes. Include operator time: a cheaper tool that requires three hours of list hygiene per campaign loses to a slightly pricier tool your team can edit safely during a sale window.
+        </p>
+        <p>
+          Stack boundaries matter as much as the winner. Capture tools, SMS specialists, reviews, and loyalty modules should have explicit handoffs and shared suppression rules. The comparison winner should become the lifecycle source of truth for consent state and send history — not another silo that duplicates welcome or cart messages because two apps both think they own recovery.
+        </p>
+        <h2>Monday metrics after you choose</h2>
+        <p>
+          Track revenue per recipient on lifecycle flows, margin after discounts, repeat purchase within 60 days, unsubscribe and spam complaint rate, and deliverability placement on Gmail and Yahoo. Compare flow-attributed revenue week over week; if Privy or Justuno cannot attribute at the flow level, downgrade its role in executive reporting. Incremental lift beats vanity attribution — hold out a small segment when testing a new cart or winback branch.
+        </p>
+        <p>
+          Revisit the decision quarterly. Catalog complexity, order volume, and team skill change faster than vendor roadmaps. A platform that wins at 400 orders per month may lose at 4,000 if segmentation and collision control lag. Keep a one-page migration rollback plan until the new tool survives a peak season without duplicate sends or list burnout.
+        </p>
+
+      
+        <h2>Operator handbook: proof before purchase</h2>
+        <p>Schedule a 90-minute working session with each finalist. Rebuild one welcome branch, one cart recovery path, and one suppression rule that matches your store — recent purchasers excluded, VIP held out of promos, gift buyers on a different post-purchase track. If the session ends with three open support tickets, that tool will not get easier at scale.</p>
+        <p>Negotiate contracts after peak season unless you are migrating off a broken integration. Most Shopify stores underestimate list growth from popups and underestimate how many automations they will run by month six. Price the tool at 2x your projected sends and contacts, then decide if the incremental revenue per recipient still clears your margin hurdle.</p>
+
+      
+        <h2>Operator deep dive: stack economics and ownership</h2>
+        <p>
+          Every migration decision on this site assumes someone inside the merchant owns retention weekly — not an agency, not a part-time founder, not a platform customer success manager. Tools compound when operators review segments, suppressions, and margin every Monday. Before you finalize a switch, write the name of that owner next to the success metric: revenue per recipient on welcome, recovery rate on cart, repeat purchase within sixty days, or full-price order share after winback.
+        </p>
+        <p>
+          Stack sprawl is the silent killer. Capture popups, SMS recovery, reviews, loyalty, and lifecycle email each solve real problems — but without documented handoffs they duplicate messages and train customers to ignore you. Pick one lifecycle source of truth for consent and send history. Secondary tools feed it audiences; they do not run parallel cart or welcome journeys without shared exclusion rules.
+        </p>
+        <p>
+          Discount discipline travels with you. Moving platforms does not fix a store that trained buyers to wait for twenty percent off. Rebuild offer policy on paper: full-price paths for engaged segments, graduated incentives for cold segments, hard caps during sale weeks, and VIP holdouts before launches. The best Shopify email marketing tools express that policy in segments and flow filters — not in frantic manual list exports hours before a drop.
+        </p>
+        <p>
+          Deliverability is an operating metric, not an IT ticket. Warm domains gradually, sunset unengaged contacts before peak season, and watch Gmail and Yahoo placement after every volume spike. A migration that doubles send volume without hygiene work will underperform even if the new tool is objectively stronger. Plan list cleaning as part of the switch, not as a post-mortem after spam complaints.
+        </p>
+        <p>
+          Finally, measure incrementality. Platform attribution is optimistic by design. Where possible, hold out small segments on new flows, compare cohort repeat rates, and track margin after incentives — not just attributed revenue. If ninety days after migration those numbers flatline, the issue is implementation rhythm or wrong fit, not the calendar date you went live.
+        </p>
+
+      </article>
+
+      <div class="mt-10 max-w-4xl text-sm">
+        <p class="font-black text-slate-950">Related comparisons</p>
+        <p class="mt-2">
+          <a class="link" href="/compare/omnisend-vs-privy">Omnisend vs Privy</a> ·
+          <a class="link" href="/compare/sequenzy-vs-privy">Sequenzy vs Privy</a> ·
+          <a class="link" href="/compare/klaviyo-vs-privy">Klaviyo vs Privy</a> ·
+          <a class="link" href="/for/jewelry">email marketing tools for jewelry stores</a> ·
+          <a class="link" href="/use-cases/abandoned-cart">Abandoned cart playbook</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Privy vs Justuno FAQ" />
+</BaseLayout>

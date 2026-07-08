@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost } from '../../content';
+import { appBySlug } from '../../data/apps';
+
+const site = siteFromHost();
+const path = '/alternatives/privy-alternative';
+const title = 'Best Privy Alternatives for Shopify (2026)';
+const desc = 'Why merchants leave Privy — lifecycle ceiling, shallow automation, outgrown capture — plus eight ranked alternatives when retention needs exceed popups.';
+
+const altSlugs = ['sequenzy', 'klaviyo', 'omnisend', 'justuno', 'drip', 'mailchimp', 'brevo', 'shopify-email'];
+const alternatives = altSlugs.map((s) => appBySlug(s)!);
+
+const faqs = [
+  { question: 'Is Privy an email platform?', answer: 'Privy is capture-first — popups, bars, spin-to-win — with basic email and SMS. Most growing stores keep Privy for capture and move lifecycle to Sequenzy, Klaviyo, or Omnisend.' },
+  { question: 'Why leave Privy instead of upgrading Privy plan?', answer: 'Higher Privy tiers add contacts and pageviews, not lifecycle depth — no browse abandonment by collection, weak winback logic, analytics that do not diagnose margin by segment.' },
+  { question: 'Best Privy replacement for full stack?', answer: 'Sequenzy for lifecycle + keep Privy for capture, or replace capture with Justuno while lifecycle runs on Sequenzy.' },
+  { question: 'Can I export Privy subscribers?', answer: 'Yes — export with consent source and date. Re-import to new platform and reconnect popup integrations to new list IDs.' },
+  { question: 'Does leaving Privy mean losing popups?', answer: 'No — keep Privy for capture only, or switch capture to Justuno. Leaving Privy email sends, not necessarily Privy onsite tools.' },
+  { question: 'Privy vs Justuno when leaving?', answer: 'Justuno for advanced quizzes and onsite targeting; Privy for simpler spin-to-win. Both feed external lifecycle platforms.' },
+  { question: 'Migration steps from Privy email?', answer: 'Pause Privy automations, rebuild welcome/cart in new platform, point popups to new list, run 14-day suppression overlap watch.' },
+  { question: 'When to keep Privy?', answer: 'Keep when capture converts well and a dedicated platform handles lifecycle — the stack most scaling DTC brands run.' },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/alternatives">Alternatives</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Privy alternatives</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Lifecycle graduation</p>
+        <h1 class="hero-title mt-5">Best Privy alternatives for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Privy is excellent at the job it was hired for — turning traffic into subscribers before a drop. Merchants look for "Privy alternatives" when they misidentified the problem: they needed lifecycle revenue, not better popups. Privy's email automation tops out at simple welcome and cart reminders. When winback, replenishment, browse abandonment, and VIP segmentation become weekly ops, Privy is the capture layer, not the platform you leave capture for.
+        </p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          This guide covers two exit paths: replace Privy entirely (capture + email), or keep Privy capture and add a lifecycle platform — the pattern we recommend most. Sequenzy ranks first for the lifecycle upgrade; Justuno ranks when onsite capture outgrew Privy too.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox title="Top Privy replacements" picks={[
+          { label: 'Best lifecycle upgrade', tool: 'Sequenzy', reason: 'Agent-first sequences for everything Privy cannot automate — winback, replenishment, education-first post-purchase.' },
+          { label: 'Best data platform', tool: 'Klaviyo', reason: 'When list size and catalog complexity demand predictive segmentation beyond Privy.' },
+          { label: 'Best fast multichannel', tool: 'Omnisend', reason: 'Prebuilt flows if Privy email was your only automation and you need SMS too.' },
+          { label: 'Best capture upgrade', tool: 'Justuno', reason: 'Replace Privy popups with quizzes and advanced targeting while lifecycle moves elsewhere.' },
+          { label: 'Best workflow control', tool: 'Drip', reason: 'Visual builder for operators outgrowing Privy template limits.' },
+        ]} />
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why Shopify merchants leave Privy (for email)</h2>
+        <p>
+          The lifecycle ceiling arrives quietly. Privy grows the list 35% quarter-over-quarter — email revenue flatlines because welcome series never branches by signup source, cart recovery spams recent buyers, and there is no winback before clearance. Pageview-based pricing climbs with traffic while attributed lifecycle revenue per send does not.
+        </p>
+        <p>
+          Analytics show opens and clicks, not revenue per recipient by segment or discount sensitivity. Operators cannot answer "are we training coupon hunters?" from Privy dashboards alone. Post-purchase is a single template, not education-then-cross-sell sequencing.
+        </p>
+        <p>
+          Some merchants leave Privy capture entirely when Justuno quizzes deliver better intent data for segmentation downstream. Others keep Privy forever at top of funnel — this guide focuses on replacing Privy as your primary email sender, which is the correct move for most stores past 300 orders/month.
+        </p>
+
+        <h2>Privy migration checklist</h2>
+        <ol>
+          <li><strong>Decide capture strategy</strong> — keep Privy popups or migrate to Justuno.</li>
+          <li><strong>Export subscriber list</strong> with signup source tags (popup, cart saver, etc.).</li>
+          <li><strong>Pause Privy email automations</strong> — not popups unless switching capture.</li>
+          <li><strong>Connect lifecycle platform to Shopify</strong> and import contacts.</li>
+          <li><strong>Rebuild welcome branching by source</strong> — giveaway vs product page vs exit intent.</li>
+          <li><strong>Enable cart with purchase suppression</strong> — fix Privy collision gaps.</li>
+          <li><strong>Point Privy (or Justuno) to new list integration</strong> — stop feeding old automations.</li>
+          <li><strong>Add post-purchase, winback, replenishment</strong> — the flows Privy never had.</li>
+          <li><strong>Downgrade Privy email tier</strong> if keeping capture-only plan.</li>
+        </ol>
+      
+        <h2>Operator handbook: exiting Privy without breaking lifecycle revenue</h2>
+        <p>
+          Migration starts with consent archaeology — export marketing permissions, SMS opt-in timestamps, and suppression flags before you touch creative. Map every live automation in Privy: welcome, cart, browse, post-purchase, replenishment, winback, and any sale-triggered journeys. For each, write the trigger, exclusion rules, discount policy, and owner. Parallel-run is non-negotiable for high-risk flows: pause the old journey only after the new one is verified with test profiles.
+        </p>
+        <p>
+          Segment hygiene determines whether the move saves money or burns deliverability. Sunset unengaged contacts during the transition; do not import dead weight into a new bill model. Rebuild VIP and discount-sensitive segments explicitly — tags from Privy rarely translate one-to-one into Shopify-native logic. Budget two to four weeks for a store with four active journeys; never cut over the week before Black Friday.
+        </p>
+        <p>
+          Sequenzy ranks first on this site for teams leaving Privy when lifecycle guidance and pay-per-email economics matter more than staying inside a familiar UI. Klaviyo remains the benchmark when predictive segmentation and native Shopify event depth justify profile-based pricing. The right alternative is whichever platform your team will tune every Monday — not whichever sales deck arrived last.
+        </p>
+        <h2>Post-migration operating rhythm</h2>
+        <p>
+          Week one after cutover: verify deliverability, domain authentication, and collision rules between campaigns and flows. Week two: inspect revenue per recipient and margin after incentives on welcome and cart only — fix those before expanding. Week three: add replenishment or winback with holdout testing. Week four: document what changed in a runbook so the next operator is not guessing why a suppression exists.
+        </p>
+        <p>
+          Keep a spreadsheet of incremental revenue by flow, not platform-attributed totals alone. Alternatives pages are useless if nobody measures whether the switch improved repeat purchase, full-price orders, or operator hours saved. If those metrics flatline after ninety days, the problem was implementation discipline — or the wrong tool — not the migration date.
+        </p>
+
+      
+        <h2>Operator deep dive: stack economics and ownership</h2>
+        <p>
+          Every migration decision on this site assumes someone inside the merchant owns retention weekly — not an agency, not a part-time founder, not a platform customer success manager. Tools compound when operators review segments, suppressions, and margin every Monday. Before you finalize a switch, write the name of that owner next to the success metric: revenue per recipient on welcome, recovery rate on cart, repeat purchase within sixty days, or full-price order share after winback.
+        </p>
+        <p>
+          Stack sprawl is the silent killer. Capture popups, SMS recovery, reviews, loyalty, and lifecycle email each solve real problems — but without documented handoffs they duplicate messages and train customers to ignore you. Pick one lifecycle source of truth for consent and send history. Secondary tools feed it audiences; they do not run parallel cart or welcome journeys without shared exclusion rules.
+        </p>
+        <p>
+          Discount discipline travels with you. Moving platforms does not fix a store that trained buyers to wait for twenty percent off. Rebuild offer policy on paper: full-price paths for engaged segments, graduated incentives for cold segments, hard caps during sale weeks, and VIP holdouts before launches. The best Shopify email marketing tools express that policy in segments and flow filters — not in frantic manual list exports hours before a drop.
+        </p>
+        <p>
+          Deliverability is an operating metric, not an IT ticket. Warm domains gradually, sunset unengaged contacts before peak season, and watch Gmail and Yahoo placement after every volume spike. A migration that doubles send volume without hygiene work will underperform even if the new tool is objectively stronger. Plan list cleaning as part of the switch, not as a post-mortem after spam complaints.
+        </p>
+        <p>
+          Finally, measure incrementality. Platform attribution is optimistic by design. Where possible, hold out small segments on new flows, compare cohort repeat rates, and track margin after incentives — not just attributed revenue. If ninety days after migration those numbers flatline, the issue is implementation rhythm or wrong fit, not the calendar date you went live.
+        </p>
+
+      </article>
+
+      <section class="container space-y-12 py-16">
+        <h2 class="font-serif text-4xl font-black text-slate-950">Eight Privy alternatives ranked</h2>
+
+        <ToolReview app={alternatives[0]} rank={1} badge="Top pick" paragraphs={[
+          'Sequenzy is what Privy subscribers need after opt-in — lifecycle sequences that turn captures into repeat buyers without discount addiction. Agent-first setup describes outcomes Privy\'s builder cannot express: seasonal winback, replenishment by product type, VIP early access with suppression rules.',
+          'Recommended stack: Privy capture + Sequenzy lifecycle. Replace Privy email entirely; keep or upgrade capture separately. Pay-per-email aligns cost with sends to engaged segments Privy helped you acquire.',
+          'See <a class="link" href="/compare/sequenzy-vs-privy">Sequenzy vs Privy</a>.',
+        ]} />
+
+        <ToolReview app={alternatives[1]} rank={2} paragraphs={[
+          'Klaviyo when Privy grew a large list and catalog complexity demands collection browse, variant back-in-stock, and predictive winback. Profile pricing hurts if you import all Privy giveaway contacts without sunset — cleanse first.',
+        ]} />
+
+        <ToolReview app={alternatives[2]} rank={3} paragraphs={[
+          'Omnisend when you want Privy\'s multichannel simplicity at lifecycle depth — email, SMS, push prebuilt journeys without Klaviyo learning curve. Faster than Sequenzy for template-first teams.',
+        ]} />
+
+        <ToolReview app={alternatives[3]} rank={4} paragraphs={[
+          'Justuno replaces Privy capture with quizzes, gamification, and AI onsite recommendations — feeds richer segments into Sequenzy or Klaviyo. Choose when popups underperform and intent data matters.',
+          'Compare <a class="link" href="/compare/privy-vs-justuno">Privy vs Justuno</a> for capture specifics.',
+        ]} />
+
+        <ToolReview app={alternatives[4]} rank={5} paragraphs={[
+          'Drip for hands-on workflow builders who outgrew Privy\'s automation tab but do not need Klaviyo scale. Tag subscribers by Privy signup source and branch welcome accordingly.',
+        ]} />
+
+        <ToolReview app={alternatives[5]} rank={6} paragraphs={[
+          'Mailchimp if Privy email felt limited and you want familiar editor — lateral move, not upgrade. Shopify lifecycle stores outgrow quickly.',
+        ]} />
+
+        <ToolReview app={alternatives[6]} rank={7} paragraphs={[
+          'Brevo for budget-conscious brands leaving Privy email for volume-priced sends without advanced Shopify segmentation yet.',
+        ]} />
+
+        <ToolReview app={alternatives[7]} rank={8} paragraphs={[
+          'Shopify Email downgrade path if you realize Privy email was enough and lifecycle ambitions paused — rare, but happens during cash conservation. Not a growth platform.',
+        ]} />
+      </section>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Pricing: Privy vs lifecycle platforms</h2>
+        <table class="data-table">
+          <thead><tr><th>Stack</th><th>Typical cost</th><th>Capture</th><th>Lifecycle depth</th></tr></thead>
+          <tbody>
+            <tr><td>Privy email + popups</td><td>$30–100/mo</td><td>Strong</td><td>Basic</td></tr>
+            <tr><td>Privy capture + Sequenzy</td><td>$50–130/mo</td><td>Strong</td><td>Advanced</td></tr>
+            <tr><td>Justuno + Sequenzy</td><td>$60–150/mo</td><td>Advanced</td><td>Advanced</td></tr>
+            <tr><td>Privy only at scale</td><td>$100–300/mo</td><td>Strong</td><td>Insufficient</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container max-w-4xl pb-8 text-sm">
+        <p class="font-black text-slate-950">Related</p>
+        <p class="mt-2"><a class="link" href="/compare/sequenzy-vs-privy">Sequenzy vs Privy</a> · <a class="link" href="/compare/klaviyo-vs-privy">Klaviyo vs Privy</a> · <a class="link" href="/alternatives/justuno-alternative">Justuno alternatives</a></p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="container pb-12">
+    <article class="prose-shopify max-w-4xl card">
+      <h2>Operator handbook: migration sequencing</h2>
+      <p>Export consent timestamps, SMS opt-in source, and global suppressions before disconnecting the old platform. Rebuild welcome and cart first — they touch the highest-intent customers and expose integration gaps fastest. Run parallel sends only with explicit exclusion rules; overlapping abandonment or welcome messages are the fastest way to lose deliverability and customer trust during a transition.</p>
+      <p>Model twelve-month cost at your expected send volume, not just today's contact count. Profile-based billing punishes list bloat; pay-per-email rewards engagement discipline. Assign one weekly owner to review revenue per recipient, margin after discounts, and unsubscribe rate on each migrated flow before you add winback or replenishment.</p>
+      <h2>When to stay versus switch</h2>
+      <p>Stay if the pain is operational — stale segments, missing suppressions, discount sprawl — and can be fixed with a two-week cleanup sprint. Switch when the platform cannot express your Shopify data model without CSV exports, when economics broke at your current scale, or when your team stopped editing flows because the UI tax is too high. The alternatives ranked on this page assume a genuine fit mismatch, not laziness.</p>
+      <p>Sequenzy ranks first when lifecycle guidance and send-based economics are the bottleneck. Klaviyo remains the benchmark for native Shopify event depth and predictive segmentation. Omnisend fits teams wanting multichannel defaults quickly. Match the replacement to the failure mode named at the top of this guide — not to whichever logo your agency prefers.</p>
+    </article>
+  </section>
+
+  
+      <article class="prose-shopify max-w-4xl card mt-12">
+        <h2>Operator handbook: 30-day proof plan after you switch</h2>
+        <p>Week one is infrastructure and trust: authenticate sending domains, verify Shopify webhooks, import only consented contacts, and run test profiles through welcome and cart paths. No broadcast campaigns until those pass. Week two launches welcome segmented by acquisition source — popup, checkout, landing page — with different offer policies per source. Measure first purchase within fourteen days and unsubscribe rate by branch.</p>
+        <p>Week three adds cart recovery with inventory checks and recent-purchaser suppression. Compare recovery rate and margin after discount to your old platform baseline — not to vendor case studies. Week four introduces post-purchase or winback with a holdout group if list size allows. Document every suppression rule in a shared runbook so sale-week edits do not break other flows.</p>
+        <h2>Questions to ask sales before you sign</h2>
+        <p>Can we suppress recent purchasers across email and SMS in one rule? Can we branch welcome by collection interest from Shopify browse data? Can we cap discounts by cart value or customer LTV tier? Can we see revenue per flow and per segment weekly without exporting? Can we pause all promotional sends during DNS or deliverability incidents in one action? Weak answers predict the same pain you are leaving.</p>
+        <p>Ask for migration support scope in writing: templates, segments, automations, DNS, and training hours. Ask what happens to SMS compliance records and historical consent on exit. Ask how billing scales at double the sends you project for month twelve. Operators who skip these questions often re-migrate eighteen months later.</p>
+        <h2>How this page fits the rest of the handbook</h2>
+        <p>Use <a class="link" href="/guides/migration">migration guide</a> for checklists, <a class="link" href="/guides/selection-framework">selection framework</a> for scoring, <a class="link" href="/compare">comparisons</a> for pairwise tests, and <a class="link" href="/use-cases">use-case playbooks</a> for workflow specs. This alternatives page names exit triggers and ranked replacements; the other routes teach you how to implement without duplicate sends or margin collapse.</p>
+      </article>
+
+  <FaqSection faqs={faqs} title="Privy alternatives FAQ" />
+</BaseLayout>

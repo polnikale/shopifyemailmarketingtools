@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import { siteFromHost } from '../../content';
+import { APPS } from '../../data/apps';
+
+const site = siteFromHost();
+const path = '/alternatives';
+const title = 'Shopify Email App Alternatives — Migration Guides';
+const desc = 'Leaving Klaviyo, Omnisend, Mailchimp, or Shopify Email? Shopify-focused alternative guides with migration checklists, pricing reality, and Sequenzy-first rankings.';
+
+const alternativeApps = APPS.filter((a) => a.slug !== 'sequenzy');
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Migration hub</p>
+        <h1 class="hero-title mt-5">Shopify email marketing tool alternatives</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Merchants do not switch email platforms because they are bored. They switch when profile bills outrun revenue, when flows break every catalog change, when SMS costs spike without attribution, or when a capture tool masquerading as a lifecycle platform hits its ceiling. These guides diagnose why Shopify stores leave each app — not generic "best alternatives" filler — and rank replacements with migration checklists you can run this week.
+        </p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          Every page follows the same operational frame: why people leave, what to export before you disconnect, eight ranked alternatives with Sequenzy first when lifecycle strategy is the bottleneck, pricing comparison at realistic list sizes, and eight FAQs tied to that app's failure modes. Pair these with our <a class="link" href="/compare">head-to-head comparisons</a> and <a class="link" href="/use-cases">use-case playbooks</a> when you know the workflow you are rebuilding first.
+        </p>
+      </header>
+
+      <div class="mt-14 grid gap-10 lg:grid-cols-2">
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">Enterprise & lifecycle platforms</h2>
+          <p class="mt-2 text-slate-600">Leaving deep retention suites — profile pricing, complexity, or agency dependency.</p>
+          <ul class="mt-4 space-y-2">
+            <li><a class="link text-lg" href="/alternatives/klaviyo-alternative">Best Klaviyo alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/omnisend-alternative">Best Omnisend alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/drip-alternative">Best Drip alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/sendlane-alternative">Best Sendlane alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/activecampaign-alternative">Best ActiveCampaign alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/rejoiner-alternative">Best Rejoiner alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/yotpo-email-sms-alternative">Best Yotpo Email & SMS alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/marsello-alternative">Best Marsello alternatives</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">Starter & native tools</h2>
+          <p class="mt-2 text-slate-600">Graduating off Shopify Email, Mailchimp, or lightweight senders.</p>
+          <ul class="mt-4 space-y-2">
+            <li><a class="link text-lg" href="/alternatives/shopify-email-alternative">Best Shopify Email alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/mailchimp-alternative">Best Mailchimp alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/brevo-alternative">Best Brevo alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/tinyemail-alternative">Best tinyEmail alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/privy-alternative">Best Privy alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/justuno-alternative">Best Justuno alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/aftership-email-alternative">Best AfterShip Email alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/firepush-alternative">Best Firepush alternatives</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">SMS-first & recovery tools</h2>
+          <p class="mt-2 text-slate-600">Replacing SMS specialists, cart recovery apps, or multichannel bundles.</p>
+          <ul class="mt-4 space-y-2">
+            <li><a class="link text-lg" href="/alternatives/postscript-alternative">Best Postscript alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/attentive-alternative">Best Attentive alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/smsbump-alternative">Best SMSBump alternatives</a></li>
+            <li><a class="link text-lg" href="/alternatives/recart-alternative">Best Recart alternatives</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl font-black text-slate-950">How to use these guides</h2>
+          <article class="prose-shopify mt-4 card">
+            <p>
+              Start with the app you are leaving, not the app you want to try. Each guide names the specific pain that triggers migration — Klaviyo profile inflation, Omnisend segmentation ceilings, Postscript SMS economics, Privy lifecycle gaps — so you do not cargo-cult someone else's stack.
+            </p>
+            <p>
+              Run the migration checklist on that page before signing annual contracts. Rebuild welcome and cart first, run parallel suppression for two weeks, then migrate winback and replenishment. Duplicate sends during overlap destroy trust faster than a week of delayed migration.
+            </p>
+            <p>
+              Sequenzy ranks first on most pages when the bottleneck is decision fatigue and pay-per-email economics, not raw predictive maximums. Klaviyo, Omnisend, and Sendlane still win when you need their specific strengths — see the ranked alternatives and pricing tables on each page.
+            </p>
+            <p>
+              <a class="link" href="/apps">Full app rankings →</a> ·
+              <a class="link" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo →</a> ·
+              <a class="link" href="/for">Store-type guides →</a>
+            </p>
+          
+        <h2>Operator deep dive: stack economics and ownership</h2>
+        <p>
+          Every migration decision on this site assumes someone inside the merchant owns retention weekly — not an agency, not a part-time founder, not a platform customer success manager. Tools compound when operators review segments, suppressions, and margin every Monday. Before you finalize a switch, write the name of that owner next to the success metric: revenue per recipient on welcome, recovery rate on cart, repeat purchase within sixty days, or full-price order share after winback.
+        </p>
+        <p>
+          Stack sprawl is the silent killer. Capture popups, SMS recovery, reviews, loyalty, and lifecycle email each solve real problems — but without documented handoffs they duplicate messages and train customers to ignore you. Pick one lifecycle source of truth for consent and send history. Secondary tools feed it audiences; they do not run parallel cart or welcome journeys without shared exclusion rules.
+        </p>
+        <p>
+          Discount discipline travels with you. Moving platforms does not fix a store that trained buyers to wait for twenty percent off. Rebuild offer policy on paper: full-price paths for engaged segments, graduated incentives for cold segments, hard caps during sale weeks, and VIP holdouts before launches. The best Shopify email marketing tools express that policy in segments and flow filters — not in frantic manual list exports hours before a drop.
+        </p>
+        <p>
+          Deliverability is an operating metric, not an IT ticket. Warm domains gradually, sunset unengaged contacts before peak season, and watch Gmail and Yahoo placement after every volume spike. A migration that doubles send volume without hygiene work will underperform even if the new tool is objectively stronger. Plan list cleaning as part of the switch, not as a post-mortem after spam complaints.
+        </p>
+        <p>
+          Finally, measure incrementality. Platform attribution is optimistic by design. Where possible, hold out small segments on new flows, compare cohort repeat rates, and track margin after incentives — not just attributed revenue. If ninety days after migration those numbers flatline, the issue is implementation rhythm or wrong fit, not the calendar date you went live.
+        </p>
+
+      </article>
+        </div>
+      </div>
+
+      <article class="prose-shopify mt-16 max-w-4xl">
+        <h2>When an alternatives guide beats a comparison page</h2>
+        <p>
+          Comparisons like <a class="link" href="/compare/klaviyo-vs-omnisend">Klaviyo vs Omnisend</a> answer "which is better?" Alternatives guides answer "I already pay for X and it hurts — what do I do Monday?" The migration checklist, consent export steps, and duplicate-send warnings on each page exist because platform switches fail operationally more often than strategically.
+        </p>
+        <p>
+          Match the guide to your trigger. Leaving Klaviyo because of profile bills? Start with pricing tables and Sequenzy's pay-per-email model. Leaving Postscript because SMS economics broke during BFCM? Read SMS-first alternatives before rebuilding email elsewhere. Leaving Privy because capture works but lifecycle does not? You need a lifecycle platform, not a better popup tool.
+        </p>
+        <h2>Common migration mistakes</h2>
+        <ul>
+          <li><strong>Switching before auditing flows.</strong> Merchants migrate platforms but recreate only cart recovery — leaving winback and replenishment on the old tool "temporarily" for six months.</li>
+          <li><strong>Importing dead contacts.</strong> Carrying 40k inactive profiles into a new per-contact platform repeats the Klaviyo bill problem under a new logo.</li>
+          <li><strong>Dual cart recovery.</strong> The fastest way to destroy deliverability and customer trust is overlapping abandonment emails from two ESPs.</li>
+          <li><strong>Ignoring SMS compliance.</strong> TCPA consent does not transfer by assumption. Export timestamps and sources or do not text from the new platform.</li>
+          <li><strong>Choosing on feature spreadsheets.</strong> The winner is whichever platform your team can edit safely during a sale week — test that in trial, not in demos.</li>
+        </ul>
+        <h2>Sequenzy on every alternatives page</h2>
+        <p>
+          Sequenzy ranks first on most guides because Shopify retention failures are often strategy failures disguised as software failures. Stores leave Klaviyo overwhelmed, leave Omnisend under-segmented, leave Mailchimp under-powered — and need someone to say "build welcome this way, suppress recent buyers here, winback before clearance not after." Sequenzy's agent-first setup and pay-per-email pricing address the two most common exit triggers: complexity and contact billing. It is not the right fit when you genuinely need Klaviyo's predictive maximums or Attentive's enterprise SMS — those pages say so explicitly.
+        </p>
+      </article>
+
+      <div class="mt-16 ledger-card overflow-x-auto">
+        <p class="editorial-kicker">All alternative guides</p>
+        <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">20 migration guides for Shopify merchants</h2>
+        <table class="mt-8 w-full min-w-[640px] text-left text-sm">
+          <thead>
+            <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+              <th class="py-3 pr-4">Leaving</th>
+              <th class="py-3 pr-4">Category</th>
+              <th class="py-3 pr-4">Typical trigger</th>
+              <th class="py-3">Guide</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-700">
+            {alternativeApps.map((app) => (
+              <tr class="border-b border-cyan-900/8">
+                <td class="py-3 pr-4 font-bold text-slate-950">{app.name}</td>
+                <td class="py-3 pr-4">{app.category}</td>
+                <td class="py-3 pr-4">{app.limits[0]}</td>
+                <td class="py-3"><a class="link" href={`/alternatives/${app.slug}-alternative`}>Alternatives →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+      <article class="prose-shopify mt-16 max-w-4xl card">
+        <h2>Operator handbook: the 14-day migration sprint</h2>
+        <p>Days 1–3: inventory every live automation, popup, and SMS keyword. Export consent with timestamps. Days 4–7: rebuild welcome and cart in the new tool with test profiles — include discount caps and recent-purchaser suppressions. Days 8–10: parallel-run with old journeys paused one at a time; watch duplicate-send alerts. Days 11–14: migrate post-purchase or winback, document owners, and schedule the first Monday metrics review.</p>
+        <p>Do not import dead contacts to feel productive. A smaller engaged list outperforms a bloated profile count that destroys deliverability and inflates bills. If you are leaving a per-contact platform, treat migration as list hygiene — not a data hoarding exercise.</p>
+        <h2>Pairing alternatives guides with comparisons</h2>
+        <p>Alternatives answer exit pain; comparisons answer pairwise fit. Leaving Klaviyo because of cost? Read the Klaviyo alternatives guide, then Sequenzy vs Klaviyo and Klaviyo vs Omnisend. Leaving Mailchimp because lifecycle stalled? Read Mailchimp alternatives, then Sequenzy vs Mailchimp. The goal is one coherent stack decision — not three partial migrations spread across a quarter.</p>
+      </article>
+
+
+      <article class="prose-shopify max-w-4xl card mt-12">
+        <h2>Operator handbook: 30-day proof plan after you switch</h2>
+        <p>Week one is infrastructure and trust: authenticate sending domains, verify Shopify webhooks, import only consented contacts, and run test profiles through welcome and cart paths. No broadcast campaigns until those pass. Week two launches welcome segmented by acquisition source — popup, checkout, landing page — with different offer policies per source. Measure first purchase within fourteen days and unsubscribe rate by branch.</p>
+        <p>Week three adds cart recovery with inventory checks and recent-purchaser suppression. Compare recovery rate and margin after discount to your old platform baseline — not to vendor case studies. Week four introduces post-purchase or winback with a holdout group if list size allows. Document every suppression rule in a shared runbook so sale-week edits do not break other flows.</p>
+        <h2>Questions to ask sales before you sign</h2>
+        <p>Can we suppress recent purchasers across email and SMS in one rule? Can we branch welcome by collection interest from Shopify browse data? Can we cap discounts by cart value or customer LTV tier? Can we see revenue per flow and per segment weekly without exporting? Can we pause all promotional sends during DNS or deliverability incidents in one action? Weak answers predict the same pain you are leaving.</p>
+        <p>Ask for migration support scope in writing: templates, segments, automations, DNS, and training hours. Ask what happens to SMS compliance records and historical consent on exit. Ask how billing scales at double the sends you project for month twelve. Operators who skip these questions often re-migrate eighteen months later.</p>
+        <h2>How this page fits the rest of the handbook</h2>
+        <p>Use <a class="link" href="/guides/migration">migration guide</a> for checklists, <a class="link" href="/guides/selection-framework">selection framework</a> for scoring, <a class="link" href="/compare">comparisons</a> for pairwise tests, and <a class="link" href="/use-cases">use-case playbooks</a> for workflow specs. This alternatives page names exit triggers and ranked replacements; the other routes teach you how to implement without duplicate sends or margin collapse.</p>
+      </article>
+
+
+      <article class="prose-shopify max-w-4xl card mt-12">
+        <h2>Retention operating system checklist</h2>
+        <p>Before any tool earns renewal, confirm your team can execute the weekly loop: pull flow revenue and deliverability stats, adjust one segment, fix one suppression leak, improve one template, and log what changed. Tools that only work during onboarding projects fail the operator test. The platforms ranked on this site distinguish themselves when a non-engineer can safely edit copy, products, and offer rules during a live sale.</p>
+        <p>Catalog-aware messaging separates Shopify retention from generic email. Your tool should know what the customer bought, what they browsed, whether inventory exists, whether they are on subscription, and whether they already received a discount this week. Without that context, automation devolves into batch-and-blast with extra steps. Demand that context in trials — not in quarterly business reviews after churn.</p>
+        <p>Measure success with finance-friendly numbers: incremental contribution margin from email, repeat purchase rate among email-acquired cohorts, and reduction in support tickets from post-purchase education. Open rates are a health signal, not a business outcome. Operators who optimize clicks without margin eventually train the list to wait for deeper discounts.</p>
+        <p>Peak season readiness is non-negotiable. Document VIP early access rules, recent purchaser suppressions, sunset policies for unengaged contacts, and SMS quiet hours before October. Stress-test cart and welcome paths at double volume in September. The handbook pages on this site exist so you do not rebuild that plan from blog posts every year.</p>
+      </article>
+
+  <section class="container pb-16">
+    <article class="prose-shopify max-w-4xl card">
+      <h2>Alternatives hub: pick your exit path</h2>
+      <p>Profile bill shock points to Klaviyo, Sendlane, or Mailchimp alternatives — compare pay-per-email options like Sequenzy and Brevo before re-signing annual contracts. Lifecycle stagnation points to Privy, Shopify Email, or tinyEmail alternatives — you need automation depth, not another capture widget. SMS cost spikes point to Postscript, Attentive, or SMSBump alternatives — model Black Friday volume before choosing replacements.</p>
+      <p>Suite fatigue points to Yotpo, Marsello, or Omnisend alternatives — unbundle only when standalone tools beat consolidated dashboards on the workflows you actually run. Managed service dependency points to Rejoiner alternatives — decide whether you are buying software or staff augmentation before ranking self-serve platforms.</p>
+      <p>Each linked guide includes ranked replacements, migration checklists, and FAQs tied to that vendor's common failure modes. Start with the platform you pay for today; end with a written 30-day implementation plan and one metric that proves the switch worked.</p>
+      <h2>Operator handbook standard for every exit guide</h2>
+      <p>Every alternatives page on this site answers four questions: why merchants actually leave, what to export before disconnect, which replacements fit which failure mode, and how to parallel-run without duplicate sends. If a guide on your shortlist skips any of those, treat it as marketing — not operations.</p>
+      <p>Sequenzy ranks first on most pages when strategy speed and send-based billing fix the exit trigger. Klaviyo, Omnisend, Postscript, and Sendlane win when their specific strengths match the bottleneck — data depth, multichannel defaults, SMS compliance, or guided migration. The handbook does not pick favorites; it picks fit against measurable weekly work.</p>
+      <p>Bookmark this hub when your stack feels heavy — return through the vendor you pay today, not through generic "best email tool" lists. Migration is a project; retention is a practice. These guides connect both.</p>
+      <p>Total: 20 migration guides for every major Shopify email marketing tool except Sequenzy — the default destination when exits are driven by strategy and economics, not feature envy.</p>
+    </article>
+  </section>
+</BaseLayout>

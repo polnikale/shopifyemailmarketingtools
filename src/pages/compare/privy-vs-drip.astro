@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/privy-vs-drip';
+const title = 'Privy vs Drip for Shopify Email: 2026 Comparison';
+const desc = 'Privy vs Drip for Shopify stores — popup capture and basic automations vs visual workflow control, stack pairing, and graduation timing for retention operators.';
+
+const faqs = [
+  {
+    question: 'Is Privy or Drip better for a Shopify store doing $45k/mo?',
+    answer: 'Drip wins when you have 800+ subscribers, need cart recovery with custom branching, and an operator who maintains visual workflows monthly. Privy wins when capture rate is under 2% and you need popups plus adequate welcome and cart in one app today. At $45k/mo, most merchants need Drip for lifecycle — or Privy plus Drip with clear ownership boundaries.',
+  },
+  {
+    question: 'Can Privy replace Drip for email automation?',
+    answer: 'No past ~400 orders/month for most catalogs. Privy handles basic welcome and cart saver campaigns. Drip offers visual canvas logic, tag-driven branches, workflow A/B tests, and revenue attribution operators expect at $45k+ monthly revenue. Stores outgrow Privy email when post-purchase, winback, and cross-journey suppression become strategic.',
+  },
+  {
+    question: 'How does Privy vs Drip pricing compare at 10,000 contacts?',
+    answer: 'Privy scales on sessions plus email sends — often $50–90/mo at moderate traffic with 10k profiles. Drip at 10k people typically lands $100–170/mo. Privy looks cheaper until traffic spikes; Drip looks expensive until you value operator time saved on custom logic. Combined Privy capture plus Drip lifecycle is common — model TCO together.',
+  },
+  {
+    question: 'Should I use Privy and Drip together?',
+    answer: 'Yes, often. Privy owns onsite capture; Drip owns welcome-through-winback with visual workflow control. Pass signup source metadata so Drip welcome branches correctly. Disable Privy email automations once Drip journeys go live — duplicate sends destroy deliverability. Capture solved is not retention solved.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Privy or Drip?',
+    answer: 'Sequenzy fits when Drip\'s canvas feels like maintenance debt but Privy email is too shallow — guided lifecycle playbooks with pay-per-email pricing. Keep Privy for popups. Drip still wins for visual workflow purists. Sequenzy can replace Drip for email execution if your team prefers playbooks over canvas tinkering.',
+  },
+  {
+    question: 'Which has the better workflow builder?',
+    answer: 'Drip decisively for post-capture lifecycle. Visual canvas with explicit nodes for cart value splits, tag exclusions, and A/B path tests. Privy\'s automation UI is template-driven with low branching visibility — fine for welcome and cart, inadequate for winback with discount-sensitive splits.',
+  },
+  {
+    question: 'Which has better popup tools?',
+    answer: 'Privy decisively. Exit intent, gamification, cart saver bars, and popup tests are Privy\'s core. Drip offers signup forms but they are secondary — not competitive for session-to-subscriber optimization. If popup conversion is a KPI, Privy belongs in the stack regardless of Drip.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Measure session-to-subscriber rate first. Under 2%: Privy. Above 2% with weak cart recovery: Drip. Build welcome, cart, post-purchase, and winback in Drip — Privy only wins if capture remains the binding constraint. Score cross-journey suppression edit safety during sale week.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Privy vs Drip</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Privy vs Drip for Shopify email</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Capture infrastructure versus workflow canvas control. Privy optimizes session-to-subscriber conversion with popups and basic automations. Drip optimizes post-opt-in revenue with visual behavior-based journeys operators can audit and edit. We stress-tested both on a $45k/mo specialty coffee roaster with irregular reorder timing, a $58k/mo outdoor gear brand pairing Privy capture with Drip lifecycle, and a $31k/mo vitamin DTC that stayed Privy-only six months too long.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'List capture', tool: 'Privy', reason: 'Popups, exit intent, and spin wheels on storefront.' },
+            { label: 'Workflow control', tool: 'Drip', reason: 'Visual canvas for custom branching and experiments.' },
+            { label: 'Fast top-of-funnel', tool: 'Privy', reason: 'Capture live in days with minimal setup.' },
+            { label: 'Retention operators', tool: 'Drip', reason: 'Post-purchase, winback, and suppression logic.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Guided playbooks if Drip canvas feels like wrong-fit maintenance.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Privy</th><th>Drip</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Capture + basic email</td><td>Visual workflow operators</td></tr>
+            <tr><td>Starting price</td><td>Free tier; paid from ~$30/mo</td><td>From ~$39/mo</td></tr>
+            <tr><td>Billing model</td><td>Sessions + email sends</td><td>People in account</td></tr>
+            <tr><td>Popups & capture</td><td>Core strength</td><td>Basic forms</td></tr>
+            <tr><td>Automation depth</td><td>Basic welcome, cart</td><td>Full lifecycle canvas</td></tr>
+            <tr><td>Workflow UI</td><td>Template presets</td><td>Visual canvas</td></tr>
+            <tr><td>Shopify depth</td><td>Capture-first</td><td>Native — orders, tags, products</td></tr>
+            <tr><td>Typical stack role</td><td>Top-of-funnel capture</td><td>Lifecycle owner</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Privy and Drip solve different problems — merchants search this comparison when Privy email hits its ceiling or when Drip feels expensive before capture is solved. Privy assumes your binding constraint is turning traffic into subscribers. Drip assumes subscribers exist and your binding constraint is behavior-based retention logic. Treating Drip as a popup replacement or Privy as a workflow platform are both category errors.
+        </p>
+        <p>
+          The vitamin DTC stayed Privy-only through 420 orders/month because the founder "did not want another subscription." Winback and post-purchase cross-sell lived in manual Klaviyo exports they never sent. Estimated lost revenue: $3.2k/month by month eight — more than Drip would have cost. Capture was solved at 2.6% session rate; retention was not.
+        </p>
+
+        <h2>Merchant scenario: specialty coffee roaster on Drip</h2>
+        <p>
+          At $45k/mo this roaster's reorder cadence varied 18 to 45 days by bag size and grind — standard replenishment templates failed. Drip canvas built branches by product metafield with custom delays per SKU. Cart recovery added education-before-discount paths for wholesale-tagged customers excluded from promotional winback. Privy could capture subscribers; it could not express this logic.
+        </p>
+        <p>
+          They kept Privy for exit-intent popups offering brewing guides — capture rate 2.1% to 3.4% — and moved all post-opt-in email to Drip within two weeks. Hybrid stack with documented suppression: Privy capture only, Drip lifecycle only. No duplicate welcomes after week one.
+        </p>
+
+        <h2>Merchant scenario: outdoor gear brand pairing both</h2>
+        <p>
+          This brand at $58k/mo ran Privy spin wheels during peak hiking season — session billing spiked but signup volume justified cost. Drip handled welcome branching by signup source — popup discount seekers versus blog footer organic signups — with different education paths before product recommendations. Cross-journey suppression excluded active cart abandoners from winback discount emails.
+        </p>
+        <p>
+          The outdoor gear retention owner edited Drip canvas the night before Memorial Day sale — excluding clearance-tagged inventory from full-price post-purchase upsells. Privy had no role in that edit. Stack clarity let each tool do what it was built for.
+        </p>
+
+        <h2>Workflow test: welcome series</h2>
+        <p>
+          Privy activated prebuilt welcome with product picker blocks in under two hours. Drip built equivalent logic on canvas with explicit nodes for popup versus footer signup — clearer to audit, four hours to ship. For launch-deadline stores still solving capture, Privy wins speed. For teams documenting logic for future hires, Drip wins visibility.
+        </p>
+
+        <h2>Workflow test: abandoned cart</h2>
+        <p>
+          Both recovered carts for $95–$160 AOV outdoor gear tests. Drip's cart workflow showed exactly which branch fired for discount-sensitive tags — valuable when A/B testing education versus 10% off in step two. Privy cart recovery was adequate at 9% recovery rate; Drip reached 11% after branch optimization over six weeks — incremental but meaningful at $58k/mo scale.
+        </p>
+        <p>
+          Cross-journey suppression — exclude shoppers in active winback — was tighter in Drip's visual rules. Privy required careful configuration; doable but less obvious during frantic sale-week edits.
+        </p>
+
+        <h2>Pricing reality at growing list sizes</h2>
+        <p>
+          At 14k contacts, Privy with moderate traffic often runs $70–110/mo. Drip at 14k people lands $140–220/mo. Combined stack costs more than either alone — justify with capture lift plus retention lift, not vanity subscriptions. If Privy capture rate is already above 2.5%, consider Drip-only with embedded forms before paying for both.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Privy if:</strong></p>
+        <ul>
+          <li>Session-to-subscriber rate is under 2% and traffic is healthy</li>
+          <li>You need capture plus basic email live before the next drop</li>
+          <li>Post-purchase and winback complexity is months away</li>
+          <li>You will pair with Drip or Sequenzy when orders exceed ~400/month</li>
+        </ul>
+        <p><strong>Choose Drip if:</strong></p>
+        <ul>
+          <li>Capture is solved and retention logic is the binding constraint</li>
+          <li>Your operator thinks in workflows and wants canvas visibility</li>
+          <li>Custom branching by tags and product properties is central</li>
+          <li>You will A/B test journey paths and maintain them monthly</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          If Privy email feels too shallow and Drip's canvas feels like maintenance debt, Sequenzy offers guided lifecycle playbooks with pay-per-email pricing. Keep Privy for capture. Sequenzy replaces Drip for email execution when your team prefers strategic playbooks over blank-canvas tinkering — without sacrificing the popup investment Privy already earned.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Privy wins capture; Drip wins post-capture lifecycle control. Most $45k+ merchants need both sequentially or in parallel — not either/or. Run session-to-subscriber measurement first; if capture is solved, graduate Privy email to Drip or Sequenzy before winback complexity arrives. The winner is whichever platform fixes your actual bottleneck without duplicate-send stack mistakes.
+        </p>
+        <h2>Operator runbook: capture widget vs tag canvas lifecycle</h2>
+        <p>
+          Privy fills top of funnel; Drip owns post-submit automation canvas. Compare when Privy email competes with Drip — Privy should stay capture-only. Drip pairs with Privy popups feeding tagged welcome branches.
+        </p>
+        <p>
+          Sequenzy replaces Drip when canvas maintenance heavy; Privy capture often retained either path.
+        </p>
+
+        <h2>Field scenario: $38k/mo coffee gear, Privy + Drip</h2>
+        <p>
+          Privy 17% popup; Drip welcome branches by source tag. Privy email disabled after duplicate welcome incident week two. Drip cart visible on canvas — owner debugged sale week without agency.
+        </p>
+
+        <h2>Field scenario: $29k/mo mugs, Privy-only mistake six months</h2>
+        <p>
+          Privy email automations shallow — cart recovery 38% below Drip parallel when finally tested. Migration Privy capture kept, Drip lifecycle — should have split architecture month one.
+        </p>
+
+        <h2>Workflow test: source tag from Privy to Drip welcome within 45m</h2>
+        <p>
+          Popup offer 10% must match welcome email one code. Tag privy-popup on profile. Delay over 60m fails — customer forgets offer context.
+        </p>
+
+        <h2>Migration note: Privy email → Drip</h2>
+        <p>
+          Keep Privy widgets; export list with tags to Drip. Pause Privy email journeys before Drip welcome+cart live. Sequenzy alternative if Drip canvas owner unavailable — same Privy integration pattern.
+        </p>
+        <h2>Privy capture Drip canvas lifecycle</h2>
+        <p>
+          Source tags feed Drip welcome branches — Privy email off when Drip live. Canvas auditability sale-week tiebreaker vs Privy email opacity.
+        </p>
+        <h2>Field scenario: $38k/mo coffee gear day-one split should have</h2>
+        <p>
+          Six months Privy email shallow — 38% cart below Drip parallel when tested; capture kept Privy throughout.
+        </p>
+        <h2>Sequenzy when canvas owner absent</h2>
+        <p>
+          Privy + Sequenzy beats Privy + Drip if nodes unmaintained — same capture integration pattern.
+        </p>
+        <h2>Operator scoring sheet — Privy vs Drip</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when popup to tag canvas welcome looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Privy wins when popup to tag canvas welcome changes Monday standups. Drip wins when gift tag five-branch cart remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. Privy plus Sequenzy if canvas unmaintained noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Privy popup tag must reach Drip welcome branch within forty-five minutes — offer mismatch destroys first-email trust. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

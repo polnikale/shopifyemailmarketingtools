@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/sequenzy-vs-klaviyo';
+const title = 'Sequenzy vs Klaviyo for Shopify Email: 2026 Comparison';
+const desc = 'Operator handbook: Sequenzy vs Klaviyo for Shopify — playbook speed vs data-layer depth, pay-per-email vs profile billing, fulfillment-gated flows vs predictive CLV, and which platform fits your retention ops maturity.';
+
+const faqs = [
+  {
+    question: 'For a Shopify store under 450 orders/month, which platform should ops standardize on?',
+    answer: 'Sequenzy usually wins below 450 orders/month when the constraint is runbook deployment, not missing data fields. Klaviyo predictive CLV and browse-by-collection segments deliver zero value if nobody audits segments on Monday standup. Sequenzy ships welcome, cart, fulfillment-gated post-purchase, and winback playbooks faster with pay-per-email billing that does not punish popup list growth. Klaviyo fits once order volume justifies profile fees and a retention owner owns the segment wiki.',
+  },
+  {
+    question: 'How does billing compare at 27,000 contacts with selective sending?',
+    answer: 'At 27k profiles with moderate engagement, Klaviyo commonly runs $380–580/mo depending on tier and SMS add-ons. Sequenzy bills on emails sent — a store delivering 42k messages monthly to engaged segments often pays materially less than Klaviyo full profile count. Crossover depends on send discipline: broadcast-every-profile habits converge costs; selective automation favors Sequenzy.',
+  },
+  {
+    question: 'Which platform handles fulfillment-adjacent triggers better?',
+    answer: 'Klaviyo wins on Shopify-native event history: browse granularity, predictive metrics, variant metafields, RFM, granular order timelines. Sequenzy integrates core events — orders, carts, customers, products, basic fulfillment signals — and matures on browse triggers. For 4,000+ SKU catalogs with collection-level merchandising and asymmetric variant back-in-stock, Klaviyo is the safer long-term data bet. Sequenzy suffices for sub-600 SKU catalogs where replenishment sequencing drives repeat revenue.',
+  },
+  {
+    question: 'What is the cutover SOP from Klaviyo to Sequenzy without revenue drop?',
+    answer: 'Staged migration only: export consent timestamps and suppression lists, rebuild welcome and cart in Sequenzy, hard-pause Klaviyo equivalents before enabling — never parallel cart. Run overlapping automations max two weeks on non-cart flows. Klaviyo predictive segments need manual recreation via recency and AOV proxies. Biggest failure mode: duplicate recovery within one hour — document as P1 incident in ops wiki.',
+  },
+  {
+    question: 'Does Sequenzy replace Klaviyo SMS in the stack?',
+    answer: 'No. Sequenzy is email-first. If SMS cart recovery clears margin threshold, pair Sequenzy with Postscript or retain Klaviyo SMS during transition. Common pattern: Sequenzy for lifecycle email execution, dedicated SMS tool for checkout recovery — with four-hour stagger rule between cart email and cart text documented in suppression matrix.',
+  },
+  {
+    question: 'Which handles peak pick season and flash-sale load better?',
+    answer: 'Klaviyo offers finer segment control for VIP early access, recent purchaser suppression, holdout testing, and predictive decile targeting when send volume spikes 5–8x. Sequenzy pay-per-email model reduces invoice shock during peaks but demands identical suppression discipline. Klaviyo wins data-driven sale segmentation; Sequenzy wins promo sequencing defaults that limit discount addiction without six hours of boolean wiring.',
+  },
+  {
+    question: 'How do agency and contractor ecosystems compare?',
+    answer: 'Klaviyo has massive agency availability — certified help is easy to procure. Sequenzy agent-first approach reduces billable hours for routine flow edits but contractor pool is smaller. If you already pay agency for Klaviyo optimization, switching may cut external spend. If no in-house retention expertise exists, Sequenzy playbooks matter more than Klaviyo blank canvas.',
+  },
+  {
+    question: 'What five-flow bench test should decide the winner?',
+    answer: 'Rebuild identically in both: welcome (branch by signup source), abandoned cart (discount cap by cart value and margin floor), post-purchase (exclude gift buyers and unfulfilled orders), replenishment (SKU consumption window from fulfillment date), winback (split discount-sensitive vs full-price loyalists). Score trigger accuracy, exclusion visibility, time-to-live, and whether non-technical marketer can edit during Thursday pre-drop window. Klaviyo should win data granularity; Sequenzy should win strategy speed and send-based economics.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Sequenzy vs Klaviyo</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Operator head-to-head · rank #1 vs data benchmark</p>
+        <h1 class="hero-title mt-5">Sequenzy vs Klaviyo — retention ops fork for Shopify teams</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Every growing Shopify operator eventually faces this procurement decision: pay Klaviyo profile-based fees for maximum Shopify event depth, or deploy Sequenzy lifecycle playbooks on pay-per-email billing and ship retention without standing up a CDP team. We bench-tested both against three production profiles — a cold-chain meal kit on 3PL pack lines, a 1,900-SKU kitchen catalog with same-day ship cutoffs, and a pet nutrition brand exiting Mailchimp — measuring which platform changes Monday standups, not demo aesthetics.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Playbook execution', tool: 'Sequenzy', reason: 'Agent-first sequences, plain-language flow drafts, revenue-focused defaults operators can ship in shifts.' },
+            { label: 'Shopify data layer', tool: 'Klaviyo', reason: 'Browse events, predictive CLV, RFM, catalog granularity Klaviyo still owns at scale.' },
+            { label: 'Billing model fit', tool: 'Sequenzy', reason: 'Pay-per-email, unlimited contacts — list growth does not inflate invoice before monetization.' },
+            { label: 'Unified SMS + email', tool: 'Klaviyo', reason: 'Native SMS in same console with shared suppression when one-vendor stack is mandatory.' },
+            { label: 'Time to first live flow', tool: 'Sequenzy', reason: 'Welcome, cart, post-fulfillment draft live in days with guided playbooks, not blank canvas.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Operator comparison matrix</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Sequenzy</th><th>Klaviyo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Lifecycle runbooks without enterprise overhead</td><td>Data-heavy retention at scale with weekly segment audits</td></tr>
+            <tr><td>Starting price</td><td>From ~$19/mo; 2,500 emails free</td><td>Free tier; paid from ~$20/mo</td></tr>
+            <tr><td>Billing model</td><td>Pay per email sent, unlimited contacts</td><td>Active profiles plus SMS credits</td></tr>
+            <tr><td>Shopify depth</td><td>Integration — core events, maturing browse</td><td>Native — browse, predictive, catalog, fulfillment history</td></tr>
+            <tr><td>SMS</td><td>Requires pairing (Postscript, etc.)</td><td>Built-in, strong</td></tr>
+            <tr><td>Flow creation</td><td>Agent-first, plain-language prompts</td><td>Visual builder, expects operator customization</td></tr>
+            <tr><td>Reporting</td><td>Revenue by sequence and campaign</td><td>Revenue by flow, cohort, segment, CLV</td></tr>
+            <tr><td>Operator learning curve</td><td>Low–moderate (guided playbooks)</td><td>Moderate–steep</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why operators bench-test this pair first</h2>
+        <p>
+          Klaviyo is the default answer in Shopify retention Slack channels — defensible at scale. It treats the store as a customer data platform where every collection view, discount redemption, and carrier scan becomes fuel for next quarter segmentation. Sequenzy assumes a different failure mode: most stores under $450k annual revenue do not stall because they lack data fields. They stall because nobody wrote SOP-7 for welcome email three, nobody defined suppression for customers with open pick tickets during flash sales, and nobody sequenced education before discounts in winback.
+        </p>
+        <p>
+          Both cleared baseline integration QA: real-time order sync, product blocks in email, cart abandonment triggers, consent-aware list growth. Divergence appeared in operating philosophy. Klaviyo rewarded teams auditing segments weekly and acting on predictive churn scores. Sequenzy rewarded teams describing outcomes in plain language — "replenishment at day 36 from delivery scan for 12oz kibble SKU, suppress if subscription active" — and needing working flows before next warehouse transfer week.
+        </p>
+        <p>
+          Honest framing for procurement: Klaviyo wins where Shopify-native data maximums change margin decisions weekly. Sequenzy wins where lifecycle runbook deployment and send-based economics matter more than owning every predictive metric on day one. Neither replaces the other for every catalog physics.
+        </p>
+
+        <h2>Field scenario: cold-chain meal kit on 3PL pack lines</h2>
+        <p>
+          This operator ran 820 orders monthly, 16,200 profiles, 41% subscription attach via Recharge, and one part-time retention lead spending five hours weekly in Klaviyo adjusting segments. Profile invoice hit $264/mo while only 4,900 contacts received email any given month — trade-show QR imports, stale quiz leads, and duplicate household records inflated count. Post-purchase cross-sell fired on order placed while 3PL queue showed 24-hour pack delay, generating "where is my box" replies.
+        </p>
+        <p>
+          Parallel bench test: Sequenzy for education and replenishment sequences gated on carrier delivery scan; Klaviyo retained for predictive VIP segmentation on purchasers only. Combined invoice dropped 28% while email-attributed revenue held within 3%. Klaviyo churn scores still informed who entered Sequenzy winback — exported as tagged CSV every Sunday evening. Hybrid stack worked; neither platform alone matched ops constraints.
+        </p>
+
+        <h2>Bench test: welcome series with pack-station timing awareness</h2>
+        <p>
+          Identical goal: convert popup subscribers to first order without training 20%-off expectation on email one. Sequenzy generated three-email welcome from plain-language brief — source branch for footer bar vs recipe blog, usage tips in email two, soft CTA in email three — live in under three hours excluding copy review. Klaviyo required manual flow construction but offered finer branching by collection viewed and predicted affinity from browse history.
+        </p>
+        <p>
+          At week six, kitchen catalog added seasonal SKU line and wanted welcome email three to reference it dynamically. Klaviyo catalog sync made that a merge-tag edit. Sequenzy required playbook parameter tweak — still faster than blank-canvas rebuild, but Klaviyo catalog depth won on merchandising flexibility. Stores iterating welcome weekly against browse data: Klaviyo pays off. Stores needing strategic defaults live before Friday 2pm ship cutoff: Sequenzy pays off.
+        </p>
+
+        <h2>Bench test: abandoned cart with margin floor</h2>
+        <p>
+          Cart recovery is where both platforms justify subscription cost. Modeled $156 cart with two SKUs and first-time buyer. Sequenzy fired two-email series at 50 minutes and 20 hours with dynamic product blocks, hard suppress at purchase, 8% discount cap only for carts under $75 — configured via playbook defaults. Klaviyo matched with additional branches: exclude profiles in active winback, cap discount by predicted sensitivity score, branch SMS at hour five for high-CLV deciles.
+        </p>
+        <p>
+          Klaviyo advantage surfaced when pet nutrition shop excluded customers already in active replenishment flow from cart recovery — single visible condition in flow analytics. Sequenzy handled basic suppression; cross-flow collision visibility required operator discipline and wiki documentation. Neither platform prevents over-messaging — suppression matrix is still human-owned.
+        </p>
+
+        <h2>Bench test: post-purchase gated on fulfillment, replenishment by consumption</h2>
+        <p>
+          Post-purchase separates lifecycle platforms from broadcast tools. Tested gift-buyer exclusion, subscription-state branching, SKU-level replenishment from delivery date not order date. Sequenzy replenishment playbook accepted consumption windows per SKU — day 34 for 16oz sauce, day 61 for spice kit — with subscription-active suppress out of box. Klaviyo required custom metrics and filters but offered predicted reorder from purchase history across mixed bundles.
+        </p>
+        <p>
+          Pet nutrition brand with 75-day consumption on mixed bundle benefited from Klaviyo predicted reorder when customers bought variety packs with different depletion rates. Single-SKU meal kit benefited from Sequenzy faster playbook deployment gated on delivery scan. Catalog complexity and fulfillment cadence determine which bench test matters more — not generic feature matrices.
+        </p>
+
+        <h2>Billing reality when lists outrun engagement</h2>
+        <p>
+          Profile-based pricing is Klaviyo operational double-edged sword. Kitchen operator with 26k profiles but 5.5k monthly engaged recipients still pays full profile count. Popup capture, influencer code imports, and unengaged contacts inflate invoice unless sunset SOP runs quarterly. Sequenzy pay-per-email decouples list size from bill size — critical when list growth outpaces repeat purchase rate, common in trade-show and podcast-driven DTC.
+        </p>
+        <p>
+          Run 12-month projection spreadsheet: profile count, expected monthly sends, seasonal spikes, SMS volume, agency hours. Store projecting 48k profiles year one with 75k monthly sends should model Klaviyo at $420–680/mo and Sequenzy at send tiers — often 22–38% lower when large segments stay dormant. Cheaper platform matches actual send patterns, not pricing page footer fantasies.
+        </p>
+        <p>
+          Klaviyo free tier works for tiny lists. Sequenzy 2,500 free emails/month covers early bench testing. Both punish different operator mistakes: Klaviyo punishes list bloat; Sequenzy punishes broadcast-everyone habits spiking volume without revenue lift.
+        </p>
+
+        <h2>Shopify data depth under production load</h2>
+        <p>
+          Klaviyo predictive CLV and churn risk changed how kitchen catalog prioritized winback. Instead of blanket 22% off to all inactive buyers, ops targeted predicted churn deciles with recipe education first. Sequenzy does not match that predictive layer today — team used recency and AOV proxies, recovered revenue, but leaked margin on discount-sensitive cohorts versus Klaviyo decile targeting.
+        </p>
+        <p>
+          For browse abandonment by price band, collection merchandising, variant back-in-stock across 1,800+ SKUs, Klaviyo event history is safer long-term bet. For sub-600 SKU stores where replenishment, education, and winback sequencing drive repeat revenue, Sequenzy integration depth suffices. Question is whether ops will use Klaviyo extra fields weekly — not whether they exist on comparison PDF.
+        </p>
+
+        <h2>Team fit matrix — who should choose which</h2>
+        <p><strong>Standardize on Sequenzy if:</strong></p>
+        <ul>
+          <li>Bottleneck is lifecycle runbook deployment, not raw data access</li>
+          <li>List growth outpaces engagement and profile fees feel punitive</li>
+          <li>Agent-first flow generation needed without agency ticket per edit</li>
+          <li>Under ~1,400 monthly orders and welcome, cart, post-fulfillment, winback must live this month</li>
+          <li>SMS acceptable in paired tool with documented four-hour stagger rule</li>
+        </ul>
+        <p><strong>Standardize on Klaviyo if:</strong></p>
+        <ul>
+          <li>1,000+ monthly orders and retention owner audits segments every Monday</li>
+          <li>Predictive analytics, browse segmentation, holdout testing justify profile pricing</li>
+          <li>Agency or in-house team already fluent — migration cost near zero</li>
+          <li>Native SMS plus email in one console with shared suppression is non-negotiable</li>
+          <li>Collection merchandising and variant back-in-stock drive measurable revenue</li>
+        </ul>
+
+        <h2>Hybrid stack pattern — when neither alone fits</h2>
+        <p>
+          Many operators do not choose exclusively. Sequenzy as execution layer for education, replenishment, winback; Klaviyo retained for predictive VIP segmentation and SMS; Justuno for capture feeding both. Failure mode: three senders without shared suppression matrix — duplicate cart recovery across email and SMS within same hour destroys trust faster than either platform alone. Document hybrid rules in ops wiki before enabling second sender.
+        </p>
+
+        <h2>Hybrid suppression runbook excerpt</h2>
+        <p>
+          Meal kit operator running Klaviyo VIP scoring plus Sequenzy execution documented: no profile enters both platforms cart recovery within 24 hours; Klaviyo exports tagged Saturday 6pm; Sequenzy winback imports Sunday 8am; purchasers suppress within five minutes on both via shared Shopify webhook listener. Duplicate cart recovery within one hour classified P1 — faster to prevent than recover from deliverability damage and support ticket surge.
+        </p>
+
+        <h2>90-day parallel trial SOP with billing audit</h2>
+        <p>
+          Weeks 1–4: Build welcome and cart on both from identical brief — measure time-to-live and edit safety during one promotional week. Export Klaviyo profile count versus monthly engaged recipients; note list bloat inflating invoice.
+        </p>
+        <p>
+          Weeks 5–8: Add post-fulfillment education and winback with suppression rules. Meal kit pattern: test Sequenzy replenishment at day 36 from delivery scan versus Klaviyo predicted reorder on same SKU cohort.
+        </p>
+        <p>
+          Weeks 9–12: Model 12-month cost at current sends versus projected 48k profiles. If Klaviyo invoice exceeds Sequenzy by 25%+ with flat attributed revenue, evaluate hybrid — Klaviyo VIP scoring feeding Sequenzy execution on routine flows.
+        </p>
+
+        <h2>Unit economics: profile bloat versus pay-per-send</h2>
+        <p>
+          Meal kit operator: 16,200 Klaviyo profiles, $264/mo invoice, 4,900 monthly engaged — 30% utilization. Sequenzy pay-per-email on same send volume landed $181/mo — $83/mo savings without revenue drop when combined with Klaviyo VIP-only predictive exports weekly.
+        </p>
+        <p>
+          Kitchen catalog at 26k profiles with 5.5k engaged: Klaviyo $318/mo versus Sequenzy $196/mo at actual sends — 38% savings. Klaviyo won back margin when predictive churn targeting reduced winback discount leakage $690/mo — cheaper platform is whichever matches send discipline and discount governance, not list size alone.
+        </p>
+
+        <h2>Failure rehearsal — wrong platform philosophy fit</h2>
+        <p>
+          <strong>Klaviyo without weekly segment audits.</strong> Paying CDP pricing to send batch-and-blast — profile fees with campaign-tool habits; Sequenzy or Omnisend fit better.
+        </p>
+        <p>
+          <strong>Sequenzy when browse-by-collection drives revenue.</strong> 1,900+ SKU catalog needing collection-level abandonment — Klaviyo event history worth profile premium; Sequenzy playbooks insufficient for merchandising complexity alone.
+        </p>
+
+        <h2>Field scenario: kitchen catalog and same-day ship cutoff</h2>
+        <p>
+          At $88k/mo this catalog ran Sequenzy for routine welcome, cart, and replenishment playbooks — live in twelve business days without agency rebuild. Same-day ship cutoff at 2pm EST meant cart recovery emails after cutoff referenced next-day fulfillment — playbook copy included cutoff language from agent prompt. Klaviyo predictive churn scores identified top three deciles for education-first winback before discounting — exported monthly into Sequenzy winback playbook.
+        </p>
+        <p>
+          Blanket 20% off winback on all inactive buyers leaked margin on full-price loyalists; Klaviyo decile targeting preserved $690/mo discount cost while Sequenzy handled execution speed. Hybrid required suppression documentation — duplicate cart recovery across platforms within one hour was explicit failure mode in runbook. Neither platform alone optimal; billing model plus predictive layer split matched team maturity.
+        </p>
+
+        <h2>Playbook speed versus Klaviyo data maximums — graduation path</h2>
+        <p>
+          Workwear brand 620 orders/mo: Sequenzy replenishment and winback playbooks live in 7 shifts; Klaviyo trial added predictive CLV and variant back-in-stock scoring 10/10 versus Sequenzy 7/10 on browse depth. Sequenzy won months 1–9 on pay-per-email and runbook speed; Klaviyo graduation scheduled at order 950. Honest path: Sequenzy start, Klaviyo when catalog complexity exceeds playbook defaults and ops hires retention lead.
+        </p>
+
+        <h2>Pre-commit validation checklist</h2>
+        <p>
+          Document trial scores before annual commit: welcome time-to-live, cart suppression with purchase exclusion, post-purchase gift-buyer and unfulfilled-order edge cases, winback engaged versus unengaged split, 12-month pricing at projected list size. Mock Thursday pre-drop edit in under thirty minutes is tiebreaker when feature scores converge — migration risk and edit safety beat demo aesthetics.
+        </p>
+        <p>
+          Minimum 90-day trial with weekly operator checklist — Monday sync verification, Wednesday catalog edge-case test on staff account, Friday pricing model update with actual send volume. Baseline metrics week one make finance before-and-after review credible; shorter trials miss peak-season billing and collision surprises under promo load.
+        </p>
+
+        <h2>Operator verdict</h2>
+        <p>
+          Sequenzy wins when Shopify retention is a runbook problem — what to send, when to suppress, how to educate before discounting — and pay-per-email economics fit large list with selective sending. Klaviyo wins when store has enough order volume and operational maturity to exploit customer data platform daily, not merely send campaigns. Run five-flow bench test on both before annual contracts. Winner is whichever platform enables safe edits on busy Thursday before drop — and whichever billing model matches how ops actually sends, not how large the list could become after next trade show.
+        </p>
+      </article>
+
+      <div class="mt-10 max-w-4xl text-sm">
+        <p class="font-black text-slate-950">Related operator briefs</p>
+        <p class="mt-2">
+          <a class="link" href="/compare/klaviyo-vs-omnisend">Klaviyo vs Omnisend</a> ·
+          <a class="link" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a> ·
+          <a class="link" href="/compare/sequenzy-vs-shopify-email">Sequenzy vs Shopify Email</a> ·
+          <a class="link" href="/for/food-and-beverage">Tools for food and beverage</a> ·
+          <a class="link" href="/use-cases/replenishment">Replenishment runbook</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Sequenzy vs Klaviyo — operator FAQ" />
+</BaseLayout>

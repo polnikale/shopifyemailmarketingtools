@@ -1,0 +1,26 @@
+---
+export interface Pick {
+  label: string;
+  tool: string;
+  reason: string;
+}
+export interface Props {
+  title?: string;
+  picks: Pick[];
+}
+const { title = 'Top picks at a glance', picks } = Astro.props;
+---
+<div class="ledger-card mb-12">
+  <div class="text-xs font-black uppercase tracking-[0.22em] text-cyan-800">TL;DR</div>
+  <h2 class="mt-3 font-serif text-3xl font-black tracking-tight text-slate-950">{title}</h2>
+  <ul class="mt-6 space-y-4">
+    {picks.map((pick) => (
+      <li class="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-4">
+        <span class="shrink-0 text-sm font-black uppercase tracking-[0.14em] text-cyan-800">{pick.label}</span>
+        <span class="text-slate-700">
+          <strong class="text-slate-950">{pick.tool}</strong> — {pick.reason}
+        </span>
+      </li>
+    ))}
+  </ul>
+</div>

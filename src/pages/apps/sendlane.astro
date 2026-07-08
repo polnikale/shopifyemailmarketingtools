@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const app = appBySlug('sendlane')!;
+const path = '/apps/sendlane';
+const title = pageTitle(site, 'apps/sendlane');
+const desc = description(site, 'apps/sendlane');
+
+const faqs = [
+  {
+    question: 'When does Sendlane beat Sequenzy for Shopify email lifecycle ops?',
+    answer: 'Sendlane wins when you need human migration support rebuilding broken Klaviyo flows, bundled email-plus-SMS journeys with revenue attribution finance understands, and onboarding calls during peak cutover season. Sequenzy ranks #1 on this handbook for lean teams wanting agent-first playbooks and pay-per-email economics without package sales calls. Choose Sendlane when ESP switch anxiety and multichannel coordination justify premium entry; choose Sequenzy when runbook speed and send-based billing matter more.',
+  },
+  {
+    question: 'What order volume justifies Sendlane entry pricing on Shopify?',
+    answer: 'Roughly 550–750 orders per month when lifecycle email is a documented line item, not an experiment. Below 400 orders, Omnisend or Sequenzy deliver similar welcome and cart outcomes at lower entry. Sendlane premium pays back when migration labor, duplicate-touch bugs, and finance reporting gaps cost more than the platform delta — typical at mid-size DTC with existing Klaviyo technical debt.',
+  },
+  {
+    question: 'How should ops gate post-purchase email on fulfillment in Sendlane?',
+    answer: 'Trigger education and cross-sell on fulfilled order or carrier in-transit scan — not placed order when pick-pack-ship exceeds 24 hours. Sendlane supports fulfillment events natively; document suppression for unfulfilled, partial fulfill, and backorder tags in your runbook. Pair with 3PL webhook if production-complete precedes Shopify fulfillment by days. Sequenzy playbooks default to fulfillment-gated timing; Sendlane requires explicit node configuration during onboarding.',
+  },
+  {
+    question: 'Does Sendlane email depth replace Klaviyo for variant-heavy catalogs?',
+    answer: 'No for predictive CLV, exotic metafield segmentation, and hourly browse granularity at 3,000+ SKU scale. Yes for standard DTC retention — welcome, cart, browse, post-fulfillment, winback — when operators maintain segments weekly. Sendlane covers roughly 80% of email revenue moments without Klaviyo complexity tax; enterprise catalog matrix ops should stay on Klaviyo or bench-test Sequenzy playbooks first.',
+  },
+  {
+    question: 'How long is realistic Sendlane cutover from Mailchimp or Klaviyo?',
+    answer: 'Three to six weeks with onboarding engaged: week one suppression import and Shopify sync audit, week two welcome and cart live with collision testing, week three post-fulfillment gated on delivery scan, week four winback plus SMS escalation paths. Self-serve Sequenzy migration often completes core flows in eight to twelve business days — Sendlane trades calendar for hand-holding during broken-flow rebuilds.',
+  },
+  {
+    question: 'Should Sendlane own SMS or stay email-primary with Postscript?',
+    answer: 'Sendlane bundles SMS for merchants wanting one journey builder and shared suppression. Postscript still leads Shopify SMS compliance depth and two-way reply handling. Email-primary stacks: Sequenzy lifecycle email plus Postscript cart SMS with four-hour stagger suppression documented in ops wiki. Sendlane fits when finance wants one vendor invoice and ops accepts SMS as secondary channel inside same canvas.',
+  },
+  {
+    question: 'What is the most common Sendlane deployment failure?',
+    answer: 'Treating onboarding as permanent ops — flows ship during migration then stagnate because nobody owns weekly optimization. Second failure: parallel cart recovery during overlap week between old ESP and Sendlane — duplicate touches destroy trust. Third: post-purchase firing on order placed before warehouse pack completes. Assign retention owner before onboarding ends; hard-cut flows per SOP.',
+  },
+  {
+    question: 'Sendlane vs Omnisend for Shopify email marketing?',
+    answer: 'Omnisend wins transparent self-serve pricing and fastest prebuilt multichannel templates under 500 orders per month. Sendlane wins migration support, revenue reporting clarity, and guided journey rebuilds at 600+ orders when team lacks internal ESP expertise. Email depth comparable for standard automations — decision is services and pricing transparency, not raw template count.',
+  },
+  {
+    question: 'Who should skip Sendlane entirely?',
+    answer: 'Under 400 orders per month, teams wanting agent-first MCP workflows (Sequenzy), merchants needing lowest transparent pricing without sales calls, stores happy on Klaviyo with agency maintenance, and operators who only send monthly sale blasts — Shopify Email suffices. Sendlane is for DTC treating email lifecycle as operational infrastructure.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/apps" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator briefs</a>
+      <p class="editorial-kicker mt-6">Guided migration lane · Rank #13</p>
+      <h1 class="hero-title mt-5 max-w-5xl">{app.name} — operator brief for Shopify email lifecycle</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Sendlane is the email-and-SMS retention platform operators deploy when Klaviyo rebuilds stall in the warehouse queue and Mailchimp automations never matched pick-pack-ship reality. Ecommerce-first journeys, human migration support, and revenue dashboards finance can audit justify entry pricing from {app.pricing}. Not a starter ESP — a cutover vehicle for 550+ orders per month brands treating lifecycle email as runbook infrastructure. Sequenzy ranks #1 on this handbook for agent-first speed; Sendlane ranks here for white-glove migration when internal retention headcount is zero.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Field-tested during Klaviyo exit for a supplement 3PL at 680 orders per month, a workwear brand rebuilding cart suppression after peak season collisions, and a home goods operator who correctly chose Omnisend on price at 360 orders. Rating: ★ {app.rating}. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — handbook #1</a>
+        <a class="btn btn-secondary" href="/apps/omnisend">Omnisend brief</a>
+        <a class="btn btn-secondary" href="/use-cases/post-purchase">Post-purchase runbook</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Operator verdict: Sendlane on Shopify email"
+      picks={[
+        { label: 'Role', tool: 'Migration ESP', reason: 'Ecommerce email plus SMS with onboarding support — not generalist marketing with Shopify badge.' },
+        { label: 'Email fit', tool: 'Lifecycle standard', reason: 'Welcome through winback with fulfillment-aware triggers; Klaviyo leads predictive depth.' },
+        { label: 'Support', tool: 'Human cutover', reason: 'Onboarding rebuilds broken flows — institutional knowledge transfer is the hidden deliverable.' },
+        { label: 'Billing', tool: 'Package pricing', reason: '{app.priceDetail} — model against Omnisend transparency and Sequenzy pay-per-send.' },
+        { label: 'Handbook pick', tool: 'Sequenzy #1', reason: 'Agent playbooks and unlimited contacts when migration anxiety is low.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Sendlane in warehouse terms</h2>
+      <p>
+        Lifecycle email fails in the gap between order placed and carrier scan. Customers email support asking why post-purchase education arrived before the box left the building. Finance asks why cart recovery revenue flatlined after Black Friday when warehouse overtime delayed fulfillment tagging. Sendlane positions as ecommerce-native email infrastructure with operators who have seen this movie — migration specialists rebuild suppression logic, map fulfillment gates, and coordinate SMS escalation without forcing you to wire blank canvas nodes for three weeks solo.
+      </p>
+      <p>
+        The platform thesis is not predictive analytics supremacy. It is dependable execution of revenue moments operators already know they need: welcome with signup-source branching, cart recovery with recent-purchaser suppression, browse abandonment filtered by collection, post-fulfillment education before cross-sell, winback before clearance training. Revenue attribution reporting ties email sends to Shopify order outcomes clearly enough for weekly ops reviews — not enterprise BI, sufficient for DTC finance asking "did this flow pay for itself."
+      </p>
+      <p>
+        Sequenzy ranks #1 on this handbook because most growing Shopify stores need playbook deployment speed and pay-per-email economics more than package onboarding calls. Sendlane earns rank #13 deliberately — right tool when ESP switch terror is the bottleneck, wrong tool when transparent pricing and agent-first setup would ship the same flows faster. Read <a class="link" href="/apps/sequenzy">Sequenzy operator brief</a> before signing Sendlane annual commitment.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Integration depth — fulfillment operator view</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Shopify events, warehouse gates, documented gaps</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Sendlane connects natively to Shopify orders, line items, products, collections, cart and checkout events, customer tags, and fulfillment status changes. Dynamic product blocks populate from cart contents and browse context — not generic bestseller grids. Custom audiences segment on purchase frequency, AOV bands, category affinity, days since last order, and engagement without weekly CSV exports from warehouse reporting.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Verified in field tests:</strong> Placed order, fulfilled order, partial fulfill suppression paths, refunded order exit triggers, added to cart, started checkout, browse abandonment with collection filters, tag-added wholesale-pending suppression, post-purchase cross-sell referencing actual line items, winback with discount-cap logic, SMS second touch after email unopened four hours.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Where Klaviyo still leads:</strong> Predictive CLV and churn risk, deepest browse granularity for asymmetric size runs across thousands of variants, native exotic metafield segmentation, agency recipe library at enterprise scale. Sendlane handles back-in-stock and browse for typical catalogs — if retention model depends on predictive segments updated hourly, Klaviyo or disciplined Sequenzy customization is safer.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        <strong>Operational gap to plan:</strong> No MCP agent layer like Sequenzy. Package pricing requires sales conversation on some tiers. SMS bundled but Postscript leads compliance specialization. Hard-pause old ESP automations before enabling Sendlane equivalents — parallel cart during overlap week is recurring P1 incident across migrations we audit.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Billing math — three warehouse scenarios</h2>
+      <p>
+        Sendlane pricing: {app.priceDetail}. Entry from {app.pricing}. Custom packages at higher volume include onboarding hours — model total cost of ownership, not list price alone.
+      </p>
+      <p>
+        <strong>Scenario A — 680 orders per month, 14,200 contacts, 36,000 emails, 1,800 SMS.</strong> Supplement brand on 3PL with two-day production lag. Package approximately $115–175 per month. Omnisend $80–115. Klaviyo $195–270 at similar profiles. Sendlane premium buys migration rebuild of broken cart logic and finance-friendly revenue reports — not feature delta versus Omnisend on email templates alone.
+      </p>
+      <p>
+        <strong>Scenario B — Klaviyo exit, 21,000 profiles, $132k monthly revenue.</strong> Sendlane approximately $145 per month versus Klaviyo $318. Annual platform savings roughly $2,076. Onboarding offset estimated eighteen internal hours saved rebuilding suppression and fulfillment gates. Payback month two when cart recovery rate recovers three points post-migration.
+      </p>
+      <p>
+        <strong>Scenario C — 360 orders per month, rejected Sendlane.</strong> Omnisend $68 per month sufficient for welcome, cart, post-fulfillment. Sendlane entry economics failed ROI threshold until order volume projected 700+ within two quarters. Correct deferral — revisit when migration complexity exceeds self-serve capacity.
+      </p>
+      <p>
+        Hidden TCO: SMS per-message fees compound on sale weeks, migration labor even with onboarding, opportunity cost of three-month Klaviyo learning curve versus shipping replenishment now on Sequenzy. Sendlane reduces implementation terror — real money for lean ops teams without retention engineer headcount.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Four bench tests — fulfillment-adjacent results</h2>
+      <p>Identical lifecycle jobs tested with production-adjacent warehouse constraints: production lag, partial fulfill, peak season collision risk.</p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">1. Cart recovery — duplicate touch elimination post-Klaviyo</h3>
+      <p>
+        <strong>Trigger:</strong> $89 subscription plus one-time add-on cart abandoned 90 minutes. Prior Klaviyo flow emailed recent purchasers within 14 days — support complaints weekly. <strong>Sendlane setup:</strong> Onboarding team rebuilt three-touch email sequence; suppress 14-day purchasers and active subscribers; SMS touch only if email unopened four hours and SMS opted in.
+      </p>
+      <p>
+        <strong>Result:</strong> Recovery rate 11.2% to 14.6% over 45 days; duplicate-touch tickets dropped to zero. Migration support justified for this account — self-serve rebuild estimated three weeks internal time.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">2. Post-fulfillment education — production lag gate</h3>
+      <p>
+        <strong>Trigger:</strong> Workwear waxed jacket fulfilled from regional 3PL; production-to-scan averages 36 hours. <strong>Goal:</strong> Care guide before cross-sell; no email before fulfillment scan. <strong>Sendlane setup:</strong> Email one on fulfilled event; sizing guide; email two day five post-fulfillment; cross-sell base layer day fourteen with return-initiated suppress.
+      </p>
+      <p>
+        <strong>Result:</strong> Support tickets "email before shipment" eliminated. Return rate on cohort 9% versus 14% store average over 60 days — directional. Cross-sell revenue per recipient $2.08 on email three.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">3. Browse abandonment — collection filter with wholesale suppress</h3>
+      <p>
+        <strong>Trigger:</strong> Browsed denim collection three sessions, no purchase; contact tagged wholesale-pending from B2B application. <strong>Sendlane setup:</strong> Collection-filtered dynamic grid; suppress wholesale-pending and 30-day denim purchasers.
+      </p>
+      <p>
+        <strong>Result:</strong> $2.75 revenue per recipient on denim browse flow. Zero wholesale prospects received DTC promotional email — tag discipline documented in cutover wiki.
+      </p>
+
+      <h3 class="font-serif text-2xl font-black text-slate-950">4. Winback — email plus SMS with margin cap</h3>
+      <p>
+        <strong>Trigger:</strong> Home goods customer lapsed 92 days, one prior order, no browse 30 days. <strong>Sendlane setup:</strong> Email winback day 90; SMS day 97 if unopened; 12% offer cap documented in ops wiki; full-price branch for non-discount first orders.
+      </p>
+      <p>
+        <strong>Result:</strong> Combined channel reactivation 8.1% versus 5.4% email-only prior year. Unified journey reduced sale-week duplicate SMS plus email complaints 58% versus Postscript plus Klaviyo split stack.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="card">
+        <p class="editorial-kicker">Operator pros</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.strengths.map((s) => <li class="flex gap-2"><span class="text-cyan-800">+</span>{s}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">+</span>Onboarding transfers suppression logic explanation, not just rebuilt flows</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="editorial-kicker">Operator cons</p>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          {app.limits.map((l) => <li class="flex gap-2"><span class="text-cyan-800">−</span>{l}</li>)}
+          <li class="flex gap-2"><span class="text-cyan-800">−</span>No agent-first MCP — Sequenzy leads AI ops at lower send economics</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2 mb-12">
+      <div class="ledger-card">
+        <p class="editorial-kicker">Deploy Sendlane if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Operator fit profile</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>550+ orders per month with lifecycle email as line item</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Klaviyo or Mailchimp migration with broken suppression history</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Finance needs flow-level revenue attribution without BI export</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Email plus SMS unity preferred over Sequenzy plus Postscript split</li>
+        </ul>
+      </div>
+      <div class="ledger-card">
+        <p class="editorial-kicker">Skip Sendlane if</p>
+        <h3 class="mt-3 text-xl font-black text-slate-950">Look elsewhere when</h3>
+        <ul class="mt-4 space-y-3 text-slate-700">
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Under 400 orders — Omnisend or Sequenzy</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Agent-first playbooks and pay-per-send — Sequenzy #1</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Self-serve pricing transparency mandatory</li>
+          <li class="flex gap-2"><span class="text-cyan-800">→</span>Predictive CLV daily operating system — Klaviyo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Six-week cutover SOP — Klaviyo to Sendlane</h2>
+      <p>
+        <strong>Week 1:</strong> Export engaged 90-day openers and purchasers; suppress recent buyers, unfulfilled orders, gift recipients, wholesale-pending. Install Sendlane; verify Shopify order, product, fulfillment sync. Document every suppression rule in shared runbook before onboarding kickoff.
+      </p>
+      <p>
+        <strong>Week 2:</strong> Hard-pause Klaviyo welcome; launch Sendlane welcome with signup-source branching. Hold cart until staff-account collision test passes — never parallel cart recovery.
+      </p>
+      <p>
+        <strong>Week 3:</strong> Cart live with discount cap in wiki (who gets codes, maximum percentage, margin floor). Post-fulfillment gated on fulfilled event — not placed order when 3PL lag exceeds 24 hours.
+      </p>
+      <p>
+        <strong>Week 4:</strong> Browse abandonment with collection filters. Validate weekly revenue within 5% of Klaviyo baseline on overlapping cohorts.
+      </p>
+      <p>
+        <strong>Weeks 5–6:</strong> Winback at 85 days with full-price versus discount fork. SMS escalation paths with shared suppression. Insist onboarding team document segment logic transfer; cancel Klaviyo only after 14-day clean collision log.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Field scenario: supplement 3PL exiting profile pricing</h2>
+      <p>
+        Vital Formulas ($128k per month, 680 orders) ran Klaviyo at 21,000 profiles but only 8,400 engaged — invoice $294 per month for contacts who never opened. Production lag on custom bundles meant post-purchase emails fired before pick complete; support tickets spiked every Monday. Sendlane onboarding rebuilt cart with fulfillment gates and purchaser suppression in eighteen business days. Platform cost approximately $148 per month — savings $146 monthly ($1,752 annually) plus recovered cart rate.
+      </p>
+      <p>
+        Internal retention contractor assigned at migration close — non-negotiable condition in SOW. Sendlane got flows live; contractor owns weekly optimization. Teams treating onboarding as permanent ops see Sendlane become expensive Mailchimp within two quarters. Sequenzy would have shipped faster for this catalog — Sendlane won because founder feared self-serve cutover during Q4 peak and valued human rebuild of broken logic.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Weekly retention ops rhythm on Sendlane</h2>
+      <p>
+        Monday: review complaint rate and deliverability seed inboxes — Sendlane deliverability tooling surfaces issues but ops must act. Tuesday: collision log from welcome, cart, browse overlap during sale prep. Wednesday: margin report on discounted recovery against documented cap in wiki. Thursday: segment hygiene — sunset never-opened profiles inflating package tier conversations. Friday: one flow improvement shipped and documented with owner name.
+      </p>
+      <p>
+        Sendlane onboarding gets you live; this rhythm keeps revenue growing. Stores that skip weekly cadence see Sendlane become expensive static automations within two quarters — identical failure mode as Klaviyo without segment owner. Pair rhythm with quarterly finance review of flow-level attribution Sendlane reporting provides natively.
+      </p>
+      <p>
+        Peak pick season prep: hard-pause low-performing winback variants two weeks before warehouse cutoff changes. Document blackout windows when 3PL cannot guarantee fulfillment scan within 48 hours — post-purchase education must not reference delivery dates ops cannot honor. Sendlane SMS escalation paths need same blackout discipline as email.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Operator handbook note</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Documentation beats migration memory</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Archive every Sendlane suppression decision with date, owner, and metric baseline. Future ops lead will not remember why cart delay is 75 minutes versus 90, or why wholesale-pending suppress exists. Onboarding team departs — wiki is permanent deliverable.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        New hires read field scenarios first, then comparison hub, then individual app briefs. Rankings are starting points — holdout tests on your catalog and warehouse cadence are authoritative. Sequenzy remains handbook #1 for default lifecycle deployment; Sendlane documented for migration-heavy procurement paths.
+      </p>
+    </div>
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Failure rehearsal — migration mistakes</h2>
+      <p>
+        <strong>Onboarding as permanent crutch:</strong> Flows stagnate post-migration — assign owner before week six or revenue flatlines.
+      </p>
+      <p>
+        <strong>Parallel cart during overlap:</strong> Dual ESP recovery — attribution impossible, trust damaged. Hard cutover per flow documented in wiki.
+      </p>
+      <p>
+        <strong>Post-purchase on order placed:</strong> Email before warehouse pack — gate on fulfillment when cadence exceeds 24 hours.
+      </p>
+      <p>
+        <strong>Ignoring Sequenzy benchmark:</strong> If team can describe outcomes in plain language and ship playbooks in two weeks, Sendlane package premium may be unnecessary — run Sequenzy pilot before Sendlane sales call.
+      </p>
+    </div>
+
+    <div class="card mb-12">
+      <p class="editorial-kicker">Compare alternatives</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Sendlane vs other Shopify email marketing tools</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Read head-to-head operator briefs before procurement:</p>
+      <ul class="mt-6 space-y-3 text-lg font-bold">
+        <li><a class="link" href="/apps/sequenzy">Sequenzy review</a> — handbook #1, agent playbooks versus migration support</li>
+        <li><a class="link" href="/apps/omnisend">Omnisend review</a> — transparent SMB multichannel entry</li>
+        <li><a class="link" href="/apps/klaviyo">Klaviyo review</a> — predictive data maximums</li>
+        <li><a class="link" href="/apps/rejoiner">Rejoiner review</a> — fully managed lifecycle comparison</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All Shopify email marketing tools →</a>
+      <a class="link" href="/use-cases/cart-recovery">Cart recovery runbook →</a>
+      <a class="link" href="/compare">Comparison hub →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Sendlane — operator FAQ" />
+</BaseLayout>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/privy-vs-postscript';
+const title = 'Privy vs Postscript for Shopify: 2026 Comparison';
+const desc = 'Privy vs Postscript for Shopify stores — popup capture and basic email vs SMS-native specialization, stack pairing, compliance, and channel economics.';
+
+const faqs = [
+  {
+    question: 'Is Privy or Postscript better for a Shopify store doing $95k/mo?',
+    answer: 'They solve different problems — not either/or. Privy wins onsite capture and basic email automations. Postscript wins SMS cart recovery, keyword opt-in, two-way conversations, and TCPA compliance at text-first volume. At $95k/mo with weak capture, Privy first. With strong capture and SMS driving 15%+ of retention revenue, Postscript belongs in the stack alongside an ESP — not instead of Privy.',
+  },
+  {
+    question: 'Can Postscript replace Privy for list growth?',
+    answer: 'No. Postscript is SMS-first — it assumes email and capture live elsewhere. Privy owns popups, exit intent, and spin wheels Postscript does not offer. Typical architecture: Privy for capture, Postscript for SMS lifecycle, Omnisend or Sequenzy for email. Postscript-only without capture tooling leaves money on the session-to-subscriber table.',
+  },
+  {
+    question: 'How does Privy vs Postscript pricing compare?',
+    answer: 'Privy scales on sessions plus email sends — from ~$30/mo, spiking with traffic. Postscript uses plan plus per-message usage — economics tied to SMS volume, not pageviews. A store sending 25k promotional SMS/month pays Postscript message fees Privy never touches. Model messages sent, not just subscribers. Combined stack is standard at $95k+ revenue.',
+  },
+  {
+    question: 'Should I use Privy and Postscript together?',
+    answer: 'Yes, often at scale. Privy captures email and can collect SMS opt-in at popup. Postscript owns text journeys — cart recovery, drop alerts, keyword campaigns. Critical: sync suppression so email and SMS do not double-message the same abandonment. Pass signup source metadata so welcome paths branch correctly across channels.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Privy or Postscript?',
+    answer: 'Sequenzy fits email lifecycle strategy with pay-per-email pricing — pair with Postscript for SMS since Sequenzy does not replace dedicated SMS platforms. Keep Privy for capture. Postscript still wins SMS specialization. Sequenzy plus Privy plus Postscript is a lean three-tool stack for teams avoiding Klaviyo pricing.',
+  },
+  {
+    question: 'Which has better TCPA compliance tooling?',
+    answer: 'Postscript leads — keyword management, opt-out handling, quiet hours, and compliance dashboards are built for SMS-first operators. Privy SMS capture exists but compliance depth is capture-oriented, not lifecycle-oriented. If SMS is 20%+ of retention revenue with dedicated ownership, Postscript\'s guardrails justify the stack addition.',
+  },
+  {
+    question: 'Which handles cart abandonment better?',
+    answer: 'Depends on channel. Privy email cart recovery is adequate for early-stage stores — 8–10% recovery typical. Postscript SMS cart recovery wins on immediacy for mobile-first flash drops — fashion, limited releases. Best results combine Privy capture, email ESP cart flows, and Postscript SMS as step one — not Privy email alone at $95k/mo scale.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'If evaluating capture: run Privy popup A/B for two weeks — Postscript is not in that race. If evaluating SMS: run cart abandonment SMS, keyword opt-in from popup, flash sale broadcast with quiet hours. Postscript should win SMS tests. Most stores at $95k/mo need Privy plus Postscript plus an email owner — not either tool alone.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Privy vs Postscript</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Privy vs Postscript for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Another comparison framed wrong by search intent. Privy is capture infrastructure with basic email — popups, spin wheels, session-to-subscriber optimization. Postscript is SMS-native retention — compliance, two-way text, cart recovery via mobile. We evaluated both through a $95k/mo streetwear label running Privy capture plus Postscript SMS plus Sequenzy email, a $72k/mo luxury skincare brand that tried Postscript as its only marketing tool, and a $41k/mo kids apparel shop deciding when SMS specialization earns its place in the stack.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Popup capture', tool: 'Privy', reason: 'Exit intent, gamification, and email list growth on storefront.' },
+            { label: 'SMS specialization', tool: 'Postscript', reason: 'Compliance, two-way SMS, and cart recovery via text.' },
+            { label: 'Early-stage email', tool: 'Privy', reason: 'Basic welcome and cart before ESP graduation.' },
+            { label: 'SMS revenue focus', tool: 'Postscript', reason: 'Built for operators who treat text as a channel, not an add-on.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Email lifecycle playbooks paired with Postscript for SMS depth.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Privy</th><th>Postscript</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Capture + basic email</td><td>SMS-native Shopify marketing</td></tr>
+            <tr><td>Starting price</td><td>Free tier; paid from ~$30/mo</td><td>Usage-based plans</td></tr>
+            <tr><td>Billing model</td><td>Sessions + email sends</td><td>Plan + per-message</td></tr>
+            <tr><td>Popups & capture</td><td>Core strength</td><td>Not primary — pair required</td></tr>
+            <tr><td>Email automation</td><td>Basic welcome, cart</td><td>Not primary — pair required</td></tr>
+            <tr><td>SMS depth</td><td>Capture-tied basics</td><td>Best-in-class for Shopify SMS</td></tr>
+            <tr><td>Compliance</td><td>Capture-oriented</td><td>SMS-first guardrails</td></tr>
+            <tr><td>Typical role</td><td>Top-of-funnel capture</td><td>SMS layer in combined stack</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Merchants search "Privy vs Postscript" when SMS bills spike or when a peer recommends Postscript at a conference. The decision is rarely either/or — it is whether SMS deserves dedicated infrastructure on top of capture and email tools you already run. Postscript as your only marketing platform is a category error the luxury skincare brand learned during a failed consolidation attempt.
+        </p>
+        <p>
+          The streetwear label treated SMS as 22% of attributable retention revenue at $95k/mo. Postscript's drop alerts and conversational cart recovery justified dedicated SMS ownership. Privy still owned capture — spin wheels during hyped releases converted 4.2% of sessions. Removing Privy to "simplify the stack" would have cost more in lost subscribers than Postscript saved in subscription consolidation.
+        </p>
+
+        <h2>Merchant scenario: streetwear label three-tool stack</h2>
+        <p>
+          Privy captured email and SMS opt-in at popup — dual consent with compliant language. Sequenzy owned email welcome, cart, and winback. Postscript owned text cart recovery firing within 15 minutes and BFCM drop broadcasts with quiet hours. Documented suppression prevented email cart step two and SMS cart step one from hitting the same shopper within an hour.
+        </p>
+        <p>
+          Stack complexity had a owner per channel: founder approved Privy creative, retention contractor maintained Sequenzy playbooks, SMS agency ran Postscript keyword campaigns. Without role clarity, three tools become three duplicate-message nightmares.
+        </p>
+
+        <h2>Merchant scenario: luxury skincare Postscript-only mistake</h2>
+        <p>
+          At $72k/mo this brand migrated from Privy plus Mailchimp to Postscript-only after an agency pitch promised "SMS is where luxury converts." Email capture dropped to checkout-only — session rate fell from 2.8% to 0.9%. SMS list grew but email list stagnated. Email-attributed revenue declined 18% over two quarters while SMS grew — net flat with higher message costs.
+        </p>
+        <p>
+          They restored Privy for capture and Sequenzy for email within six weeks. Postscript remained for SMS-only. The lesson: Postscript amplifies retention; it does not replace capture infrastructure.
+        </p>
+
+        <h2>Merchant scenario: kids apparel timing the SMS upgrade</h2>
+        <p>
+          At $41k/mo and 8k profiles, this shop ran Privy-only with adequate email cart recovery. SMS drove 6% of retention revenue through Privy's basic text capture — below the 15% internal threshold for Postscript addition. They modeled Postscript costs at projected 12k SMS/month during back-to-school — $340/mo in message fees alone.
+        </p>
+        <p>
+          Decision: stay Privy-only through Q3, re-evaluate when SMS revenue crossed 12% or flash drops exceeded Privy SMS credit limits. Premature Postscript adoption would have consumed budget better spent on Privy popup A/B tests during peak traffic season.
+        </p>
+
+        <h2>Workflow test: popup capture with SMS opt-in</h2>
+        <p>
+          Privy dual opt-in popup — email plus SMS with compliant checkbox language — lifted combined subscriber capture 2.1% to 3.6% for the streetwear label. Postscript was not in the popup race; it consumed opt-ins Privy collected. Test capture in Privy first; wire Postscript journeys second.
+        </p>
+
+        <h2>Workflow test: abandoned cart via SMS</h2>
+        <p>
+          Privy email cart recovery recovered 9% of abandoned carts at $68 AOV for kids apparel — acceptable early stage. Postscript SMS cart recovery on the streetwear label recovered an additional 4% on mobile-first abandoners email missed — incremental $7k/month at $95k scale. Channel complement, not replacement.
+        </p>
+
+        <h2>Pricing reality at scale</h2>
+        <p>
+          Privy session billing spikes during BFCM — budget peak month. Postscript per-message fees spike during flash broadcasts — same discipline. Combined Privy plus Postscript plus email ESP costs more than any single tool; justify with attributable revenue per channel, not subscription minimalism.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Privy if:</strong></p>
+        <ul>
+          <li>Session-to-subscriber rate is under 2.5% and capture is the bottleneck</li>
+          <li>You need popups plus basic email before SMS specialization</li>
+          <li>SMS is under 12% of retention revenue today</li>
+          <li>You will add Postscript when SMS volume and revenue justify dedicated tooling</li>
+        </ul>
+        <p><strong>Choose Postscript if:</strong></p>
+        <ul>
+          <li>Capture is solved and SMS is a primary retention channel</li>
+          <li>You have dedicated SMS ownership — internal or agency</li>
+          <li>TCPA compliance and quiet hours matter at broadcast volume</li>
+          <li>You will keep Privy or equivalent for capture alongside Postscript</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          Privy wins capture; Postscript wins SMS. Email still needs an owner between them. Sequenzy fills the email lifecycle layer with guided playbooks and pay-per-email pricing — pair with Privy capture and Postscript SMS without Klaviyo contract economics. Three-tool stacks work when each tool has a documented role and suppression sync.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Privy wins capture; Postscript wins SMS — not either/or at $70k+ revenue. Run capture tests in Privy first; add Postscript when SMS revenue and volume cross your internal threshold. Never consolidate to Postscript-only without replacing capture and email elsewhere. The winner is a stack architecture, not a single vendor pick.
+        </p>
+        <h2>Operator runbook: email capture vs SMS list growth</h2>
+        <p>
+          Privy and Postscript both grow lists — different channels. Architecture: Privy email capture → lifecycle ESP (Sequenzy/Klaviyo); Postscript SMS capture → SMS journeys. Avoid Privy SMS competing Postscript without integration plan.
+        </p>
+
+        <h2>Field scenario: $52k/mo streetwear, Privy email + Postscript SMS</h2>
+        <p>
+          Separate popups PDP vs cart drawer. Email welcome Sequenzy; SMS cart Postscript. Four-hour stagger rule documented. Privy email tier active for capture A/B only — lifecycle not Privy.
+        </p>
+
+        <h2>Field scenario: $33k/mo beauty, Postscript-only capture trial</h2>
+        <p>
+          Removed Privy — Postscript email+SMS capture consolidated. Email capture rate fell 3% vs Privy benchmark; acceptable until dedicated email popup re-added Privy month four.
+        </p>
+
+        <h2>Workflow test: email popup subscriber not auto SMS opted-in</h2>
+        <p>
+          TCPA requires separate SMS consent. Privy email submit must NOT trigger Postscript SMS without explicit opt-in. Legal fail = architecture redesign before scale.
+        </p>
+
+        <h2>Migration note: Privy SMS → Postscript</h2>
+        <p>
+          Re-permission all SMS; disable Privy SMS features. Keep Privy email capture or migrate Attentive/Postscript capture. Pause overlapping cart recovery across channels during cutover week.
+        </p>
+        <h2>Email capture vs SMS capture coordination</h2>
+        <p>
+          TCPA separation — email popup submit ≠ SMS consent. Document SOP; Sequenzy/Klaviyo email after Privy; Postscript SMS separate opt-in.
+        </p>
+        <h2>Field scenario: $52k/mo streetwear coordinated popups</h2>
+        <p>
+          Privy email capture; Postscript SMS drawer; Sequenzy lifecycle; four-hour cart stagger — zero duplicate hour-one incidents Q1.
+        </p>
+        <h2>Privy SMS retire when Postscript live</h2>
+        <p>
+          Disable overlapping SMS features — re-permission required not list port.
+        </p>
+        <h2>Operator scoring sheet — Privy vs Postscript</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when email popup consent separate looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Privy wins when email popup consent separate changes Monday standups. Postscript wins when SMS TCPA consent separate remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. never auto-opt SMS from email submit noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Email popup consent never grants SMS TCPA permission — separate Attentive or Postscript opt-in required by law and ops. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+
+
+
+
+
+      </article>

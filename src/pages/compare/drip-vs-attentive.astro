@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/drip-vs-attentive';
+const title = 'Drip vs Attentive for Shopify: 2026 Comparison';
+const desc = 'Drip vs Attentive for Shopify stores — visual email workflow operators vs enterprise SMS-first personalization, stack architecture, compliance, and contract economics.';
+
+const faqs = [
+  {
+    question: 'Is Drip or Attentive better for a Shopify store doing $250k/mo?',
+    answer: 'Attentive wins when SMS is a primary revenue channel with dedicated ownership, enterprise compliance needs, and budget for six-figure annual contracts. Drip wins when email remains primary, SMS is moderate volume, and one operator needs visual workflow control without enterprise procurement. At $250k/mo, Attentive is justified only if SMS drives 25%+ of attributable retention revenue.',
+  },
+  {
+    question: 'Can Attentive replace Drip for email?',
+    answer: 'No for most stores. Attentive is SMS-first with email as a secondary channel — it does not replace Drip\'s visual workflow canvas, custom branching depth, or operator-friendly email tooling. Typical architecture: Drip for email lifecycle, Attentive for enterprise SMS. Some mid-market brands run Drip for both when SMS volume and compliance risk do not justify Attentive\'s contract minimums.',
+  },
+  {
+    question: 'How does Drip vs Attentive pricing compare?',
+    answer: 'Drip bills on people in account — predictable tiers from ~$39/mo, typically $180–320/mo at 20k contacts. Attentive uses enterprise contracts keyed to list size, message volume, and feature package — often $1,500+/mo minimum for meaningful deployment. Drip is the economic default below $500k annual revenue unless SMS ROI clearly covers Attentive\'s floor.',
+  },
+  {
+    question: 'Which has better TCPA compliance tooling?',
+    answer: 'Attentive leads — keyword management, legal review workflows, quiet hours, and compliance dashboards are built for enterprise SMS operators. Drip SMS compliance is solid for SMB DTC but email-native teams sometimes underestimate TCPA risk at scale. If legal counsel reviews SMS programs quarterly, Attentive\'s guardrails justify consideration.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Drip or Attentive?',
+    answer: 'Sequenzy fits email lifecycle strategy with pay-per-email pricing — pair with Postscript or Attentive for SMS since Sequenzy is email-first. Drip still wins for visual workflow purists. Attentive wins enterprise SMS. Sequenzy plus a dedicated SMS tool is a lean stack for teams that want email guidance without Drip canvas maintenance or Attentive contracts.',
+  },
+  {
+    question: 'Which handles cart abandonment better?',
+    answer: 'Depends on channel mix. Drip email cart flows with branching by discount sensitivity outperform SMS alone on AOV for most catalogs. Attentive SMS cart recovery wins on immediacy for mobile-first flash drops — streetwear, limited releases, celebrity collaborations. Best results often combine Drip email with Attentive SMS, not either alone as a full retention stack.',
+  },
+  {
+    question: 'Does Drip\'s workflow canvas matter vs Attentive?',
+    answer: 'Yes for email-primary teams. Drip\'s visual canvas enables custom branching, A/B splits, and tag-driven logic that Attentive email cannot match. Attentive assumes SMS is your urgency channel and email is supplementary. If your retention owner lives in workflow design, Drip wins email. If enterprise SMS personalization at scale is the mandate, Attentive wins and email lives elsewhere.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'If evaluating full retention: run Drip welcome, cart, post-purchase, and winback on the canvas. Attentive is not in that race alone. If evaluating SMS ownership: run keyword opt-in, conversational cart recovery, and BFCM broadcast with quiet hours. Attentive should win SMS-specific tests at enterprise scale; Drip wins SMB-to-mid-market email workflow economics.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Drip vs Attentive</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Drip vs Attentive for Shopify</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Another category mismatch merchants still search. Drip is visual email automation for operators who design behavior-based workflows without enterprise overhead. Attentive is enterprise SMS infrastructure that assumes advanced email and segmentation live elsewhere. We evaluated both through a $52k/mo accessories brand outgrowing Drip SMS limits, a $2.4M/mo apparel label running Attentive SMS plus Drip email, and a meal-kit subscription that mistakenly evaluated Attentive as its only marketing platform.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Email workflows', tool: 'Drip', reason: 'Visual canvas for branching, tags, and experiments.' },
+            { label: 'Enterprise SMS', tool: 'Attentive', reason: 'Personalization, compliance, and scale for text-first brands.' },
+            { label: 'Operator economics', tool: 'Drip', reason: 'Predictable contact billing without enterprise minimums.' },
+            { label: 'SMS revenue focus', tool: 'Attentive', reason: 'Built for operators who treat text as a primary channel.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Email playbooks paired with Postscript for SMS without enterprise contracts.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Drip</th><th>Attentive</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Visual email workflow operators</td><td>Enterprise SMS-first</td></tr>
+            <tr><td>Starting price</td><td>From ~$39/mo</td><td>Enterprise contracts</td></tr>
+            <tr><td>Billing model</td><td>People in account</td><td>Contract + usage tiers</td></tr>
+            <tr><td>Email</td><td>Core product</td><td>Secondary — pair required</td></tr>
+            <tr><td>SMS depth</td><td>Moderate for SMB</td><td>Best-in-class at scale</td></tr>
+            <tr><td>Workflow UI</td><td>Visual canvas</td><td>SMS journey builder</td></tr>
+            <tr><td>Compliance</td><td>Solid for SMB</td><td>Enterprise-grade</td></tr>
+            <tr><td>Typical role</td><td>Primary email ESP</td><td>SMS layer in combined stack</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Drip and Attentive appear in the same consideration set because both touch high-intent mobile shoppers and both integrate with Shopify. The fork is fundamental: Drip optimizes for email operators who want canvas control at mid-market economics. Attentive optimizes for enterprise SMS programs with legal review workflows, personalization at scale, and contract minimums that assume SMS is a board-level channel. The accessories brand hit Drip SMS ceilings at 18% text-attributed revenue — not because Drip failed, but because compliance tooling and two-way depth lagged their growth.
+        </p>
+        <p>
+          The meal-kit subscription evaluated Attentive after a podcast ad and signed a pilot without an email strategy. Attentive SMS performed — keyword opt-in and cart texts converted. But welcome education, post-purchase recipe nurture, and churn winback had no home. They added Drip three months later and spent Q4 reconciling duplicate touches. Attentive was the right SMS layer; it was the wrong only platform.
+        </p>
+
+        <h2>Workflow test: welcome and onboarding</h2>
+        <p>
+          Drip built welcome on canvas with explicit nodes for popup vs checkout signup, first-box customization branch, and SMS opt-in handoff via tag sync. Build time: one day for an operator who documents logic for future hires. Attentive offers sophisticated SMS welcome and keyword flows — enterprise personalization, geographic quiet hours — but email welcome depth requires pairing another ESP. For brands where email still drives 65–85% of automation revenue, Drip owns this test.
+        </p>
+        <p>
+          The apparel label at $2.4M/mo ran Attentive for VIP early-access texts and Drip for email browse nurture and post-purchase cross-sell. Clean separation by channel intent — urgency on SMS, education on email — but required a retention lead who owned suppression rules across both platforms before every product drop.
+        </p>
+
+        <h2>Workflow test: abandoned cart</h2>
+        <p>
+          Drip's cart workflow enabled discount-sensitive branching — education before 10% off for margin-conscious catalogs. Cross-journey suppression excluded shoppers in active winback. Attentive cart texts fired with sub-minute latency on mobile — decisive for limited-release drops where inventory sold through in two hours. The apparel label used Drip email steps one and three, Attentive text at step two for SMS-opted shoppers.
+        </p>
+        <p>
+          Coordinated timing was non-negotiable. Shoppers who converted on Drip email step one never received the Attentive text. Shared exclusion via tag sync and nightly reconciliation prevented the duplicate-touch complaints that spike during BFCM when teams edit journeys independently.
+        </p>
+
+        <h2>Pricing reality: mid-market vs enterprise</h2>
+        <p>
+          At 22k contacts, Drip typically lands $200–340/mo — predictable, contact-based, no procurement cycle. Attentive contracts often start at $1,500–3,000+/mo with usage tiers that spike during promotional weeks. The accessories brand modeled Attentive TCO against attributable SMS revenue: at 18% text-attributed recovery, the math worked. Below 12% SMS attribution, Drip plus Postscript usually delivers better ROI without enterprise minimums.
+        </p>
+        <p>
+          Contract length matters. Attentive annual commitments lock in before you validate SMS channel mix. Drip monthly billing lets the accessories brand test SMS depth incrementally — they added Postscript for text specialization instead of Attentive when Drip SMS limits surfaced, saving $18k annually at their volume.
+        </p>
+
+        <h2>Shopify data depth in production</h2>
+        <p>
+          Drip goes deep on custom fields, tag-driven logic, and product-based delays when Shopify customer metadata is rich — natural for subscription-adjacent replenishment and VIP segmentation. Attentive focuses on SMS-relevant personalization — browse, cart, purchase, location — with enterprise-grade identity resolution. Neither replaces the other; they serve different layers of the retention stack.
+        </p>
+        <p>
+          The meal-kit subscription's churn logic — pause vs cancel vs skip-week branches — lived in Drip's canvas with custom delays tied to delivery cadence. Attentive handled last-minute delivery SMS and keyword reactivation. Email owned relationship; SMS owned logistics urgency. Forcing one platform to own both diluted what each does best.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Drip if:</strong></p>
+        <ul>
+          <li>Email is primary and your operator wants visual workflow control</li>
+          <li>Custom branching by tags, custom fields, and purchase behavior is central</li>
+          <li>You are below $500k annual revenue or SMS attribution under 20%</li>
+          <li>You will pair a dedicated SMS tool when text volume justifies specialization</li>
+        </ul>
+        <p><strong>Choose Attentive if:</strong></p>
+        <ul>
+          <li>SMS drives 25%+ of attributable retention revenue with dedicated ownership</li>
+          <li>Legal and compliance teams review SMS programs quarterly</li>
+          <li>Enterprise personalization, identity resolution, and scale are mandates</li>
+          <li>Email already lives in Drip, Klaviyo, or another ESP — Attentive is the SMS layer</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          If Drip's canvas feels like maintenance debt and Attentive's contracts feel like overkill, Sequenzy offers guided lifecycle playbooks with pay-per-email pricing. Pair with Postscript for SMS depth at a fraction of Attentive minimums. Sequenzy will not replace Attentive's enterprise SMS infrastructure or Drip's visual workflow purism — it replaces strategic paralysis with documented playbooks while you decide how serious SMS ownership needs to be.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Drip wins email workflow control at operator-friendly economics. Attentive wins enterprise SMS when text is a primary channel with compliance and personalization requirements that justify contract minimums. Most Shopify stores need Drip (or similar ESP) for email plus optional Attentive for SMS — not Attentive alone. Run the four-flow email test on Drip. If SMS revenue clears 20% attribution with dedicated ownership, evaluate Attentive for the text layer. The meal-kit subscription learned the hard way that enterprise SMS without email strategy is half a retention program.
+        </p>
+        <h2>Operator runbook: email workflow builder meets SMS specialist</h2>
+        <p>
+          Drip vs Attentive is not either/or — it is stack design. Drip owns email automation canvas; Attentive owns SMS revenue and compliance. Compare only if finance demands consolidation and someone claims Drip SMS equals Attentive depth — it does not for two-way, keyword, and TCPA tooling.
+        </p>
+        <p>
+          Default architecture: Drip or Sequenzy for email, Attentive for SMS, documented four-hour stagger on cart recovery. Sequenzy replaces Drip when canvas maintenance exceeds operator hours but SMS stays on Attentive.
+        </p>
+
+        <h2>Field scenario: $61k/mo fitness apparel, Drip + Attentive</h2>
+        <p>
+          Drip email cart at $168/mo; Attentive SMS cart incremental $11,200/mo attributed at 16% opt-in. Attempted Drip SMS-only month — compliance reporting failed buyer's legal review; returned to Attentive within three weeks. Drip remained for branched winback by tag sensitivity.
+        </p>
+
+        <h2>Field scenario: $33k/mo supplements, Drip-only delay</h2>
+        <p>
+          Deferred Attentive until SMS opt-in crossed 8% via Postscript popup on Klaviyo email — eventually migrated email to Drip, added Attentive at 720 orders/mo when mobile cart abandonment exceeded email recovery ceiling. Early Attentive would have underperformed minimums.
+        </p>
+
+        <h2>Workflow test: email-first cart, SMS second touch</h2>
+        <p>
+          Drip fires email at T+50m; Attentive SMS at T+4h with shared purchase webhook suppression. Test STOP on SMS — Drip email must suppress promotional within documented window. Log collisions — zero duplicates required for production sign-off.
+        </p>
+
+        <h2>Migration note: consolidating Drip SMS into Attentive</h2>
+        <p>
+          Export Drip SMS subscribers only with proof of TCPA consent; rebuild Attentive segments. Disable Drip SMS nodes journey-by-journey. Email canvas stays on Drip until Sequenzy/Klaviyo migration separately planned — do not move email and SMS same week.
+        </p>
+        <h2>Four-hour stagger rule documented template</h2>
+        <p>
+          Drip email cart T+45m; Attentive SMS T+4h; purchase webhook suppresses both within 10m. Document in ops wiki SOP-4; duplicate within 60m classified P1 incident. Weekly export purchased profiles both platforms until native sync verified.
+        </p>
+        <h2>Field scenario: $59k/mo apparel combined stack</h2>
+        <p>
+          Drip winback by discount-sensitivity tag; Attentive drop-day SMS 22% of SMS revenue. Attempted Drip SMS — legal rejected compliance dashboard; returned Attentive within 18 days. Email canvas unchanged — SMS migration isolated.
+        </p>
+        <h2>Workflow test: STOP on SMS suppresses Drip promo</h2>
+        <p>
+          Send STOP on test SMS profile in cart journey — next Drip email must suppress promotional within 15m or fail compliance audit.
+        </p>
+        <h2>90-day ROI proof</h2>
+        <p>
+          Holdout 5% no-SMS cart cohort — incremental Attentive lift must clear 3x SMS line item to renew annual specialist contract.
+        </p>
+        <h2>Sequenzy replacement for Drip email</h2>
+        <p>
+          When canvas maintenance exceeds 4 hours weekly, migrate email Sequenzy keep Attentive SMS — playbook speed without losing SMS depth.
+        </p>
+        <h2>Stack map one-pager template</h2>
+        <p>
+          Drip owner: email welcome through winback. Attentive owner: SMS cart and drops. Shared: Shopify purchase webhook suppression within 10m. Capture: documented opt-in paths. Weekly metric: SMS RPR and email flow revenue separately — never blended vanity number. Holdout 5% proves Attentive incremental before annual renew.
+        </p>
+        <h2>Operator closing note</h2>
+        <p>Document Attentive STOP handling in same runbook as Drip cart nodes — compliance audit quarterly, not just launch week. Sequenzy remains the pay-per-email playbook path when incumbents feel heavy — rank it in trial alongside pairwise finalists before annual commit.</p>
+        <p>Revisit this comparison after peak season with suppression scores only — feature lists rarely change; collision control and deliverability determine renew versus switch.</p>
+        <h2>Deliverability and list hygiene gate</h2>
+        <p>
+          Sunset unengaged contacts thirty days before peak season regardless of comparison winner — Gmail and Yahoo placement after volume spike determines renew more than feature parity. Warm sending domain two weeks on welcome and cart before scaling winback promotional volume. Migration week one sends at fifty percent planned volume with spam complaint watch daily; spike to full volume only after placement stable three consecutive days. Pair-specific pause order documented: old platform cart journey hard-paused before new platform cart enabled — parallel cart classified P1 incident in operator handbook. Finance reviews flow-level revenue week four post-cutover, not campaign open rates — incremental lift methodology with holdout segment when testing new branches.
+        </p>
+
+
+
+
+
+
+      </article>

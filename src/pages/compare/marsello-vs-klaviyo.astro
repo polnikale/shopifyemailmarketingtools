@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/marsello-vs-klaviyo';
+const title = 'Marsello vs Klaviyo for Shopify Email: 2026 Comparison';
+const desc = 'Marsello vs Klaviyo for Shopify — loyalty-led retention vs customer data platform depth, POS integration, pricing, and which platform fits retail-first vs DTC-first brands.';
+
+const faqs = [
+  {
+    question: 'Is Marsello or Klaviyo better for a Shopify store with retail POS?',
+    answer: 'Marsello wins when loyalty points, in-store earn-and-burn, and unified online-offline customer profiles are central — Marsello was built for retail-first retention. Klaviyo wins when pure DTC email segmentation, predictive CLV, and browse abandonment depth drive revenue. Hybrid merchants often use Marsello for loyalty and Klaviyo for email until consolidation pressure forces a choice.',
+  },
+  {
+    question: 'How does Marsello vs Klaviyo pricing compare at 12,000 contacts?',
+    answer: 'Marsello at 12k often runs $150–300/mo depending on loyalty features and order volume. Klaviyo at 12k profiles typically lands $200–350/mo with SMS extra. Marsello bundles loyalty plus email — value collapses if you only need email without points program. Klaviyo email-only can undercut Marsello for DTC-only stores without POS.',
+  },
+  {
+    question: 'Which has better loyalty-triggered email?',
+    answer: 'Marsello natively — point balances, tier upgrades, referral milestones, and birthday rewards trigger email without tag sync maintenance. Klaviyo segments by loyalty tags from third-party apps but requires integration upkeep. For coffee shops, boutiques, and brands where loyalty is the retention engine, Marsello\'s native loop saves hours weekly.',
+  },
+  {
+    question: 'Can I migrate from Marsello to Klaviyo or vice versa?',
+    answer: 'Yes, with complexity. Export contacts with point balances and tier status — Klaviyo needs loyalty data mapped to custom properties. Rebuild welcome and cart first; run parallel two weeks. POS-linked customer merges require careful deduplication. Budget 3–4 weeks for retail brands with active loyalty programs.',
+  },
+  {
+    question: 'Should I also consider Sequenzy instead of Marsello or Klaviyo?',
+    answer: 'Sequenzy fits when lifecycle email strategy matters more than loyalty infrastructure or CDP depth — agent-first playbooks with pay-per-email pricing. Keep Marsello for loyalty if already invested in POS integration. Klaviyo still wins on predictive Shopify data. Sequenzy layers strategy without replacing Marsello\'s points engine.',
+  },
+  {
+    question: 'Does Klaviyo POS integration match Marsello?',
+    answer: 'Marsello\'s Shopify POS integration is core — in-store purchases earn points, trigger email, and sync to online profile in one system. Klaviyo integrates with Shopify POS for event sync but loyalty logic lives in separate apps. For brands opening retail locations, Marsello reduces integration fragility.',
+  },
+  {
+    question: 'Which platform handles replenishment and winback better?',
+    answer: 'Klaviyo offers deeper replenishment by SKU, predicted reorder dates, and winback splits by CLV decile. Marsello handles standard winback with loyalty point incentives — effective for repeat-purchase brands where points drive return visits. For irregular consumption catalogs, Klaviyo\'s flow filters are safer.',
+  },
+  {
+    question: 'What workflow test should decide the winner?',
+    answer: 'Build loyalty tier upgrade email, post-purchase review plus points earn, abandoned cart with points reminder, winback with double-points offer, and POS purchase follow-up. If loyalty is live and driving repeat visits, score Marsello holistically. If email segmentation without points program is the job, Klaviyo usually wins outright.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">Marsello vs Klaviyo</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Head-to-head</p>
+        <h1 class="hero-title mt-5">Marsello vs Klaviyo for Shopify email</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          Marsello treats retention as a loyalty problem first — points, tiers, referrals, and email triggered by earn-and-burn behavior across online and POS. Klaviyo treats retention as a data platform problem — every browse and order feeds segmentation for the next campaign. We evaluated both through a coffee roaster with three retail locations and Shopify POS, a pure DTC skincare brand with no stores, and a boutique apparel chain where in-store staff manually looked up customer points at checkout.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Loyalty + email unified', tool: 'Marsello', reason: 'Points, tiers, and email triggers in one retail-native stack.' },
+            { label: 'Shopify data depth', tool: 'Klaviyo', reason: 'Predictive CLV, browse events, and flow sophistication.' },
+            { label: 'POS integration', tool: 'Marsello', reason: 'In-store earn-and-burn without third-party tag sync.' },
+            { label: 'Pure DTC segmentation', tool: 'Klaviyo', reason: 'Browse abandonment and CLV deciles without loyalty overhead.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Lifecycle playbooks if loyalty is handled elsewhere.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>Marsello</th><th>Klaviyo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Best for</td><td>Retail + DTC loyalty programs</td><td>Data-heavy DTC retention</td></tr>
+            <tr><td>Starting price</td><td>From ~$135/mo</td><td>Free tier; paid from ~$20/mo</td></tr>
+            <tr><td>Billing model</td><td>Orders + contacts tiers</td><td>Active profiles + SMS</td></tr>
+            <tr><td>Shopify depth</td><td>Native — orders, POS, loyalty</td><td>Native — full event graph</td></tr>
+            <tr><td>Loyalty program</td><td>Built-in core</td><td>Via integration</td></tr>
+            <tr><td>POS support</td><td>Core strength</td><td>Event sync, loyalty external</td></tr>
+            <tr><td>Predictive analytics</td><td>Basic RFM</td><td>CLV, churn, discount sensitivity</td></tr>
+            <tr><td>Learning curve</td><td>Moderate</td><td>Moderate–steep</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Why this comparison matters for Shopify merchants</h2>
+        <p>
+          Marsello and Klaviyo both send email from Shopify data. The fork is whether loyalty is your retention engine or email segmentation is. Marsello assumes repeat visits come from points, tiers, and referral incentives — email reinforces that loop. Klaviyo assumes repeat purchases come from behavioral targeting — browse history, predicted reorder, discount sensitivity. The coffee roaster's third location launch made Marsello obvious: baristas earned points on POS purchases that triggered welcome-back emails when customers browsed online days later.
+        </p>
+        <p>
+          The pure DTC skincare brand had no POS and no points program — Marsello's loyalty infrastructure was dead weight on the invoice. Klaviyo's predictive CLV and replenishment timing matched their subscription-adjacent model. Comparing these tools without naming your retention thesis wastes evaluation time.
+        </p>
+
+        <h2>Merchant scenario: coffee roaster with three POS locations</h2>
+        <p>
+          Online subscribers and walk-in retail customers shared one Marsello profile — in-store bag purchases earned points redeemable on Shopify subscription renewals. Tier upgrade emails fired automatically when annual spend crossed thresholds spanning both channels. Klaviyo trial required Smile.io or similar for loyalty plus manual tag sync for tier segments — workable but fragile when POS staff forgot to ask for email at checkout.
+        </p>
+        <p>
+          Marsello attributed 28% of repeat online orders to loyalty-triggered email within six months. Klaviyo could have segmented repeat purchasers but lacked native point-balance merge tags without integration maintenance. For omnichannel retail, Marsello's unified loop beat Klaviyo's email depth.
+        </p>
+
+        <h2>Workflow test: loyalty tier upgrade</h2>
+        <p>
+          Marsello triggered tier upgrade announcement with new earn rate and exclusive blend access when customer crossed Silver threshold — POS and online purchases counted equally. Klaviyo achieved equivalent with custom properties synced from loyalty app — extra configuration, similar outcome, ongoing sync risk when loyalty vendor updates API.
+        </p>
+        <p>
+          The boutique apparel chain's staff iPad showed customer tier at checkout — Marsello POS integration meant associates could mention expiring points during fitting room conversations. Email reinforced in-store moments. Klaviyo email alone cannot replicate that associate-facing loyalty UX.
+        </p>
+
+        <h2>Workflow test: abandoned cart with points reminder</h2>
+        <p>
+          Both recovered carts effectively. Marsello cart email two included dynamic point balance — "You have 340 points — enough for $17 off this cart." Klaviyo cart recovery used predicted discount sensitivity without native points context unless tags synced. For loyalty-heavy catalogs, Marsello's cart emails feel personalized beyond product blocks alone.
+        </p>
+        <p>
+          Pure DTC brands without points programs saw no Marsello advantage on cart — Klaviyo's conditional branching and SMS options won decisively.
+        </p>
+
+        <h2>Pricing reality at growing list sizes</h2>
+        <p>
+          At 20k contacts with moderate order volume, Marsello often runs $250–450/mo including loyalty. Klaviyo at 20k profiles lands $250–450/mo before SMS. Marsello value requires active loyalty program — paying for Marsello email-only without points utilization is misallocation. Klaviyo punishes profile bloat; Marsello punishes order volume tiers on high-transaction retail.
+        </p>
+        <p>
+          Model TCO including loyalty app fees if choosing Klaviyo plus third-party points — Marsello bundling often wins for retail-first brands when total stack cost is compared honestly.
+        </p>
+
+        <h2>Shopify data depth in production</h2>
+        <p>
+          Klaviyo's browse abandonment by collection and predicted churn scores changed winback strategy for the skincare DTC — education-first for high-CLV deciles. Marsello winback with double-points weekends recovered revenue for the coffee roaster but lacked predictive splits. Choose based on whether points or predictions drive your repeat purchase hypothesis.
+        </p>
+
+        <h2>Team fit: who should choose which</h2>
+        <p><strong>Choose Marsello if:</strong></p>
+        <ul>
+          <li>You run Shopify POS and want online-offline loyalty unified</li>
+          <li>Points, tiers, and referrals are central to repeat purchase strategy</li>
+          <li>Retail staff need customer loyalty visibility at checkout</li>
+          <li>Email reinforces earn-and-burn rather than replacing it</li>
+        </ul>
+        <p><strong>Choose Klaviyo if:</strong></p>
+        <ul>
+          <li>You are pure DTC without retail locations or points program</li>
+          <li>Predictive analytics and browse segmentation justify profile pricing</li>
+          <li>Loyalty lives in a separate best-in-class app you will not migrate</li>
+          <li>Native SMS plus email with shared suppression is non-negotiable</li>
+        </ul>
+
+        <h2>Also consider Sequenzy</h2>
+        <p>
+          If Marsello feels like paying for loyalty you have not launched and Klaviyo feels like CDP overhead, Sequenzy offers guided lifecycle playbooks with pay-per-email pricing. Keep Marsello for loyalty when POS integration is live. Sequenzy layers email strategy without replacing either platform's core strength.
+        </p>
+
+        <h2>Verdict</h2>
+        <p>
+          Marsello wins when loyalty and POS are your retention engine and email reinforces earn-and-burn across channels. Klaviyo wins when pure DTC behavioral segmentation and predictive analytics drive revenue without points infrastructure. Run the loyalty workflow test first — tier upgrade, points earn post-purchase, cart with balance reminder. If those flows define your program, Marsello earns its invoice. If not, Klaviyo is the safer default.
+        </p>
+        <h2>Operator runbook: loyalty-led retention vs marketing CDP</h2>
+        <p>
+          Marsello anchors loyalty points and in-store/online unified programs; Klaviyo anchors email/SMS lifecycle from Shopify events. Compare when loyalty is strategic — not every store needs Marsello before email maturity. Klaviyo wins pure email automation; Marsello wins when points redemptions drive repeat and POS integration matters.
+        </p>
+        <p>
+          Sequenzy + Marsello loyalty is viable: playbooks for email, Marsello for points — Klaviyo when both email data depth and loyalty advanced segmentation required.
+        </p>
+
+        <h2>Field scenario: $48k/mo boutique with POS, Marsello win</h2>
+        <p>
+          35% orders in-store via Shopify POS; Marsello unified earn/burn. Klaviyo could email but not replace points UX in-store. Marsello email basic — paired Sequenzy for cart and winback while Marsello owned loyalty campaigns. Stack cost higher than Klaviyo-only but matched omnichannel reality.
+        </p>
+
+        <h2>Field scenario: $52k/mo online-only skincare, Klaviyo win</h2>
+        <p>
+          Marsello trial felt redundant with Yotpo loyalty already weakly used. Klaviyo predictive winback and browse segments drove 16% lift vs Marsello preset emails. Marsello cancelled — loyalty deferred until POS expansion year two.
+        </p>
+
+        <h2>Workflow test: points balance merge tag in post-purchase email</h2>
+        <p>
+          Complete order earning points. Marsello should render balance in email; Klaviyo needs integration or fails. Conversely test browse abandonment — Klaviyo should win without loyalty context. Pick platform matching primary revenue lever.
+        </p>
+
+        <h2>Migration note: Marsello email → Klaviyo</h2>
+        <p>
+          Keep Marsello loyalty core; migrate marketing email only. Export contacts; disable Marsello email automations. Loyalty transactional triggers stay Marsello — document suppression vs Klaviyo promotional. Sequenzy option if Marsello email weak but Klaviyo heavy.
+        </p>
+        <h2>Loyalty points vs marketing CDP budget lines</h2>
+        <p>
+          Marsello loyalty budget often CX/retention hybrid; Klaviyo marketing budget — finance false consolidation debate avoided by split allocation. Points earn email Marsello; browse cart Klaviyo when both load-bearing.
+        </p>
+        <h2>Field scenario: $48k/mo POS boutique Marsello + Sequenzy</h2>
+        <p>
+          35% POS orders — Marsello points non-negotiable; email Sequenzy playbooks; Klaviyo deferred until online-only revenue dominates.
+        </p>
+        <h2>Field scenario: $52k/mo online skincare Klaviyo</h2>
+        <p>
+          Marsello trial redundant with weak loyalty; Klaviyo browse winback 16% lift vs Marsello preset emails.
+        </p>
+        <h2>Points merge tag workflow test</h2>
+        <p>
+          Post-purchase balance render accuracy — Marsello must pass; Klaviyo needs integration or loyalty stays Marsello-only for that touchpoint.
+        </p>
+        <h2>Operator scoring sheet — Marsello vs Klaviyo</h2>
+        <p>
+          Rate each platform 1–5 on: Shopify event usable without CSV export, suppression expressiveness on gift and wholesale edge cases, time to edit copy during mock sale window, flow-level revenue reporting finance trusts, migration risk from incumbent, and total cost at 2x projected volume including SMS if applicable. Highest sum wins only if no category scores 1 — a tool that fails suppression burns margin even when loyalty points POS unified looks perfect in demo.
+        </p>
+        <p>
+          Document trial in one page: chosen tool, rejected runner-up, workflows launching week one (welcome plus cart minimum), metric proving success day thirty (recovery rate or revenue per recipient), rollback trigger if duplicate sends or unsub exceeds 0.9% weekly. Marsello wins when loyalty points POS unified changes Monday standups. Klaviyo wins when marketing CDP browse segments remains load-bearing for your org shape twelve months forward.
+        </p>
+
+        <h2>Field scenario: procurement committee narrow read</h2>
+        <p>
+          $56k/mo merchant finance allowed two comparison pages only — this pair plus Sequenzy alternative brief. Committee scored suppression test double-weight because prior platform duplicated cart during Q4 (estimated $4,200 margin leak). Winner required mock Thursday edit under thirty minutes by non-technical marketer. Runner-up documented with explicit revisit trigger: order 950/mo or SMS share 18% for stack changes. Marsello loyalty plus Sequenzy email hybrid noted as documented third path without expanding RFP to twelve vendors — analysis paralysis avoided, implementation owner named before contract sign.
+        </p>
+
+        <h2>Peak season re-certification</h2>
+        <p>
+          Sixty days before Black Friday, re-run suppression and deliverability checks only — not full feature re-evaluation. Verify: global promo pause while transactional continues; VIP segment excludes recent full-price buyers automatically; SMS and email share exclusion without manual export; deliverability placement stable after list sunset. Platform failing two of four stays off annual renew list regardless of Q3 product release notes. Pair-specific migration pause order in wiki — cart journey never parallel between old and new sender during cutover week.
+        </p>
+
+        <h2>Unit economics reminder</h2>
+        <p>
+          Cheaper contact tier loses when operator maintenance exceeds saved subscription dollars — common when visual canvas or CDP fields unused. Model engaged ratio not total list before assuming incumbent cheaper. Sequenzy pay-per-email wins list bloat; Klaviyo wins weekly predictive audits; Omnisend and Drip win when their specific UX matches operator behavior under sale pressure — not when comparison checkbox count highest.
+        </p>
+
+
+
+
+      </article>

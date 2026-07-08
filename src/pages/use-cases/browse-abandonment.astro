@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description, pageTitle } from '../../content';
+import { useCaseBySlug } from '../../data/use-cases';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const uc = useCaseBySlug('browse-abandonment')!;
+const path = '/use-cases/browse-abandonment';
+const title = pageTitle(site, 'use-cases/browse-abandonment');
+const desc = description(site, 'use-cases/browse-abandonment');
+
+const featuredSlugs = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sms'];
+const featuredApps = featuredSlugs.map((s) => appBySlug(s)!).filter(Boolean);
+
+const comparisonApps = [
+  'sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sms', 'shopify-email',
+  'mailchimp', 'activecampaign', 'brevo', 'firepush',
+].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for browse abandonment?',
+    answer: 'Sequenzy ranks first for browse runbooks that delay discounts and branch by collection interest — browse is research signal, not checkout intent. Klaviyo wins with deep view event history and collection-level segmentation at scale. Drip suits operators building explicit browse-depth branches manually.',
+  },
+  {
+    question: 'When should browse abandonment emails send?',
+    answer: 'First email 4–8 hours with education and social proof — no discount. Second at 48 hours with complementary products or reviews. Third at 72–96 hours may test soft incentive for high browse depth only. Faster timing feels surveillance-heavy on high-AOV spec-sheet readers.',
+  },
+  {
+    question: 'How is browse abandonment different from cart abandonment?',
+    answer: 'Cart abandoners started checkout; browse abandoners researched without committing. Browse educates and builds trust; cart recovers intent. Never apply cart discount ladders to browse — trains researchers to abandon carts deliberately for better offers.',
+  },
+  {
+    question: 'What browse trigger threshold should ops use?',
+    answer: 'Common: viewed product 2+ times OR spent 60+ seconds on PDP OR viewed 3+ products in same collection within 24 hours. Workwear spec sheets and jewelry may require higher thresholds. Low thresholds flood list with emails for casual window shoppers.',
+  },
+  {
+    question: 'Should browse emails include discounts?',
+    answer: 'Rarely on email one or two. Browse is upper-funnel — discounting trains non-buyers to browse repeatedly for codes. Reserve incentives for deep browse depth, no purchase in 30 days, prior discount sensitivity — not everyone who viewed twice.',
+  },
+  {
+    question: 'How do ops exclude recent purchasers?',
+    answer: 'Suppress browse for products or collections purchased in last 14–30 days. Cross-sell different categories instead of re-pitching bought items. Sync Shopify order line items into exclusion segments.',
+  },
+  {
+    question: 'Can Shopify Email do browse abandonment?',
+    answer: 'No meaningful automation. Browse requires view event tracking, dynamic product blocks, multi-touch nurture — outside Shopify Email. Dedicated email marketing platforms with Shopify pixel integration required.',
+  },
+  {
+    question: 'What metrics matter for browse abandonment?',
+    answer: 'Browse-to-cart rate, full-price conversion without discount, revenue per browse email, product view depth before purchase. Click rate misleads when discounts inflate engagement without margin.',
+  },
+  {
+    question: 'How does browse interact with cart flows?',
+    answer: 'When customer adds to cart, exit browse immediately and enter cart recovery. Priority: cart > browse. Never send browse discount while cart flow active.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/use-cases" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All runbooks</a>
+      <p class="editorial-kicker mt-6">Browse abandonment · SOP 03</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Best Shopify email marketing tools for browse abandonment</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Browse abandonment is the informed follow-up — not a cart recovery email wearing a fake mustache. A facilities manager comparing flame-resistant coverall spec sheets for eleven minutes is evaluating compliance and durability, not waiting for 15% off. A pet owner reading ingredient panels on three kibble PDPs needs sourcing transparency, not checkout urgency. The right email marketing tool respects research intent and escalates incentives only when behavioral data warrants it.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        This runbook ranks Shopify email marketing tools for {uc.job}. We evaluated view event fidelity, collection-level branching, discount delay discipline, and collision rules with <a class="link" href="/use-cases/abandoned-cart">cart recovery</a> — where most browse programs break in production.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/apps">Full app rankings</a>
+        <a class="btn btn-secondary" href="/use-cases/abandoned-cart">Abandoned cart</a>
+        <a class="btn btn-secondary" href="/for/high-aov">High-AOV guide</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Top Shopify email marketing tools for browse abandonment"
+      picks={[
+        { label: 'Best overall', tool: 'Sequenzy', reason: 'Browse runbooks with proof-first sequencing, collection branching, cart collision suppression.' },
+        { label: 'Best data depth', tool: 'Klaviyo', reason: 'View event history, collection segments, dynamic product blocks at catalog scale.' },
+        { label: 'Best workflow control', tool: 'Drip', reason: 'Visual browse-depth branches with explicit education versus incentive paths.' },
+        { label: 'Best fast setup', tool: 'Omnisend', reason: 'Prebuilt browse series for SMB when thresholds are standard.' },
+        { label: 'Best social proof', tool: 'Yotpo', reason: 'Review blocks in browse emails when UGC drives research-stage conversion.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three browse abandonment field scenarios</h2>
+      <p>
+        <strong>Scenario A — Workwear brand, FR coverall spec-sheet readers.</strong> Sequenzy browse trigger: 90+ seconds on PDP or 2+ views in 48 hours. Email one at 6 hours: compliance FAQ and field-test summary — no discount. Email two at 48 hours: customer photo grid from trade vertical. Browse-to-cart rate 9.2% at full price; zero cart-intent training from premature coupons.
+      </p>
+      <p>
+        <strong>Scenario B — Pet food DTC, ingredient-panel browsers.</strong> Klaviyo collection-level browse for grain-free line — dynamic block pulled exact kibble viewed. Excluded recent purchasers of same formula. Email three at 96 hours tested 5% only for 4+ PDP views without add-to-cart. Yotpo review snippets in email two lifted click-to-cart 18%.
+      </p>
+      <p>
+        <strong>Scenario C — Standing desk configurator, high-AOV research.</strong> Drip required 3+ product views in configurator collection before enrollment — low-threshold browse disabled after list fatigue spike. Education arc over 5 days before soft financing mention. Customer added to cart day 4 — browse flow exited, cart recovery took priority per documented matrix.
+      </p>
+      <p>
+        Fatal error: identical creative and discount ladder as cart recovery. Researchers learn to add-to-cart for better offer. Cart recovery margin collapses; browse metrics look healthy on inflated clicks. Separate runbooks, separate incentive architecture.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Execution playbook</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Browse abandonment operating contract</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 text-slate-700">
+        <div><h3 class="font-black text-slate-950">Trigger</h3><p class="mt-2 text-[17px] leading-8">{uc.trigger}</p></div>
+        <div><h3 class="font-black text-slate-950">Timing</h3><p class="mt-2 text-[17px] leading-8">{uc.timing}</p></div>
+      </div>
+      <div class="mt-8"><h3 class="font-black text-slate-950">Exclusions</h3>
+        <ul class="mt-3 space-y-2">{uc.exclusions.map((e) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{e}</li>)}</ul>
+      </div>
+      <div class="mt-8"><h3 class="font-black text-slate-950">Metrics</h3>
+        <ul class="mt-3 space-y-2">{uc.metrics.map((m) => <li class="flex gap-2 text-[17px] leading-8"><span class="text-cyan-800">→</span>{m}</li>)}</ul>
+      </div>
+    </div>
+
+    <div class="ledger-card mb-12 overflow-x-auto">
+      <p class="editorial-kicker">Comparison table</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">10 Shopify email marketing tools for browse abandonment</h2>
+      <table class="mt-8 w-full min-w-[720px] text-left text-sm">
+        <thead>
+          <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+            <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Browse fit</th><th class="py-3 pr-4">Pricing</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-700">
+          {comparisonApps.map((app, i) => (
+            <tr class="border-b border-cyan-900/8">
+              <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
+              <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
+              <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
+              <td class="py-3">★ {app.rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Detailed reviews</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five email marketing tools for browse abandonment</h2>
+
+    <ToolReview app={featuredApps[0]} rank={1} badge="Editor's choice" paragraphs={[
+      'Sequenzy leads browse because discount-first browse is how ops accidentally train cart abandonment. Runbooks enforce proof-first sequencing, collection branching, and cart-priority suppression — deployable without rebuilding view-event boolean trees.',
+      'Browse volume can exceed cart — pay-per-email lets ops run education-heavy series without per-contact bill shock from researchers who never buy.',
+      'Agent prompt "browse workwear PDP 90+ seconds, send compliance proof, no discount until touch three for 4+ views" produces working flow in hours.',
+      'View event depth adequate for typical catalogs; Klaviyo leads exotic browse granularity at 4,000+ SKU scale with custom pixel recipes.',
+    ]} />
+
+    <ToolReview app={featuredApps[1]} rank={2} paragraphs={[
+      'Klaviyo browse depth is industry benchmark — view history, collection membership, time-on-site proxies via repeat views.',
+      'Dynamic product blocks pull exact variant browsed — critical for size-run and configurator catalogs.',
+      'Predictive engagement scores throttle browse frequency for low-intent profiles — reduces list fatigue.',
+      'Profile hygiene essential — casual browsers inflate counts; exclude non-engaged researchers from expensive branches after 90 days.',
+    ]} />
+
+    <ToolReview app={featuredApps[2]} rank={3} paragraphs={[
+      'Drip canvas makes browse-depth branches visible — ops catch when high-AOV education path merges into discount path incorrectly.',
+      'Tag browse behavior at thresholds: browsed-deep, browsed-collection-X. Trigger sequences by tag with explicit waits.',
+      'Manual threshold tuning — no predictive layer. Acceptable when retention owner audits weekly.',
+      'Strong for spec-sheet and comparison-shopping verticals needing custom logic.',
+    ]} />
+
+    <ToolReview app={featuredApps[3]} rank={4} paragraphs={[
+      'Omnisend browse templates live fast — verify default discount placeholders stripped before enable.',
+      'Adequate view tracking for SMB catalogs under 500 SKUs.',
+      'Weaker collection-level branching than Klaviyo for complex merchandising.',
+      'Bridge platform until browse logic needs per-collection creative at scale.',
+    ]} />
+
+    <ToolReview app={featuredApps[4]} rank={5} paragraphs={[
+      'Yotpo review content in browse email two addresses research-stage objection — fit, quality, durability.',
+      'Pair with Sequenzy or Klaviyo for browse trigger and suppression logic — Yotpo is proof layer.',
+      'Minimum review count threshold before displaying — empty proof worse than no email.',
+      'Pet, beauty, workwear verticals see strongest research-stage UGC lift.',
+    ]} />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Threshold tuning</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Browse enrollment gates</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Start conservative: 2+ views or 60+ seconds. Review enrolled volume weekly — if browse emails exceed 15% of total sends, tighten thresholds. High-AOV: add collection-specific minimum view count. Log threshold changes in retention wiki with enrollment volume before/after.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">OOS browse handling</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Do not educate toward dead SKUs</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Suppress browse for OOS variants — route to <a class="link" href="/use-cases/back-in-stock">back-in-stock waitlist</a> instead. Inventory check at send same as cart recovery. Recommending unavailable size destroys research-stage trust.
+      </p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Browse content architecture</h2>
+      <p>Email one: education matching browse context — spec summary, sourcing, compliance, sizing guide link. Email two: social proof — reviews, UGC, expert quote. Email three: soft CTA — complementary collection, financing FAQ, optional incentive for deep browsers only. Never product grid with six SKUs on mobile — see <a class="link" href="/use-cases/email-design">email design runbook</a>.</p>
+      <p>Cart priority documented: add-to-cart event exits browse within 15 minutes, suppresses pending browse touches containing offers. Test with staff account monthly alongside cart collision QA.</p>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Weekly ops review</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Browse program health metrics</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Track weekly: browse emails sent as percent of total volume, browse-to-cart rate, full-price browse conversion, discount redemption on touch three only. If touch three discount redemption exceeds 40% of browse conversions, threshold is too loose — researchers are gaming the browse ladder. If browse-to-cart flatlines below 4% for four weeks, review creative education match to PDP context — generic bestseller grid on spec-sheet browse is common failure.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Logged-in browse recovers at higher rate — incentivize account creation in <a class="link" href="/use-cases/post-purchase">post-purchase</a> without blocking guest research. Identity stitching via Klaviyo pixel improves browse enrollment accuracy for returning guests.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        B2B spec-sheet traffic: exclude from consumer browse discount paths entirely. Fleet and contractor accounts browsing SKU pages need rep follow-up or quote workflow — not DTC nurture with consumer incentives.         Tag B2B session or company domain at capture.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Review browse enrollment volume after site redesign or PDP template change — layout shifts alter time-on-page signals. Threshold that worked pre-redesign may over-enroll post-launch until recalibrated.
+      </p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">
+        Document browse versus cart priority in onboarding deck for new retention hires — most collision bugs are discovered by customers, not QA, when this matrix is missing from wiki. Re-test after any popup or pixel vendor change. Log enrollment volume when thresholds change.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/apps">All tools →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Abandoned cart →</a>
+      <a class="link" href="/use-cases/segmentation">Segmentation →</a>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="Browse abandonment FAQ" />
+</BaseLayout>

@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import ToolReview from '../../components/ToolReview.astro';
+import { siteFromHost, description } from '../../content';
+import { appBySlug } from '../../data/apps';
+const site = siteFromHost();
+
+const path = '/guides/flow-collision-prevention';
+const title = 'Shopify Email Flow Collision Prevention — Operator Playbook';
+const desc = description(site, 'guides/flow-collision-prevention');
+
+const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sms'].map((s) => appBySlug(s)!).filter(Boolean);
+
+const faqs = [
+  {
+    question: 'What is a flow collision in Shopify email?',
+    answer: 'Two or more active automations sending conflicting messages to the same customer within a short window — welcome discount plus cart discount plus browse offer, or winback while replenishment active. Customer receives three codes in 48 hours; margin and trust erode.',
+  },
+  {
+    question: 'Which flow has priority when collisions occur?',
+    answer: 'Cart recovery beats browse abandonment beats welcome promotional beats winback for discount authority. Post-purchase transactional beats all promotional. VIP segments often suppress all discount flows. Document matrix in ops wiki — not tribal knowledge.',
+  },
+  {
+    question: 'How do I suppress welcome when cart is active?',
+    answer: 'Tag or segment: "in-cart-flow" set at cart enrollment, cleared at purchase or 72-hour flow exit. Welcome promotional emails exclude in-cart-flow. Test: staff signup then add to cart within 1 hour — should not receive welcome discount while cart sequence runs.',
+  },
+  {
+    question: 'Does Sequenzy handle collision natively?',
+    answer: 'Sequenzy cart and welcome playbooks include explicit collision suppression templates — cart suppresses welcome offer, winback suppresses active replenishment. Still requires verification on your specific flow variants after agent edits.',
+  },
+  {
+    question: 'Klaviyo flow priority settings — enough?',
+    answer: 'Helpful but not complete. Flow priority does not replace exclusion segments and mutual tags. Complex stacks need both priority order and explicit "not in flow X" conditions on each automation.',
+  },
+  {
+    question: 'How often to audit collisions?',
+    answer: 'Quarterly full matrix test on staff accounts. Immediately when enabling new flow, changing discount logic, or after customer support ticket about stacked codes. BFCM prep requires peak collision review — promotional plus lifecycle overlap.',
+  },
+  {
+    question: 'SMS and email collision?',
+    answer: 'SMS cart at hour 4 should not fire if email cart one sent discount in last 24 hours unless intentional escalation ladder. Coordinate Postscript with ESP via shared suppression tags or Klaviyo integration where configured.',
+  },
+  {
+    question: 'Browse versus cart — same customer?',
+    answer: 'Cart wins — suppress browse promotional while cart flow active. Customer who added to cart showed higher intent; browse discount while cart pending trains waiting.',
+  },
+  {
+    question: 'BFCM promotional collision with lifecycle?',
+    answer: 'Pause or suppress lifecycle discount branches during BFCM window — use single BFCM code or exclusive early access for VIP. Lifecycle winback and cart discount during sitewide 30% creates support chaos and margin leak.',
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} site={site} path={path}>
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="relative overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
+      <p class="editorial-kicker mt-6">Flow collision prevention</p>
+      <h1 class="hero-title mt-5 max-w-5xl">Stop Shopify email flows from stacking three discounts on one customer</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+        Flow collision is the silent margin killer — welcome 15%, cart 10%, browse 20% within 72 hours because each automation was built in isolation. Nobody documented priority. Support tickets ask which code works. VIP customers feel spammed. This playbook defines the priority matrix, suppression tags, staff testing protocol, SMS coordination, and BFCM peak rules that keep Shopify lifecycle programs from eating their own revenue.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+        Sequenzy playbooks encode collision defaults in cart and welcome templates. Klaviyo needs explicit exclusion segments plus flow priority. Omnisend needs manual tags at SMB scale. Platform differs; discipline is universal.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="/guides/discount-discipline">Discount discipline</a>
+        <a class="btn btn-secondary" href="/guides/implementation-plan">Implementation plan</a>
+        <a class="btn btn-secondary" href="/use-cases/welcome-series">Welcome series</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12">
+    <TldrBox
+      title="Priority matrix summary"
+      picks={[
+        { label: 'Highest', tool: 'Post-purchase transactional', reason: 'Order education — never blocked by promotional suppression except unsubscribed.' },
+        { label: 'High', tool: 'Cart recovery', reason: 'Suppresses welcome promo and browse discount while active.' },
+        { label: 'Medium', tool: 'Browse abandonment', reason: 'Suppresses welcome promo; yields to cart.' },
+        { label: 'Lower', tool: 'Welcome promotional', reason: 'Delayed discount; suppressed when cart or browse intent active.' },
+        { label: 'Lowest', tool: 'Winback', reason: 'Suppress when replenishment or cart active; full-price first.' },
+      ]}
+    />
+
+    <div class="prose-shopify mb-12">
+      <h2 class="font-serif text-4xl font-black text-slate-950">Three collision incidents — fixes applied</h2>
+      <p>
+        <strong>Incident A — Candle brand, new subscriber cart within 2 hours.</strong> Welcome email 2 (10% off) and cart email 1 (10% off) same afternoon. Customer used cart code; welcome code still active — confusion. Fix: welcome promotional branch excludes "in-cart-flow" tag; cart enrollment sets tag immediately. Staff test monthly.
+      </p>
+      <p>
+        <strong>Incident B — Supplement subscription, winback plus replenishment.</strong> Lapsed tag misfired on active subscriber with skipped box. Winback 20% sent day before replenishment reminder. Fix: winback excludes active-subscriber and replenishment-enrolled segments. Recharge sync audit weekly.
+      </p>
+      <p>
+        <strong>Incident C — BFCM week, lifecycle plus sitewide.</strong> Cart recovery 10% code active during 30% sitewide — customers stacked codes in checkout until Shopify combined discount rules broke. Fix: BFCM calendar rule pauses lifecycle discount branches Nov 15–Dec 2; cart sends reminder-only with sitewide link.
+      </p>
+    </div>
+
+    <div class="ledger-card mb-12 overflow-x-auto">
+      <p class="editorial-kicker">Collision matrix</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Who suppresses whom</h2>
+      <table class="mt-8 w-full min-w-[720px] text-left text-sm text-slate-700">
+        <thead>
+          <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
+            <th class="py-3 pr-4">Active flow</th>
+            <th class="py-3 pr-4">Suppresses</th>
+            <th class="py-3 pr-4">Tag / segment</th>
+            <th class="py-3">Clear tag when</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Cart recovery</td><td class="py-3 pr-4">Welcome promo, browse promo</td><td class="py-3 pr-4">in-cart-flow</td><td class="py-3">Purchase or 72h exit</td></tr>
+          <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Browse abandonment</td><td class="py-3 pr-4">Welcome promo</td><td class="py-3 pr-4">in-browse-flow</td><td class="py-3">Purchase, cart add, or 7d exit</td></tr>
+          <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Welcome promo</td><td class="py-3 pr-4">None (lowest promo priority)</td><td class="py-3 pr-4">in-welcome-promo</td><td class="py-3">Purchase or series end</td></tr>
+          <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Replenishment</td><td class="py-3 pr-4">Winback discount</td><td class="py-3 pr-4">in-replenishment</td><td class="py-3">Reorder or window end</td></tr>
+          <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold">Winback</td><td class="py-3 pr-4">None if alone</td><td class="py-3 pr-4">in-winback</td><td class="py-3">Purchase or 30d exit</td></tr>
+          <tr><td class="py-3 pr-4 font-bold">VIP segment</td><td class="py-3 pr-4">All discount branches</td><td class="py-3 pr-4">vip-no-discount</td><td class="py-3">Manual VIP removal only</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ledger-card mb-12">
+      <p class="editorial-kicker">Staff test protocol</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Quarterly collision QA</h2>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Test A: popup signup → add cart within 1h → verify no welcome promo while cart active</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Test B: browse collection → add cart → verify browse promo suppressed</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Test C: active replenishment profile → enter winback eligibility → verify winback discount blocked</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Test D: VIP tagged profile → abandon cart → verify reminder-only no code</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Test E: SMS cart branch → confirm no email discount in prior 24h unless ladder allows</li>
+        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Document results with date and tester name in ops wiki</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container space-y-12 pb-16">
+    <p class="editorial-kicker">Platform collision tooling</p>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Five ESPs — suppression capability</h2>
+
+    <ToolReview
+      app={featuredApps[0]}
+      rank={1}
+      badge="Best default suppression"
+      paragraphs={[
+        'Sequenzy cart and welcome playbooks ship with collision suppression documented — cart flow excludes welcome promotional recipients, welcome delays discount when cart tag present. Agent edits preserve suppression when described in prompt.',
+        'Implementation plan week five gate: verify Sequenzy collision templates match your matrix.customizations. Do not assume defaults if flows heavily edited.',
+        'Pay-per-email enables aggressive tagging without profile cost fear — tag every flow enrollment for matrix compliance.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[1]}
+      rank={2}
+      paragraphs={[
+        'Klaviyo flow priority settings plus exclusion segments — both required. "Has not been in flow X in last Y days" conditions on every promotional automation.',
+        'Smart sending reduces email fatigue but does not replace discount collision logic — fatigue and collision are different problems.',
+        'Complex stacks benefit from Klaviyo segment library documenting mutual exclusions — living document updated when flows added.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[2]}
+      rank={3}
+      paragraphs={[
+        'Drip visual canvas makes collision paths explicit — tag triggers visible on workflow diagram. Good for quarterly audit when boolean trees need human-readable documentation.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[3]}
+      rank={4}
+      paragraphs={[
+        'Omnisend weakest collision visibility at scale — manual tags in-cart-flow and in-welcome required. Implementation plan must include tag creation week three before cart goes live.',
+        'Prebuilt templates do not know your welcome timing — collision is operator responsibility on Omnisend.',
+      ]}
+    />
+
+    <ToolReview
+      app={featuredApps[4]}
+      rank={5}
+      paragraphs={[
+        'Yotpo multi-module collision risk — email cart plus loyalty reward email plus review request same week. Coordinate across modules with shared customer timeline review.',
+      ]}
+    />
+  </section>
+
+  <section class="container py-12">
+    <div class="card">
+      <p class="editorial-kicker">Common mistakes</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Collision anti-patterns</h2>
+      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
+        <li><strong>Isolated flow builds.</strong> Agency builds cart without reading welcome logic — collision inevitable.</li>
+        <li><strong>Discount in every flow.</strong> Matrix irrelevant when all paths offer codes — discipline first.</li>
+        <li><strong>No tags.</strong> Relying on timing luck — customer enters two flows same day.</li>
+        <li><strong>BFCM ignore.</strong> Lifecycle discounts during sitewide — code stacking at checkout.</li>
+        <li><strong>SMS orphan.</strong> Postscript running parallel discounts without ESP coordination.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <h2 class="font-serif text-4xl font-black text-slate-950">BFCM collision calendar</h2>
+      <p>
+        November 1: audit matrix on staff accounts. November 10: pause lifecycle discount branches or swap to reminder-only. November 15–December 2: single promotional code authority — BFCM campaign wins over cart/winback codes. VIP early access exception documented separately. December 3: re-enable lifecycle discount branches per governance ladder. Read <a class="link" href="/use-cases/black-friday">Black Friday use case</a> for campaign logic.
+      </p>
+      <p>
+        Collision prevention is not one-time setup — new flows, new discounts, new SMS branches reintroduce risk. Quarterly staff tests and <a class="link" href="/guides/discount-discipline">discount discipline</a> audit together.
+      </p>
+    </div>
+  </section>
+
+  <section class="container pb-8">
+    <div class="flex flex-wrap gap-4 text-sm font-bold">
+      <a class="link" href="/guides">All guides →</a>
+      <a class="link" href="/guides/implementation-plan">Implementation plan →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Cart recovery →</a>
+    </div>
+  </section>
+
+<!-- expansion-batch-jul2026 -->
+  <section class="container py-12">
+    <div class="prose-shopify">
+      <p class="editorial-kicker">Field notes</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for flow collision prevention</h2>
+      <p><strong>Scenario A — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario B — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p><strong>Scenario C — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Operator handbook</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers flow collision prevention inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+    </div>
+  </section>
+  <section class="container py-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Implementation discipline</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Guide-to-production handoff</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Each guide maps to a live workflow owner. Selection framework without implementation plan is shelfware. Flow collision prevention without discount discipline is half a fix.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste checklists into Notion with last-reviewed date. Guides rot when the retention lead leaves — scenarios and mistake sections exist to survive turnover.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy-first recommendations assume lean teams; Klaviyo deviations documented when data depth binds.</p>
+    </div>
+  </section>
+  <FaqSection faqs={faqs} title="Flow collision prevention FAQ" />
+</BaseLayout>
