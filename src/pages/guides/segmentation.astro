@@ -227,23 +227,22 @@ const faqs = [
     </div>
   </section>
 
-<!-- expansion-batch-jul2026 -->
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Field notes</p>
-      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for segmentation</h2>
-      <p><strong>Scenario A — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario B — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario C — Coffee subscription, Mailchimp to Klaviyo.</strong> Skipped warmup, imported forty-percent inactive profiles. Fourteen-day warmup protocol recovered inbox placement over three weeks. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three segmentation scenarios from production audits</h2>
+      <p><strong>Scenario A — Pet supplies, 22k contacts / 5k engaged.</strong> Paying for full list while eighty-two percent never opened. Dynamic segment `opened in last 90 days` applied to all promotional sends; sunset workflow queued 9k profiles over six weeks. Bill dropped $140/mo on Omnisend; complaint rate fell because dead addresses stopped receiving sale blasts. Foundation five segments deployed before vertical overlay: purchasers, lapsed, VIP, discount-sensitive, never-purchased.</p>
+      <p><strong>Scenario B — B2B wholesale hybrid.</strong> Consumer welcome fired on wholesale-tagged accounts until `customer.tags contains wholesale` exclusion added to every DTC journey. Margin leak estimated $2,800/Q4 in consumer promo codes on net-thirty accounts. Separate rep-follow-up segment synced from Shopify company profiles — not same automation canvas as DTC welcome.</p>
+      <p><strong>Scenario C — Beauty brand, shade-level segments.</strong> Generic `purchased skincare` segment replaced with shade family from line-item properties. Replenishment timing per shade family — ninety-day serum versus forty-five-day cleanser — stopped one global delay from sending wrong product recommendations. Segment count went from 47 agency-built to 11 actively maintained.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Operator handbook</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers segmentation inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Segmentation maintenance cadence</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: export segment member counts for top ten segments — spikes signal sync issues or misconfigured rules. Tuesday: collision matrix check when customer qualifies for winback and replenishment simultaneously. Wednesday: engaged-ratio report for finance — total list size is vanity, engaged count drives bill and deliverability. Thursday: archive segments unused ninety days. Friday: one new segment hypothesis tested with holdout if traffic allows.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Segment sprawl is the most common post-migration debt. Foundation five plus one vertical overlay beats forty-seven unused agency segments that nobody trusts.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Static CSV exports rot within days on Shopify stores with daily orders — dynamic Shopify-synced definitions are non-negotiable for cart, browse, and replenishment segments.</p>
     </div>
   </section>
   <section class="container py-12">
@@ -252,7 +251,7 @@ const faqs = [
       <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Guide-to-production handoff</h2>
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Each guide maps to a live workflow owner. Selection framework without implementation plan is shelfware. Flow collision prevention without discount discipline is half a fix.</p>
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste checklists into Notion with last-reviewed date. Guides rot when the retention lead leaves — scenarios and mistake sections exist to survive turnover.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy-first recommendations assume lean teams; Klaviyo deviations documented when data depth binds.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Segment definitions belong in ops wiki with plain-English description, Shopify property source, and last verified date — not buried in platform UI only.</p>
     </div>
   </section>
   <FaqSection faqs={faqs} title="Segmentation FAQ" />

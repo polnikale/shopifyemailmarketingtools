@@ -251,40 +251,39 @@ const faqs = [
     </article>
   </section>
 
-<!-- expansion-batch-jul2026 -->
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Field notes</p>
-      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for firepush</h2>
-      <p><strong>Scenario A — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario B — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario C — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three Firepush push exit scenarios</h2>
+      <p><strong>Scenario A — Omnisend consolidation.</strong> Push cart recovered four percent standalone; Omnisend unified push plus email at seven percent with shared suppression — Firepush cancelled after thirty-day overlap test.</p>
+      <p><strong>Scenario B — iOS permission collapse.</strong> Push opt-in fell below eight percent post-iOS prompt changes. Budget reallocated to Postscript SMS for cart; Firepush retained only for back-in-stock browser alerts.</p>
+      <p><strong>Scenario C — Email-first stack.</strong> Sequenzy cart plus Klaviyo browse covered recovery; push added marginal two percent at separate subscription cost — ROI negative, plugin removed.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Operator handbook</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers firepush inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Firepush replacement criteria</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Firepush fits mobile-web-heavy stores needing web push without full multichannel ESP.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Replace with Omnisend or OneSignal-plus-ESP when unified suppression beats point-solution push recovery.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Audit service worker and theme script removal — orphaned push prompts confuse returning visitors.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Operator depth</p>
       <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Migration off Firepush: thirty-day bridge plan</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week one: export consent timestamps, segment engaged last ninety days, document live automations in spreadsheet. Week two: rebuild welcome in destination platform with recent purchaser suppression. Week three: cart and browse with collision rules against welcome. Week four: parallel send one campaign cycle, compare complaint rate and revenue per recipient.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first for teams leaving Firepush when strategy speed and economics matter. Klaviyo when predictive segmentation from Firepush data must survive migration intact.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Do not cancel Firepush until destination flows beat holdout baseline on margin, not gross attributed revenue.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week one: document push subscriber count, permission rate, and live automations — cart, flash sale, back-in-stock.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Week two: enable push in destination platform; run dual prompt on new visitors only. Week three: migrate automations; stagger against email cart by two hours minimum. Week four: disable Firepush scripts; compare recovery rate and opt-out.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Existing push subscribers cannot always migrate — plan re-permission campaign on site, not blast email asking to re-enable notifications.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="card">
       <p class="editorial-kicker">Operator note</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Documentation beats memory</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive decisions about firepush with date, owner, and metric baseline. Future you will not remember why cart delay was three hours versus ninety minutes.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Document push-specific metrics</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive permission rate, click-through, and recovery attributed to push with date and theme version — push performance shifts with OS updates independent of ESP quality.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">If consolidating into Omnisend, compare firepush-vs-omnisend before renew — overlap period should not triple-message cart abandoners.</p>
     </div>
   </section>
   <FaqSection faqs={faqs} title="Firepush alternatives FAQ" />

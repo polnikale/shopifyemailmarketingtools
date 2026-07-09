@@ -268,40 +268,39 @@ const faqs = [
     </div>
   </section>
 
-<!-- expansion-batch-jul2026 -->
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Field notes</p>
-      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for email design</h2>
-      <p><strong>Scenario A — Board game publisher, 400 SKUs.</strong> Cart abandoned with expansion pack. Three-email preset plus SMS on hour six for opted-in mobile shoppers recovered 11% of cart revenue. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario B — Print-on-demand store, zero design bandwidth.</strong> Omnisend product-picker templates live in hours. Graduated to Sequenzy when browse emails needed single-product focus. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario C — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three email design execution scenarios</h2>
+      <p><strong>Scenario A — Image-off fallback.</strong> Cart template relied on hero PNG; forty-one percent mobile opens image-off. Added live text price and CTA above fold — recovered clicks without redesigning brand system.</p>
+      <p><strong>Scenario B — Module reuse gone wrong.</strong> Promo header module pasted into post-purchase education flow — customers got sale banner after buying full price. Module library now tags lifecycle-safe versus promo-only blocks.</p>
+      <p><strong>Scenario C — Dark mode breakage.</strong> Navy background logo invisible in Apple Mail dark mode — swapped to transparent PNG plus light border; complaint rate on branded templates dropped.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Operator handbook</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers email design inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Design QA before every flow launch</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Litmus or Email on Acid on iOS Mail, Gmail app, Outlook desktop — not just builder preview.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Single-column mobile stack for cart and browse; multi-column only in editorial campaigns with explicit desktop audience.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Dynamic product blocks must degrade gracefully when SKU OOS at send — show collection link, not broken image.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="card">
       <p class="editorial-kicker">Execution checklist</p>
       <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Ship email design without collision bugs</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Define trigger, audience, timing, exclusions, offer logic, and success metric before opening the builder. Product-led layouts that survive mobile mail and image-off clients fails when teams paste templates without suppression against welcome and winback.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Test with staff accounts: enroll, trigger, purchase, refund, support escalation — each should stop or branch correctly. Log results in ops wiki with date and platform version.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Measure incremental revenue with holdouts quarterly. Platform attribution overstates when discounts train waiting behavior.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Define template owner, module versions, and approval path before scaling beyond three flows. Product-led layouts fail when promo modules leak into transactional paths.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Send test to Gmail, Yahoo, and Outlook seed accounts on real devices — seed tools miss font rendering quirks.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive HTML export when major template changes — rollback faster than rebuilding from builder history.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="card">
       <p class="editorial-kicker">Operator note</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Documentation beats memory</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive decisions about email design with date, owner, and metric baseline. Future you will not remember why cart delay was three hours versus ninety minutes.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Design system meets lifecycle ops</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Document which templates are locked brand versus operator-editable — agencies break cart timing when they “refresh” suppression logic while redesigning.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Omnisend and Klaviyo product pickers differ — design modules are not portable without rebuild; budget migration time accordingly.</p>
     </div>
   </section>
   <FaqSection faqs={faqs} title="Email design FAQ" />

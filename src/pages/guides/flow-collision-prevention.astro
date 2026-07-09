@@ -223,32 +223,31 @@ const faqs = [
     </div>
   </section>
 
-<!-- expansion-batch-jul2026 -->
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Field notes</p>
-      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for flow collision prevention</h2>
-      <p><strong>Scenario A — Streetwear drop brand, limited size runs.</strong> Omnisend cart at forty-five minutes with size-specific blocks. Inventory check suppressed email when size sold out — routed to back-in-stock waitlist instead. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario B — Candle shop, $12k/mo.</strong> Shopify Email sent polished sale campaign in forty minutes from Admin — graduated to Sequenzy when cart needed multi-touch suppression. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario C — Wholesale Shopify hybrid, B2B accounts.</strong> Consumer cart recovery suppressed for tagged wholesale profiles. Separate rep-follow-up workflow prevented consumer discount leakage. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three collision incidents and fixes</h2>
+      <p><strong>Scenario A — Welcome plus cart overlap.</strong> New subscriber abandoned cart within two hours of signup — received welcome email two and cart email one same afternoon with conflicting offers. Fix: welcome enrollees excluded from cart discount until welcome series completes or seventy-two hours elapse, whichever first.</p>
+      <p><strong>Scenario B — Sale broadcast plus replenishment.</strong> Black Friday promo and replenishment reminder fired same day on consumables buyer — three emails, three different codes. Fix: global promo pause on lifecycle journeys during peak; replenishment suppresses when customer in active sale segment.</p>
+      <p><strong>Scenario C — Email cart plus SMS cart.</strong> Drip email at T+45m, Postscript SMS at T+50m — customer received both before purchase. Fix: four-hour stagger documented in ops wiki SOP-4; duplicate within sixty minutes classified P1 incident.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Operator handbook</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers flow collision prevention inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Collision matrix maintenance</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Tuesday collision log: every reported duplicate offer or conflicting send gets row in matrix spreadsheet — source journey, conflicting journey, fix applied, verified date. Matrix lives in ops wiki, not platform UI alone.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Minimum matrix rows: welcome vs cart, cart vs browse, winback vs replenishment, sale broadcast vs all lifecycle, email vs SMS cart, VIP vs broad promo. Add rows when new journey launches — not after incident.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Test matrix with staff accounts quarterly: enroll, trigger overlapping conditions, purchase, refund — zero duplicates required for production sign-off.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Implementation discipline</p>
       <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Guide-to-production handoff</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Each guide maps to a live workflow owner. Selection framework without implementation plan is shelfware. Flow collision prevention without discount discipline is half a fix.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste checklists into Notion with last-reviewed date. Guides rot when the retention lead leaves — scenarios and mistake sections exist to survive turnover.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy-first recommendations assume lean teams; Klaviyo deviations documented when data depth binds.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">No new journey goes live without matrix row documenting what it suppresses and what suppresses it. Flow collision prevention without discount discipline is half a fix — deepest offer still leaks if codes stack.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Paste collision matrix into Notion with last-reviewed date. New hire onboarding includes matrix walkthrough before builder access.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Global promo pause toggle tested sixty days before Black Friday — sale week is wrong time to discover pause doesn't kill cart discount.</p>
     </div>
   </section>
   <FaqSection faqs={faqs} title="Flow collision prevention FAQ" />

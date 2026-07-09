@@ -268,40 +268,39 @@ const faqs = [
     </div>
   </section>
 
-<!-- expansion-batch-jul2026 -->
   <section class="container py-12">
     <div class="prose-shopify">
       <p class="editorial-kicker">Field notes</p>
-      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three merchant scenarios for reviews and ugc</h2>
-      <p><strong>Scenario A — Modular furniture DTC, $840 AOV.</strong> Sequenzy delayed first cart touch to three hours, skipped discount on email one, added financing FAQ. Recovered 8.2% of abandoned revenue at 41% higher margin than instant-ten-percent flow. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario B — Vinyl record shop, 28k contacts.</strong> Profile-based billing outpaced email revenue. Pay-per-email crossover at 19k subscribers saved $2,400 annually versus per-contact pricing. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p><strong>Scenario C — Pet food subscription, $52 reorder window.</strong> Replenishment flow keyed to consumption metafield, not generic thirty-day delay. Repeat rate rose fourteen percent without extra discount. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three reviews and UGC email scenarios</h2>
+      <p><strong>Scenario A — Post-delivery timing.</strong> Yotpo review ask at day five post-delivery beat day two — fewer “item not arrived” one-star reviews polluting PDP widgets.</p>
+      <p><strong>Scenario B — UGC in cart recovery.</strong> Klaviyo cart email pulled three five-star photo reviews for abandoned SKU — click rate up nineteen percent versus product shot only.</p>
+      <p><strong>Scenario C — Review plus replenishment collision.</strong> Supplement brand sent review request and reorder email same day — staggered review to day twelve, replenishment to day twenty-eight on consumption metafield.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="ledger-card">
       <p class="editorial-kicker">Operator handbook</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly retention ops rhythm</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: review complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery. Thursday: segment hygiene — sunset never-opened cart profiles inflating bills. Friday: one flow improvement shipped, documented in ops wiki.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">This page covers reviews and ugc inside the operator handbook. Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">New hires read scenarios first, then comparison table, then individual app reviews. Rankings are starting points — holdout tests on your catalog are authoritative.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Reviews in lifecycle context</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Review requests belong in post-purchase sequence, not broadcast — segment by delivery confirmation where carrier data exists.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">UGC blocks in browse and cart need live feed or cached daily sync — stale review counts on discontinued SKUs look broken.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Suppress review ask when return or chargeback flag on order — obvious but often missing in default Yotpo triggers.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="card">
       <p class="editorial-kicker">Execution checklist</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Ship reviews and ugc without collision bugs</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Define trigger, audience, timing, exclusions, offer logic, and success metric before opening the builder. Social proof embedded in browse, cart, and post-purchase creative fails when teams paste templates without suppression against welcome and winback.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Test with staff accounts: enroll, trigger, purchase, refund, support escalation — each should stop or branch correctly. Log results in ops wiki with date and platform version.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Measure incremental revenue with holdouts quarterly. Platform attribution overstates when discounts train waiting behavior.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Ship reviews and UGC without collision bugs</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Define trigger, audience, timing, exclusions, and success metric — review submission rate, not open rate. Social proof in browse fails without welcome suppression for new subscribers still in onboarding.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Test staff order through delivery, review submit, and follow-up referral branch if enabled.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Quarterly: audit PDP widget versus email quoted rating — mismatch destroys credibility.</p>
     </div>
   </section>
   <section class="container py-12">
     <div class="card">
       <p class="editorial-kicker">Operator note</p>
-      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Documentation beats memory</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive decisions about reviews and ugc with date, owner, and metric baseline. Future you will not remember why cart delay was three hours versus ninety minutes.</p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks first because lifecycle strategy beats feature checklists — pay-per-email economics, collision-safe playbooks, and agent-first flow edits without enterprise bloat.</p>
+      <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Document review ask timing rationale</h2>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Archive day-delay choice with vertical note — apparel fit feedback needs wear time; consumables need taste test window.</p>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">If SMSBump or Yotpo sends review SMS, document email-SMS stagger in collision matrix alongside cart flows.</p>
     </div>
   </section>
   <FaqSection faqs={faqs} title="Reviews & UGC FAQ" />
