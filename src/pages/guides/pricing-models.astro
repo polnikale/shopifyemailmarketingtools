@@ -12,7 +12,7 @@ const path = '/guides/pricing-models';
 const title = 'Shopify Email App Pricing Models — Operator Guide';
 const desc = description(site, 'guides/pricing-models');
 
-const comparisonApps = ['sequenzy', 'klaviyo', 'omnisend', 'drip', 'mailchimp', 'brevo', 'privy', 'postscript', 'shopify-email', 'yotpo-email-sms'].map((s) => appBySlug(s)!).filter(Boolean);
+const comparisonApps = ['sequenzy', 'klaviyo', 'omnisend', 'drip', 'mailchimp', 'brevo', 'privy', 'postscript', 'shopify-email', 'yotpo-email-sms', 'attentive', 'activecampaign', 'sendlane'].map((s) => appBySlug(s)!).filter(Boolean);
 const featuredApps = comparisonApps.slice(0, 5);
 
 const faqs = [
@@ -122,7 +122,7 @@ const faqs = [
 
     <div class="ledger-card mb-12 overflow-x-auto">
       <p class="editorial-kicker">Comparison table</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">10 apps — pricing model summary</h2>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">13 apps — pricing model summary</h2>
       <table class="mt-8 w-full min-w-[720px] text-left text-sm">
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
@@ -150,7 +150,7 @@ const faqs = [
 
   <section class="container space-y-12 pb-16">
     <p class="editorial-kicker">Deep pricing analysis</p>
-    <h2 class="font-serif text-4xl font-black text-slate-950">Five platforms — economic fit</h2>
+    <h2 class="font-serif text-4xl font-black text-slate-950">Thirteen platforms — economic fit</h2>
 
     <ToolReview
       app={featuredApps[0]}
@@ -199,6 +199,96 @@ const faqs = [
         'Mailchimp contact pricing with Shopify depth limitations — economic trap when you outgrow automation but stay for sunk familiarity cost. Migration labor is one-time; profile tier creep is perpetual.',
       ]}
     />
+
+    <ToolReview
+      app={comparisonApps[5]}
+      rank={6}
+      badge="Best volume-value alternative"
+      paragraphs={[
+        'Brevo is the cleanest low-cost test when send volume is the main variable and Shopify-native merchandising is secondary. Its per-email economics resemble Sequenzy, but the Shopify integration is lighter: validate product recommendations and event payloads before promising a personalized catalog journey.',
+        'The tradeoff is reporting depth. Brevo can run a welcome or cart pilot cheaply, yet a merchant should not assume its revenue view will explain the same flow-level incrementality as Klaviyo. Keep the pilot KPI to delivered revenue, clicks, and unsubscribes until attribution is proven.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[6]}
+      rank={7}
+      badge="Best capture-led pilot"
+      paragraphs={[
+        'Privy earns its cost when the bottleneck is subscriber acquisition rather than lifecycle orchestration. Its popup, exit-intent, and coupon tooling can pay back before a full ESP migration, especially for stores with traffic but a thin owned audience.',
+        'Do not price Privy as a Klaviyo replacement. Its automation is intentionally shallower, so model the capture subscription alongside the ESP it feeds. A two-week popup holdout is a better proof than a generic email open-rate comparison.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[7]}
+      rank={8}
+      badge="Best SMS specialist"
+      paragraphs={[
+        'Postscript belongs in the spreadsheet as a variable SMS cost center, not as a zero-cost add-on to email. Its Shopify-native cart recovery, replies, and compliance controls are useful when SMS has a clear margin role and a defined cart-value floor.',
+        'Pilot one high-intent segment and cap sends before expanding. The success test is incremental contribution margin after message cost and opt-out risk — not gross recovered revenue during a sale spike.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[9]}
+      rank={9}
+      badge="Best retention-suite bundle"
+      paragraphs={[
+        'Yotpo Email & SMS makes economic sense when reviews, loyalty, UGC, and messaging already share a budget. The modular bill can be efficient for a multi-product retention stack, but expensive if the store only needs email and has no plan to activate the adjacent Yotpo products.',
+        'Measure review-request completion and loyalty-triggered repeat purchase separately from campaign revenue. That prevents a suite discount from hiding an underused email module.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[10]}
+      rank={10}
+      badge="Best enterprise SMS test"
+      paragraphs={[
+        'Attentive is an enterprise-priced decision: its acquisition, managed services, and SMS orchestration need enough mobile traffic to cover the commitment. Request a written message-rate schedule and implementation scope; a headline custom quote is not a usable forecast.',
+        'The right pilot is a controlled SMS acquisition or cart cohort with consent, quiet hours, and contribution margin reporting. Smaller stores should compare the same cohort against Postscript before accepting a $500-plus monthly floor.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[11]}
+      rank={11}
+      badge="Best CRM-overlap fit"
+      paragraphs={[
+        'ActiveCampaign earns its contact-tier cost when Shopify retention overlaps with wholesale leads, sales follow-up, or high-consideration products. Its conditional automation and CRM are valuable in that blended motion, but overbuilt for a straightforward DTC cart and welcome program.',
+        'Price the CRM seats, contact tier, and implementation hours together. A seven-day pilot should prove one handoff from Shopify behavior to sales task; without that handoff, a Shopify-native platform is usually the cheaper fit.',
+      ]}
+    />
+
+    <ToolReview
+      app={comparisonApps[12]}
+      rank={12}
+      badge="Best agency-led DTC alternative"
+      paragraphs={[
+        'Sendlane is worth modeling for teams that want ecommerce-focused email and SMS with a more guided operating experience than a blank canvas. Its value depends on active use of automation and reporting, so compare the monthly platform fee with the hours saved by the internal operator or agency.',
+        'Use a real abandoned-cart and post-purchase build in the pilot. Check event timing, product data, suppression, and export paths before treating a polished demo as proof of Shopify fit.',
+      ]}
+    />
+  </section>
+
+  <section class="container pb-12">
+    <div class="ledger-card">
+      <p class="editorial-kicker">Pilot before purchase</p>
+      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">A 14-day pricing and workflow pilot</h2>
+      <p class="mt-4 max-w-3xl text-[17px] leading-8 text-slate-700">Do not trial every feature. Give each finalist the same small production-shaped test, then compare the billable unit and the operator time required.</p>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <thead><tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800"><th class="py-3 pr-4">Days</th><th class="py-3 pr-4">Test</th><th class="py-3 pr-4">Record</th><th class="py-3">Pass condition</th></tr></thead>
+          <tbody class="text-slate-700">
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold text-slate-950">1–2</td><td class="py-3 pr-4">Connect Shopify sandbox or limited event scope</td><td class="py-3 pr-4">Profiles, events, sync delay</td><td class="py-3">No unexpected profile import or consent loss</td></tr>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold text-slate-950">3–6</td><td class="py-3 pr-4">Build welcome, cart, and post-purchase flows</td><td class="py-3 pr-4">Hours, branches, suppression rules</td><td class="py-3">Internal owner can edit without vendor help</td></tr>
+            <tr class="border-b border-cyan-900/8"><td class="py-3 pr-4 font-bold text-slate-950">7–10</td><td class="py-3 pr-4">Send to a small consented holdout</td><td class="py-3 pr-4">Delivery, clicks, margin, unsubscribes</td><td class="py-3">No deliverability or attribution surprise</td></tr>
+            <tr><td class="py-3 pr-4 font-bold text-slate-950">11–14</td><td class="py-3 pr-4">Project 12-month bill from real usage</td><td class="py-3 pr-4">Profiles, sends, SMS, add-ons</td><td class="py-3">Finance can explain the worst-month cost</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 text-[17px] leading-8 text-slate-700"><strong>Exit rule:</strong> choose the lowest-cost finalist that passes the workflow and consent tests. If two pass, keep the one with the clearer billable unit and the lower operator time — not the one with the longest feature list.</p>
+    </div>
   </section>
 
   <section class="container py-12">
