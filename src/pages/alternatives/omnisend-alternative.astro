@@ -10,7 +10,7 @@ import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
 const path = '/alternatives/omnisend-alternative';
 const title = 'Best Omnisend Alternatives for Shopify (2026)';
-const desc = 'Why Shopify operators leave Omnisend — email template ceilings, fulfillment triggers, contact-tier creep — plus 14 alternatives, pricing caveats, and a warehouse-aware migration pilot.';
+const desc = 'A Shopify-specific Omnisend alternatives guide: 14 tools compared by lifecycle depth, capture, fulfillment context, pricing model, and migration risk.';
 
 const altSlugs = ['sequenzy', 'klaviyo', 'drip', 'brevo', 'mailchimp', 'yotpo-email-sms', 'privy', 'firepush', 'activecampaign', 'sendlane', 'aftership-email', 'justuno', 'rejoiner', 'tinyemail'];
 const alternatives = altSlugs.map((s) => appBySlug(s)!);
@@ -69,7 +69,7 @@ const faqs = [
           Omnisend is where many Shopify operators land after Shopify Email — and where they stall when the catalog outgrows prebuilt journeys. Merchants leave when collection-level browse abandonment requires manual tagging every time the 3PL adds a pick line, when post-purchase education must wait for carrier scan rather than checkout, or when contact tiers climb from footer capture while email revenue per send flatlines. This page ranks replacements for that ceiling — not beginners Omnisend still serves well.
         </p>
         <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-          Sequenzy ranks #1 when lifecycle runbooks and pay-per-email economics beat template limits. Klaviyo ranks when predictive Shopify data is the bottleneck. See <a class="link" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a> for head-to-head tradeoffs.
+          The shortlist is organized by the job that made you search: deeper segmentation, lower contact-cost exposure, better capture, or fulfillment-aware messaging. Treat the ranking as a starting hypothesis, then validate your own Shopify events and current vendor plans. See <a class="link" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a> for the narrow head-to-head.
         </p>
       </header>
 
@@ -103,10 +103,10 @@ const faqs = [
 
         <h2>Field scenario: outdoor gear, Omnisend template debt</h2>
         <p>
-          This operator at 780 orders/month ran Omnisend fourteen months. Welcome and cart performed. Post-purchase cross-sell for accessories after tent purchase required custom tags updated manually when collections reorganized around seasonal warehouse allocations. Browse abandonment fired on generic bestsellers, not viewed collection. Email-attributed revenue plateaued at 8% while contact count grew 31% from trade-show QR capture.
+          A useful pilot profile is a store around 780 orders/month where welcome and cart work, but post-purchase accessories require manual tags after seasonal collection changes. Browse abandonment also uses generic products rather than the viewed collection. The measurable question is whether a new platform improves event fidelity and reduces maintenance without increasing complaints or discount cost.
         </p>
         <p>
-          Sequenzy migration: collection-specific browse with recent purchaser suppression; post-fulfillment gated on Fulfilled Order with line-item cross-sell; winback keyed to last order date and margin band. Pay-per-send replaced contact-tier anxiety on dormant trade-show imports. Email-attributed revenue reached 13% in ninety days without increasing broadcast frequency — proof the bottleneck was email strategy depth, not creative quality.
+          A controlled rebuild would test collection-specific browse with recent-purchaser suppression, post-fulfillment timing, and a winback branch keyed to last order date and margin band. Compare revenue per recipient, contribution margin, complaints, and operator hours with Omnisend; do not infer causation from platform-attributed revenue alone.
         </p>
 
         <h2>Omnisend email migration checklist</h2>
@@ -270,10 +270,10 @@ const faqs = [
         <div class="prose-shopify">
           <p class="editorial-kicker">Field notes</p>
           <h2 class="font-serif text-4xl font-black text-slate-950 mt-3">Three warehouse scenarios leaving Omnisend email</h2>
-          <p><strong>Scenario A — Protein powder, 52-day consumption window.</strong> Omnisend generic 30-day replenishment misfired. Sequenzy playbook keyed to serving-count metafield lifted reorder rate sixteen points without deeper discount.</p>
-          <p><strong>Scenario B — Home organization, 3,800 orders/mo.</strong> Omnisend contact bill included 140k stale cart profiles never engaged. Sequenzy pay-per-send cut email line item while fulfillment-gated post-purchase replaced checkout-triggered education.</p>
-          <p><strong>Scenario C — Coffee subscription, dual warehouse.</strong> Browse abandonment ignored which node held inventory. Klaviyo variant logic considered; Sequenzy collection browse plus back-in-stock email won on deployment speed and economics.</p>
-          <p><strong>Scenario D — Work gloves B2B-light, 1,100 orders/mo.</strong> Omnisend post-purchase cross-sell fired before LTL tracking updated. Sequenzy Fulfilled Order gate plus SKU-specific safety compliance block in email two reduced support tickets 19% while cross-sell revenue held flat.</p>
+          <p><strong>Scenario A — replenishment catalog.</strong> First map the actual consumption signal: last order date, variant, subscription state, and any declared usage interval. A platform is a fit only if those fields arrive reliably and the flow can suppress customers with a recent order or open support case. Test the timing against a holdout; do not assume a generic “30-day replenishment” is correct.</p>
+          <p><strong>Scenario B — dormant contact growth.</strong> Compare each vendor’s billable unit with the store’s 90-day engaged audience and monthly send volume. A pay-per-send model may reduce exposure, while a profile-based model may be reasonable when segmentation and reporting are used heavily. The result is a cost-model question, not a guaranteed saving.</p>
+          <p><strong>Scenario C — multi-node fulfillment.</strong> Before rebuilding post-purchase email, send test orders through each warehouse and carrier path. Confirm whether the destination receives order, fulfillment, delivery, refund, and inventory events at the resolution your messages require. Keep operational notices separate from promotional sends.</p>
+          <p><strong>Scenario D — wholesale-assisted Shopify.</strong> If sales reps, quote forms, or account terms matter, evaluate a CRM-oriented platform such as ActiveCampaign alongside ecommerce specialists. Document field ownership and human approval before enabling automation; Shopify order sync alone does not prove that the sales handoff is covered.</p>
         </div>
       </section>
 
@@ -282,7 +282,7 @@ const faqs = [
           <p class="editorial-kicker">Operator handbook</p>
           <h2 class="font-serif text-3xl font-black text-slate-950 mt-3">Weekly email ops rhythm after Omnisend</h2>
           <p class="mt-4 text-[17px] leading-8 text-slate-700">Monday: complaint rate and deliverability seeds. Tuesday: collision log from welcome, cart, browse overlap. Wednesday: margin report on discounted recovery emails. Thursday: segment hygiene — sunset never-opened profiles inflating contact tiers. Friday: one flow improvement shipped, documented in ops wiki.</p>
-          <p class="mt-4 text-[17px] leading-8 text-slate-700">Sequenzy ranks #1 on this handbook for Omnisend exits when email lifecycle strategy beats template convenience.</p>
+          <p class="mt-4 text-[17px] leading-8 text-slate-700">Choose the destination by the failure you can measure: flow coverage, event fidelity, contribution margin, deliverability, or operator time. A narrower specialist can be the right addition without being a full replacement.</p>
           <p class="mt-4 text-[17px] leading-8 text-slate-700">Inventory sync check before cutover: verify new platform receives product updates within SLA your browse and back-in-stock emails assume — Omnisend template timing means nothing if catalog lag exceeds customer session memory.</p>
         </div>
       </section>
