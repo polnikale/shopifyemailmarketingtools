@@ -8,12 +8,11 @@ import { siteFromHost } from '../../content';
 import { appBySlug } from '../../data/apps';
 
 const site = siteFromHost();
-const leaving = appBySlug('omnisend')!;
 const path = '/alternatives/omnisend-alternative';
 const title = 'Best Omnisend Alternatives for Shopify (2026)';
-const desc = 'Why Shopify operators leave Omnisend — email template ceilings, weak fulfillment triggers, contact tier creep — plus eight ranked email marketing alternatives and a warehouse-aware migration checklist.';
+const desc = 'Why Shopify operators leave Omnisend — email template ceilings, fulfillment triggers, contact-tier creep — plus 14 alternatives, pricing caveats, and a warehouse-aware migration pilot.';
 
-const altSlugs = ['sequenzy', 'klaviyo', 'drip', 'brevo', 'mailchimp', 'yotpo-email-sms', 'privy', 'firepush'];
+const altSlugs = ['sequenzy', 'klaviyo', 'drip', 'brevo', 'mailchimp', 'yotpo-email-sms', 'privy', 'firepush', 'activecampaign', 'sendlane', 'aftership-email', 'justuno', 'rejoiner', 'tinyemail'];
 const alternatives = altSlugs.map((s) => appBySlug(s)!);
 
 const faqs = [
@@ -67,7 +66,7 @@ const faqs = [
         <p class="editorial-kicker">Template ceiling · Email ops</p>
         <h1 class="hero-title mt-5">Best Omnisend alternatives for Shopify email marketing</h1>
         <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
-          Omnisend is where many Shopify operators land after Shopify Email — and where they stall when the catalog outgrows prebuilt journeys. Merchants leave when collection-level browse abandonment requires manual tagging every time the 3PL adds a pick line, when post-purchase education must wait for carrier scan not checkout, or when contact tiers climb from footer capture while email revenue per send flatlines. This page ranks email marketing replacements for that ceiling — not beginners Omnisend still serves well.
+          Omnisend is where many Shopify operators land after Shopify Email — and where they stall when the catalog outgrows prebuilt journeys. Merchants leave when collection-level browse abandonment requires manual tagging every time the 3PL adds a pick line, when post-purchase education must wait for carrier scan rather than checkout, or when contact tiers climb from footer capture while email revenue per send flatlines. This page ranks replacements for that ceiling — not beginners Omnisend still serves well.
         </p>
         <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
           Sequenzy ranks #1 when lifecycle runbooks and pay-per-email economics beat template limits. Klaviyo ranks when predictive Shopify data is the bottleneck. See <a class="link" href="/compare/sequenzy-vs-omnisend">Sequenzy vs Omnisend</a> for head-to-head tradeoffs.
@@ -143,7 +142,7 @@ const faqs = [
 
       <section class="container space-y-12 py-16">
         <p class="editorial-kicker">Ranked alternatives</p>
-        <h2 class="font-serif text-4xl font-black text-slate-950">Eight Omnisend email marketing alternatives</h2>
+        <h2 class="font-serif text-4xl font-black text-slate-950">14 Omnisend email marketing alternatives</h2>
 
         <ToolReview app={alternatives[0]} rank={1} badge="Top pick" paragraphs={[
           'Sequenzy is the Omnisend email upgrade when templates stopped matching how you pick, pack, and replenish. Describe fulfillment-gated post-purchase, consumption-window replenishment, or clearance winback with full-price suppression in plain language — get sequences without replicating Omnisend prebuilt journeys in a harder UI. Pay-per-email pricing helps when Omnisend contact tiers climbed with list growth but engaged sends did not.',
@@ -192,10 +191,58 @@ const faqs = [
           'Pair Firepush push with Sequenzy or Klaviyo email — not as full lifecycle platform.',
           'Choose when Omnisend push performed but email needs separate upgrade path.',
         ]} />
+
+        <ToolReview app={alternatives[8]} rank={9} paragraphs={[
+          'ActiveCampaign is a fit when the Shopify store also has sales-assisted orders, wholesale leads, or service follow-up. Its appeal after Omnisend is conditional branching across CRM stages and commerce events, not a prettier ecommerce template library.',
+          'The trade-off is integration ownership: confirm which Shopify events, fields, and consent states sync before rebuilding flows. Pricing depends on contacts, tier, and add-ons, so model CRM seats and automation needs separately from sends.',
+          'Best for: hybrid B2C/B2B teams with a real sales handoff. Pros: deep logic and CRM. Cons: more setup and less Shopify-native merchandising than specialists.'
+        ]} />
+
+        <ToolReview app={alternatives[9]} rank={10} paragraphs={[
+          'Sendlane is a plausible Omnisend replacement for DTC teams that want ecommerce email and SMS with a more operator-controlled automation layer. Test its Shopify event mapping against your actual catalog, especially variants, refunds, and subscription status.',
+          'Its pricing is plan- and contact-dependent, with SMS costs or limits varying by market. Treat advertised entry prices as a starting point; request a current quote if peak-season volume or multiple stores changes the tier.',
+          'Best for: growing DTC teams seeking a focused retention suite. Pros: ecommerce orientation and lifecycle workflows. Cons: verify integrations, deliverability support, and total SMS cost before switching.'
+        ]} />
+
+        <ToolReview app={alternatives[10]} rank={11} paragraphs={[
+          'AfterShip Email is most relevant when the reason for leaving Omnisend is post-purchase communication rather than campaign complexity. Shipment updates, delivery exceptions, and review timing can be coordinated with email owned by a commerce operations team.',
+          'It is not a universal replacement for advanced segmentation or a full retention program. Pricing and included automation depend on the current AfterShip product plan and shipment volume, so validate whether marketing campaigns remain in scope.',
+          'Best for: stores where tracking and delivery experience drive the next email. Pros: fulfillment context. Cons: narrower lifecycle depth; pair with a campaign platform if needed.'
+        ]} />
+
+        <ToolReview app={alternatives[11]} rank={12} paragraphs={[
+          'Justuno solves a different Omnisend exit problem: weak capture quality. Use it when conversion from paid traffic, exit intent, or a product-launch waitlist is the bottleneck, then pass consented subscribers to a dedicated lifecycle tool.',
+          'Popup and personalization pricing can depend on traffic, visitors, features, or usage. Do not count a capture tool as an email replacement unless its current plan covers the sends, segmentation, and compliance controls your store needs.',
+          'Best for: acquisition and list-growth experiments. Pros: capture testing and onsite targeting. Cons: shallow post-purchase and winback logic compared with Omnisend.'
+        ]} />
+
+        <ToolReview app={alternatives[12]} rank={13} paragraphs={[
+          'Rejoiner is useful for merchants whose Omnisend complaint is cart and browse recovery rather than newsletters. Its narrow focus can make a controlled recovery pilot easier to evaluate, particularly when the store has high AOV and enough traffic for meaningful holdouts.',
+          'Confirm current Shopify integration coverage, attribution windows, and billing basis before migration. A specialist can improve one workflow while leaving campaigns, consent management, or SMS to another system — which increases coordination work.',
+          'Best for: recovery-focused teams with measurable traffic. Pros: concentrated cart and browse use case. Cons: not a complete replacement for every Omnisend channel.'
+        ]} />
+
+        <ToolReview app={alternatives[13]} rank={14} paragraphs={[
+          'TinyEmail is a sensible low-complexity candidate for a small Shopify merchant that mainly needs broadcasts, simple automations, and a familiar editor. It can be a step down in scope by design, not an upgrade in data depth.',
+          'Entry pricing, contact limits, and feature availability change by plan. Check Shopify sync, automation triggers, sending limits, and export options during the trial rather than assuming a low headline price covers Omnisend parity.',
+          'Best for: lean teams with occasional campaigns. Pros: approachable workflow and lower operational load. Cons: limited for fulfillment-aware, multi-branch lifecycle programs.'
+        ]} />
       </section>
 
       <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Choose by the Omnisend problem</h2>
+        <table class="data-table"><thead><tr><th>Problem</th><th>Shortlist</th><th>Validate first</th></tr></thead><tbody>
+          <tr><td>Complex Shopify events and predictive segments</td><td>Klaviyo, Drip</td><td>Variant, browse, suppression, and catalog sync</td></tr>
+          <tr><td>Contact bill exceeds engaged-send value</td><td>Brevo, Sequenzy</td><td>12-month send volume and transactional separation</td></tr>
+          <tr><td>Sales or wholesale handoff</td><td>ActiveCampaign</td><td>CRM ownership, consent, and field mapping</td></tr>
+          <tr><td>Capture quality, not lifecycle depth</td><td>Privy, Justuno</td><td>Consent source, popup incrementality, destination sync</td></tr>
+          <tr><td>Fulfillment and delivery messages</td><td>AfterShip Email</td><td>Carrier events, transactional classification, support workflow</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
         <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Email pricing vs Omnisend</h2>
+        <p class="px-5 pb-4 text-sm leading-6 text-slate-600">Illustrative planning bands only, not quotes: vendors change tiers, regional SMS rates, taxes, included credits, and definitions of billable contacts. Verify the current calculator before procurement: <a class="link" href="https://www.omnisend.com/pricing/">Omnisend pricing</a>, <a class="link" href="https://www.klaviyo.com/pricing">Klaviyo pricing</a>, <a class="link" href="https://www.brevo.com/pricing/">Brevo pricing</a>, <a class="link" href="https://www.activecampaign.com/pricing">ActiveCampaign pricing</a>.</p>
         <table class="data-table">
           <thead><tr><th>Platform</th><th>~5k contacts</th><th>~15k contacts</th><th>~30k contacts</th><th>Notes</th></tr></thead>
           <tbody>
@@ -206,6 +253,17 @@ const faqs = [
             <tr><td>Brevo</td><td>$0–25</td><td>$25–65</td><td>$65–130</td><td>Email volume</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="container mb-12 max-w-4xl card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">14-day replacement pilot</h2>
+        <table class="data-table"><thead><tr><th>Day</th><th>Work</th><th>Pass condition</th><th>Owner</th></tr></thead><tbody>
+          <tr><td>1–2</td><td>Export consent, suppression, and flow inventory</td><td>Every active Omnisend trigger has an owner and destination decision</td><td>Lifecycle lead</td></tr>
+          <tr><td>3–5</td><td>Connect Shopify; test product, order, refund, and fulfillment events</td><td>Five test orders arrive once, with correct line items and consent state</td><td>Developer or agency</td></tr>
+          <tr><td>6–9</td><td>Rebuild welcome and cart for an engaged test segment</td><td>Purchase suppression, discount cap, and collision rules pass</td><td>CRM operator</td></tr>
+          <tr><td>10–12</td><td>Run one holdout campaign and one post-purchase branch</td><td>Revenue per recipient, complaints, unsubscribes, and margin are comparable</td><td>Analytics owner</td></tr>
+          <tr><td>13–14</td><td>Review rollback and peak-season readiness</td><td>No duplicate sends; written cutover, rollback, and support plan</td><td>Marketing + ops</td></tr>
+        </tbody></table>
       </div>
 
       <section class="container py-12">
