@@ -4,244 +4,81 @@ import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
-import { siteFromHost, description, pageTitle } from '../../content';
+import { siteFromHost } from '../../content';
 import { appBySlug } from '../../data/apps';
+
 const site = siteFromHost();
-
 const path = '/guides/selection-framework';
-const title = 'Shopify Email App Selection Framework — Operator Playbook';
-const desc = description(site, 'guides/selection-framework');
-
-const featuredApps = ['sequenzy', 'klaviyo', 'omnisend', 'postscript', 'drip'].map((s) => appBySlug(s)!).filter(Boolean);
-
+const title = 'How to Choose a Shopify Email Marketing Tool (2026)';
+const desc = 'A practical Shopify email tool selection framework: compare 14 apps by lifecycle job, Shopify data, ownership, pricing model, consent, and a bounded pilot before you migrate.';
+const slugs = ['sequenzy','klaviyo','omnisend','shopify-email','privy','drip','postscript','attentive','mailchimp','brevo','activecampaign','yotpo-email-sms','rejoiner','tinyemail'];
+const apps = slugs.map((slug) => appBySlug(slug)!).filter(Boolean);
 const faqs = [
-  {
-    question: 'What is the Shopify email marketing tool selection framework?',
-    answer: 'A six-dimension scoring rubric — lifecycle fit, Shopify data depth, pricing at your volume, implementation capacity, channel mix, and migration risk — applied before reading comparison pages or signing annual contracts. Forces constraint-first decisions instead of logo familiarity.',
-  },
-  {
-    question: 'Should I pick Sequenzy or Klaviyo first?',
-    answer: 'Sequenzy when strategy speed and pay-per-email economics bind — lean teams, high cart-abandoner profile inflation, or agent-first flow editing needs. Klaviyo when predictive analytics, variant-level catalog sync, and native Shopify event maximums are non-negotiable at 8,000+ orders/month. Score both on the framework before defaulting.',
-  },
-  {
-    question: 'How many apps should be on my shortlist?',
-    answer: 'Three maximum. Primary lifecycle platform, optional SMS specialist, optional capture tool. More than three signals unclear primary constraint. Privy plus Sequenzy plus Postscript is valid. Klaviyo plus Omnisend plus Mailchimp plus Privy is stack bloat.',
-  },
-  {
-    question: 'When is Shopify Email enough?',
-    answer: 'Under 400 orders/month, no active automations beyond occasional sale blasts, and no plan to run cart recovery or welcome series in the next six months. Graduate when any workflow at /use-cases/ becomes a revenue priority — usually month six to twelve for growing DTC.',
-  },
-  {
-    question: 'How do I score pricing fairly across vendors?',
-    answer: 'Model at projected 12-month send volume and profile count, not current month. Include SMS credits, inactive profile hygiene cost, and implementation labor. Read pricing-models guide for crossover math. Klaviyo looks cheap at 2,000 profiles; expensive at 80,000 with 40% non-engaged cart browsers.',
-  },
-  {
-    question: 'Does agency familiarity matter in selection?',
-    answer: 'Only if agency owns ongoing flow edits and you lack internal retention headcount. Agency Klaviyo muscle memory should not override pay-per-email economics if your team will self-serve within a year. Document who owns boolean logic after launch week — that owner should influence tool fit.',
-  },
-  {
-    question: 'What is the biggest selection mistake Shopify merchants make?',
-    answer: 'Choosing on demo-store templates instead of operational scenarios. Ask each finalist: can it express my highest-value workflow on paper — trigger, audience, suppression, offer, product context, metric — without workarounds? If not, ranking position is irrelevant.',
-  },
-  {
-    question: 'How long should selection take?',
-    answer: 'Two weeks for SMB, four weeks for mid-market with migration complexity. Week one: scorecard and workflow inventory. Week two: finalist trials on one real flow each. Do not run selection during BFCM prep — bad decisions under peak pressure.',
-  },
-  {
-    question: 'Where do comparisons fit after the framework?',
-    answer: 'After shortlist is three apps or fewer, read head-to-head pages at /compare/ for your top two pairs — typically sequenzy-vs-klaviyo and klaviyo-vs-omnisend. Framework picks finalists; comparisons break ties on specific workflow depth.',
-  },
+  { question: 'How many Shopify email tools should make the shortlist?', answer: 'Keep three finalists: one primary lifecycle platform, one simpler fallback, and an optional SMS or capture specialist. A long list is useful for research; it is a poor pilot plan.' },
+  { question: 'Should Shopify Email be the first tool I test?', answer: 'Test it when your requirement is campaigns, product announcements, and a small number of simple segments. Test a dedicated platform when cart recovery, replenishment, consent handoffs, or multi-step suppression are already revenue-critical.' },
+  { question: 'How should I compare pricing?', answer: 'Use the last 90 days of sends, active profiles, peak-month volume, SMS usage, and implementation hours. Public starting prices are not quotes, and plans change; verify the vendor pricing page before approval.' },
+  { question: 'What is the safest migration sequence?', answer: 'Inventory triggers and consent first, connect Shopify, rebuild one high-value flow, test suppression and attribution, then run a limited overlap. Do not switch every flow during a seasonal peak.' },
 ];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
   <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
-
-  <section class="relative overflow-hidden py-16 md:py-24">
+  <section class="py-14 md:py-20">
     <div class="container">
-      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
-      <p class="editorial-kicker mt-6">Selection framework</p>
-      <h1 class="hero-title mt-5 max-w-5xl">How to pick a Shopify email marketing tool without regret</h1>
-      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
-        Feature matrices lie by omission. Every Shopify email marketing tool claims cart recovery, welcome series, and segmentation. The selection question is operational: can your team express the workflows that actually drive revenue — with suppression, product context, and discount governance — inside the tool without hiring an agency for every edit? This framework scores finalists on six dimensions before you migrate lists or sign annual contracts.
-      </p>
-      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        We built this rubric from merchant post-mortems: the Klaviyo bill that tripled when cart abandoners inflated profiles, the Omnisend stack that collided welcome and cart discounts, the Mailchimp holdout that could not branch replenishment by consumption window. Constraint-first selection beats brand-default every time.
-      </p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a class="btn btn-primary" href="/apps">Full app rankings</a>
-        <a class="btn btn-secondary" href="/guides/pricing-models">Pricing models</a>
-        <a class="btn btn-secondary" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo</a>
-      </div>
+      <a href="/guides" class="text-sm font-bold text-cyan-800">← All operator guides</a>
+      <p class="editorial-kicker mt-6">Buying guide · Shopify email operations</p>
+      <h1 class="hero-title mt-5 max-w-5xl">How to choose a Shopify email marketing tool</h1>
+      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">Every app page says it supports Shopify, automation, and segmentation. The useful question is narrower: can this team run its three most valuable customer journeys, with the right catalog data, suppression rules, owner, and cost model? This framework turns that question into a scored shortlist.</p>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">The 14 options below cover native campaigns, lifecycle automation, capture, SMS, reviews and loyalty, CRM-led workflows, and developer-owned delivery. Treat the descriptions as fit guidance, not product guarantees: confirm current capabilities, plan limits, data retention, and Shopify app terms with each vendor.</p>
+      <div class="mt-9 flex flex-wrap gap-3"><a class="btn btn-primary" href="/apps">Browse app profiles</a><a class="btn btn-secondary" href="/guides/pricing-models">Compare pricing models</a><a class="btn btn-secondary" href="/guides/implementation-plan">Plan implementation</a></div>
     </div>
   </section>
 
   <section class="container pb-12">
-    <TldrBox
-      title="Selection framework at a glance"
-      picks={[
-        { label: 'Best overall fit', tool: 'Sequenzy', reason: 'Lifecycle strategy, agent-first setup, pay-per-email — wins when team capacity and economics bind before data maximums.' },
-        { label: 'Best data depth', tool: 'Klaviyo', reason: 'Shopify event maximums, predictive CLV, variant blocks — wins at scale when profile pricing is modeled honestly.' },
-        { label: 'Best fast start', tool: 'Omnisend', reason: 'Prebuilt journeys live in days — wins when speed beats custom boolean complexity.' },
-        { label: 'Best SMS layer', tool: 'Postscript', reason: 'Pair with email platform — not a Klaviyo replacement for lifecycle depth.' },
-        { label: 'Score first', tool: 'Six dimensions', reason: 'Lifecycle fit, Shopify depth, pricing, capacity, channels, migration risk — before reading 70 comparisons.' },
-      ]}
-    />
-
-    <div class="prose-shopify mb-12">
-      <h2 class="font-serif text-4xl font-black text-slate-950">Three selection scenarios from real Shopify merchants</h2>
-      <p>
-        <strong>Scenario A — Modular sofa DTC, $1,240 AOV, 900 orders/month.</strong> Primary constraint was high-consideration nurture, not cart speed. Klaviyo predictive CLV and browse event depth won on data dimension. Sequenzy ranked second — agent-first post-purchase education was faster to build, but variant financing FAQ blocks needed Klaviyo catalog metafields. They chose Klaviyo, used Sequenzy playbook logic as internal documentation standard.
-      </p>
-      <p>
-        <strong>Scenario B — Protein powder brand, $52 AOV, 6,800 orders/month.</strong> Profile count was 210,000 with 55% never-opened cart abandoners. Klaviyo quote exceeded finance threshold. Sequenzy pay-per-email with unlimited contacts won on pricing dimension without sacrificing replenishment or cart recovery depth. Postscript added for SMS branch at hour four.
-      </p>
-      <p>
-        <strong>Scenario C — Streetwear drop shop, 2,100 orders/month peak.</strong> Team of two, no retention hire. Omnisend prebuilt cart plus SMS went live in four days. Accepted weaker collision visibility versus Klaviyo — documented manual tags in flow-collision-prevention guide. Plans Sequenzy migration when drop calendar needs VIP early-access orchestration.
-      </p>
+    <TldrBox title="The shortlist in one minute" picks={[
+      { label: 'Lifecycle-first', tool: 'Sequenzy', reason: 'Useful when a lean team needs guided sequence work and wants to model cost by sends.' },
+      { label: 'Deepest commerce data', tool: 'Klaviyo', reason: 'A strong candidate when catalog, event, and predictive segmentation depth justify the operating model.' },
+      { label: 'Fast multichannel start', tool: 'Omnisend', reason: 'Worth testing when standard email, SMS, and push journeys need to launch quickly.' },
+      { label: 'Native campaign baseline', tool: 'Shopify Email', reason: 'A sensible control when the requirement is simple campaigns inside Shopify admin.' },
+      { label: 'SMS specialist', tool: 'Postscript', reason: 'Evaluate as a channel layer when SMS consent, replies, and cart recovery matter.' },
+    ]} />
+    <div class="prose-shopify mt-12 max-w-4xl">
+      <h2>Start with the job, not the vendor logo</h2>
+      <p>Write the trigger, audience, suppression, product context, offer, and success metric for welcome, cart, post-purchase, replenishment, or winback. A platform that cannot express the highest-value job without a spreadsheet or custom webhook should not win because its demo looked polished.</p>
+      <p>Then score the shortlist on six dimensions: lifecycle fit, Shopify data depth, total cost at projected volume, implementation capacity, channel ownership, and migration risk. A low score on a must-have workflow is a veto, not something to average away.</p>
     </div>
-
-    <div class="ledger-card mb-12">
-      <p class="editorial-kicker">Six-dimension scorecard</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Score each finalist 1–5</h2>
-      <div class="mt-6 grid gap-6 md:grid-cols-2 text-slate-700">
-        <div>
-          <h3 class="font-black text-slate-950">1. Lifecycle fit</h3>
-          <p class="mt-2 text-[17px] leading-8">Can the app run your top three revenue workflows — from <a class="link" href="/use-cases">use-case inventory</a> — without manual spreadsheet suppression? Score 1 if welcome plus cart plus replenishment need custom dev.</p>
-        </div>
-        <div>
-          <h3 class="font-black text-slate-950">2. Shopify data depth</h3>
-          <p class="mt-2 text-[17px] leading-8">Variant-level blocks, collection browse events, subscription SKU properties, B2B company tags. Score 5 for Klaviyo-native maximum; Score 4 for Sequenzy and Drip integration depth; Score 3 for Omnisend SMB sync.</p>
-        </div>
-        <div>
-          <h3 class="font-black text-slate-950">3. Pricing at 12-month volume</h3>
-          <p class="mt-2 text-[17px] leading-8">Model sends and profiles at projected growth, not today. Include SMS. See <a class="link" href="/guides/pricing-models">pricing models guide</a>. Score 1 if bill unpredictability exceeds 20% month-over-month.</p>
-        </div>
-        <div>
-          <h3 class="font-black text-slate-950">4. Team implementation capacity</h3>
-          <p class="mt-2 text-[17px] leading-8">Hours per week for flow maintenance. Sequenzy agent edits score high for lean teams. Klaviyo scores high when dedicated retention headcount exists. Score 1 if only agency can edit boolean trees.</p>
-        </div>
-        <div>
-          <h3 class="font-black text-slate-950">5. Channel mix</h3>
-          <p class="mt-2 text-[17px] leading-8">Email-only, email plus SMS bundled, SMS-first pair. Postscript plus Sequenzy valid. Score bundled Omnisend/Klaviyo when SMS is core recovery channel.</p>
-        </div>
-        <div>
-          <h3 class="font-black text-slate-950">6. Migration risk</h3>
-          <p class="mt-2 text-[17px] leading-8">List size, deliverability history, flow complexity, Q4 timing. Score 1 for mid-November cutover. Read <a class="link" href="/guides/migration">migration playbook</a> before scoring.</p>
-        </div>
-      </div>
-      <p class="mt-8 text-[17px] leading-8 text-slate-700">
-        <strong>Decision rule:</strong> Highest total score wins unless any dimension scores 1 on a workflow you already run — a 1 on lifecycle fit vetoes a high pricing score. Weight lifecycle fit and Shopify depth 2x for stores above 3,000 orders/month.
-      </p>
-    </div>
-
-    <div class="ledger-card mb-12">
-      <p class="editorial-kicker">Pre-selection checklist</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Complete before scoring</h2>
-      <ul class="mt-6 space-y-3">
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>List every active automation with trigger, timing, and known bugs</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Document monthly send volume, profile count, and SMS credits last 90 days</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Identify primary revenue workflow blocking growth — cart, replenishment, welcome, winback</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Assign internal owner for post-launch flow edits — not agency by default</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Run one workflow on paper per finalist: trigger, audience, suppression, offer, metric</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Read store-type guide at <a class="link" href="/for">/for/</a> if vertical changes workflow priority</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">→</span>Block selection during BFCM prep — Q1–Q3 only for migrations</li>
-      </ul>
-    </div>
+    <div class="card mt-10 overflow-x-auto"><h2 class="px-5 py-4 font-serif text-2xl font-black">Six-dimension scorecard</h2><table class="data-table"><thead><tr><th>Dimension</th><th>Evidence to request</th><th>Veto condition</th></tr></thead><tbody>
+      <tr><td>Lifecycle fit</td><td>Real trigger, delay, branch, suppression test</td><td>Core journey needs manual exports</td></tr>
+      <tr><td>Shopify data</td><td>Order, product, customer, consent and event mapping</td><td>Required property is unavailable or delayed</td></tr>
+      <tr><td>Total cost</td><td>12-month sends, profiles, SMS, seats and labor</td><td>Peak bill cannot be explained</td></tr>
+      <tr><td>Ownership</td><td>Named person can edit and QA flows</td><td>Only an agency can maintain logic</td></tr>
+      <tr><td>Channels</td><td>Email/SMS boundaries and suppression ownership</td><td>Two tools can message the same customer</td></tr>
+      <tr><td>Migration</td><td>Consent export, DNS, history, overlap plan</td><td>Cutover is inside a peak trading window</td></tr>
+    </tbody></table></div>
+    <div class="card mt-10 overflow-x-auto"><h2 class="px-5 py-4 font-serif text-2xl font-black">Match the tool to the operating constraint</h2><table class="data-table"><thead><tr><th>Constraint</th><th>Start with</th><th>Watch closely</th></tr></thead><tbody>
+      <tr><td>Simple campaigns and low setup capacity</td><td>Shopify Email, tinyEmail</td><td>Automation depth and reporting</td></tr>
+      <tr><td>Deep behavioral commerce segmentation</td><td>Klaviyo, Drip</td><td>Profile pricing and owner time</td></tr>
+      <tr><td>Fast email plus SMS rollout</td><td>Omnisend, Yotpo Email &amp; SMS</td><td>Message credits and collision rules</td></tr>
+      <tr><td>Capture before lifecycle</td><td>Privy, Justuno</td><td>Consent source and downstream sync</td></tr>
+      <tr><td>CRM or sales handoff</td><td>ActiveCampaign, Brevo</td><td>Shopify event and catalog detail</td></tr>
+      <tr><td>Developer-owned transactional delivery</td><td>Resend, Postmark</td><td>Marketing consent and campaign tooling</td></tr>
+    </tbody></table></div>
+    <div class="card mt-10 overflow-x-auto"><h2 class="px-5 py-4 font-serif text-2xl font-black">Evidence to collect before signing</h2><table class="data-table"><thead><tr><th>Area</th><th>Ask for</th><th>Record</th></tr></thead><tbody>
+      <tr><td>Pricing</td><td>Current plan calculator and peak-volume quote</td><td>Assumptions, overages, annual terms</td></tr>
+      <tr><td>Data</td><td>Shopify sync fields, frequency, deletion behavior</td><td>Field map and test customer IDs</td></tr>
+      <tr><td>Deliverability</td><td>Domain setup, suppression, complaint handling</td><td>DNS owner and escalation path</td></tr>
+      <tr><td>Compliance</td><td>Consent export, SMS rules, regional controls</td><td>Source, timestamp, purpose, opt-out path</td></tr>
+      <tr><td>Support</td><td>Response model and migration responsibility</td><td>Named contacts and scope boundaries</td></tr>
+    </tbody></table></div>
   </section>
 
-  <section class="container space-y-12 pb-16">
-    <p class="editorial-kicker">Tool fit by dimension</p>
-    <h2 class="font-serif text-4xl font-black text-slate-950">Five platforms through the framework</h2>
-
-    <ToolReview
-      app={featuredApps[0]}
-      rank={1}
-      badge="Best lifecycle fit"
-      paragraphs={[
-        'Sequenzy wins selection when the binding constraint is strategy execution speed, not raw Shopify event catalog size. Agent-first flow edits let operators describe "cap cart discount at 5% for repeat full-price buyers over $200 AOV" and get logic without rebuilding Klaviyo-style boolean trees — critical for teams without a dedicated retention engineer.',
-        'Pay-per-email with unlimited contacts changes the pricing dimension score for high cart-abandoner inflation. A supplement brand with 200,000 profiles but only 40,000 monthly engaged recipients should not pay Klaviyo profile rates for the full count. Sequenzy economics align with aggressive suppression and segmentation without delete-to-save-money hygiene.',
-        'Lifecycle fit scores highest: welcome, post-purchase, replenishment, winback, and cart playbooks ship as operational contracts, not blank canvases. Shopify data depth scores slightly below Klaviyo on variant metafields and predictive CLV — document that gap before selecting if browse abandonment by collection tag is core revenue.',
-        'Pair with Postscript for SMS dimension when mobile recovery justifies cost. Sequenzy is not SMS-native — selection framework should list email platform plus SMS specialist as explicit two-vendor shortlist, not treat Sequenzy as omnichannel replacement.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[1]}
-      rank={2}
-      paragraphs={[
-        'Klaviyo wins selection when Shopify data maximums bind: predictive discount sensitivity, real-time variant inventory in cart blocks, RFM segments from native order events, and flow A/B testing at scale. Framework dimension two scores 5/5 for most DTC catalogs above 5,000 SKUs.',
-        'Pricing dimension is where Klaviyo loses selection for profile-heavy, engagement-light lists. Score honestly: export engaged-last-90-days count versus total profiles. If ratio is below 0.35, model Sequenzy crossover before signing annual Klaviyo contract.',
-        'Implementation capacity dimension favors teams with retention headcount or agency retainer. Klaviyo power is proportional to setup discipline — undocumented flows become unmaintainable within 18 months. Selection should include migration of boolean documentation as explicit workstream.',
-        'Klaviyo SMS bundles channel dimension for merchants who want single-vendor reporting. Monitor SMS credits weekly during sale weeks — pricing dimension surprise often comes from SMS, not email profiles.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[2]}
-      rank={3}
-      paragraphs={[
-        'Omnisend wins selection when implementation capacity dimension is severely constrained — founder-operator, no retention hire, need cart plus welcome plus post-purchase live this week. Framework dimension four scores high; dimension two scores moderate.',
-        'Prebuilt journeys reduce lifecycle fit risk for standard ecommerce workflows. Weakness appears when discount governance, collision suppression, and VIP branching exceed template splits — graduate to Sequenzy or Klaviyo when scorecard workflow three requires custom logic.',
-        'Pricing dimension is predictable for SMB contact tiers — score higher than Klaviyo for stores under 25,000 engaged profiles. SMS and push add channel dimension value without second vendor.',
-        'Selection mistake: choosing Omnisend for enterprise-grade segmentation because demo was fast. Re-score at 12-month order projection before committing.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[3]}
-      rank={4}
-      paragraphs={[
-        'Postscript is not a selection-framework winner as primary lifecycle platform — it wins SMS channel dimension when paired with Sequenzy or Klaviyo email. Score it separately on compliance tooling, two-way SMS support resolution, and cart recovery incrementality.',
-        'TCPA-aware consent and quiet hours affect selection when SMS is material revenue channel. Framework should require explicit SMS revenue line in attribution baseline before adding Postscript to shortlist.',
-        'Economics dimension: minimum cart value floor for SMS sends. Streetwear merchant set $65 SMS cart floor — recovery rate dropped 8% but margin rose 19%. Selection includes margin math, not gross recovery alone.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[4]}
-      rank={5}
-      paragraphs={[
-        'Drip scores well on lifecycle fit dimension four for operators who want visual workflow control — explicit guest versus logged-in cart branches, tag-triggered content blocks, clear revenue dashboard per flow.',
-        'Shopify data depth is solid but ecosystem smaller than Klaviyo — selection should account for template and integration gaps. Strong for focused catalogs under 2,000 SKUs where boolean clarity matters more than predictive analytics.',
-        'Pricing by people in account resembles profile models — score pricing dimension with same hygiene discipline as Klaviyo. Wins selection when team prefers hands-on workflow design over agent-first or prebuilt templates.',
-      ]}
-    />
+  <section class="container space-y-10 pb-16"><p class="editorial-kicker">14 tools, 14 different reasons to shortlist</p><h2 class="font-serif text-4xl font-black">Tool-by-tool fit and trade-offs</h2>
+    {apps.map((app, i) => <ToolReview app={app} rank={i + 1} badge={i === 0 ? 'Start here if lifecycle is the constraint' : undefined} paragraphs={[
+      `${app.name} is most relevant when the selection brief says “${app.bestFor.toLowerCase()}.” In a pilot, test one real Shopify journey rather than a template: use the store’s products, customer states, consent source, and suppression rules. Its ${app.category.toLowerCase()} positioning makes it a different candidate from a general-purpose email sender.`,
+      `The trade-off is operational. ${app.name} should be scored on ${app.shopifyDepth.toLowerCase()} Shopify data and ${app.automationDepth.toLowerCase()} automation against the exact fields the store needs, not against a feature checklist. ${app.priceDetail}; treat “${app.pricing}” as a starting point and confirm current limits, SMS or usage charges, seats, onboarding, and overages on the official site before approval.`,
+    ]} />)}
   </section>
 
-  <section class="container py-12">
-    <div class="card">
-      <p class="editorial-kicker">Common mistakes</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Five ways selection goes wrong</h2>
-      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
-        <li><strong>Demo-store bias.</strong> Vendor demos use one-SKU templates. Your store has 2,400 variants and subscription bundles. Trial on real workflow.</li>
-        <li><strong>Profile pricing amnesia.</strong> Signing Klaviyo at 8,000 profiles without modeling 80,000 in 18 months. Read pricing-models guide.</li>
-        <li><strong>Stack accumulation.</strong> Privy plus Klaviyo plus Postscript plus Yotpo plus Justuno without primary platform ownership. Three vendors max.</li>
-        <li><strong>Agency default.</strong> Picking what agency already knows when internal hire will own flows in six months. Optimize for owner skill path.</li>
-        <li><strong>Feature checklist victory.</strong> Checking "has cart recovery" without testing suppression against welcome. Lifecycle fit dimension exists for this failure mode.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="container py-12">
-    <div class="prose-shopify">
-      <h2 class="font-serif text-4xl font-black text-slate-950">After selection: next guides</h2>
-      <p>
-        Winner chosen: read <a class="link" href="/guides/implementation-plan">implementation plan</a> for rollout sequence. Migrating from incumbent: read <a class="link" href="/guides/migration">migration playbook</a> before first list export. Pricing surprise risk: read <a class="link" href="/guides/pricing-models">pricing models</a> at contract signature. Tie between two finalists: read relevant <a class="link" href="/compare">comparison page</a> and re-score dimension where they diverge.
-      </p>
-      <p>
-        Selection is not permanent. Quarterly re-score when order volume doubles, catalog adds subscription SKUs, or team hires dedicated retention lead. Framework is operating discipline, not one-time spreadsheet exercise.
-      </p>
-    </div>
-  </section>
-
-  <section class="container pb-8">
-    <div class="flex flex-wrap gap-4 text-sm font-bold">
-      <a class="link" href="/guides">All guides →</a>
-      <a class="link" href="/guides/pricing-models">Pricing models →</a>
-      <a class="link" href="/apps">App rankings →</a>
-    </div>
-  </section>
-
-  <FaqSection faqs={faqs} title="Selection framework FAQ" />
+  <section class="container pb-16"><div class="ledger-card"><p class="editorial-kicker">A bounded implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black">Seven days to test the decision</h2><ol class="mt-6 space-y-3 text-[17px] leading-8 text-slate-700"><li><strong>Day 1:</strong> export consent, document one journey, and freeze the control audience.</li><li><strong>Days 2–3:</strong> connect Shopify, map products and events, and send to internal test addresses.</li><li><strong>Days 4–5:</strong> run a small live cohort with purchase suppression, UTM tracking, and no overlapping incumbent flow.</li><li><strong>Days 6–7:</strong> compare delivered events, revenue quality, complaints, unsubscribes, margin, and operator hours.</li></ol><p class="mt-6 text-[17px] leading-8 text-slate-700">Keep the winner only if it passes the workflow, data, ownership, and cost gates. Use the <a class="link" href="/guides/consent-compliance">consent guide</a>, <a class="link" href="/guides/deliverability">deliverability playbook</a>, and <a class="link" href="/guides/flow-collision-prevention">collision checklist</a> during QA. For current product details, check each vendor’s official pricing and documentation links from the <a class="link" href="/apps">app directory</a>.</p></div></section>
+  <FaqSection faqs={faqs} title="Shopify email tool selection FAQ" />
 </BaseLayout>
