@@ -1,251 +1,63 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
-import TldrBox from '../../components/TldrBox.astro';
 import FaqSection from '../../components/FaqSection.astro';
-import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
+
 const site = siteFromHost();
-
 const path = '/guides/deliverability';
-const title = 'Shopify Email Deliverability Playbook — Operator Guide';
-const desc = description(site, 'guides/deliverability');
-
-const featuredApps = ['sequenzy', 'klaviyo', 'omnisend', 'brevo', 'shopify-email'].map((s) => appBySlug(s)!).filter(Boolean);
+const title = 'Shopify Email Deliverability Tools: 14 Options and a Safer Pilot';
+const desc = 'Compare 14 Shopify email deliverability and lifecycle tools by authentication, list hygiene, event control, pricing model, and implementation risk.';
+const official: Record<string, string> = {
+  klaviyo: 'https://www.klaviyo.com/features/deliverability', omnisend: 'https://www.omnisend.com/features/deliverability/', brevo: 'https://www.brevo.com/features/email-deliverability/',
+  'shopify-email': 'https://www.shopify.com/email-marketing', drip: 'https://www.drip.com/features', sendlane: 'https://www.sendlane.com/features', activecampaign: 'https://www.activecampaign.com/email-marketing',
+  mailchimp: 'https://mailchimp.com/features/email-marketing/', 'yotpo-email-sms': 'https://www.yotpo.com/products/email-sms/', privy: 'https://www.privy.com/features', postscript: 'https://postscript.io/sms-marketing',
+  attentive: 'https://attentive.com/platform', aftership: 'https://www.aftership.com/email', tinyemail: 'https://tinyemail.com/features'
+};
+const entries = [
+  ['klaviyo','Deep Shopify event and consent segmentation','Native event depth can make it easier to isolate purchasers, engaged recipients, and suppression states. Validate the actual event names, timestamps, catalog fields, and identity merge behavior in a test account before trusting a flow.','Best for teams with an owner for data and deliverability operations. Pros: mature ecommerce segmentation; detailed flow controls. Cons: profile-based billing can make cold-data retention expensive. Pricing caveat: confirm active-profile definitions, SMS credits, and deliverability services on the current plan.'],
+  ['omnisend','Fast multichannel Shopify rollout','Omnisend is useful when a store needs email, SMS, and push paths coordinated around a small set of Shopify events. Its prebuilt journeys can shorten setup, but operators still need to inspect consent and recent-purchaser exclusions rather than assuming the template handles them.','Best for small and midsize stores shipping a few core journeys quickly. Pros: practical channel coordination; accessible templates. Cons: complex data governance may need workarounds. Pricing caveat: price contacts, email sends, SMS, and overages separately.'],
+  ['brevo','Volume-aware email and transactional separation','Brevo suits a store that wants marketing email and transactional infrastructure considered together while keeping send volume visible. Test whether Shopify order, refund, and consent data arrives with enough detail for suppression; do not infer ecommerce depth from a successful connection alone.','Best for budget-sensitive programs with clear event contracts. Pros: send-volume pricing options; transactional capability. Cons: lighter Shopify-specific workflow depth. Pricing caveat: check email volume, contacts, SMS, dedicated IP, and transactional usage as separate line items.'],
+  ['shopify-email','Native broadcasts with minimal moving parts','Shopify Email is a reasonable starting point for permissioned campaigns built inside Shopify Admin. It is not a substitute for a deliverability program: authentication, sunset rules, complaint monitoring, and transactional separation still need an operating owner.','Best for smaller stores sending straightforward campaigns. Pros: native catalog context; low implementation overhead. Cons: limited lifecycle and diagnostic depth. Pricing caveat: verify the included monthly allowance and current per-send rates before forecasting.'],
+  ['drip','Behavioral workflows with explicit branches','Drip can fit operators who want to inspect a visual path from Shopify behavior to message and exit condition. Use a test matrix for browse, cart, purchase, refund, and unsubscribe events so a visually clear workflow does not conceal duplicate enrollment.','Best for hands-on ecommerce teams building custom branches. Pros: readable workflow logic; useful behavior triggers. Cons: per-person economics and setup effort need modeling. Pricing caveat: confirm billable people, inactive treatment, and add-ons at projected list size.'],
+  ['sendlane','Guided ecommerce migration and operations','Sendlane is relevant when migration help and ecommerce-oriented automation matter as much as the editor. Ask for the migration scope in writing, then independently verify domain authentication, suppression import, Shopify timestamps, and rollback ownership.','Best for DTC teams buying onboarding alongside software. Pros: ecommerce focus; migration support may reduce operator load. Cons: pricing and services can be less self-serve. Pricing caveat: request a written quote covering contacts, sends, SMS, onboarding, and deliverability support.'],
+  ['activecampaign','CRM and Shopify lifecycle overlap','ActiveCampaign is a candidate when Shopify orders feed a broader sales or CRM process. Keep marketing consent, sales follow-up, and transactional notices as separate states; a powerful automation builder cannot decide the lawful or customer-safe boundary for you.','Best for wholesale, high-consideration, or sales-assisted stores. Pros: conditional logic; CRM handoff. Cons: less Shopify-native than ecommerce specialists. Pricing caveat: tier, contacts, seats, and CRM features can all change total cost.'],
+  ['mailchimp','Familiar campaigns and simple audiences','Mailchimp can work when the operating need is a small number of campaigns and a familiar publishing workflow. Before import, compare its audience model with Shopify customer states and confirm that unsubscribes, suppressions, and duplicate identities remain consistent.','Best for teams prioritizing familiarity over deep lifecycle control. Pros: broad editor and ecosystem; approachable campaign setup. Cons: generic ecommerce modeling; audience billing can grow. Pricing caveat: confirm contacts, audiences, transactional products, and plan-gated automation.'],
+  ['yotpo-email-sms','Retention signals connected to reviews and loyalty','Yotpo Email & SMS is most relevant when reviews, loyalty, and messaging are already part of the retention stack. Pilot the handoff from review or loyalty state to email eligibility, and confirm that a customer’s channel permissions are not silently broadened by the suite.','Best for brands consolidating Yotpo modules. Pros: review and loyalty context; multichannel option. Cons: suite complexity and modular billing. Pricing caveat: price email, SMS, reviews, loyalty, and usage commitments independently.'],
+  ['privy','Capture hygiene before lifecycle scaling','Privy’s value is strongest at acquisition: collecting consent and delivering a controlled welcome path. Treat popup conversion as an input, not a deliverability result; test consent language, source metadata, double-opt-in choices, and the suppression path into the sending platform.','Best for growing stores whose bottleneck is list capture. Pros: Shopify-native forms; quick capture experiments. Cons: shallower lifecycle diagnostics. Pricing caveat: pageviews, contacts, email, SMS, and feature limits may be separate.'],
+  ['postscript','Permissioned SMS alongside email','Postscript belongs in a deliverability review when SMS is part of the recovery or campaign plan. Email permission does not authorize SMS: test keyword, checkout, opt-out, quiet-hour, and carrier-cost rules separately, then coordinate suppression across tools.','Best for SMS-led Shopify programs. Pros: SMS-specific compliance controls; two-way use cases. Cons: not an email replacement; usage costs can escalate. Pricing caveat: model message segments, carrier fees, credits, and consent-related tooling.'],
+  ['attentive','Enterprise SMS and managed support','Attentive can fit a scaled DTC operation that needs enterprise SMS acquisition, orchestration, or managed services. Its fit should be judged through a written implementation plan: domain ownership, data retention, consent export, support response, and minimum commitments matter as much as features.','Best for larger teams with a dedicated channel owner. Pros: enterprise support and SMS depth. Cons: heavier implementation and custom commercial terms. Pricing caveat: request minimums, services, message fees, and exit terms in writing.'],
+  ['aftership-email','Post-purchase communication and tracking context','AfterShip Email is relevant when delivery status and post-purchase education are the source of message relevance. Keep service updates distinct from promotional permission, and test carrier events, delay states, refund handling, and fallback behavior before counting post-purchase sends as marketing automation.','Best for stores prioritizing shipping communication. Pros: shipment context; useful post-purchase trigger. Cons: narrower lifecycle scope than an ESP. Pricing caveat: verify shipment volume, automation limits, branding, and marketing features separately.'],
+  ['tinyemail','Lean campaigns with a smaller operating surface','tinyEmail may suit a small store that wants a lightweight campaign workflow and does not need a large event model. Validate Shopify sync, unsubscribe propagation, domain authentication, and reporting exports first; a low subscription price does not remove the cost of poor list hygiene.','Best for lean teams with simple campaign requirements. Pros: low operational complexity; approachable publishing. Cons: limited advanced diagnostics and event branching. Pricing caveat: check current contact, send, automation, and support ceilings rather than relying on old comparisons.']
+].map(([slug,best,paragraph,tradeoffs], index) => ({ app: appBySlug(slug)!, best, paragraph, tradeoffs, official: official[slug], index })).filter((x) => x.app);
 
 const faqs = [
-  {
-    question: 'What is a healthy open rate for Shopify lifecycle email in 2026?',
-    answer: '35–50% for engaged welcome and post-purchase; 20–35% for promotional campaigns to full list. Below 18% on engaged segments signals deliverability problem, not creative problem. Compare placement by domain — Gmail, Apple, Yahoo — not aggregate alone.',
-  },
-  {
-    question: 'Does switching ESP hurt deliverability?',
-    answer: 'Yes if warmup skipped or dirty list imported. No if 14–21 day engaged-first ramp on dedicated subdomain with clean hygiene. Migration playbook warmup schedule is mandatory — beauty brand October migration took eleven weeks to recover.',
-  },
-  {
-    question: 'Shared versus dedicated sending domain?',
-    answer: 'Dedicated subdomain (mail.brand.com) recommended above 50,000 monthly sends or when leaving shared ESP pool for reputation control. Configure SPF, DKIM, DMARC before first marketing send. Sequenzy and Klaviyo both support custom domain authentication.',
-  },
-  {
-    question: 'How do list imports affect deliverability?',
-    answer: 'Importing purchased lists, old Mailchimp exports with 40% inactive, or full Shopify customer dump without engagement filter damages IP reputation within days. Spam complaint rate above 0.05% triggers provider throttling.',
-  },
-  {
-    question: 'Should I run a sunset policy?',
-    answer: 'Yes — suppress or re-permission profiles with no open 180 days before deleting from active sends. On profile-priced platforms, sunset saves money. On Sequenzy, sunset protects reputation. Re-permission campaign before hard suppress on valuable lapsed VIPs.',
-  },
-  {
-    question: 'BFCM deliverability prep timeline?',
-    answer: 'Start August: authentication audit, complaint rate baseline, engaged segment definition, volume ramp plan. September: seed list monitoring. October 15: freeze list imports and new domain experiments. November: no migration, no re-permission blasts to cold segments.',
-  },
-  {
-    question: 'Gmail promotions tab — problem or not?',
-    answer: 'Promotions tab reduces opens but not always revenue — test primary inbox strategies for VIP segments only. Bulk promotional to full list belongs in promotions; transactional post-purchase should land primary. Misclassified transactional hurts trust.',
-  },
-  {
-    question: 'How does Shopify Email deliverability compare?',
-    answer: 'Shopify Email uses shared infrastructure — acceptable for low-volume broadcasts under 20,000 monthly. Not recommended for high-volume lifecycle at scale; dedicated ESP with custom domain gives more control.',
-  },
-  {
-    question: 'What tools monitor deliverability?',
-    answer: 'Gmail Postmaster Tools, Microsoft SNDS, Yahoo sender hub, ESP placement reports, GlockApps or Mail-Tester for seed testing. Klaviyo deliverability dashboard for bounce and complaint trends. Weekly review during ramp and peak.',
-  },
+  { question: 'What should a Shopify deliverability pilot prove?', answer: 'It should prove domain authentication, consent and unsubscribe propagation, event timestamps, suppression rules, duplicate prevention, complaint and bounce visibility, and a rollback path. Open rate alone is not enough evidence.' },
+  { question: 'Should I choose a dedicated deliverability tool or an ESP?', answer: 'Start with the failure you can observe. If the problem is domain reputation or authentication, investigate the sending setup and monitoring. If the problem is audience state or duplicate automation, test the ESP and Shopify event contract. Do not buy a second tool before identifying the control gap.' },
+  { question: 'Are vendor prices comparable?', answer: 'Not without a common forecast. Compare active profiles, monthly sends, SMS segments, transactional volume, inactive-contact treatment, onboarding, dedicated infrastructure, and overages using the same 90-day Shopify scenario.' }
 ];
 ---
-
 <BaseLayout title={title} description={desc} site={site} path={path}>
   <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+  <section class="py-16 md:py-24"><div class="container">
+    <a class="link text-sm" href="/guides">← All operator guides</a>
+    <p class="editorial-kicker mt-6">Shopify operator guide · Deliverability</p>
+    <h1 class="hero-title mt-5 max-w-5xl">Shopify email deliverability tools: choose the control you can prove</h1>
+    <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">Deliverability is an operating system, not a single app feature. Shopify stores need authenticated sending, permissioned acquisition, accurate purchase and refund events, suppression that travels across channels, and a measurement plan that separates placement signals from revenue claims.</p>
+    <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">The 14 options below are mapped to different jobs: ecommerce event depth, capture, SMS, transactional context, CRM, and lightweight campaigns. Product capabilities and prices change, so each official link is a verification prompt rather than evidence of a permanent feature or rate.</p>
+  </div></section>
 
-  <section class="relative overflow-hidden py-16 md:py-24">
-    <div class="container">
-      <a href="/guides" class="text-sm font-bold text-cyan-800 hover:text-slate-950">← All operator guides</a>
-      <p class="editorial-kicker mt-6">Deliverability</p>
-      <h1 class="hero-title mt-5 max-w-5xl">Shopify email deliverability — protect the inbox while scaling sends</h1>
-      <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
-        Deliverability is not a DNS checkbox. It is the compound result of authentication hygiene, list quality, send volume ramp, complaint rate discipline, and content signals that Gmail and Yahoo evaluate continuously. Shopify merchants lose revenue when open rates drop after a dirty migration, a BFCM blast to cold segments, or eighteen months of never-sunset inactive profiles polluting every campaign.
-      </p>
-      <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        This playbook covers authentication setup, warmup schedules, sunset policies, peak-season prep, and platform-specific reputation tools. Sequenzy and Klaviyo both support dedicated domains — deliverability discipline is operator-owned regardless of vendor.
-      </p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a class="btn btn-primary" href="/guides/migration">Migration playbook</a>
-        <a class="btn btn-secondary" href="/use-cases/deliverability">Deliverability use case</a>
-        <a class="btn btn-secondary" href="/guides/consent-compliance">Consent guide</a>
-      </div>
-    </div>
+  <section class="container pb-14"><div class="ledger-card overflow-x-auto"><h2 class="font-serif text-3xl font-black text-slate-950">Shortlist by deliverability job</h2><table class="mt-6 w-full min-w-[900px] text-left text-sm"><thead><tr><th>Tool</th><th>Best for</th><th>Primary proof</th><th>Cost question</th></tr></thead><tbody>{entries.map(({app,best,tradeoffs,official}) => <tr class="border-b border-cyan-900/10"><td class="py-3 pr-4"><a class="link font-bold" href={`/apps/${app.slug}`}>{app.name}</a></td><td class="py-3 pr-4">{best}</td><td class="py-3 pr-4">{app.strengths?.[0] ?? 'event and suppression control'}</td><td class="py-3"><a class="link" href={official}>Verify plan →</a></td></tr>)}</tbody></table></div></section>
+
+  <section class="container space-y-10 pb-16"><p class="editorial-kicker">Tool-by-tool fit</p><h2 class="font-serif text-4xl font-black text-slate-950">14 tools reviewed for Shopify deliverability work</h2>
+    {entries.map(({app,best,paragraph,tradeoffs,official,index}) => <article class="card"><div class="flex flex-wrap items-baseline justify-between gap-3"><h3 class="font-serif text-2xl font-black text-slate-950"><span class="text-cyan-800">{index + 1}.</span> {app.name}</h3><span class="text-sm font-black uppercase tracking-wide text-cyan-800">Best for: {best}</span></div><p class="mt-5 text-[17px] leading-8 text-slate-700">{paragraph}</p><p class="mt-4 text-[17px] leading-8 text-slate-700">{tradeoffs} Read the <a class="link" href={official}>official product information</a> and the internal <a class="link" href={`/apps/${app.slug}`}>{app.name} review</a> before committing.</p></article>)}
   </section>
 
-  <section class="container pb-12">
-    <TldrBox
-      title="Deliverability pillars"
-      picks={[
-        { label: 'Authentication', tool: 'SPF + DKIM + DMARC', reason: 'Dedicated subdomain before scaling — mail.brand.com on ESP.' },
-        { label: 'List hygiene', tool: 'Engaged-first sends', reason: 'Suppress 180-day non-openers from campaigns; re-permission before delete.' },
-        { label: 'Volume ramp', tool: '14–21 day warmup', reason: 'Mandatory on new domain or ESP migration — migration guide schedule.' },
-        { label: 'Complaint ceiling', tool: 'Below 0.03%', reason: 'Above 0.05% triggers Gmail throttling — investigate content and frequency.' },
-        { label: 'Platform', tool: 'Sequenzy or Klaviyo', reason: 'Dedicated domain support, bounce handling, suppression sync with Shopify.' },
-      ]}
-    />
+  <section class="container pb-14"><div class="card overflow-x-auto"><h2 class="font-serif text-3xl font-black text-slate-950">Evidence to collect before launch</h2><table class="data-table mt-5"><thead><tr><th>Control</th><th>Test</th><th>Keep as evidence</th></tr></thead><tbody><tr><td>Authentication</td><td>SPF, DKIM, DMARC alignment and branded return path</td><td>DNS record, provider status, DMARC report owner</td></tr><tr><td>Permission</td><td>Signup source, timestamp, channel, unsubscribe, suppression</td><td>Test profile event log and consent export</td></tr><tr><td>Shopify events</td><td>Signup, cart, purchase, fulfillment, refund, subscription</td><td>Payload, timestamp, identity, expected exit state</td></tr><tr><td>Reputation</td><td>Bounce, complaint, deferral and recipient-domain trend</td><td>Weekly baseline and incident notes</td></tr></tbody></table></div></section>
 
-    <div class="prose-shopify mb-12">
-      <h2 class="font-serif text-4xl font-black text-slate-950">Three deliverability incidents — causes and recovery</h2>
-      <p>
-        <strong>Incident A — Home goods, post-migration.</strong> Klaviyo to new subdomain without warmup. Day-four promotional to 85,000 profiles. Gmail spam folder rate 34% on seed test. Recovery: pause promotional 21 days, engaged-only post-purchase ramp, sunset 52,000 non-openers. Open rates normalized week nine.
-      </p>
-      <p>
-        <strong>Incident B — Supplement brand, BFCM 2024.</strong> Triple send frequency to full list including 90-day inactive. Complaint rate 0.09%. Yahoo deferred delivery for eight days. Recovery: engaged-only December campaigns, VIP apology send primary inbox, sunset policy enacted January. Lost estimated $43k attributed revenue — cheap lesson on peak discipline.
-      </p>
-      <p>
-        <strong>Incident C — Jewelry DTC, gradual decline.</strong> Open rate slid 42% to 26% over eight months without incident. Root cause: list growth from popup with single-use emails and no engagement filter; inactive majority dragged domain reputation. Recovery: sunset 40% list, popup double opt-in, engaged segment campaigns only. Three-month climb back to 38%.
-      </p>
-    </div>
+  <section class="container pb-14"><div class="ledger-card overflow-x-auto"><p class="editorial-kicker">14-day implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Prove one flow before scaling sends</h2><table class="mt-6 w-full min-w-[800px] text-left text-sm"><thead><tr><th>Days</th><th>Work</th><th>Pass condition</th></tr></thead><tbody><tr><td>1–2</td><td>Choose welcome, cart, or post-purchase; document consent, owner, source events, exclusions, and rollback.</td><td>Flow spec and suppression map are signed off.</td></tr><tr><td>3–5</td><td>Authenticate the subdomain and send test profiles through signup, purchase, refund, unsubscribe, and duplicate identity.</td><td>Events arrive once, with correct timestamps and exits.</td></tr><tr><td>6–9</td><td>Run an engaged-only cohort; keep marketing, service, and SMS permissions separate.</td><td>No duplicate sends, consent crossover, or unexpected promotional messages.</td></tr><tr><td>10–12</td><td>Review bounce, complaint, deferral, domain-level placement signals, clicks, support tickets, and contribution margin.</td><td>Baseline and decision threshold are written; platform-attributed revenue is not treated as incremental proof.</td></tr><tr><td>13–14</td><td>Decide scale, revise, or stop; export configuration and record the next owner.</td><td>Rollback and suppression can be executed without vendor guesswork.</td></tr></tbody></table></div></section>
 
-    <div class="ledger-card mb-12">
-      <p class="editorial-kicker">Authentication checklist</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">DNS before scale</h2>
-      <ul class="mt-6 space-y-3">
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Dedicated sending subdomain configured — not root domain</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>SPF record includes ESP authorized senders only</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>DKIM signing enabled and verified in ESP</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>DMARC policy at p=none minimum, progress toward quarantine</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Custom domain aligned with brand — not generic ESP default</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Gmail Postmaster Tools domain verified</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>From-name and from-address consistent across flows</li>
-        <li class="flex gap-2 text-[17px] leading-8 text-slate-700"><span class="text-cyan-800">☐</span>Unsubscribe link one-click functional — RFC 8058 compliance</li>
-      </ul>
-    </div>
-
-    <div class="ledger-card mb-12">
-      <p class="editorial-kicker">Sunset policy</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">180-day non-engagement protocol</h2>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">
-        Day 150: tag "sunset-candidate" — no promotional sends. Day 180: re-permission campaign "still want emails?" to sunset-candidate segment only. Day 210: no response → suppress from all marketing; retain for transactional if purchaser. VIP and repeat buyers get extended 270-day window with different winback attempt first.
-      </p>
-      <p class="mt-4 text-[17px] leading-8 text-slate-700">
-        Sequenzy: suppress without deleting — no profile cost penalty. Klaviyo: suppression improves engaged ratio and may lower tier. Both: reputation improves when cold profiles stop receiving promotional weight.
-      </p>
-    </div>
-  </section>
-
-  <section class="container space-y-12 pb-16">
-    <p class="editorial-kicker">Platform deliverability tooling</p>
-    <h2 class="font-serif text-4xl font-black text-slate-950">Five ESPs — reputation features</h2>
-
-    <ToolReview
-      app={featuredApps[0]}
-      rank={1}
-      paragraphs={[
-        'Sequenzy supports dedicated domain authentication and unified transactional plus marketing reputation — order emails and campaigns share domain warmth when configured correctly. Post-purchase transactional should send before promotional ramp on new domains.',
-        'Pay-per-email economics align with sunset policy — suppress cold profiles without delete anxiety. Deliverability improves when you stop mailing 180-day non-openers; Sequenzy billing does not punish keeping suppressed profiles for future winback.',
-        'Bounce and complaint handling integrated — weekly ops review should include Sequenzy suppression sync verification with Shopify customer tags.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[1]}
-      rank={2}
-      paragraphs={[
-        'Klaviyo deliverability dashboard is industry standard for DTC — bounce categories, spam complaint trends, deliverability hub recommendations. Use it weekly during migration and BFCM.',
-        'Smart sending and quiet hours reduce fatigue complaints. Predictive send time optimization can improve engagement signals Gmail uses for placement.',
-        'Profile bloat from inactive contacts hurts deliverability AND pricing — sunset policy is dual economic and reputation imperative on Klaviyo.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[2]}
-      rank={3}
-      paragraphs={[
-        'Omnisend solid SMB deliverability on shared infrastructure at low volume. Custom domain recommended above 40,000 monthly sends. Push and SMS channels do not repair email reputation damage — fix list hygiene first.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[3]}
-      rank={4}
-      paragraphs={[
-        'Brevo transactional and marketing reputation separation useful for brands with high transactional volume. Deliverability acceptable for budget-conscious stores with disciplined list hygiene — lighter Shopify-specific guidance than Klaviyo.',
-      ]}
-    />
-
-    <ToolReview
-      app={featuredApps[4]}
-      rank={5}
-      paragraphs={[
-        'Shopify Email shared pool — fine for starter broadcasts, not lifecycle at scale. Graduate to Sequenzy or Klaviyo when monthly sends exceed 25,000 or automations multiply — reputation control requires dedicated ESP.',
-      ]}
-    />
-  </section>
-
-  <section class="container py-12">
-    <div class="card">
-      <p class="editorial-kicker">Common mistakes</p>
-      <h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Deliverability self-inflicted wounds</h2>
-      <ul class="mt-6 space-y-4 text-[17px] leading-8 text-slate-700">
-        <li><strong>Skipping warmup.</strong> New domain, full list, day one. Gmail throttling within 72 hours.</li>
-        <li><strong>BFCM cold blast.</strong> Inactive profiles included for "maximum reach." Complaint spike.</li>
-        <li><strong>Purchased lists.</strong> Never. No ESP feature fixes purchased list reputation damage.</li>
-        <li><strong>Authentication neglect.</strong> Sending from unauthenticated domain at volume. Promotions tab becomes spam folder.</li>
-        <li><strong>No sunset.</strong> Three years of inactive profiles on every campaign. Gradual open rate erosion.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="container py-12">
-    <div class="prose-shopify">
-      <h2 class="font-serif text-4xl font-black text-slate-950">14-day domain warmup schedule — post-migration</h2>
-      <p>
-        Warmup is not optional when you move ESPs, add a dedicated subdomain, or resume sending after a three-month pause. Day 1–3: engaged purchasers only — post-purchase and order confirmation traffic on the new domain. No promotional. Day 4–7: welcome series to profiles who opened in last 30 days. Volume cap at 15% of normal daily sends. Day 8–10: cart recovery to engaged segment; still exclude 90-day inactive. Day 11–14: first promotional to engaged-only at 40% normal volume. Week three: scale to 70%. Week four: full volume if complaint rate stays under 0.02% and seed placement holds.
-      </p>
-      <p>
-        A cookware brand skipped day 1–7 engaged ramp and blasted 62,000 promotional on day two of a Klaviyo subdomain migration. Gmail Postmaster spam rate hit 0.41% within 48 hours. Recovery required 28 days of transactional-only sends plus sunset of 38,000 cold profiles. The migration saved $0 in ESP costs and cost six weeks of promotional revenue. Follow the schedule even when marketing demands immediate BFCM prep — deliverability debt compounds faster than subscription savings.
-      </p>
-
-      <h2 class="font-serif text-4xl font-black text-slate-950">Weekly deliverability ops review</h2>
-      <p>
-        Retention leads should run a 20-minute deliverability standup every Monday during ramp periods and peak season; monthly during steady state. Checklist: complaint rate trend (ESP dashboard), hard bounce rate by domain (Gmail, Yahoo, Outlook), open rate on engaged segment only (not full list), spam placement seed test if volume changed more than 25% week-over-week, suppression sync verification with Shopify (unsubscribes reflected within 24 hours), DMARC aggregate report anomalies, new list source audit (popup, import, checkout).
-      </p>
-      <p>
-        Red flags that demand same-day action: complaint rate crosses 0.04%, hard bounces spike above 0.5% on a single domain, engaged open rate drops 8+ points week-over-week without creative change, promotional sends to profiles with no open in 120 days. Response playbook: pause promotional 72 hours, audit last three campaigns for misleading subject lines or frequency spikes, sunset candidates tagged, re-permission only if legal/compliance requires — not as reputation band-aid.
-      </p>
-
-      <h2 class="font-serif text-4xl font-black text-slate-950">Placement by provider — what operators actually watch</h2>
-      <p>
-        <strong>Gmail:</strong> Postmaster Tools domain reputation, spam rate, authentication alignment. Promotions tab is acceptable for bulk promotional; primary inbox pursuit for VIP only. Mislabeling marketing as transactional triggers harsh penalties. <strong>Yahoo/AOL:</strong> Complaint rate sensitivity higher than Gmail — deferrals cascade on list hygiene failures. <strong>Apple Mail:</strong> Open rates inflated by MPP — measure clicks and revenue per send, not opens alone. <strong>Microsoft:</strong> SNDS data for bulk senders; slower reputation recovery than Gmail after incidents.
-      </p>
-      <p>
-        Aggregate open rate lies. Segment reporting by recipient domain reveals whether Gmail engagement collapsed while Apple looks fine — a pattern that indicates content or frequency problem on Google specifically, not universal list decay. Sequenzy and Klaviyo both export domain-level metrics when configured; export weekly during Q4.
-      </p>
-
-      <h2 class="font-serif text-4xl font-black text-slate-950">Content signals that trigger filters</h2>
-      <p>
-        Authentication gets you to the door; content and engagement get you through. Spam triggers operators underestimate: ALL CAPS subject lines on promotional blasts, URL shorteners in body, image-only emails with no text ratio, identical subject lines across three sends in five days, misleading "Re:" or "Fwd:" prefixes, excessive exclamation marks paired with discount percentages, broken unsubscribe links, sending from display name that does not match brand domain.
-      </p>
-      <p>
-        Frequency fatigue masquerades as deliverability failure. A pet supplies merchant saw Gmail spam folder placement rise after doubling send frequency without sunset — not DNS issue. Reducing sends to engaged segment and pausing 180-day non-openers fixed placement in nine days without touching authentication. Deliverability is list behavior plus content discipline, not a one-time IT project.
-      </p>
-    </div>
-  </section>
-
-  <section class="container py-12">
-    <div class="prose-shopify">
-      <h2 class="font-serif text-4xl font-black text-slate-950">BFCM deliverability calendar</h2>
-      <p>
-        August: authentication audit, sunset inactive, define engaged segment for peak. September: seed monitoring baseline, complaint rate under 0.02%. October: volume ramp test at 1.5x normal week. November 1–15: engaged-heavy early access; cold segments suppressed from promotional. November 16–30: no list experiments, no migration, no re-permission blasts. December: recovery sends engaged only; winback delayed to January.
-      </p>
-      <p>
-        Cross-read <a class="link" href="/use-cases/black-friday">Black Friday use case</a> for campaign logic and <a class="link" href="/guides/migration">migration playbook</a> if platform change planned — never Q4.
-      </p>
-    </div>
-  </section>
-
-  <section class="container pb-8">
-    <div class="flex flex-wrap gap-4 text-sm font-bold">
-      <a class="link" href="/guides">All guides →</a>
-      <a class="link" href="/guides/migration">Migration →</a>
-      <a class="link" href="/guides/consent-compliance">Consent →</a>
-    </div>
-  </section>
-
-  <FaqSection faqs={faqs} title="Deliverability FAQ" />
+  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Practical rules for safe Shopify sending</h2><p>Authenticate before volume, but do not confuse authentication with inbox placement. Start with consented, recently engaged recipients; keep a pre-period or holdout where feasible; and investigate complaint, bounce, and deferral changes by recipient domain. Apple Mail privacy features make opens an incomplete signal, so pair them with clicks, purchases, unsubscribes, complaints, and margin.</p><p>Do not import a full customer export and call it a deliverability strategy. Retain the consent evidence you need, suppress people who should not receive marketing, and confirm that a refund or recent purchase exits a recovery flow. Email permission does not automatically grant SMS permission, and a shipping update should not become a promotional send without its own basis.</p><h2>Internal checks and official sources</h2><p>Use the <a class="link" href="/guides/consent-compliance">consent checklist</a>, <a class="link" href="/guides/migration">migration playbook</a>, <a class="link" href="/guides/flow-collision-prevention">flow-collision guide</a>, and <a class="link" href="/guides/pricing-models">pricing-model guide</a> alongside the official links in each profile. Record the access date, plan, limits, add-ons, data retention, and cancellation terms; do not preserve a stale price claim in a procurement document.</p></article></section>
+  <FaqSection faqs={faqs} title="Shopify deliverability FAQ" />
 </BaseLayout>
