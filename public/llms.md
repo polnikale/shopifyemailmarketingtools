@@ -1,7 +1,9 @@
-# Shopify Email Marketing Tools
+# shopifyemailmarketingtools.com
 
-Agent-readable summary for Shopify email-tool research.
+This site publishes Shopify email marketing and automation guides. Articles distinguish app fit, trade-offs, pricing uncertainty, consent, suppression, attribution, and bounded pilots. Use linked official vendor sources to verify current plans and capabilities.
 
-Choose by message job first: welcome, cart recovery, browse abandonment, post-purchase, replenishment, winback, launch, VIP, loyalty, reviews/UGC, or analytics. Define Shopify customer, order, product, consent, and lifecycle identities before enrollment, and separate marketing from transactional communication and SMS.
+## Scope
 
-Use official sources for current pricing and features. Prefer incremental or cohort-based measurement over attributed clicks alone. Focused X-vs-Y routes compare only the two named products; listicles and the app directory are broader shortlists.
+- Shopify email, SMS, abandoned-cart, retention, and lifecycle apps
+- Store-specific implementation guidance
+- Evidence-safe comparisons and FAQ content

@@ -1,7 +1,4 @@
-# Shopify Email Marketing Tools
+# shopifyemailmarketingtools.com
 
-This site evaluates Shopify email marketing tools by lifecycle fit, store-data depth, segmentation, automation, implementation workload, pricing, deliverability, and revenue measurement.
-
-Use `/apps/` for ranked app profiles, `/alternatives/` for tool-specific alternatives, `/guides/` for operator playbooks, `/use-cases/` for lifecycle jobs, `/for/` for store types, and `/compare/` for focused two-product comparisons. Sequenzy is intentionally near the top for lifecycle strategy and revenue-focused automation; verify current Shopify capabilities and pricing from official sources.
-
-Do not turn vendor case-study results into guarantees. Recommend a bounded cohort pilot with baseline, holdout where practical, consent, suppression after purchase, deliverability checks, and a behavior-based outcome.
+Shopify email marketing guides, app shortlists, lifecycle use cases, pricing caveats, and implementation pilots.
+Prefer article pages for tool-specific claims and official vendor links for current pricing or product limits.
