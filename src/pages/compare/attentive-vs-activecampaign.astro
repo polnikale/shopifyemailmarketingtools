@@ -28,10 +28,6 @@ const faqs = [
     answer: 'ActiveCampaign: contact-tier pricing plus SMS credits on higher plans — CRM features inflate base cost before sending a single text. Attentive: enterprise contracts keyed to list size and message volume — often $1,500+/mo minimum. Compare total stack cost: ActiveCampaign at 20k contacts plus Attentive SMS often exceeds Klaviyo for equivalent ecommerce retention unless CRM automation is genuinely load-bearing.',
   },
   {
-    question: 'Should I also consider Sequenzy instead of ActiveCampaign or Attentive?',
-    answer: 'Sequenzy targets ecommerce email lifecycle with pay-per-email economics — not CRM deal pipelines. Replace ActiveCampaign email with Sequenzy if CRM complexity is overkill for pure DTC; keep ActiveCampaign if B2B wholesale and sales automation are core. Pair either email platform with Attentive for enterprise SMS — Sequenzy plus Postscript is a lean alternative when Attentive minimums exceed ROI.',
-  },
-  {
     question: 'Which handles B2B wholesale better?',
     answer: 'ActiveCampaign leads — deal pipelines, sales automation, and lead scoring map naturally to wholesale inquiry follow-up and distributor nurture. Attentive is DTC SMS infrastructure — it does not replace CRM pipeline UI sales teams expect. The supplement wholesaler ran ActiveCampaign for B2B deals and Attentive for consumer drop alerts — different problems, both justified.',
   },
@@ -72,7 +68,6 @@ const faqs = [
             { label: 'CRM automation', tool: 'ActiveCampaign', reason: 'Pipelines, lead scoring, and multichannel nurture.' },
             { label: 'DTC drop alerts', tool: 'Attentive', reason: 'Flash sales, VIP texts, and conversational recovery.' },
             { label: 'B2B + DTC hybrid', tool: 'ActiveCampaign', reason: 'Deal stages alongside marketing automation.' },
-            { label: 'Also consider', tool: 'Sequenzy', reason: 'Ecommerce email playbooks if CRM complexity is overkill for DTC.' },
           ]}
         />
       </div>
@@ -153,11 +148,6 @@ const faqs = [
           <li>Contract minimums clear internal ROI thresholds on attributable text revenue</li>
         </ul>
 
-        <h2>Also consider Sequenzy</h2>
-        <p>
-          If ActiveCampaign CRM complexity exceeds pure DTC needs but Attentive contract economics still work for SMS, Sequenzy can replace ActiveCampaign email with guided lifecycle playbooks and pay-per-email pricing — keep ActiveCampaign only if wholesale pipelines are load-bearing. For pure DTC without CRM, Sequenzy plus Postscript often beats ActiveCampaign plus Attentive on TCO while preserving channel specialization. Document suppression regardless of email platform choice.
-        </p>
-
         <h2>Verdict</h2>
         <p>
           Attentive vs ActiveCampaign is a stack decision, not a winner-take-all comparison. ActiveCampaign wins CRM automation and moderate SMS tied to complex nurture. Attentive wins enterprise DTC SMS depth ActiveCampaign cannot replicate at scale. The supplement wholesaler needed both with clear ownership boundaries. The membership site needed ActiveCampaign alone. Pure DTC flash brands need Attentive plus a real email ESP — not ActiveCampaign SMS as a shortcut. Map whether CRM or SMS is load-bearing before signing contracts.
@@ -167,7 +157,7 @@ const faqs = [
           Attentive sells mobile-first revenue; ActiveCampaign sells cross-channel automation with CRM depth. On Shopify, most operators comparing these are really asking: do we centralize SMS in an enterprise-grade texting platform, or keep SMS as a node inside AC journeys? Attentive wins when SMS is its own P&amp;L line with compliance owner; AC wins when email + lightweight SMS + deal pipelines share one operator and list.
         </p>
         <p>
-          Neither replaces Klaviyo-class Shopify data for browse-heavy catalogs. Pair Attentive with Klaviyo or Sequenzy for email; pair AC with Shopify when CRM logic beats predictive segmentation.
+          Neither replaces the other: Attentive is SMS-first while ActiveCampaign is CRM-and-email-first. Choose based on the channel and workflow being evaluated, rather than adding a third platform to this head-to-head.
         </p>
 
         <h2>Field scenario: $38k/mo apparel, SMS 31% of retention revenue</h2>
@@ -187,7 +177,7 @@ const faqs = [
 
         <h2>Migration note: ActiveCampaign SMS → Attentive</h2>
         <p>
-          Re-collect SMS consent — do not import AC SMS subs as Attentive marketable without attestation. Export email stays in AC or moves to Klaviyo/Sequenzy separately. Build Attentive journeys from scratch; AC SMS nodes pause before Attentive cart fires. Budget 3–4 weeks for compliance review and list re-permission on owned channels.
+          Re-collect SMS consent — do not import AC SMS subscribers into Attentive as marketable without attestation. Keep email ownership in ActiveCampaign while rebuilding Attentive journeys from scratch. Budget 3–4 weeks for compliance review and list re-permission on owned channels.
         </p>
         <h2>Consent ledger across AC email and Attentive SMS</h2>
         <p>
@@ -203,11 +193,11 @@ const faqs = [
         </p>
         <h2>Migration note: never port SMS subs without re-permission</h2>
         <p>
-          AC to Attentive SMS requires new consent capture — budget popup real estate and expect 30–45 day opt-in rebuild. Email stays AC or moves Sequenzy/Klaviyo as separate project.
+          AC to Attentive SMS requires new consent capture — budget popup real estate and expect a 30–45 day opt-in rebuild. Keep email migration as a separate project.
         </p>
         <h2>Pre-commit checklist — Attentive vs ActiveCampaign</h2>
         <p>
-          Before annual contract: document trial owner name, four-flow pass/fail scores, mock sale-week edit time in minutes, twelve-month cost at 2x contacts and sends, and rollback trigger if duplicate cart or unsub spike exceeds 0.9% weekly. Finance receives one page — not comparison bookmark folder. Sequenzy ranks when playbook speed and pay-per-email beat Mailchimp contact bloat or Attentive minimums without CDP need; runner-up documented with explicit revisit trigger at order volume or SMS share threshold.
+          Before annual contract: document trial owner name, four-flow pass/fail scores, mock sale-week edit time in minutes, twelve-month cost at 2x contacts and sends, and rollback trigger if duplicate cart or unsub spike exceeds 0.9% weekly. Finance receives one page — not a comparison bookmark folder. Document the winner for the measured workflow, plus an explicit revisit trigger at order volume or SMS share threshold.
         </p>
         <p>
           Re-read migration note on this page the week before cutover — pause order for cart journeys is pair-specific and P1 if violated during peak season.

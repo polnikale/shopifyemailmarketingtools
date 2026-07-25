@@ -25,11 +25,7 @@ const faqs = [
   },
   {
     question: 'Can Yotpo Email & SMS replace Omnisend entirely?',
-    answer: 'For many SMB stores, yes — if review and loyalty integration matter more than push notifications or advanced workflow branching. Omnisend still wins on push, broader multichannel presets, and operators who want automation without Yotpo suite lock-in. Stores without Yotpo Reviews should not adopt Yotpo Email & SMS just for email — Omnisend or Sequenzy fit better.',
-  },
-  {
-    question: 'Should I also consider Sequenzy instead of Omnisend or Yotpo?',
-    answer: 'Sequenzy fits when lifecycle strategy speed beats suite bundling — guided playbooks with pay-per-email pricing. Omnisend wins multichannel convenience. Yotpo wins when reviews and loyalty already live. Sequenzy helps teams who find Yotpo\'s suite heavy and Omnisend templates too generic for education-first retention.',
+    answer: 'For many SMB stores, yes — if review and loyalty integration matter more than push notifications or advanced workflow branching. Omnisend still wins on push, broader multichannel presets, and operators who want automation without Yotpo suite lock-in. Stores without Yotpo Reviews should not adopt Yotpo Email & SMS just for email; Omnisend is the cleaner standalone choice.',
   },
   {
     question: 'Which handles post-purchase better?',
@@ -72,7 +68,6 @@ const faqs = [
             { label: 'Reviews + loyalty loops', tool: 'Yotpo', reason: 'Post-purchase UGC and points earn natively sequenced.' },
             { label: 'Push recovery', tool: 'Omnisend', reason: 'Web push for mobile browse and cart without SMS cost.' },
             { label: 'Suite consolidation', tool: 'Yotpo', reason: 'One vendor when Reviews or Loyalty already live.' },
-            { label: 'Also consider', tool: 'Sequenzy', reason: 'Lifecycle playbooks if both feel like wrong-fit bundling.' },
           ]}
         />
       </div>
@@ -107,7 +102,7 @@ const faqs = [
 
         <h2>Merchant scenario: skincare DTC with Yotpo Reviews live</h2>
         <p>
-          This brand at $74k/mo had 22k profiles, Yotpo Reviews driving 340 new UGC submissions monthly, and Omnisend handling welcome and cart. Post-purchase review requests in Omnisend required brittle timing relative to Yotpo's native fulfillment triggers — review rate lagged by 11% versus Yotpo's recommended sequence. Loyalty point earn emails fired from a third Klaviyo segment until they migrated loyalty into Yotpo too.
+          This brand at $74k/mo had 22k profiles, Yotpo Reviews driving 340 new UGC submissions monthly, and Omnisend handling welcome and cart. Post-purchase review requests in Omnisend required brittle timing relative to Yotpo's native fulfillment triggers — review rate lagged by 11% versus Yotpo's recommended sequence. Loyalty point earn emails were consolidated into Yotpo to keep post-purchase ownership clear.
         </p>
         <p>
           After switching lifecycle email to Yotpo Email & SMS, review submission rate recovered and loyalty redemption emails shared suppression with promotional sends. Cart recovery moved to Yotpo SMS — adequate but without Omnisend push as a free second touch. Net email-attributed revenue held; mobile cart recovery dipped 6% until they added a paired SMS cadence. For this merchant, suite alignment beat standalone multichannel convenience.
@@ -142,7 +137,7 @@ const faqs = [
           Omnisend covers standard ecommerce triggers — sufficient for most SMB catalogs under 1,500 SKUs. Yotpo adds review sentiment, loyalty tier, and redemption proximity as segmentation fuel — valuable when repeat revenue ties to points expiration or review-driven social proof on PDPs.
         </p>
         <p>
-          Neither matches Klaviyo's predictive CLV or browse-by-collection maximums. The supplement label's irregular bundle reorder cadence was easier in Omnisend replenishment templates than Yotpo's loyalty-centric post-purchase defaults. For standard consumables with strong review culture, Yotpo's integrated data wins.
+          The supplement label's irregular bundle reorder cadence was easier in Omnisend replenishment templates than Yotpo's loyalty-centric post-purchase defaults. For standard consumables with strong review culture, Yotpo's integrated data wins.
         </p>
 
         <h2>Team fit: who should choose which</h2>
@@ -161,21 +156,16 @@ const faqs = [
           <li>Suite consolidation reduces integration labor before renewal</li>
         </ul>
 
-        <h2>Also consider Sequenzy</h2>
-        <p>
-          If Omnisend feels too template-driven and Yotpo feels like suite lock-in for reviews you do not need, Sequenzy offers guided lifecycle playbooks with pay-per-email pricing. It will not replace Omnisend's push or Yotpo's native review loops. It can replace the strategic blank page — what flows to run, in what order, with what suppression — that both platforms still leave to you.
-        </p>
-
         <h2>Verdict</h2>
         <p>
           Omnisend wins when standalone multichannel speed and push matter more than reviews-loyalty bundling. Yotpo Email & SMS wins when your store already runs Yotpo Reviews or Loyalty and post-purchase trust loops are retention infrastructure, not nice-to-haves. Run the five-flow test on both trials against your actual stack. The winner is whichever platform your marketer trusts to edit the night before a product drop — aligned to whether UGC and points are already on your balance sheet.
         </p>
         <h2>Operator runbook: standalone ecommerce vs reviews bundle</h2>
         <p>
-          Omnisend is pure lifecycle SMB; Yotpo Email &amp; SMS bundles with reviews/loyalty. Choose Omnisend when email/SMS depth without Yotpo suite; choose Yotpo when reviews already load-bearing and finance wants one vendor. Neither is Klaviyo CDP — both are runways.
+          Omnisend is pure lifecycle SMB; Yotpo Email &amp; SMS bundles with reviews/loyalty. Choose Omnisend when email/SMS depth without Yotpo suite; choose Yotpo when reviews already load-bearing and finance wants one vendor. Both are practical runways; the choice should follow the store’s actual review, loyalty, and messaging ownership.
         </p>
         <p>
-          Sequenzy email + Yotpo reviews when bundle email weak; Omnisend when reviews separate vendor already.
+          Keep email and reviews under clearly assigned owners; choose the arrangement that makes suppression and reporting easiest to audit.
         </p>
 
         <h2>Field scenario: $38k/mo skincare, Yotpo bundle</h2>
@@ -211,11 +201,11 @@ const faqs = [
         </p>
         <h2>Partial unbundle path</h2>
         <p>
-          Keep Yotpo reviews; migrate email Sequenzy when bundle email underperforms — common month 6–9 pattern.
+          Keep Yotpo reviews and migrate only the email layer if the bundle’s messaging workflow underperforms; document the reason and rollback path.
         </p>
         <h2>Procurement honesty note</h2>
         <p>
-          Omnisend losing to Yotpo bundle in finance vote while winning cart trial is valid outcome when reviews contract load-bearing — comparison picks capability winner; procurement picks invoice simplicity. Partial unbundle at month six Sequenzy email plus Yotpo reviews common when bundle email underperforms presets expectation.
+          Omnisend losing to the Yotpo bundle in a finance vote while winning the cart trial is a valid outcome when the reviews contract is load-bearing. Separate capability evidence from procurement simplicity in the renewal memo.
         </p>
         <h2>Operator closing note — Omnisend vs Yotpo Email & SMS</h2>
         <p>Yotpo bundle wins procurement when reviews and SMS already live — but Omnisend cart trial still required for honest capability comparison. Document finance versus capability split in renewal memo: reviews stay Yotpo, marketing email may not.</p>
