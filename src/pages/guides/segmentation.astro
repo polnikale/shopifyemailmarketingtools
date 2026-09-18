@@ -27,11 +27,46 @@ const tools = [
 ].map(([slug,best,pricing,internal,fit,caveat], index) => ({ app: appBySlug(slug)!, best, pricing, internal, fit, caveat, index })).filter((x) => x.app);
 
 const faqs = [
-  { question: 'What Shopify segments should a store build first?', answer: 'Start with lifecycle state (never purchased, one-time, repeat, VIP, lapsed), then add intent (cart, browse, back-in-stock) and one catalog attribute that changes the message. Every segment needs an owner, purpose, source field, and suppression rule.' },
-  { question: 'Is a Shopify segment the same as an email-platform segment?', answer: 'No. Shopify customer and order data is the source; the ESP may copy, transform, or delay it. Test timestamps, refunds, guest checkout, subscriptions, and consent before relying on a segment in a live flow.' },
-  { question: 'How many segments are too many?', answer: 'There is no universal number. Treat unused segments, identical audiences, and splits that do not change timing, offer, or suppression as maintenance debt. Review active definitions monthly and archive those with no operational job.' },
-  { question: 'Should I choose predictive scoring or explicit rules?', answer: 'Choose predictive scores when enough clean history exists and the score changes a weekly decision. Choose explicit rules when the store needs explainable product, subscription, wholesale, or consent logic. Many teams use both.' },
-  { question: 'How should segmentation affect pricing?', answer: 'Compare total cost at the engaged audience and send volume you expect, not the headline tier. Include inactive contacts, event retention, automation limits, SMS fees, transactional usage, support, and migration work.' },
+  {
+    question: 'What Shopify segments should a store build first?',
+    answer: 'Start with lifecycle state (never purchased, one-time, repeat, VIP, lapsed), then add intent (cart, browse, back-in-stock) and one catalog attribute that changes the message. Every segment needs an owner, purpose, source field, and suppression rule.',
+  },
+  {
+    question: 'Is a Shopify segment the same as an email-platform segment?',
+    answer: 'No. Shopify customer and order data is the source; the ESP may copy, transform, or delay it. Test timestamps, refunds, guest checkout, subscriptions, and consent before relying on a segment in a live flow.',
+  },
+  {
+    question: 'How many segments are too many?',
+    answer: 'There is no universal number. Treat unused segments, identical audiences, and splits that do not change timing, offer, or suppression as maintenance debt. Review active definitions monthly and archive those with no operational job.',
+  },
+  {
+    question: 'Should I choose predictive scoring or explicit rules?',
+    answer: 'Choose predictive scores when enough clean history exists and the score changes a weekly decision. Choose explicit rules when the store needs explainable product, subscription, wholesale, or consent logic. Many teams use both.',
+  },
+  {
+    question: 'How should segmentation affect pricing?',
+    answer: 'Compare total cost at the engaged audience and send volume you expect, not the headline tier. Include inactive contacts, event retention, automation limits, SMS fees, transactional usage, support, and migration work.',
+  },
+  {
+    question: 'Which segmentation tools are strongest for Shopify purchaser suppression?',
+    answer: 'Klaviyo auto-applies purchase and refund states as profile events in real time, so suppression is filter-free in most flows. Drip expresses it through explicit tag and event rules; ActiveCampaign routes it through its contact-deal model. Lightweight tools often require manual segment maintenance — acceptable at small volumes, expensive in operator hours at scale. Verify with test orders wherever your account lives.',
+  },
+  {
+    question: 'How do margin-aware segments change what we send?',
+    answer: 'They gate offers instead of sending universal coupons. Practical examples: discount campaigns exclude households of prior full-price VIPs; replenishment reminders for low-margin SKUs carry content instead of incentives; sale-week sends exclude customers who purchased at full price within the last 14 days. A tool that can express those exclusions as segment conditions saves margin weekly — one that cannot trades margin for operator effort.',
+  },
+  {
+    question: 'What is the difference between a segment and an audience export?',
+    answer: 'A segment is a live definition the platform re-evaluates; an export is a frozen list that goes stale the moment an order or refund arrives. Flows should always evaluate live segments at send time. Exports are legitimate for one-off uploads (a supplier-cohort notice, an archived audit), but if your weekly send calendar depends on re-exported lists, the tooling — not the strategy — is the bottleneck.',
+  },
+  {
+    question: 'How do back-in-stock and waitlist segments handle consent?',
+    answer: 'Carefully. A shopper who signed up to be notified about a product has consented to that notification, not to the weekly newsletter — keep the two states separate and exit the waitlist segment after the notification fires. If the shopper also subscribed to marketing through a popup or checkout, the promotional segments take over from there. Blending the two consent sources is the most common segmentation-compliance mistake in Shopify stores.',
+  },
+  {
+    question: 'Which common segment should every store archive after the first quarter?',
+    answer: 'The "all subscribers" segment. It feels convenient, but it converts every campaign into a spray and hides the marginal cost of unengaged contacts behind a single audience name. Replacing it with an engaged-default segment (opened or clicked in 90 days) usually moves complaint rates two-tenths of a point and forces every campaign to name its intended audience — the discipline the rest of the architecture depends on.',
+  },
 ];
 ---
 
@@ -60,6 +95,120 @@ const faqs = [
 
   <section class="container pb-16"><div class="ledger-card"><p class="editorial-kicker">30-day implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Prove one segment before rebuilding the whole account</h2><table class="mt-6 w-full min-w-[700px] text-left text-sm"><thead><tr><th>Window</th><th>Work</th><th>Pass condition</th></tr></thead><tbody><tr><td>Days 1–5</td><td>Choose one audience, source event, consent rule, suppression, and owner.</td><td>Ten test profiles show the expected state, timestamp, and exit.</td></tr><tr><td>Days 6–12</td><td>Connect Shopify, map orders/refunds/subscriptions, and test inventory and guest checkout.</td><td>No duplicate enrollment; refunds and opt-outs remove people correctly.</td></tr><tr><td>Days 13–22</td><td>Run a bounded cohort with a holdout or pre-period; compare margin, repeat purchase, complaints, and support load.</td><td>Decision metric is defined before launch and reported by audience.</td></tr><tr><td>Days 23–30</td><td>Document the rule, archive dead segments, and decide scale, revise, or stop.</td><td>A non-builder can explain and safely edit the segment.</td></tr></tbody></table><p class="mt-6 text-slate-700">Do not call a segment successful because the platform attributed an order. Separate platform-attributed revenue from incremental lift, and record the attribution window. Review the <a class="link" href="/guides/revenue-attribution">revenue attribution guide</a> before presenting results.</p></div></section>
 
-  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Evidence-safe segmentation rules</h2><p>Do not claim a provider has a native Shopify field until a test profile proves it. Verify collection browse, line-item properties, fulfillment status, refund state, subscription status, consent timestamp, and identity merge behavior. A platform may support the concept through an integration, webhook, custom property, or middleware rather than a built-in segment.</p><p>Keep marketing and operational messages separate. Delivery updates, order changes, and support notices should not be used as a reason to bypass consent controls. For SMS, verify channel-specific consent and quiet-hour rules independently. For medical, supplement, or financial claims, route copy through the relevant review process.</p><h2>Internal reading and official verification</h2><p>Use the <a class="link" href="/guides/consent-compliance">consent guide</a> for permission records, the <a class="link" href="/guides/deliverability">deliverability guide</a> for list hygiene, and <a class="link" href="/guides/pricing-models">pricing models</a> for total-cost comparisons. Each review links to the provider’s current pricing page; confirm plan names, contact definitions, automation allowances, data retention, and add-on charges on that page before purchase.</p></article></section>
+  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Evidence-safe segmentation rules</h2><p>Do not claim a provider has a native Shopify field until a test profile proves it. Verify collection browse, line-item properties, fulfillment status, refund state, subscription status, consent timestamp, and identity merge behavior. A platform may support the concept through an integration, webhook, custom property, or middleware rather than a built-in segment.</p><p>Keep marketing and operational messages separate. Delivery updates, order changes, and support notices should not be used as a reason to bypass consent controls. For SMS, verify channel-specific consent and quiet-hour rules independently. For medical, supplement, or financial claims, route copy through the relevant review process.</p></article></section>
+
+  <section class="container pb-14">
+    <article class="prose-shopify max-w-4xl">
+      <h2>The four-layer segment architecture</h2>
+      <p>
+        Mature Shopify stores run four segment layers in order. Lifecycle state answers “who is this person right now” — never purchased, one-time, repeat, VIP, lapsed — and gates which flows may touch them. Intent layers answer “what are they doing this week” — cart, browse, back-in-stock waits — and gate timing. Catalog layers answer “what do they own or want” — product, collection, size — and gate content. Account layers answer “what rules apply” — wholesale status, subscription state, consent channel — and gate eligibility. A segment that mixes all four at once is common in demos and unownable in production; build the explicit account layer separately so wholesale accounts never receive consumer discount logic as the store grows.
+      </p>
+      <p>
+        Each segment needs four documented properties: an owner (a person, not a team), a purpose (the decision it changes), a source field (which Shopify object and event), and a suppression rule (who must not receive it). Segments failing that audit are maintenance debt no matter how clever the definition — archive them monthly without ceremony.
+      </p>
+
+      <h2>Purchaser suppression: the highest-value segment in the store</h2>
+      <p>
+        The single most valuable segment operation is negative, not positive: who just bought, and must not receive the next promotional send. Recent purchasers should exit cart and browse flows within minutes of checkout; full-price buyers in a flash sale window should exit discount broadcasts; gift buyers should not trigger replenishment for the recipient’s SKU; refunders should exit product-ownership segments. Every tool in this guide can approximate those rules — the differences are event freshness, filter expressiveness, and the operator hours each costs weekly.
+      </p>
+      <p>
+        Test the chain with staff accounts before trusting any of it: place a test order mid-flow, refund it, and watch whether the flow exits. Screenshot the results. The screenshots become both your regression test after any integration change and your negotiation evidence when a vendor claims native behavior that the platform reality doesn’t match.
+      </p>
+
+      <h2>Decision table: segment type to tool tier</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[760px] text-left text-sm">
+          <thead><tr><th>Segment job</th><th>Entry tier</th><th>Strong tier</th><th>Verify with</th></tr></thead>
+          <tbody>
+            <tr><td>Lifecycle and VIP splits</td><td>Shopify Email, tinyEmail</td><td>Klaviyo, Omnisend</td><td>Order event freshness</td></tr>
+            <tr><td>Capture-source (popup origin) splits</td><td>Privy, Justuno</td><td>Klaviyo</td><td>Signup source metadata</td></tr>
+            <tr><td>Cart and browse intent</td><td>Omnisend, Privy</td><td>Klaviyo, Drip</td><td>Cart timestamp lag</td></tr>
+            <tr><td>Predictive CLV and churn</td><td>—</td><td>Klaviyo</td><td>Score changes on real cohorts</td></tr>
+            <tr><td>Subscription-aware exclusions</td><td>—</td><td>Klaviyo, Sendlane</td><td>Subscription app events</td></tr>
+            <tr><td>Wholesale/account logic</td><td>ActiveCampaign, Brevo</td><td>ActiveCampaign</td><td>Account-to-contact joins</td></tr>
+            <tr><td>SMS cohort gating</td><td>Yotpo Email &amp; SMS</td><td>Postscript, Attentive</td><td>Channel consent records</td></tr>
+            <tr><td>Shipment-state triggers</td><td>Shopify Email</td><td>AfterShip Email</td><td>Carrier event coverage</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Pricing and the engaged-audience model</h2>
+      <p>
+        Segmentation is a cost lever, not just a relevance lever. Profile- and contact-billed platforms (Klaviyo, Mailchimp, Drip, Omnisend) invoice every stored contact; a store whose hygiene keeps 40% engaged pays 2.5x per engaged recipient versus a store at 80%. Send-billed models (Sequenzy, Brevo) respond directly to segment discipline: better segments mean fewer wasted sends and a lower bill. Entry tools (Shopify Email) price near zero until automation limits bind.
+      </p>
+      <p>
+        Model the bill at your expected engaged audience and monthly sends — not the current raw list — then check each official pricing page before committing, because tiers, contact definitions, and overage rules change without notice. Record the plan name and capture a quote screenshot with the date; procurement documents without dates breed stale price claims. For the full-model breakdown, the <a class="link" href="/guides/pricing-models">pricing-models guide</a> shows how profile-, contact-, and send-based bills diverge as the list grows.
+      </p>
+
+      <h2>Segment quality questions to score each platform on</h2>
+      <p>
+        Before the tool-by-tool profiles below, agree on five questions and score every candidate identically. One: can a purchase event exit a cart flow automatically, within minutes? Two: can a discount send exclude full-price VIPs and prior-discount-captors without duplicate lists? Three: does subscription state gate replenishment sends both ways? Four: is wholesale/account status expressible without ad-hoc tags? Five: can a non-builder audit who was excluded from yesterday’s campaign? A tool failing two of five loses to one failing none — regardless of price.
+      </p>
+
+      <h2>Monthly segment review (45 minutes)</h2>
+      <ol>
+        <li><strong>Pull active segment count</strong> — archive any segment whose owner or purpose cannot be named.</li>
+        <li><strong>Compare membership drift</strong> — segments more than doubling (or emptying) without a campaign decision need explanation.</li>
+        <li><strong>Audit suppression rules</strong> — refunders, recent purchasers, unsubscribed, and consent states still enforced.</li>
+        <li><strong>Check event freshness</strong> — test-order timestamps for cart, purchase, refund, subscription.</li>
+        <li><strong>Review margin gates</strong> — discount sends still exclude full-price VIPs and prior-discount-captors.</li>
+        <li><strong>Retire duplication</strong> — two segments differing only in a stale tag should become one.</li>
+      </ol>
+
+      <h2>Three field scenarios</h2>
+      <p>
+        A $45k/mo skincare brand ran 43 segments and could not explain 30 of them. The monthly audit consolidated to 14; unpacking eleven duplicate intent segments cut platform cost nothing at first, but weekend operator hours fell from 3.5 to 1.2 — and campaign prep time fell with it. The rule that emerged: a segment that has not changed an email decision in 60 days is archived, no debate.
+      </p>
+      <p>
+        A $30k/mo coffee subscription added subscription-state exclusions and paused-pause-cycle branches after churn events kept triggering winback discounts to active subscribers. Klaviyo’s subscription-app events made the exclusions one filter each; their previous tool had required a nightly CSV. Contribution margin on winback recovered about two points the following quarter — suppression, not creative, did the work.
+      </p>
+      <p>
+        A B2C wholesale hybrid learned the expensive version: a consumer flash-sale email reached an approved wholesale account and offered 20% below already-discounted trade pricing. The fix was structural — an explicit account segment that wholesale membership requires — and the episode became the company’s standing reason wholesale logic belongs in an owned segment layer, not in ad-hoc lists. The <a class="link" href="/for/b2b-wholesale">B2B wholesale guide</a> covers the account layer in full.
+      </p>
+
+      <h2>Tool-team fit and operating cost</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <thead><tr><th>Team shape</th><th>Realistic segmentation scope</th><th>Tools that fit</th><th>Monthly operator time</th></tr></thead>
+          <tbody>
+            <tr><td>Founder-operated</td><td>3–5 lifecycle segments, one intent flow</td><td>Shopify Email, tinyEmail, Omnisend</td><td>30 minutes weekly</td></tr>
+            <tr><td>One marketer</td><td>Full lifecycle plus intent; margin gates</td><td>Klaviyo, Sendlane, Brevo</td><td>1–2 hours weekly</td></tr>
+            <tr><td>Retention team</td><td>Predictive layers, holdouts, per-sale suppression</td><td>Klaviyo, ActiveCampaign</td><td>2–4 hours weekly</td></tr>
+            <tr><td>Agency-supported</td><td>Full scope, documented handback</td><td>Klaviyo plus agency SOPs</td><td>Agency hours plus monthly audit</td></tr>
+            <tr><td>Split-stack store (CRM + email)</td><td>Shared suppression segment both tools read</td><td>ActiveCampaign plus Klaviyo/Omnisend</td><td>Boundary review monthly</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Two goalkeeper rules most stores learn the hard way</h2>
+      <p>
+        First: segments write better rules than tags. A tag applied at signup in March is trivia by June; a live condition evaluated at send time is a decision. Imports and integrations should map tags into definitions wherever the platform allows, so insight survives a reorganization.
+      </p>
+      <p>
+        Second: never call a segment successful because the platform attributed an order. Attribution claims the customer journey ended inside your window — holdout or pre-period evidence is the only version finance should plan next quarter around. Review the <a class="link" href="/guides/revenue-attribution">revenue attribution guide</a> before presenting segment-level numbers upward.
+      </p>
+
+      <h2>Document what a segment is allowed to do</h2>
+      <p>
+        The final piece is written policy. A one-page register listing every active segment — owner, purpose, source field, suppression rule, last-reviewed date — should live next to your flow documentation. New operators read it in ten minutes instead of reverse-engineering forty-three definitions; vendors and agencies treat it as the contract for what their integration must sustain. When a platform migration is on the horizon, the register converts directly into the requirements list — which is exactly how the selection framework scores data models without falling for feature checklists.
+      </p>
+
+      <h2>Internal reading and official verification</h2>
+      <p>Use the <a class="link" href="/guides/consent-compliance">consent guide</a> for permission records, the <a class="link" href="/guides/deliverability">deliverability guide</a> for list hygiene, <a class="link" href="/guides/selection-framework">selection framework</a> for the scoring approach, and <a class="link" href="/guides/pricing-models">pricing models</a> for total-cost comparisons. Each review links to the provider’s current pricing page; confirm plan names, contact definitions, automation allowances, data retention, and add-on charges on that page before purchase. For workflow specs, pair with the <a class="link" href="/use-cases/segmentation">segmentation use case</a>, <a class="link" href="/use-cases/vip-segments">VIP segments playbook</a>, and <a class="link" href="/use-cases/winback">winback use case</a>. For pairwise tool tests relevant to this guide, read <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a>, <a class="link" href="/compare/klaviyo-vs-drip">Klaviyo vs Drip</a>, and <a class="link" href="/compare/brevo-vs-omnisend">Brevo vs Omnisend</a>.</p>
+    </article>
+  </section>
   <FaqSection faqs={faqs} title="Shopify email segmentation FAQ" />
+
+  <div class="container pb-16 max-w-4xl">
+    <p class="font-black text-slate-950">Related reading</p>
+    <p class="mt-2 text-sm">
+      <a class="link" href="/use-cases/segmentation">Segmentation use case</a> ·
+      <a class="link" href="/use-cases/vip-segments">VIP segments playbook</a> ·
+      <a class="link" href="/use-cases/winback">Winback use case</a> ·
+      <a class="link" href="/guides/selection-framework">Selection framework</a> ·
+      <a class="link" href="/guides/revenue-attribution">Revenue attribution</a> ·
+      <a class="link" href="/for/subscription-boxes">Subscription-box guidance</a> ·
+      <a class="link" href="/for/b2b-wholesale">B2B wholesale guidance</a>
+    </p>
+  </div>
 </BaseLayout>

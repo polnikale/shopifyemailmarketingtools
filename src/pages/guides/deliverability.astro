@@ -33,9 +33,46 @@ const entries = [
 ].map(([slug,best,paragraph,tradeoffs], index) => ({ app: appBySlug(slug)!, best, paragraph, tradeoffs, official: official[slug], index })).filter((x) => x.app);
 
 const faqs = [
-  { question: 'What should a Shopify deliverability pilot prove?', answer: 'It should prove domain authentication, consent and unsubscribe propagation, event timestamps, suppression rules, duplicate prevention, complaint and bounce visibility, and a rollback path. Open rate alone is not enough evidence.' },
-  { question: 'Should I choose a dedicated deliverability tool or an ESP?', answer: 'Start with the failure you can observe. If the problem is domain reputation or authentication, investigate the sending setup and monitoring. If the problem is audience state or duplicate automation, test the ESP and Shopify event contract. Do not buy a second tool before identifying the control gap.' },
-  { question: 'Are vendor prices comparable?', answer: 'Not without a common forecast. Compare active profiles, monthly sends, SMS segments, transactional volume, inactive-contact treatment, onboarding, dedicated infrastructure, and overages using the same 90-day Shopify scenario.' }
+  {
+    question: 'What should a Shopify deliverability pilot prove?',
+    answer: 'It should prove domain authentication, consent and unsubscribe propagation, event timestamps, suppression rules, duplicate prevention, complaint and bounce visibility, and a rollback path. Open rate alone is not enough evidence.',
+  },
+  {
+    question: 'Should I choose a dedicated deliverability tool or an ESP?',
+    answer: 'Start with the failure you can observe. If the problem is domain reputation or authentication, investigate the sending setup and monitoring. If the problem is audience state or duplicate automation, test the ESP and Shopify event contract. Do not buy a second tool before identifying the control gap.',
+  },
+  {
+    question: 'Are vendor prices comparable?',
+    answer: 'Not without a common forecast. Compare active profiles, monthly sends, SMS segments, transactional volume, inactive-contact treatment, onboarding, dedicated infrastructure, and overages using the same 90-day Shopify scenario.',
+  },
+  {
+    question: 'Which Shopify tools are strongest for deliverability control?',
+    answer: 'Klaviyo offers the deepest ecommerce-native controls: subdomain authentication, engaged-segment sunset flows, and per-flow complaint visibility. Brevo supports dedicated IPs for volume senders; Postscript and Attentive apply SMS-specific carrier and compliance controls. Small native setups — Shopify Email plus consistent hygiene — often outperform a sophisticated tool operated carelessly. Match the control to the failure you can actually observe.',
+  },
+  {
+    question: 'How do Gmail and Yahoo sender requirements affect Shopify stores?',
+    answer: 'Bulk senders must authenticate with SPF and DKIM, publish DMARC, honor one-click unsubscribe, and keep spam-complaint rates very low. Practical implications for a Shopify store: send from an authenticated subdomain, wire unsubscribe at the platform level, and treat complaint spikes over 0.3% as a reputation-affecting incident. Gmail and Yahoo show placement and complaint data inside the tools, but you must monitor it weekly.',
+  },
+  {
+    question: 'How often should I sunset unengaged contacts?',
+    answer: 'Build an automatic definition — no opens or clicks in 90–120 days — and run it before your high-volume season, not after. Suppressed contacts stop paying for themselves twice: they no longer inflate profile- or contact-based bills, and they stop dragging complaint risk. Sunset is a margin decision as much as a deliverability one; verify each platform’s billing treatment of suppressed contacts on the official pricing page before modeling savings.',
+  },
+  {
+    question: 'Do abandoned-cart flows hurt deliverability?',
+    answer: 'Healthy cart flows usually help, because they send relevant email to people with recent intent. They hurt when purchase suppression lags, when the same shopper receives cart plus welcome plus browse messages in one afternoon, or when discount-heavy copy trains recipients to mark messages as spam. Cap total messages per shopper per day across all flows and verify the purchase exit with staff test orders.',
+  },
+  {
+    question: 'Are dedicated IPs worth it for a Shopify store?',
+    answer: 'Usually not until sustained volume above roughly 100k emails/month with consistently engaged audiences. A dedicated IP concentrates reputation on you — good if sending is disciplined, bad if volume spiking and dipping. Shared infrastructure on a well-hydrated, authenticated subdomain performs better for most Shopify stores. Verify IP-specific pricing and requirements on each official pricing page; Brevo and several full-service ESPs gate dedicated IPs by tier.',
+  },
+  {
+    question: 'How does a platform migration affect deliverability?',
+    answer: 'Temporary risk, manageable with sequencing. Authenticate the new sending domain before any large send, ramp with flowed email to engaged segments first, keep the incumbent sender for transactional traffic until the swap moment, and never run both platforms’ cart flows simultaneously. Most migration-week deliverability damage comes from duplicate sends and full-list day-one imports, not from the new vendor itself.',
+  },
+  {
+    question: 'What should I do in the week after a complaint spike?',
+    answer: 'First identify the sending flow and the recipient cohort — the platform logs usually answer both. Pause or suppress that cohort, not the entire program. Reduce volume to engaged segments for several days, fix or delete the offending content pattern, and document the threshold breach in the runbook. Do not change authentication or DNS during an active incident unless misalignment is confirmed — that compounds the problem.',
+  },
 ];
 ---
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -58,6 +95,131 @@ const faqs = [
 
   <section class="container pb-14"><div class="ledger-card overflow-x-auto"><p class="editorial-kicker">14-day implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Prove one flow before scaling sends</h2><table class="mt-6 w-full min-w-[800px] text-left text-sm"><thead><tr><th>Days</th><th>Work</th><th>Pass condition</th></tr></thead><tbody><tr><td>1–2</td><td>Choose welcome, cart, or post-purchase; document consent, owner, source events, exclusions, and rollback.</td><td>Flow spec and suppression map are signed off.</td></tr><tr><td>3–5</td><td>Authenticate the subdomain and send test profiles through signup, purchase, refund, unsubscribe, and duplicate identity.</td><td>Events arrive once, with correct timestamps and exits.</td></tr><tr><td>6–9</td><td>Run an engaged-only cohort; keep marketing, service, and SMS permissions separate.</td><td>No duplicate sends, consent crossover, or unexpected promotional messages.</td></tr><tr><td>10–12</td><td>Review bounce, complaint, deferral, domain-level placement signals, clicks, support tickets, and contribution margin.</td><td>Baseline and decision threshold are written; platform-attributed revenue is not treated as incremental proof.</td></tr><tr><td>13–14</td><td>Decide scale, revise, or stop; export configuration and record the next owner.</td><td>Rollback and suppression can be executed without vendor guesswork.</td></tr></tbody></table></div></section>
 
-  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Practical rules for safe Shopify sending</h2><p>Authenticate before volume, but do not confuse authentication with inbox placement. Start with consented, recently engaged recipients; keep a pre-period or holdout where feasible; and investigate complaint, bounce, and deferral changes by recipient domain. Apple Mail privacy features make opens an incomplete signal, so pair them with clicks, purchases, unsubscribes, complaints, and margin.</p><p>Do not import a full customer export and call it a deliverability strategy. Retain the consent evidence you need, suppress people who should not receive marketing, and confirm that a refund or recent purchase exits a recovery flow. Email permission does not automatically grant SMS permission, and a shipping update should not become a promotional send without its own basis.</p><h2>Internal checks and official sources</h2><p>Use the <a class="link" href="/guides/consent-compliance">consent checklist</a>, <a class="link" href="/guides/migration">migration playbook</a>, <a class="link" href="/guides/flow-collision-prevention">flow-collision guide</a>, and <a class="link" href="/guides/pricing-models">pricing-model guide</a> alongside the official links in each profile. Record the access date, plan, limits, add-ons, data retention, and cancellation terms; do not preserve a stale price claim in a procurement document.</p></article></section>
+  <section class="container pb-14">
+    <article class="prose-shopify max-w-4xl">
+      <h2>Practical rules for safe Shopify sending</h2>
+      <p>Authenticate before volume, but do not confuse authentication with inbox placement. Start with consented, recently engaged recipients; keep a pre-period or holdout where feasible; and investigate complaint, bounce, and deferral changes by recipient domain. Apple Mail privacy features make opens an incomplete signal, so pair them with clicks, purchases, unsubscribes, complaints, and margin.</p>
+      <p>Do not import a full customer export and call it a deliverability strategy. Retain the consent evidence you need, suppress people who should not receive marketing, and confirm that a refund or recent purchase exits a recovery flow. Email permission does not automatically grant SMS permission, and a shipping update should not become a promotional send without its own basis.</p>
+      <p>Consent is the beginning of hygiene, not all of it: keep the source, timestamp, and purpose for every permission you hold, and honor Shopify checkout consent as its own state rather than merging it into a general marketing field. When in doubt, suppress first and investigate second — a lost marketing contact costs a campaign; a wrongly-permissioned one can cost the domain.</p>
+    </article>
+  </section>
+
+  <section class="container pb-14">
+    <article class="prose-shopify max-w-4xl">
+      <h2>The authentication baseline every Shopify store needs</h2>
+      <p>
+        Send from a dedicated email subdomain (e.g. mail.yourbrand.com) so marketing reputation stays isolated from your corporate domain. Publish SPF and DKIM for that subdomain, align them with a DMARC record, and verify inside the ESP before any large send. Shopify’s own notification domains handle transactional mail, so the marketing subdomain is the one you control, warm, and monitor. Skipping DMARC does not break the inbox directly, but it removes the feedback loop that tells you spoofing or misalignment is happening.
+      </p>
+      <p>
+        Warming is behavioral, not calendar-based: new subdomains earn volume by consistent audience engagement, not by waiting. Start with flows to engaged recent subscribers (welcome, cart, post-purchase), hold broadcasts until two weeks of stable complaint and bounce data exist, and never ramp volume into a peak season on an unproven domain.
+      </p>
+
+      <h2>The three failure modes behind most placement drops</h2>
+      <p>
+        Placement complaints cluster into three diagnosable families. Audience state: the list widened faster than engagement — popup sweeps, purchased-sounding imports, sunset segments never built. Infrastructure: authentication changed, alignment broke, or new infrastructure was never warmed. Content and cadence: the same offer repeated until recipients said “spam”, or message frequency crossed the tolerance of everyone including the engaged cohort. Three families, three first checks — which is why cordoning the symptom before buying a tool matters more than the tool itself.
+      </p>
+
+      <h2>List hygiene as a margin decision</h2>
+      <p>
+        Every billing model punishes list bloat somewhere: active profiles on Klaviyo, stored contacts on Mailchimp and Omnisend, people-in-account on Drip. Suppressed and unengaged contacts either bill or drag placement — sometimes both. A weekly hygiene rhythm costs thirty minutes: review the engaged ratio, sunset the stale cohort, log the complaint rate, and reconcile Shopify unsubscribes against the ESP. Stores that do this weekly pay less per delivered email than stores that clean before renewal negotiations.
+      </p>
+      <p>
+        Purchaser suppression participates in hygiene too. Recent buyers receiving cart or browse messages are a margin leak and a complaint generator in one — the flow that “works” while discounting completed checkouts is the worst kind of false positive. Verify purchase and refund exits with staff profiles whenever the catalog, pixel, or fulfillment integration changes.
+      </p>
+
+      <h2>Decision table: symptom to first control</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <thead><tr><th>Symptom</th><th>Most likely control gap</th><th>First check</th><th>Tool-dependent fix</th></tr></thead>
+          <tbody>
+            <tr><td>Falling Gmail placement</td><td>Reputation or authentication</td><td>DMARC reports, SPF/DKIM alignment</td><td>Dedicated IP or subdomain discipline</td></tr>
+            <tr><td>Complaint rate above 0.3%</td><td>Audience-state control</td><td>Which flow/campaign sent most complaints</td><td>Sunset flows, suppression rules</td></tr>
+            <tr><td>Hard bounces rising</td><td>Capture or import hygiene</td><td>Signup sources and recent imports</td><td>Double opt-in, validation on import</td></tr>
+            <tr><td>Opens fine, clicks collapsing</td><td>Content or targeting drift</td><td>Segment freshness, offer repetition</td><td>Engagement-gated sending</td></tr>
+            <tr><td>SMS opt-outs spiking</td><td>Channel consent boundaries</td><td>Frequency caps and quiet hours</td><td>Channel-specific suppression</td></tr>
+            <tr><td>Deferrals at one inbox provider only</td><td>Domain reputation with that provider</td><td>Postmaster tools, volume ramp history</td><td>Throttled sends, subdomain split</td></tr>
+            <tr><td>Placement fine, revenue flat</td><td>Not a deliverability problem</td><td>Offer, segment, margin panel</td><td>Stop tool-shopping; fix the offer</td></tr>
+            <tr><td>Complaints cluster on one campaign type</td><td>Content/consent mismatch</td><td>Who received it and why</td><td>Engagement-gated targeting</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Pricing note: what deliverability capability costs</h2>
+      <p>
+        Deliverability features ride inside ESP plans: Klaviyo includes subdomain authentication and monitoring; Brevo gates dedicated IPs by tier; Mailchimp’s audience model makes hygiene a financial decision every month. Because deliverability tooling is rarely a separate line item, the practical cost question is operator time — roughly one structured hour weekly per 10k active recipients in smaller stores. Check each vendor’s official pricing page for dedicated IP, deliverability services, and monitoring add-ons before assuming they are included; plan gates change and quotes should be recorded with dates.
+      </p>
+
+      <h2>Peak-season deliverability runbook</h2>
+      <p>
+        Sixty days out: authenticate (re-verify), sunset unengaged, confirm purchase/refund suppression with test orders, and baseline complaint and bounce rates per flow. Thirty days out: warm any new subdomain, rehearse the highest-volume campaign to an engaged-only segment, and confirm SMS quiet-hour and frequency rules if texting. During the peak: lock flow architecture (no new branches mid-season), watch deferrals by inbox provider, and keep one person on rotation for complaint spikes. After: reconcile unsubscribes, archive the incident notes, and carry the baseline into next season. Stores that skip the sixty-day step are the ones making DNS changes in November — the most expensive possible moment.
+      </p>
+
+      <h2>Weekly operating rhythm: the thirty-minute version</h2>
+      <p>
+        Monday, ten minutes: export the week’s complaint and bounce rates by flow; anything above your written threshold becomes a named task. Ten minutes more: review the engaged ratio and age the unengaged cohort toward sunset. Five minutes: reconcile Shopify unsubscribes and refunds against ESP states — every mismatch is a suppression bug. Five minutes: check that no shopper received more than your per-day message cap across flows (most tools can query this; the one that cannot is telling you something). Leave the last five minutes for notes: what changed, what to watch. Deliverability problems are weekly-shaped; monthly reviews find them a month late. Write the thresholds down once — complaint rate 0.2% review, 0.3% action, bounce 2% investigate — so the review doesn't depend on whoever remembers last quarter's panic.
+      </p>
+
+      <h2>Tool-team fit table</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <thead><tr><th>Team shape</th><th>Realistic deliverability posture</th><th>Tools that fit it</th><th>Avoid</th></tr></thead>
+          <tbody>
+            <tr><td>Founder-operated, under 5k list</td><td>Simple subdomain, weekly complaint check, conservative volume</td><td>Shopify Email, Omnisend, tinyEmail</td><td>Elaborate infrastructure nobody maintains</td></tr>
+            <tr><td>One marketer, 5k–25k list</td><td>Automated sunset segments, monthly hygiene hour, DMARC monitoring</td><td>Klaviyo, Sendlane, Brevo</td><td>Full-list imports with consent skipped</td></tr>
+            <tr><td>Retention team plus agency</td><td>Documented runbook, incident thresholds, quarterly re-certification</td><td>Klaviyo, Attentive, ActiveCampaign</td><td>Undocumented agency-owned suppression</td></tr>
+            <tr><td>SMS-heavy programs</td><td>Channel-separated consent, carrier-fee aware caps</td><td>Postscript, Yotpo Email &amp; SMS</td><td>Treating email permission as text permission</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Two field scenarios</h2>
+      <p>
+        A $40k/mo beauty store saw Gmail placement degrade two months after a popup sweep doubled its list. The tools panel said nothing was “wrong” — authentication was fine. The engaged ratio had fallen from 51% to 29%, complaint rate crossed 0.25%, and the sunset flow had never been built. Two weeks of hygiene: sunset 9k dormant profiles, rebuild engagement-gated cohorts, cap per-shopper messages at one per day across flows. Placement recovered without touching the vendor; the fix was operating rhythm.
+      </p>
+      <p>
+        A $75k/mo fashion brand migrated ESPs and immediately saw deferrals — classic unwarmed-new-domain behavior. They had skipped the warm-up because “the old domain was fine”. The recovery was a two-week ramp on flowed email to engaged segments before any broadcast, plus explicit DMARC verification. The migration guide exists to prevent this exact sequencing error: authentication and warm-up are part of the migration, not an afterthought nobody planned.
+      </p>
+
+      <h2>Measuring deliverability without fooling yourself</h2>
+      <p>
+        Open rates are unreliable with Apple Mail privacy protection inflating machine opens. Build the real panel from five numbers: delivered rate (not accepted — delivered after deferrals), complaint rate by domain, hard bounce rate, click-to-delivered rate on a fixed engaged segment, and revenue per delivered email. Track them weekly in one spreadsheet a non-marketer could audit. When platforms claim “99% inbox placement”, ask which seed test produced it and when — seed panels correlate poorly with recipient-domain placement.
+      </p>
+      <p>
+        Margin closes the loop. A recovery flow with 96% delivered and a 15% discount on every recovered order may be worse for contribution than a 92% delivered flow with reminders only. Deliverability reviews that stop at placement treat symptoms of a business problem; the complaint rate is as much a function of what you say as of where it lands.
+      </p>
+
+      <h2>Internal checks and official sources</h2>
+      <p>Use the <a class="link" href="/guides/consent-compliance">consent checklist</a>, <a class="link" href="/guides/migration">migration playbook</a>, <a class="link" href="/guides/flow-collision-prevention">flow-collision guide</a>, and <a class="link" href="/guides/pricing-models">pricing-model guide</a> alongside the official links in each profile. Record the access date, plan, limits, add-ons, data retention, and cancellation terms; do not preserve a stale price claim in a procurement document. For the sending-risk side of the same coin, see the <a class="link" href="/use-cases/deliverability">deliverability use case</a> and the <a class="link" href="/use-cases/black-friday">Black Friday preparedness playbook</a>. For pairwise tool tests, start with <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a> and <a class="link" href="/compare/brevo-vs-mailchimp">Brevo vs Mailchimp</a>.
+    </article>
+  </section>
+
+  <section class="container pb-14">
+    <div class="card overflow-x-auto">
+      <h2 class="font-serif text-3xl font-black text-slate-950">The weekly hygiene checklist</h2>
+      <table class="data-table mt-5">
+        <thead><tr><th>Step</th><th>What to do</th><th>Threshold to act on</th></tr></thead>
+        <tbody>
+          <tr><td>Complaint rate</td><td>By flow and campaign, per inbox provider</td><td>0.2% review, 0.3% pause and fix</td></tr>
+          <tr><td>Hard bounce rate</td><td>By capture source and import batch</td><td>Above 2% investigate the source</td></tr>
+          <tr><td>Engaged ratio</td><td>Share of list active in 90 days</td><td>Falling two weeks straight: sunset next</td></tr>
+          <tr><td>Suppression integrity</td><td>Refunds and purchases exit flows on time</td><td>Any lag beyond one hour: fix before sending</td></tr>
+          <tr><td>Message caps</td><td>Messages per shopper per day, all flows</td><td>Above your cap (often two): find collision</td></tr>
+        </tbody>
+      </table>
+      <p class="px-5 py-4 text-sm text-slate-600">Exact tools for each step are in the profiles above; the checklist is vendor-neutral on purpose so it survives a platform switch.</p>
+    </div>
+  </section>
   <FaqSection faqs={faqs} title="Shopify deliverability FAQ" />
+
+  <div class="container pb-16 max-w-4xl">
+    <p class="font-black text-slate-950">Related reading</p>
+    <p class="mt-2 text-sm">
+      <a class="link" href="/use-cases/deliverability">Deliverability use case</a> ·
+      <a class="link" href="/guides/consent-compliance">Consent and compliance</a> ·
+      <a class="link" href="/guides/segmentation">Segmentation guide</a> ·
+      <a class="link" href="/guides/selection-framework">Selection framework</a> ·
+      <a class="link" href="/use-cases/black-friday">Black Friday playbook</a> ·
+      <a class="link" href="/use-cases/winback">Winback use case</a>
+    </p>
+  </div>
 </BaseLayout>

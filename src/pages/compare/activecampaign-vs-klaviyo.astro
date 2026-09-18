@@ -1,17 +1,223 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
+import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { siteFromHost } from '../../content';
+
+const site = siteFromHost();
+const path = '/compare/activecampaign-vs-klaviyo';
 const title = 'ActiveCampaign vs Klaviyo for Shopify Marketing';
-const description = 'A focused ActiveCampaign vs Klaviyo comparison for Shopify data, automation, CRM context, pricing, and operating fit.';
+const desc = 'A focused ActiveCampaign vs Klaviyo comparison for Shopify data, automation, CRM context, pricing, and operating fit.';
+
+const faqs = [
+  {
+    question: 'Is ActiveCampaign or Klaviyo better for a pure DTC Shopify store?',
+    answer: 'Klaviyo is usually the better fit for a pure direct-to-consumer store because browse, cart, variant, and purchase events arrive natively and drive segments without middleware. ActiveCampaign earns its complexity when wholesale accounts, deal stages, or sales-team ownership must influence the same customer journey. If nobody on the team owns a CRM pipeline, the CRM layer is cost without a job.',
+  },
+  {
+    question: 'How does ActiveCampaign vs Klaviyo pricing compare at 20,000 contacts?',
+    answer: 'At 20k contacts Klaviyo typically bills on active profiles and often lands in the $250–450/mo band before SMS credits; ActiveCampaign Plus-tier with CRM seats and Shopify sync frequently runs $250–500/mo depending on seats and feature gates. Both punish list bloat in different ways — profiles versus contacts. Model a 90-day forecast at your engaged audience and real send volume, then check both official pricing pages before approving a budget, because tiers, seat rules, and overage rates change.',
+  },
+  {
+    question: 'Which platform suppresses recent purchasers more reliably?',
+    answer: 'Klaviyo, in most Shopify tests, because the purchase, refund, and fulfillment events arrive as native profile states that flows can check in real time. ActiveCampaign can express the same suppression through tags and automations, but the Shopify event contract is one integration layer deeper, so timestamp lag and identity merges need explicit testing. Either way, prove it with staff test orders before a peak season — a duplicated post-purchase discount costs more than a month of subscription.',
+  },
+  {
+    question: 'Can I run ActiveCampaign and Klaviyo together on one Shopify store?',
+    answer: 'Some wholesale-hybrid stores do: Klaviyo owns consumer lifecycle email while ActiveCampaign owns sales-assisted follow-up. It works only with a documented boundary — one platform owns each trigger, shared suppression is written down, and promotional consent never silently becomes sales outreach. Two platforms that can both message a cart abandoner is the failure mode the flow-collision guide exists to prevent.',
+  },
+  {
+    question: 'Which is easier for a small team to operate weekly?',
+    answer: 'Neither is simple, but the operating burden differs. Klaviyo rewards an operator who reviews segments, flows, and revenue attribution weekly; its predictive features degrade when nobody prunes profiles. ActiveCampaign rewards an operator who documents deal stages and lead-scoring rules; its conditional logic becomes technical debt when ownership is vague. If a lean team wants guided defaults instead of a blank canvas, Sequenzy is worth a parallel trial — pay-per-email pricing and described-outcome playbooks without per-contact billing.',
+  },
+  {
+    question: 'Does ActiveCampaign replace Klaviyo for abandoned cart recovery?',
+    answer: 'It can run cart recovery, but the Shopify integration must render line items, variants, and purchase exits reliably — which requires a controlled pilot with multi-SKU carts and guest checkout. Klaviyo renders dynamic product blocks from the catalog natively. If cart revenue is a top-three lifecycle number for the store, test both with the same three abandoned carts and compare the rendered emails, suppression timing, and margin after any discount.',
+  },
+  {
+    question: 'What should a Shopify pilot measure for either platform?',
+    answer: 'Event freshness (cart and purchase timestamps), suppression correctness (purchase, refund, consent), revenue attribution by flow, twelve-month cost at projected volume including seats or SMS, and operator hours to edit a flow during a sale week. A platform that cannot express the store’s highest-value journey without a CSV export fails the pilot regardless of demo quality.',
+  },
+  {
+    question: 'Which platform handles Black Friday volume better?',
+    answer: 'Klaviyo handles consumer peak-season mechanics more natively: VIP early-access segments, recent-purchaser suppression during a flash sale, and holdout testing when send volume multiplies. ActiveCampaign copes if its automation map was kept simple, but stores that spent the year building conditional CRM branches often freeze sends rather than risk triggering them. Whichever you run, re-certify suppression and deliverability sixty days before the peak — not during it.',
+  },
+  {
+    question: 'How hard is it to migrate between ActiveCampaign and Klaviyo?',
+    answer: 'Budget two to four weeks for a store with four active journeys. Export consent timestamps and suppression flags first; rebuild flows from scratch rather than expecting template transfer; connect Shopify and verify event timestamps with test profiles before importing the full audience; then run a bounded overlap where only one platform can send each trigger. Pause the incumbent’s cart journey before enabling the new one — duplicate recovery emails are the fastest way to burn deliverability and customer trust in the same week.',
+  },
+];
 ---
-<BaseLayout title={title} description={description} datePublished="2026-07-23">
-  <article class="py-12 md:py-20"><div class="container max-w-4xl">
-    <a href="/compare" class="text-sm text-muted inline-block mb-6">← All comparisons</a>
-    <header class="mb-10"><p class="text-sm font-semibold uppercase tracking-wide text-primary mb-3">Two-product Shopify comparison</p><h1 class="text-4xl md:text-5xl font-bold mb-6">{title}</h1><p class="text-xl text-muted">ActiveCampaign and Klaviyo can both support Shopify lifecycle marketing, but one centers CRM and sales context while the other centers commerce data and merchandising. This page compares only those two products.</p></header>
-    <section class="rounded-xl border border-primary/20 p-6 mb-10"><h2 class="text-2xl font-bold mb-3">Short answer</h2><p>Choose ActiveCampaign when Shopify activity must sit beside lead scoring, deal stages, sales ownership, or broader CRM automation. Choose Klaviyo when product catalog, browse, cart, purchase, and customer-value data should drive ecommerce segments and flows.</p><p class="mt-3">Do not compare only template counts or headline pricing. Model profiles or contacts, events, SMS, seats, integrations, attribution, consent, suppression, and the operator time required to keep product and customer data accurate.</p></section>
-    <h2 class="text-2xl font-bold mb-4">Decision snapshot</h2><div class="overflow-x-auto mb-10"><table><thead><tr><th>Area</th><th>ActiveCampaign</th><th>Klaviyo</th></tr></thead><tbody><tr><td>Best fit</td><td>Shopify plus CRM and sales automation</td><td>Commerce-led lifecycle and merchandising</td></tr><tr><td>Core strength</td><td>Deals, lead scoring, ownership, and conditional automation</td><td>Catalog, customer events, segments, and ecommerce reporting</td></tr><tr><td>Main trade-off</td><td>More configuration for a pure DTC operation</td><td>Profile, channel, and data governance costs can grow quickly</td></tr><tr><td>Pricing question</td><td>How do contacts, seats, CRM, and feature tiers scale?</td><td>How do profiles, messages, channels, and attribution scale?</td></tr></tbody></table></div>
-    <h2 class="text-2xl font-bold mb-4">ActiveCampaign: when it fits</h2><p>ActiveCampaign is a strong candidate when a Shopify business has more than a marketing queue: wholesale or sales-assisted accounts, deal stages, lead scoring, or customer ownership that must influence follow-up. It can connect commerce activity to a broader revenue process when the team is prepared to define which system owns each field.</p><p class="mt-3">For a DTC pilot, keep the scope narrow. Test product, order, refund, consent, and purchase suppression; then verify that a sales or support handoff removes the customer from promotional automation. Compare the full contact-and-seat cost at the next realistic volume, not just the entry plan.</p>
-    <h2 class="text-2xl font-bold mt-10 mb-4">Klaviyo: when it fits</h2><p>Klaviyo is the more natural choice when the store’s most valuable signals are catalog views, product affinity, cart state, order history, predicted value, and repeat-purchase timing. It earns its complexity when the merchandising team can act on those segments and maintain a reliable event and product feed.</p><p class="mt-3">Pilot one welcome, cart, or post-purchase flow with explicit recent-purchase and refund suppression. Validate profile merges, catalog updates, consent, attribution windows, SMS permissions, and the next profile threshold before expanding to every collection or channel.</p>
-    <h2 class="text-2xl font-bold mt-10 mb-4">Controlled Shopify pilot</h2><div class="overflow-x-auto mb-10"><table><thead><tr><th>Test</th><th>ActiveCampaign</th><th>Klaviyo</th></tr></thead><tbody><tr><td>Identity</td><td>Contact, account, deal, and Shopify customer relationship</td><td>Profile, customer, catalog, and order relationship</td></tr><tr><td>Trigger</td><td>Shopify event, score change, deal stage, or owner action</td><td>Browse, cart, product, order, or value event</td></tr><tr><td>Suppression</td><td>Purchase, refund, consent, deal, and support state</td><td>Purchase, refund, consent, frequency, and channel state</td></tr><tr><td>Outcome</td><td>Qualified revenue, repeat purchase, or sales handoff</td><td>Incremental purchase, repeat value, margin, or retained customer</td></tr></tbody></table></div>
-    <h2 class="text-2xl font-bold mb-4">Final verdict</h2><p>ActiveCampaign wins when CRM ownership and Shopify marketing need to operate together. Klaviyo wins when commerce data depth and merchandising execution are the center of gravity. Choose after a representative pilot proves identity, event freshness, suppression, reporting, and twelve-month operating cost.</p><p class="mt-6">Continue with the <a href="/blog">email-marketing guides</a>, <a href="/for/high-aov">high-AOV store guidance</a>, and <a href="/alternatives">alternatives library</a>.</p>
-  </div></article>
+
+<BaseLayout title={title} description={desc} site={site} path={path} datePublished="2026-07-23">
+  <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
+
+  <section class="py-14 md:py-20">
+    <div class="container">
+      <nav class="mb-8 text-sm">
+        <a class="link" href="/compare">Comparisons</a>
+        <span class="mx-2 text-slate-600">/</span>
+        <span class="text-slate-600">ActiveCampaign vs Klaviyo</span>
+      </nav>
+
+      <header class="max-w-4xl">
+        <p class="editorial-kicker">Two-product Shopify comparison</p>
+        <h1 class="hero-title mt-5">{title}</h1>
+        <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-700">
+          ActiveCampaign and Klaviyo can both support Shopify lifecycle marketing, but one centers CRM and sales context while the other centers commerce data and merchandising. This page compares only those two products.
+        </p>
+      </header>
+
+      <div class="mt-12 max-w-4xl">
+        <TldrBox
+          picks={[
+            { label: 'Commerce data depth', tool: 'Klaviyo', reason: 'Catalog, browse, cart, and predictive customer value drive segments natively.' },
+            { label: 'CRM and sales context', tool: 'ActiveCampaign', reason: 'Deals, lead scoring, ownership, and conditional automation beside Shopify orders.' },
+            { label: 'Pure DTC simplicity', tool: 'Klaviyo', reason: 'Fewer moving parts when no sales pipeline needs to influence email.' },
+            { label: 'Wholesale hybrid', tool: 'ActiveCampaign', reason: 'When purchase history must hand off to account owners and deal stages.' },
+            { label: 'Also consider', tool: 'Sequenzy', reason: 'Pay-per-email lifecycle playbooks when both platforms feel heavier than the team needs.' },
+          ]}
+        />
+      </div>
+
+      <div class="mt-12 card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black text-slate-950">Comparison at a glance</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dimension</th><th>ActiveCampaign</th><th>Klaviyo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Center of gravity</td><td>CRM plus marketing automation</td><td>Ecommerce lifecycle and commerce data</td></tr>
+            <tr><td>Shopify depth</td><td>Integration — orders feed CRM context</td><td>Native — browse, catalog, predictive events</td></tr>
+            <tr><td>Billing model</td><td>Contacts, seats, and feature tiers</td><td>Active profiles plus SMS credits</td></tr>
+            <tr><td>Automation style</td><td>Conditional branching, lead scoring, deals</td><td>Ecommerce flows with catalog blocks</td></tr>
+            <tr><td>Best operator</td><td>Sales-assisted or wholesale teams</td><td>DTC teams tracking flow revenue weekly</td></tr>
+            <tr><td>Main risk</td><td>Overbuilding CRM logic nobody maintains</td><td>Profile bill growth and data governance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="prose-shopify mt-14 max-w-4xl">
+        <h2>Short answer</h2>
+        <p>
+          Choose ActiveCampaign when Shopify activity must sit beside lead scoring, deal stages, sales ownership, or broader CRM automation. Choose Klaviyo when product catalog, browse, cart, purchase, and customer-value data should drive ecommerce segments and flows.
+        </p>
+        <p>
+          Do not compare only template counts or headline pricing. Model profiles or contacts, events, SMS, seats, integrations, attribution, consent, suppression, and the operator time required to keep product and customer data accurate.
+        </p>
+
+        <h2>Decision snapshot</h2>
+        <div class="overflow-x-auto"><table><thead><tr><th>Area</th><th>ActiveCampaign</th><th>Klaviyo</th></tr></thead><tbody><tr><td>Best fit</td><td>Shopify plus CRM and sales automation</td><td>Commerce-led lifecycle and merchandising</td></tr><tr><td>Core strength</td><td>Deals, lead scoring, ownership, and conditional automation</td><td>Catalog, customer events, segments, and ecommerce reporting</td></tr><tr><td>Main trade-off</td><td>More configuration for a pure DTC operation</td><td>Profile, channel, and data governance costs can grow quickly</td></tr><tr><td>Pricing question</td><td>How do contacts, seats, CRM, and feature tiers scale?</td><td>How do profiles, messages, channels, and attribution scale?</td></tr></tbody></table></div>
+
+        <h2>ActiveCampaign: when it fits</h2>
+        <p>
+          ActiveCampaign is a strong candidate when a Shopify business has more than a marketing queue: wholesale or sales-assisted accounts, deal stages, lead scoring, or customer ownership that must influence follow-up. It can connect commerce activity to a broader revenue process when the team is prepared to define which system owns each field.
+        </p>
+        <p>
+          For a DTC pilot, keep the scope narrow. Test product, order, refund, consent, and purchase suppression; then verify that a sales or support handoff removes the customer from promotional automation. Compare the full contact-and-seat cost at the next realistic volume, not just the entry plan.
+        </p>
+
+        <h2>Klaviyo: when it fits</h2>
+        <p>
+          Klaviyo is the more natural choice when the store’s most valuable signals are catalog views, product affinity, cart state, order history, predicted value, and repeat-purchase timing. It earns its complexity when the merchandising team can act on those segments and maintain a reliable event and product feed.
+        </p>
+        <p>
+          Pilot one welcome, cart, or post-purchase flow with explicit recent-purchase and refund suppression. Validate profile merges, catalog updates, consent, attribution windows, SMS permissions, and the next profile threshold before expanding to every collection or channel.
+        </p>
+
+        <h2>Workflow test: abandoned cart with margin guardrails</h2>
+        <p>
+          Run the same three-SKU abandoned cart through both. Klaviyo renders line items from the Shopify catalog, checks recent-purchase state at send time, and can cap the discount by cart value with a flow filter. ActiveCampaign renders the cart through the integration and expresses the margin guardrail as automation conditions — achievable, but the conditions live beside deal and scoring logic, so a misconfigured branch can discount a wholesale account by accident.
+        </p>
+        <p>
+          Measure three things: whether the rendered email shows accurate variants, how quickly a completed purchase stops the sequence, and what the discount actually cost in margin for recovered orders. A platform that fires a coupon after checkout completed did not recover revenue — it gave margin away.
+        </p>
+
+        <h2>Workflow test: wholesale versus consumer split</h2>
+        <p>
+          This is ActiveCampaign’s home turf. A wholesale customer who browses the consumer site should never receive a 15% consumer popup offer, and a rep-assigned account should route reorder reminders to the owner, not a marketing blast. ActiveCampaign expresses that as contact-to-account relationships and owner-based branching. Klaviyo can approximate it with custom properties and segment exclusions, but the store must maintain the wholesale flag in Shopify and trust the sync.
+        </p>
+        <p>
+          If the store’s margin lives in repeat wholesale orders, the CRM context is not optional — it is the reason ActiveCampaign stays on the shortlist despite weaker native commerce depth.
+        </p>
+
+        <h2>Pricing deep-dive: model the real bill</h2>
+        <p>
+          ActiveCampaign prices on contacts plus seats plus feature tier; CRM features, SMS add-ons, and dedicated infrastructure can each change the quote. Klaviyo prices on active profiles plus message volume; SMS credits bill separately, and dormant profiles count until suppressed. Both models punish wide, unengaged lists — switching platforms does not fix list hygiene.
+        </p>
+        <p>
+          Build one 12-month forecast at your expected engaged audience, send volume, and peak month, including seat growth and operator labor, then check both official pricing pages before approval — published tiers and feature gates change without notice. Record the plan name, contact or profile definition, overage rate, and cancellation terms in the procurement file. A $60/mo sticker difference is noise next to an unmodeled seat expansion or a profile bill that doubles after a popup sweep.
+        </p>
+
+        <h2>Consent and suppression: which system owns the customer state</h2>
+        <p>
+          Whichever platform wins, one system must own marketing consent and recent-purchase suppression. Email permission does not authorize SMS, a support reply does not re-open marketing, and a refund should exit a recovery flow in minutes, not days. Test the refund, fulfillment, and unsubscribe events in both platforms with staff accounts before trusting either.
+        </p>
+        <p>
+          For stores running both tools during evaluation, write the boundary down: Klaviyo owns consumer lifecycle triggers, ActiveCampaign owns sales-assisted follow-up, and neither can send the same cart or welcome message. The <a class="link" href="/guides/flow-collision-prevention">flow-collision prevention guide</a> gives the overlap checklist.
+        </p>
+
+        <h2>Controlled Shopify pilot</h2>
+        <div class="overflow-x-auto mb-10"><table><thead><tr><th>Test</th><th>ActiveCampaign</th><th>Klaviyo</th></tr></thead><tbody><tr><td>Identity</td><td>Contact, account, deal, and Shopify customer relationship</td><td>Profile, customer, catalog, and order relationship</td></tr><tr><td>Trigger</td><td>Shopify event, score change, deal stage, or owner action</td><td>Browse, cart, product, order, or value event</td></tr><tr><td>Suppression</td><td>Purchase, refund, consent, deal, and support state</td><td>Purchase, refund, consent, frequency, and channel state</td></tr><tr><td>Outcome</td><td>Qualified revenue, repeat purchase, or sales handoff</td><td>Incremental purchase, repeat value, margin, or retained customer</td></tr></tbody></table></div>
+
+        <h2>Cost scenarios by store type</h2>
+        <div class="overflow-x-auto"><table><thead><tr><th>Store type</th><th>Lean toward</th><th>Why</th><th>Watch the bill for</th></tr></thead><tbody>
+          <tr><td>Pure DTC under 500 orders/mo</td><td>Klaviyo</td><td>Cart and welcome flows pay for themselves fastest</td><td>Profile growth from popup sweeps</td></tr>
+          <tr><td>Wholesale-plus-retail hybrid</td><td>ActiveCampaign</td><td>Account ownership and reorder routing</td><td>Seat count and CRM feature tier</td></tr>
+          <tr><td>High-AOV considered purchases</td><td>Either</td><td>Longer flows, objection handling, sales handoff</td><td>Operator hours and attribution setup</td></tr>
+          <tr><td>Subscription brands</td><td>Klaviyo</td><td>Replenishment and churn events as native states</td><td>SMS credits if texting reminders</td></tr>
+        </tbody></table></div>
+
+        <h2>Where Sequenzy fits in this decision</h2>
+        <p>
+          Some teams evaluating ActiveCampaign vs Klaviyo are really saying: the store needs disciplined lifecycle flows, not a CRM and not a data platform. Sequenzy targets that middle — described-outcome playbooks for welcome, cart, and winback with pay-per-email pricing and no per-contact ceiling. It will not replace ActiveCampaign’s deal pipeline or Klaviyo’s predictive depth, and it should not be judged as if it could. Worth a parallel trial when the constraint is operator time and list-bloat economics rather than data-model maximums.
+        </p>
+
+        <h2>Team fit: who should operate which platform</h2>
+        <p><strong>Choose ActiveCampaign if:</strong></p>
+        <ul>
+          <li>Wholesale, B2B, or sales-assisted revenue is a meaningful share of GMV</li>
+          <li>Deal stages or account owners must change what marketing sends</li>
+          <li>Someone will own lead-scoring rules and audit them monthly</li>
+          <li>The store already accepts per-seat commercial terms</li>
+        </ul>
+        <p><strong>Choose Klaviyo if:</strong></p>
+        <ul>
+          <li>Cart, browse, and replenishment flows are the retention engine</li>
+          <li>Merchandising wants segments by product affinity and predicted value</li>
+          <li>Flow-level revenue reporting is a weekly finance artifact</li>
+          <li>The team will prune active profiles as discipline, not as a crisis</li>
+        </ul>
+
+        <h2>Operator runbook: a 30-day proof plan for either finalist</h2>
+        <p>
+          Week one is data and consent: connect Shopify, map products, orders, refunds, subscriptions, and consent states, then run ten test profiles through signup, cart, purchase, refund, and unsubscribe. No broadcast sends until events arrive once, with correct timestamps and exits. Week two launches welcome only, segmented by acquisition source, with different offer policies per source — measure first purchase within fourteen days and unsubscribe rate by branch.
+        </p>
+        <p>
+          Week three adds cart recovery with purchase suppression and a margin floor on any incentive. Week four introduces post-purchase or winback with a holdout group, and finance compares contribution margin — not platform-attributed revenue. Document every suppression rule in a shared runbook so the next operator is not guessing why a segment exists. If ninety days after the decision those numbers flatline, the problem was implementation rhythm or tool fit, not the migration date.
+        </p>
+
+        <h2>Field scenario: $48k/mo home goods, wholesale 20% of revenue</h2>
+        <p>
+          A home-goods merchant ran this exact fork. Klaviyo’s cart flow recovered more consumer revenue per dollar, but every test eventually bumped into the wholesale question — rep-assigned accounts receiving consumer offers, reorder timing invisible to marketing. ActiveCampaign won on the account-routing test but rendered multi-variant carts less reliably. They chose ActiveCampaign for the account layer, kept Shopify Email for simple broadcasts, and capped consumer email at three flows until an operator owned the automation map full-time.
+        </p>
+
+        <h2>Field scenario: $31k/mo supplements, pure DTC</h2>
+        <p>
+          A supplements store evaluated both and chose Klaviyo after the three-cart test: variant rendering, purchase exit timing, and replenishment segments all worked without middleware. ActiveCampaign’s scoring was compelling in demo but nobody on the team would maintain scoring rules weekly — the veto condition from the selection framework. Their warning: price Klaviyo at the post-popup profile count, not the current list, before signing.
+        </p>
+
+        <h2>Final verdict</h2>
+        <p>
+          ActiveCampaign wins when CRM ownership and Shopify marketing need to operate together. Klaviyo wins when commerce data depth and merchandising execution are the center of gravity. Choose after a representative pilot proves identity, event freshness, suppression, reporting, and twelve-month operating cost.
+        </p>
+        <p class="mt-6">
+          Continue with the <a class="link" href="/guides">email-marketing guides</a>, <a class="link" href="/for/high-aov">high-AOV store guidance</a>, and the <a class="link" href="/alternatives">alternatives library</a>. For adjacent matchups, read <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a>, <a class="link" href="/compare/drip-vs-activecampaign">Drip vs ActiveCampaign</a>, and <a class="link" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo</a>. The <a class="link" href="/guides/selection-framework">selection framework</a> scores either finalist on six dimensions before you sign, and the <a class="link" href="/guides/pricing-models">pricing-model guide</a> explains how profile, contact, and send-based bills diverge at scale.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <FaqSection faqs={faqs} title="ActiveCampaign vs Klaviyo FAQ" />
 </BaseLayout>

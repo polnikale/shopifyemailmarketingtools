@@ -27,11 +27,47 @@ const specs = [
   ['mailchimp','Stay-and-clean option','Stores with simple broadcasts and a stable audience','Current audience and feature billing must be checked directly','https://mailchimp.com/pricing','a merchant whose issue is list hygiene or ownership rather than capability','Mailchimp remains defensible for a newsletter-led store. Before switching, fix consent, inactive-contact handling, and suppression ownership; a new vendor will not repair an unowned operating model.'],
 ].map(([slug,best,fit,cost,official,intent,angle], index) => ({ app: appBySlug(slug)!, best, fit, cost, official, intent, angle, index })).filter((x) => x.app);
 
+const costRows = [
+  { model: 'Audience contacts (Mailchimp)', behavior: 'Bill tracks stored contacts with plan-gated features', 'best when': 'Lists are stable, cleaned, and modest', verify: 'Contact definition and plan feature gates' },
+  { model: 'Per email sent (Sequenzy)', behavior: 'Bill tracks engaged sending; unlimited contacts', 'best when': 'Replace scattered journeys with owned playbooks at low cost', verify: 'Send allowance and overage rate' },
+  { model: 'Active profiles (Klaviyo)', behavior: 'Bill tracks list breadth; dormant profiles count', 'best when': 'Deep event modeling justifies profile economics', verify: 'Profile definition and SMS credit pricing' },
+  { model: 'Email volume (Brevo)', behavior: 'Bill tracks monthly sends; transactional priced separately', 'best when': 'Selective campaigns plus transactional traffic', verify: 'Volume tiers and dedicated IP cost' },
+  { model: 'Contacts or people (Omnisend, Drip)', behavior: 'Bill tracks stored contacts with allowances by plan', 'best when': 'Ecommerce flows launched quickly on clean lists', verify: 'Allowances, overages, SMS fees' },
+];
+
 const faqs = [
-  { question: 'Why do Shopify stores leave Mailchimp?', answer: 'Usually because the store needs more reliable Shopify events, ecommerce-specific branching, clearer flow ownership, or a billing model that matches engaged sending. A list-cleaning sprint may solve the problem without a migration.' },
-  { question: 'What is the best Mailchimp alternative for Shopify?', answer: 'There is no universal winner. Klaviyo and Omnisend are common event-driven candidates; Shopify Email fits simple native campaigns; a guided or managed option may fit teams whose constraint is operating time. Pilot the failure mode named in your migration brief.' },
-  { question: 'How should I price a replacement?', answer: 'Forecast active profiles, monthly email and SMS volume, transactional traffic, seats, services, onboarding, and inactive-contact treatment. Verify the current official plan and retain the quote; published tiers and feature gates change.' },
-  { question: 'Can Mailchimp and a replacement run together?', answer: 'Use a bounded overlap for QA, but assign one sender to each welcome, cart, post-purchase, and winback trigger. Shared suppression and clear rollback rules are mandatory.' },
+  {
+    question: 'Why do Shopify stores leave Mailchimp?',
+    answer: 'Usually because the store needs more reliable Shopify events, ecommerce-specific branching, clearer flow ownership, or a billing model that matches engaged sending. A list-cleaning sprint may solve the problem without a migration.',
+  },
+  {
+    question: 'What is the best Mailchimp alternative for Shopify?',
+    answer: 'There is no universal winner. Klaviyo and Omnisend are common event-driven candidates; Shopify Email fits simple native campaigns; a guided or managed option may fit teams whose constraint is operating time. Pilot the failure mode named in your migration brief.',
+  },
+  {
+    question: 'How should I price a replacement?',
+    answer: 'Forecast active profiles, monthly email and SMS volume, transactional traffic, seats, services, onboarding, and inactive-contact treatment. Verify the current official plan and retain the quote; published tiers and feature gates change.',
+  },
+  {
+    question: 'Can Mailchimp and a replacement run together?',
+    answer: 'Use a bounded overlap for QA, but assign one sender to each welcome, cart, post-purchase, and winback trigger. Shared suppression and clear rollback rules are mandatory.',
+  },
+  {
+    question: 'Is Klaviyo the automatic next step from Mailchimp?',
+    answer: 'It is the most common, not the automatic. Klaviyo wins when Shopify event depth, catalog rendering, and flow attribution are the missing pieces. If the gap is strategy defaults or a billing model that punishes cold segments, send-based options like Sequenzy or prebuilt journeys in Omnisend may reach the same revenue outcome with less operating burden. Run the same three-cart and welcome test on two finalists and let event fidelity decide.',
+  },
+  {
+    question: 'Do I need to rebuild every Mailchimp campaign and journey?',
+    answer: 'No. Rank existing journeys by attributed revenue — for most Mailchimp stores, two flows produce the vast majority of lifecycle revenue. Rebuild welcome and abandoned cart first, then winback or post-purchase only if evidence supports them. Archive legacy tags instead of importing segmentation debt; the migration is the cheapest moment to retire audiences nobody has messaged this year.',
+  },
+  {
+    question: 'Will Mailchimp consent records transfer to a new platform?',
+    answer: 'Export consent with source and timestamp, suppressions, tags, and merge fields before disconnecting. The replacement must honor those records on import rather than re-permissioning the list. Email consent does not authorize SMS on any platform — text programs need their own documented opt-in, quiet hours, and opt-out path.',
+  },
+  {
+    question: 'What breaks most often in a Mailchimp-to-Shopify-platform migration?',
+    answer: 'Three things: product and variant rendering (tags do not carry catalog data, so dynamic blocks must be rebuilt from Shopify catalog sync), suppression timing (purchases must exit recovery flows within minutes, not after a nightly sync), and ownership (journeys rebuilt blind, with nobody able to explain why an exclusion exists). Test all three with staff profiles during the pilot week.',
+  },
 ];
 ---
 
@@ -55,6 +91,120 @@ const faqs = [
 
   <section class="container pb-16"><div class="ledger-card overflow-x-auto"><p class="editorial-kicker">Implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black text-slate-950">Run a 14-day proof before a full migration</h2><table class="mt-6 w-full min-w-[780px] text-left text-sm"><thead><tr><th>Days</th><th>Work</th><th>Pass condition</th></tr></thead><tbody><tr><td>1–3</td><td>Choose welcome, cart, or post-purchase; document owner, consent, source events, exclusions, and success metric.</td><td>A one-page flow spec and rollback owner exist.</td></tr><tr><td>4–7</td><td>Connect Shopify; test signup, guest checkout, purchase, fulfillment, refund, unsubscribe, identity merge, and inventory edge cases.</td><td>Test profiles enter and exit correctly with no duplicate send.</td></tr><tr><td>8–11</td><td>Run a small cohort with a holdout or pre-period; monitor complaints, unsubscribes, support tickets, margin, and attributed orders.</td><td>No marketing/transactional crossover and no consent gaps.</td></tr><tr><td>12–14</td><td>Compare event reliability, editing effort, written cost forecast, and outcome evidence; decide scale, revise, or stop.</td><td>The operator can explain suppression and rollback without vendor help.</td></tr></tbody></table></div></section>
 
-  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Evidence-safe Mailchimp migration rules</h2><p>Export consent records, suppression flags, tags, merge fields, templates, active journeys, and campaign history before disconnecting Mailchimp. Rebuild dynamic audiences from Shopify events rather than assuming tags map one-to-one. Verify variants, refunds, fulfillment, subscriptions, guest checkout, and identity merges with test profiles.</p><p>Keep marketing, service, and transactional messages separate; email permission does not automatically authorize SMS. Report platform-attributed revenue separately from incremental evidence, and do not copy a vendor case study into a store forecast.</p><h2>Official checks and internal reading</h2><p>Use the <a class="link" href="/guides/pricing-models">pricing-model guide</a>, <a class="link" href="/guides/revenue-attribution">attribution guide</a>, <a class="link" href="/guides/deliverability">deliverability guide</a>, and each official vendor link above. Record access date, plan, limits, add-ons, data retention, and cancellation terms.</p></article></section>
+  <section class="container pb-16"><article class="prose-shopify max-w-4xl"><h2>Evidence-safe Mailchimp migration rules</h2><p>Export consent records, suppression flags, tags, merge fields, templates, active journeys, and campaign history before disconnecting Mailchimp. Rebuild dynamic audiences from Shopify events rather than assuming tags map one-to-one. Verify variants, refunds, fulfillment, subscriptions, guest checkout, and identity merges with test profiles.</p><p>Keep marketing, service, and transactional messages separate; email permission does not automatically authorize SMS. Report platform-attributed revenue separately from incremental evidence, and do not copy a vendor case study into a store forecast.</p></article></section>
+
+  <section class="container pb-16">
+    <article class="prose-shopify max-w-4xl">
+      <h2>Why Mailchimp stores outgrow the platform</h2>
+      <p>
+        Mailchimp was built for general small-business marketing and adapted to Shopify, so the store’s richest signals — browse depth, cart state, refunds, fulfillment, replenishment timing — arrive as tags and lists instead of live customer states. The predictable failure sequence: first the abandoned cart journey underperforms because sync lag or render quality misses multi-SKU carts; then suppression workarounds (manual exports, duplicate audiences) multiply; finally nobody can explain which audience feeds which journey. None of those are Mailchimp-broadcast problems — they are lifecycle problems.
+      </p>
+      <p>
+        Mailchimp still earns its seat in specific scenarios: newsletter-led stores under ~300 orders/mo, teams that need landing pages and surveys alongside email, and merchants whose whole test is a monthly drop announcement. The exit bar is evidence, not fashion — if measured recovery, repeat purchase, and full-price share plateau while order volume grows, the platform has become the constraint.
+      </p>
+
+      <h2>Pricing deep-dive: Mailchimp economics versus the alternatives</h2>
+      <p>
+        Mailchimp’s audience-contact model means the bill tracks total stored contacts even as engagement falls — the classic pattern is paying for 20k contacts while 4k open monthly. Klaviyo behaves similarly on profiles; Omnisend and Drip bill contacts too. Send-based models (Sequenzy, Brevo) diverge: the cold contacts stop costing money when they stop receiving mail, which can cut the bill by half or more for list-bloat-heavy stores. At 15k contacts with 40% engagement, Mailchimp Standard often runs $180–250/mo; profile-billed rivals land nearby; send-billed options frequently land lower.
+      </p>
+      <p>
+        Price the replacement with a written 90-day forecast of engaged audience, sends, peak-month spike, and SMS volume, then verify every current tier on the official pricing pages — plans, contact definitions, and feature gates change without notice. Include migration labor: a Mailchimp exit with four live journeys is typically 25–50 hours internally, more when legacy audiences need consent archaeology. Record plan name, limits, overages, and cancellation terms before signing anything.
+      </p>
+
+      <h2>Decision table: which replacement fits which Mailchimp complaint</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[760px] text-left text-sm">
+          <thead><tr><th>If the complaint is…</th><th>Start with</th><th>Trade-off you accept</th><th>Verify before signing</th></tr></thead>
+          <tbody>
+            <tr><td>Journeys are too shallow for commerce</td><td>Klaviyo, Drip</td><td>Contact/profile pricing needs hygiene</td><td>Cart event fidelity and product blocks</td></tr>
+            <tr><td>Contact bill, not capability</td><td>Sequenzy, Brevo</td><td>Less catalog depth or suite breadth</td><td>Send overage at peak month</td></tr>
+            <tr><td>Too much platform for the store</td><td>Shopify Email, tinyEmail</td><td>Automation depth shrinks sharply</td><td>Automated flow limits on paid tier</td></tr>
+            <tr><td>SMS recovery is the gap</td><td>Postscript, Attentive</td><td>Email becomes secondary</td><td>Consent model and carrier fees</td></tr>
+            <tr><td>Reviews/loyalty should join email</td><td>Yotpo Email &amp; SMS</td><td>Bundle economics need module math</td><td>Which modules are active</td></tr>
+            <tr><td>Leads must reach sales</td><td>ActiveCampaign</td><td>Seats and CRM tiers raise cost</td><td>Shopify object sync and seat count</td></tr>
+            <tr><td>No operator time at all</td><td>Rejoiner, Sendlane</td><td>Managed scope costs beyond software</td><td>Written scope and exit terms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Shopify-specific checks before the switch</h2>
+      <p>
+        Mailchimp’s Shopify integration syncs products and basic events; most replacements promise more. Prove it: ten test profiles through signup, add-to-cart, purchase, refund, and unsubscribe, comparing timestamps against what Mailchimp produced. Purchaser suppression should be automatic — a completed order must exit the cart flow within minutes, and a refunded order must not trigger a replenishment message for a returned SKU. Discount policy should be expressible as a rule (for example, incentive only above a cart-value floor) rather than a manual split into duplicate journeys.
+      </p>
+      <p>
+        App costs matter too: Mailchimp’s billing separates email from SMS and surveys, and most rivals gate automation depth by plan tier. Account for popup capture (Privy, Justuno) as a separate line if the replacement is weaker at acquisition than Mailchimp, and donor-days: if a third-party app must bridge Shopify data to the new platform, price that app into the twelve-month total — integration glue is where “cheaper” platforms become expensive.
+      </p>
+
+      <h2>The migration sequence that preserves revenue</h2>
+      <p>
+        Week one: export consent, journeys, and audience state; rank flows by attributed revenue; build the challenger’s Shopify event map with staff test profiles. Week two: rebuild welcome and abandoned cart from scratch — don’t recreate Mailchimp branching quirks; run the bounded parallel with shared suppression so no customer gets both senders. Week three: move post-purchase and winback if evidence supports them; retire legacy tags. Week four: finalize domain authentication and warm-up, document the rollback trigger, and archive the Mailchimp account for reference.
+      </p>
+      <p>
+        Never cut over the week before Black Friday, and pause the incumbent journey for every trigger the challenger owns. The rollback trigger should be written before launch: duplicate sends, consent crossover, or weekly unsubscribes above 0.9% revert that flow immediately.
+      </p>
+
+      <h2>Where Sequenzy fits — honestly</h2>
+      <p>
+        Sequenzy’s real strengths are guided, described-outcome lifecycle playbooks with agent-assisted setup, and pay-per-email pricing with unlimited contacts — a direct answer to Mailchimp’s contact-billing bloat and journey-shallowness at once. It does not replace Mailchimp’s marketing-suite breadth (landing pages, surveys, social), and it is not the choice when the store needs deep native Shopify event modeling where Klaviyo and Drip still lead. It earns a trial when the constraint is knowing exactly what the welcome, cart, and winback should say — with an operating rhythm and a bill that tracks sends rather than stored audience.
+      </p>
+
+      <h2>Field notes from Mailchimp exits</h2>
+      <p>
+        A $54k/mo candle brand parallel-tested Klaviyo against Mailchimp cart recovery and measured roughly 35% less recovery on the Mailchimp side — sync lag and weaker product rendering. Migration took twelve days and the increment covered the platform delta by week six. A $21k/mo podcast-merch store stayed on Mailchimp deliberately: a monthly drop newsletter is the business, automations are secondary, and migration labor wasn’t justified until engagement strategy was fixed. Diagnosis first, platform second.
+      </p>
+
+      <h2>Operator checklist: stay versus switch</h2>
+      <p><strong>Stay on Mailchimp if:</strong></p>
+      <ul>
+        <li>The program is newsletter- and launch-led with automations secondary</li>
+        <li>Landing pages, surveys, or social posting remove a second subscription</li>
+        <li>The audience is stable and the contact bill matches the engaged ratio</li>
+        <li>Switching cost genuinely outweighs measured recovery leakage</li>
+      </ul>
+      <p><strong>Switch if:</strong></p>
+      <ul>
+        <li>Cart or browse recovery is a tracked KPI and performance has plateaued</li>
+        <li>Suppression needs manual exports or duplicate audiences every month</li>
+        <li>Nobody can explain which journey feeds which audience anymore</li>
+        <li>A rated challenger passed the event, suppression, and margin tests on your store</li>
+      </ul>
+
+      <h2>Official checks and internal reading</h2>
+      <p>Use the <a class="link" href="/guides/pricing-models">pricing-model guide</a>, <a class="link" href="/guides/revenue-attribution">attribution guide</a>, <a class="link" href="/guides/deliverability">deliverability guide</a>, and each official vendor link above. Record access date, plan, limits, add-ons, data retention, and cancellation terms. For the most common fork, read <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a>; for guided alternatives, see the <a class="link" href="/alternatives/klaviyo-alternative">Klaviyo alternatives guide</a> and the <a class="link" href="/alternatives/shopify-email-alternative">Shopify Email alternatives guide</a>.</p>
+    </article>
+  </section>
+
+  <section class="container pb-12">
+    <div class="card overflow-x-auto">
+      <h2 class="px-5 pt-5 font-serif text-3xl font-black text-slate-950">How billing models behave against a Mailchimp baseline</h2>
+      <table class="data-table mt-5">
+        <thead><tr><th>Billing model</th><th>Cost behavior</th><th>Fits when</th><th>Verify</th></tr></thead>
+        <tbody>
+          {costRows.map((row) => <tr>
+            <td class="font-bold">{row.model}</td>
+            <td>{row.behavior}</td>
+            <td>{row['best when']}</td>
+            <td>{row.verify}</td>
+          </tr>)}
+        </tbody>
+      </table>
+      <p class="px-5 py-4 text-sm text-slate-600">Models are directional. Check official pricing pages for current tiers and overage rates before any approval — quotes should be recorded in the migration file with an access date.</p>
+    </div>
+  </section>
   <FaqSection faqs={faqs} title="Mailchimp alternatives FAQ" />
+
+  <div class="container pb-16 max-w-4xl">
+    <p class="font-black text-slate-950">Related reading</p>
+    <p class="mt-2 text-sm">
+      <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a> ·
+      <a class="link" href="/compare/omnisend-vs-mailchimp">Omnisend vs Mailchimp</a> ·
+      <a class="link" href="/compare/drip-vs-mailchimp">Drip vs Mailchimp</a> ·
+      <a class="link" href="/compare/sequenzy-vs-mailchimp">Sequenzy vs Mailchimp</a> ·
+      <a class="link" href="/guides/migration">Migration playbook</a> ·
+      <a class="link" href="/guides/selection-framework">Selection framework</a> ·
+      <a class="link" href="/use-cases/winback">Winback use case</a> ·
+      <a class="link" href="/use-cases/welcome-series">Welcome series use case</a> ·
+      <a class="link" href="/use-cases/abandoned-cart">Abandoned-cart use case</a>
+    </p>
+  </div>
 </BaseLayout>

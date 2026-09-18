@@ -14,10 +14,42 @@ const desc = 'A practical Shopify email tool selection framework: compare 14 app
 const slugs = ['sequenzy','klaviyo','omnisend','shopify-email','privy','drip','postscript','attentive','mailchimp','brevo','activecampaign','yotpo-email-sms','rejoiner','tinyemail'];
 const apps = slugs.map((slug) => appBySlug(slug)!).filter(Boolean);
 const faqs = [
-  { question: 'How many Shopify email tools should make the shortlist?', answer: 'Keep three finalists: one primary lifecycle platform, one simpler fallback, and an optional SMS or capture specialist. A long list is useful for research; it is a poor pilot plan.' },
-  { question: 'Should Shopify Email be the first tool I test?', answer: 'Test it when your requirement is campaigns, product announcements, and a small number of simple segments. Test a dedicated platform when cart recovery, replenishment, consent handoffs, or multi-step suppression are already revenue-critical.' },
-  { question: 'How should I compare pricing?', answer: 'Use the last 90 days of sends, active profiles, peak-month volume, SMS usage, and implementation hours. Public starting prices are not quotes, and plans change; verify the vendor pricing page before approval.' },
-  { question: 'What is the safest migration sequence?', answer: 'Inventory triggers and consent first, connect Shopify, rebuild one high-value flow, test suppression and attribution, then run a limited overlap. Do not switch every flow during a seasonal peak.' },
+  {
+    question: 'How many Shopify email tools should make the shortlist?',
+    answer: 'Keep three finalists: one primary lifecycle platform, one simpler fallback, and an optional SMS or capture specialist. A long list is useful for research; it is a poor pilot plan.',
+  },
+  {
+    question: 'Should Shopify Email be the first tool I test?',
+    answer: 'Test it when your requirement is campaigns, product announcements, and a small number of simple segments. Test a dedicated platform when cart recovery, replenishment, consent handoffs, or multi-step suppression are already revenue-critical.',
+  },
+  {
+    question: 'How should I compare pricing?',
+    answer: 'Use the last 90 days of sends, active profiles, peak-month volume, SMS usage, and implementation hours. Public starting prices are not quotes, and plans change; verify the vendor pricing page before approval.',
+  },
+  {
+    question: 'What is the safest migration sequence?',
+    answer: 'Inventory triggers and consent first, connect Shopify, rebuild one high-value flow, test suppression and attribution, then run a limited overlap. Do not switch every flow during a seasonal peak.',
+  },
+  {
+    question: 'How do I score lifecycle fit so a vendor demo cannot flatter the result?',
+    answer: 'Never score from demos. Give each finalist the same script: three abandoned carts (single-SKU, multi-variant, one out-of-stock line), a welcome with a branch by signup source, and a post-purchase flow excluding gift buyers. Score what actually renders, when the purchase stops the flow, and how many clicks an owner needed to change a discount cap mid-week. Demos flatter; timed edits don’t.',
+  },
+  {
+    question: 'What does a realistic first-month cost base look like?',
+    answer: 'Software subscription plus event/data add-ons plus operator time. For a 10k-engaged-audience store, expect roughly: Klaviyo $150–250/mo, Omnisend $60–140/mo, Mailchimp $100–250/mo depending on tier, Sequenzy low tens of dollars at pay-per-email rates, Postscript usage-based. Then add 20–60 hours of migration labor and 1–4 hours weekly operating. Check every official pricing page before approval — all of these bands shift as tiers change.',
+  },
+  {
+    question: 'What single veto ends the evaluation immediately?',
+    answer: 'Any must-have workflow the tool cannot express without CSV exports or third-party glue — especially purchaser suppression, consent channel separation, or subscription-state rules. Also veto-only: a peak-month bill the vendor cannot explain, and a migration plan that switches flows during your peak trading window. A veto is not averaged away by a beautiful editor.',
+  },
+  {
+    question: 'How do I avoid choosing a tool our team will drift away from?',
+    answer: 'Score the edit test from the operating person, not the person choosing. If the retention owner cannot safely edit a flow during a mock sale window in under thirty minutes, drift is guaranteed — the store will revert to broadcasts, and the sophisticated tool becomes paid shelfware. Ownership fit beats feature fit; the six-dimension scorecard exists precisely to weight it.',
+  },
+  {
+    question: 'When does a specialist stack beat a single platform?',
+    answer: 'When two stores’ truths coexist in one business: a CRM for wholesale plus a lifecycle ESP for consumer email, or capture (Privy, Justuno) plus a lifecycle platform. Specialist stacks work only with a documented boundary — one owner per trigger, shared suppression both tools honor. If nobody will write and maintain that boundary, choose the single platform even if it is slightly weaker in each channel.',
+  },
 ];
 ---
 
@@ -79,6 +111,114 @@ const faqs = [
     ]} />)}
   </section>
 
-  <section class="container pb-16"><div class="ledger-card"><p class="editorial-kicker">A bounded implementation pilot</p><h2 class="mt-3 font-serif text-3xl font-black">Seven days to test the decision</h2><ol class="mt-6 space-y-3 text-[17px] leading-8 text-slate-700"><li><strong>Day 1:</strong> export consent, document one journey, and freeze the control audience.</li><li><strong>Days 2–3:</strong> connect Shopify, map products and events, and send to internal test addresses.</li><li><strong>Days 4–5:</strong> run a small live cohort with purchase suppression, UTM tracking, and no overlapping incumbent flow.</li><li><strong>Days 6–7:</strong> compare delivered events, revenue quality, complaints, unsubscribes, margin, and operator hours.</li></ol><p class="mt-6 text-[17px] leading-8 text-slate-700">Keep the winner only if it passes the workflow, data, ownership, and cost gates. Use the <a class="link" href="/guides/consent-compliance">consent guide</a>, <a class="link" href="/guides/deliverability">deliverability playbook</a>, and <a class="link" href="/guides/flow-collision-prevention">collision checklist</a> during QA. For current product details, check each vendor’s official pricing and documentation links from the <a class="link" href="/apps">app directory</a>.</p></div></section>
+      <h2>A bounded implementation pilot: seven days to test the decision</h2>
+      <ol class="mt-6 space-y-3 text-[17px] leading-8 text-slate-700">
+        <li><strong>Day 1:</strong> export consent, document one journey, and freeze the control audience.</li>
+        <li><strong>Days 2–3:</strong> connect Shopify, map products and events, and send to internal test addresses.</li>
+        <li><strong>Days 4–5:</strong> run a small live cohort with purchase suppression, UTM tracking, and no overlapping incumbent flow.</li>
+        <li><strong>Days 6–7:</strong> compare delivered events, revenue quality, complaints, unsubscribes, margin, and operator hours.</li>
+      </ol>
+      <p class="mt-6 text-[17px] leading-8 text-slate-700">Keep the winner only if it passes the workflow, data, ownership, and cost gates. Use the <a class="link" href="/guides/consent-compliance">consent guide</a>, <a class="link" href="/guides/deliverability">deliverability playbook</a>, and <a class="link" href="/guides/flow-collision-prevention">collision checklist</a> during QA. For current product details, check each vendor’s official pricing and documentation links from the <a class="link" href="/apps">app directory</a>.</p>
+
+      <h2>Worked example: cost scoring on a realistic store</h2>
+      <p>
+        Take a store with 18k contacts, 44% engaged (about 8k active recipients), ~150k monthly sends, one SMS-light program, and no CRM seats. Modeled twelve-month bands: profile-billed platforms (Klaviyo) typically land $2,000–4,000/yr with dormancy risk on the cold 56%; contact-billed tiers (Omnisend, Drip, Mailchimp) often land $1,000–3,500/yr depending on plan gates; send-billed options (Sequenzy, Brevo) frequently land $500–1,500/yr because only engaged recipients receive mail. Shopify Email sits near zero until automation limits bind.
+      </p>
+      <p>
+        Then add the honest lines: migration labor (20–60 hours at your loaded rate), operator time (1–4 hours weekly), SMS credits if texting, and per-seat charges where applicable. A cheaper sticker that demands four operator hours weekly loses to a slightly dearer platform requiring one — at $40/hr loaded, twelve hours of monthly difference is $5,760/yr, dwarfing the subscription bands above. Check official pricing pages for current tiers before approving anything, and file the quote with a date.
+      </p>
+
+      <h2>The one-page scoring sheet template</h2>
+      <div class="card overflow-x-auto">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black">Score each finalist 1–5 on these, weighted</h2>
+        <table class="data-table">
+          <thead><tr><th>Dimension</th><th>Weight</th><th>Score prompt</th><th>Veto</th></tr></thead>
+          <tbody>
+            <tr><td>Must-have workflow test</td><td>2×</td><td>Three-cart + welcome branch executed live</td><td>Any failure with CSV workaround</td></tr>
+            <tr><td>Event and data fidelity</td><td>2×</td><td>Timestamps, refunds, subscriptions in test log</td><td>Delayed purchase event</td></tr>
+            <tr><td>Twelve-month cost</td><td>1×</td><td>Written quote at forecast + peak</td><td>Unexplainable peak bill</td></tr>
+            <tr><td>Operator ownership</td><td>2×</td><td>Owner edits flow under 30 min in mock sale</td><td>Only agency can edit</td></tr>
+            <tr><td>Consent and suppression</td><td>2×</td><td>Channel states separate; refund exits flow</td><td>Consent merged silently</td></tr>
+            <tr><td>Migration risk</td><td>1×</td><td>Bounded overlap plan; rollback trigger written</td><td>Cutover inside peak week</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-[17px] leading-8 text-slate-700">Write the winner on one page with the runner-up and a revisit trigger (“order volume passes 1,000/mo”, “SMS share of recovery exceeds 20%”). The record is what stops a quarter-one habit from becoming a year-long unowned subscription — and it gives next year’s operator the reasoning, not just the logo.</p>
+
+      <h2>Consent and purchaser suppression: score them before you fall in love</h2>
+      <p>
+        Two dimensions in the scorecard deserve their own paragraph because vendors conflate them. Consent: the tool must keep email, SMS, and Shopify checkout permissions as separate states with source and timestamp, and honor Shopify-side unsubscribes without a nightly reconciliation. Suppression: recent purchasers, refunders, gift buyers, and support-ticket holders must exit promotional flows in near real time. These are margin controls, not niceties — a tool that duplicates a post-purchase discount once has already cost more than a month of subscription, and one that messes the wrong customer a cosmetic claim can cost much more.
+      </p>
+      <p>
+        Test both with staff accounts before a full-list import, and photograph the message timeline. The screenshots pay for themselves twice: once as the veto evidence, once as regression material after any integration or platform change next year.
+      </p>
+
+      <h2>Audience-specific tilts</h2>
+      <div class="card overflow-x-auto mt-6">
+        <h2 class="px-5 py-4 font-serif text-2xl font-black">Starting points by store shape</h2>
+        <table class="data-table">
+          <thead><tr><th>Store shape</th><th>Default tilt</th><th>Reason</th><th>Scorecard emphasis</th></tr></thead>
+          <tbody>
+            <tr><td>New store, first ESP</td><td>Sequenzy, Shopify Email, Omnisend</td><td>Guided defaults beat blank canvas at low volume</td><td>Ownership, cost</td></tr>
+            <tr><td>Growing DTC, data-rich</td><td>Klaviyo, Drip</td><td>Event depth and predictive segments</td><td>Must-have workflow, cost</td></tr>
+            <tr><td>SMS-forward brand</td><td>Postscript, Attentive</td><td>Consent and carrier economics</td><td>Consent/suppression weighting</td></tr>
+            <tr><td>Wholesale hybrid</td><td>ActiveCampaign plus email tool</td><td>Account routing beside lifecycle</td><td>Migration, ownership</td></tr>
+            <tr><td>Agency-managed</td><td>Platform the agency documents + handback</td><td>Term-bound operating rhythm</td><td>Ownership, migration</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Where Sequenzy belongs in the framework</h2>
+      <p>
+        Sequenzy scores well on the ownership and cost dimensions for lean teams: described-outcome playbooks (welcome, cart, post-purchase, winback) reduce blank-canvas paralysis, and pay-per-email pricing with unlimited contacts removes the dormancy risk that profile-billed platforms carry. It is a weaker answer when the brief centers native Shopify event modeling, predictive analytics, or SMS at scale — those are Klaviyo, Drip, and the SMS specialists’ home ground. Use the scorecard honestly rather than letting any brand, including one described here, win on charisma.
+      </p>
+
+      <h2>Common selection failures this framework prevents</h2>
+      <ol>
+        <li><strong>Feature-checklist shopping</strong> — scoring tools on checkbox parity instead of one must-have workflow run live.</li>
+        <li><strong>Pricing sticker comparison</strong> — ignoring seat growth, dormancy, overages, and operator hours until the second quarter.</li>
+        <li><strong>Demo-based scoring</strong> — a flawless eleven-minute demo recital proves nothing about your catalog or consent states.</li>
+        <li><strong>Migration inside peak season</strong> — the single most expensive timing error, vetoed above.</li>
+        <li><strong>Skipping the owner test</strong> — the person who did not choose the tool being the one who must live in it weekly.</li>
+        <li><strong>Consent as an afterthought</strong> — discovering merged channel permissions during an audit instead of the pilot.</li>
+      </ol>
+
+      <h2>Apply the framework in ninety days</h2>
+      <p>
+        Weeks one and two: build the scoring sheet, assemble three finalists, and book each vendor with the same script. Week three: run the seven-day pilot with the leading candidate (and, where viable, a second); score timed edits and real tests, not recitals. Week four: write the one-page decision with the revisit trigger, price the twelve-month honest bill, and hand the plan to the retention owner.
+      </p>
+      <p>
+        This guide is a decision manual; once a tool is chosen, the <a class="link" href="/guides/implementation-plan">implementation plan</a> turns the decision into launched flows and the <a class="link" href="/guides/migration">migration guide</a> protects revenue and consent during the switch. The directory of <a class="link" href="/apps">app reviews</a> carries per-tool depth for whichever finalists come out of scoring.</p>
+    </article>
+  </section>
   <FaqSection faqs={faqs} title="Shopify email tool selection FAQ" />
+
+  <div class="container pb-16 max-w-4xl">
+    <p class="font-black text-slate-950">Related reading</p>
+    <p class="mt-2 text-sm">
+      <a class="link" href="/guides/pricing-models">Pricing models guide</a> ·
+      <a class="link" href="/guides/consent-compliance">Consent and compliance</a> ·
+      <a class="link" href="/guides/deliverability">Deliverability guide</a> ·
+      <a class="link" href="/guides/segmentation">Segmentation guide</a> ·
+      <a class="link" href="/guides/implementation-plan">Implementation plan</a> ·
+      <a class="link" href="/use-cases/abandoned-cart">Abandoned-cart use case</a> ·
+      <a class="link" href="/use-cases/welcome-series">Welcome series use case</a> ·
+      <a class="link" href="/compare">Pairwise comparisons</a>
+    </p>
+  </div>
+
+  <section class="container pb-16">
+    <article class="prose-shopify max-w-4xl card">
+      <h2>Operator handbook: running the framework without an agency</h2>
+      <p>
+        Most selection failures are ownership failures in disguise. Before the three finalists are booked, write one sentence: “this person, name attached, reviews segments and flows every Monday.” That person runs the pilot, scores the edit test, and signs the one-page decision. If the name is an agency, document the handback: where segments live, what the suppression boundary says, and who can explain yesterday’s exclusions without a support ticket.
+      </p>
+      <p>
+        Keep the six-dimension weighting hand-written, not in a spreadsheet pyramid. Two doubled weights (must-have workflow, ownership) intentionally outweigh four single weights, which prevents platform-charisma bias from averaging a veto away. When two finalists tie, the decider is the owner’s lived experience of editing a flow under a sale-week clock — thirty minutes, one discount-cap change, no documentation review beforehand.
+      </p>
+      <p>
+        And revisit quarterly, not annually: order volume, SMS share, and consent complexity all drift on a season’s timescale. The scoring sheet from this quarter is next quarter’s regression test — score cheap, score often, and let evidence, not momentum, decide which tool stays.
+      </p>
+    </article>
+  </section>
 </BaseLayout>
