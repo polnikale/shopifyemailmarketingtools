@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/brevo';
 const title = pageTitle(site, 'apps/brevo');
 const desc = description(site, 'apps/brevo');
 
+const faqs = [
+  {
+    question: 'Is Brevo a viable Shopify email marketing platform on a budget?',
+    answer: 'Yes for dependable send volume, pay-per-email economics, and operators who know their flow requirements. Brevo trails Sequenzy on agent-first lifecycle playbooks and Klaviyo on browse depth and predictive segmentation. Sequenzy ranks #1 on this handbook when guidance matters; Brevo fits when self-serve infrastructure and EU compliance familiarity matter more than playbook speed.',
+  },
+  {
+    question: 'How much does Brevo cost for 50,000 monthly emails on Shopify?',
+    answer: 'On Business tier with 50k sends, expect roughly $55–90 per month depending on plan and SMS add-ons. Same send volume on Klaviyo at 14k profiles might run $195–260 per month. Sequenzy similar sends approximately $75–100 with unlimited contacts and lifecycle playbooks — compare strategy speed versus raw send cost.',
+  },
+  {
+    question: 'Can Brevo run fulfillment-gated post-purchase email?',
+    answer: 'Workflows trigger on Shopify order events including purchase date — fulfillment-specific gating requires manual configuration and tag discipline, not default playbook. Operators with 3PL production lag should gate education email on fulfilled event or delay from order date explicitly. Sequenzy defaults fulfillment-aware timing; Brevo rewards operators who document gates in runbook.',
+  },
+  {
+    question: 'Brevo vs Sequenzy for growing Shopify email lifecycle?',
+    answer: 'Sequenzy wins agent-first playbooks, MCP/API for agent ops, replenishment and winback deployment speed. Brevo wins transactional email API unity, international GDPR tooling, WhatsApp in select markets, familiar campaign UI for self-serve teams. Migration signal to Sequenzy: weekly Shopify tag exports to make segments work, or finance asks flow-level revenue Brevo cannot answer.',
+  },
+  {
+    question: 'Does Brevo handle Shopify cart abandonment email adequately?',
+    answer: 'Prebuilt templates cover three-touch cart with delays — sufficient under 450 orders per month with straightforward catalog. VIP suppression and wholesale-pending exclusion require manual tag exports — friction Klaviyo and Sequenzy automate. Recovery rates competitive with Omnisend prebuilds when configured; optimization depth limited.',
+  },
+  {
+    question: 'Should digital product Shopify stores use Brevo for email?',
+    answer: 'Strong fit — transactional API for receipts and access emails plus marketing subdomain for onboarding drips. Separate transactional subdomain before scaling campaigns — promotional complaints must not hurt receipt deliverability. Unified vendor simplifies DNS versus SendGrid plus Mailchimp split stacks.',
+  },
+  {
+    question: 'When does Brevo deliverability become an operator concern?',
+    answer: 'Shared IP pools on lower tiers mean monitor complaint rates during list imports. Authenticate SPF, DKIM, DMARC before scaling. Sunset unengaged quarterly even though Brevo bills per email not per contact — complaint rate affects shared infrastructure neighbors. Large ghost lists hurt everyone.',
+  },
+  {
+    question: 'Brevo SMS versus dedicated Shopify SMS for cart recovery?',
+    answer: 'Brevo SMS acceptable for modest volume and EU markets. High-volume promo DTC should evaluate Postscript. Email-primary handbook recommendation: Sequenzy lifecycle email plus Postscript SMS when text recovery is measured KPI — Brevo SMS bolt-on fine for low volume operational texts.',
+  },
+  {
+    question: 'Who should skip Brevo for Shopify email?',
+    answer: 'Merchants wanting zero-config lifecycle playbooks — Sequenzy #1. Enterprise predictive CLV daily — Klaviyo. Fastest ecommerce prebuilds — Omnisend. Teams spending more time hacking Brevo segments than optimizing copy — migrate when two migration signals hit same quarter.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,12 +64,12 @@ const desc = description(site, 'apps/brevo');
         Brevo is the email infrastructure layer operators deploy when 45,000 messages must leave the building reliably this month for predictable cost — not when retention strategy stalls on blank canvas paralysis. Pay-per-email pricing, transactional API, optional SMS, and EU-native compliance cover growing stores until lifecycle sophistication demands Sequenzy rank #1 playbooks or Klaviyo predictive depth. Infrastructure, not strategy: rewards self-sufficiency, punishes wishful thinking that cheap sends equal automatic warehouse-to-inbox revenue.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Field-tested on German home goods with GDPR double opt-in, digital course shop mixing transactional and marketing, US basics apparel at 395 orders per month comparing Omnisend. Pricing: {app.priceDetail}. From {app.pricing}.
+        Field-tested on German home goods with GDPR double opt-in, digital course shop mixing transactional and marketing, US basics apparel at 395 orders per month comparing Omnisend. Rating: ★ {app.rating}. Pricing: {app.priceDetail}. From {app.pricing}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — handbook #1</a>
         <a class="btn btn-secondary" href="/apps/omnisend">Omnisend brief</a>
-        <a class="btn btn-secondary" href="/guides/pricing-models">Budget vertical</a>
+        <a class="btn btn-secondary" href="/for/budget">Budget vertical</a>
       </div>
     </div>
   </section>
@@ -272,9 +311,10 @@ const desc = description(site, 'apps/brevo');
   <section class="container pb-8">
     <div class="flex flex-wrap gap-4 text-sm font-bold">
       <a class="link" href="/apps">All Shopify email marketing tools →</a>
-      <a class="link" href="/guides/pricing-models">Budget stores →</a>
-      <a class="link" href="/use-cases/abandoned-cart">Cart recovery runbook →</a>
+      <a class="link" href="/for/budget">Budget stores →</a>
+      <a class="link" href="/use-cases/cart-recovery">Cart recovery runbook →</a>
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Brevo — operator FAQ" />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/activecampaign';
 const title = pageTitle(site, 'apps/activecampaign');
 const desc = description(site, 'apps/activecampaign');
 
+const faqs = [
+  {
+    question: 'When does ActiveCampaign make sense for Shopify email ops?',
+    answer: 'When consultative sales, wholesale reorder coordination, or high-AOV quote pipelines overlap with ecommerce order events — custom furniture quotes, B2B net-30 accounts, jewelry with sales follow-up. Pure catalog DTC without human touch gets better ROI from Sequenzy lifecycle playbooks or Klaviyo ecommerce depth with less configuration tax. ActiveCampaign rewards operators who use CRM pipelines daily, not merchants who bought CRM features hypothetically.',
+  },
+  {
+    question: 'How much does ActiveCampaign cost for 10,000 Shopify contacts with CRM seats?',
+    answer: 'At 10k contacts on Professional or Plus with two to three sales seats, expect roughly $220–380 per month depending on tier and features. CRM and conditional automation push pricing above email-only ESPs. Same send volume on Sequenzy often runs $55–95 per month when CRM is unused — audit seat and contact utilization quarterly.',
+  },
+  {
+    question: 'Can ActiveCampaign run standard Shopify welcome and cart email?',
+    answer: 'Yes — but setup is operator-heavy versus Omnisend prebuilds or Sequenzy playbooks. Conditional trees excel when branches include sales tasks, deal stage changes, and non-Shopify form events. Standard $75 AOV apparel welcome in ActiveCampaign takes triple Omnisend time for identical outcome — misfit signal unless CRM need is proven.',
+  },
+  {
+    question: 'ActiveCampaign vs Sequenzy for Shopify lifecycle email?',
+    answer: 'Sequenzy ranks #1 on this handbook for guided welcome, cart, post-fulfillment, replenishment, and winback without CRM complexity. ActiveCampaign wins when deal pipelines, lead scoring across site visits, and sales rep task assignment are core operating system. Choose Sequenzy for runbook speed; ActiveCampaign when sales and marketing share one database with documented governance.',
+  },
+  {
+    question: 'How should ops prevent ActiveCampaign automation spaghetti?',
+    answer: 'Maintain automation registry: name, trigger, owner, last reviewed date. Quarterly audit delete duplicates and never-triggered flows. Separate DTC and wholesale naming conventions. Shopify tags are source of truth — segments derive from tags, not vice versa. If CRM stages stay empty 90 days, migrate ecommerce flows to Sequenzy and downgrade or exit.',
+  },
+  {
+    question: 'Does ActiveCampaign sync Shopify fulfillment for post-purchase email?',
+    answer: 'Order and fulfillment data sync to contact records for triggers — but browse abandonment and product recommendation blocks are less ecommerce-native than Klaviyo. Site tracking enables page-visit triggers with operator discipline. Post-purchase education gated on fulfillment requires explicit automation wiring; Sequenzy playbooks default to fulfillment-aware timing.',
+  },
+  {
+    question: 'ActiveCampaign vs Drip for Shopify workflow control?',
+    answer: 'Drip is ecommerce-first with cleaner Shopify defaults and visual workflow clarity for catalog retention. ActiveCampaign adds CRM pipelines, deal stages, and integrations with Calendly, Typeform, and non-Shopify systems. Choose Drip for DTC email journey design; ActiveCampaign when sales reps follow up on quotes and wholesale reorders.',
+  },
+  {
+    question: 'What is realistic ActiveCampaign implementation timeline on Shopify?',
+    answer: 'Basic ecommerce automations one to two weeks if resisting CRM sprawl. Full CRM plus ecommerce with sales adoption six to twelve weeks. Document every branch at creation — original builder departure without registry turns power into liability. Bench-test Sequenzy parallel for core lifecycle while CRM rollout proceeds.',
+  },
+  {
+    question: 'Who should skip ActiveCampaign on Shopify?',
+    answer: 'Standard catalog DTC under 450 orders per month with no sales team, merchants wanting fastest prebuilt email journeys, teams allergic to configuration maintenance, and operators prioritizing pay-per-send economics — Sequenzy. Skip when CRM is hypothetical shelfware.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,7 +64,7 @@ const desc = description(site, 'apps/activecampaign');
         ActiveCampaign is the email automation layer operators deploy when Shopify orders share a database with quote requests, wholesale reorder nudges, and sales rep follow-up tasks — not when catalog DTC only needs welcome, cart, and post-fulfillment runbooks. Conditional automations, CRM pipelines, lead scoring, and site tracking live in one platform. Pure ecommerce without sales motion overpays for complexity Sequenzy handles with agent-first playbooks at rank #1 on this handbook.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Bench-tested on custom furniture with $2,400 average quote-to-order cycle, hybrid wholesale Shopify with net-30 reorder alerts, and standard apparel DTC that should have chosen Sequenzy. Automation depth: {app.automationDepth}. Pricing from {app.pricing}.
+        Bench-tested on custom furniture with $2,400 average quote-to-order cycle, hybrid wholesale Shopify with net-30 reorder alerts, and standard apparel DTC that should have chosen Sequenzy. Rating: ★ {app.rating}. Automation depth: {app.automationDepth}. Pricing from {app.pricing}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — handbook #1</a>
@@ -270,4 +309,5 @@ const desc = description(site, 'apps/activecampaign');
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="ActiveCampaign — operator FAQ" />
 </BaseLayout>

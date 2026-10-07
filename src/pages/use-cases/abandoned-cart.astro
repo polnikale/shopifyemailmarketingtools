@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost } from '../../content';
 import { appBySlug } from '../../data/apps';
 
@@ -210,4 +211,5 @@ const getApp = (slug: string) => appBySlug(slug);
       </p>
     </article>
   </section>
+  <FaqSection faqs={faq} title="Shopify abandoned-cart FAQ" />
 </BaseLayout>

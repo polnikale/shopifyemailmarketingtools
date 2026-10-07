@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,6 +24,48 @@ const comparisonApps = [
   'tinyemail', 'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for high-AOV stores?',
+    answer: 'Sequenzy ranks first for extended nurture, expert proof sequences, financing education, and consultation follow-up — lifecycle strategy critical for high-consideration purchases. Klaviyo provides deep browse and predictive data at scale. ActiveCampaign excels when sales involve CRM pipelines and rep follow-up.',
+  },
+  {
+    question: 'How long should high-AOV nurture sequences run?',
+    answer: '2–16 weeks depending on product and price point. Use engagement-based continuation — keep nurturing while opens, clicks, and site visits continue. Shift to winback only after true dormancy. Never open with discount on items above $1,000.',
+  },
+  {
+    question: 'When does ActiveCampaign beat Klaviyo for high-AOV?',
+    answer: 'When purchase involves consultation, custom configuration, financing approval, or sales rep involvement. ActiveCampaign pipelines and sales automations bridge ecommerce and consultative selling better than pure ecommerce platforms.',
+  },
+  {
+    question: 'Should high-AOV brands use SMS marketing?',
+    answer: 'Sparingly. SMS works for appointment confirmations, custom order updates, and VIP event invites. Promotional SMS on high-AOV items feels cheap. Keep high-consideration nurture in email where trust content lives.',
+  },
+  {
+    question: 'How do financing and warranty fit into email?',
+    answer: 'Dedicated emails at consideration stage — not footer links. Explain payment options, warranty coverage, and return policies before product promo. Reduces cart abandonment from sticker shock and trust anxiety.',
+  },
+  {
+    question: 'What metrics matter for high-AOV email?',
+    answer: 'Consideration-to-purchase window, financing attach rate, consultation-to-sale conversion, and full-price purchase percentage. One converted $3,000 nurture beats 100 clicks on a $50 accessory promo.',
+  },
+  {
+    question: 'When does Sendlane make sense?',
+    answer: 'For DTC brands with enough order volume to justify guided retention platform and migration support. Sendlane offers ecommerce-first automation with onboarding help — valuable when upgrading from basic tools to serious high-AOV nurture.',
+  },
+  {
+    question: 'Can Privy work for high-AOV list building?',
+    answer: 'Privy captures consultation leads and guide downloads via quizzes and popups. Does not replace extended nurture. Pair with Sequenzy or ActiveCampaign for 8–12 week consideration journeys.',
+  },
+  {
+    question: 'How do consultation bookings integrate with email?',
+    answer: 'Trigger follow-up sequences from booking form submissions, no-show events, and post-consultation periods. ActiveCampaign and Sequenzy both support this; ActiveCampaign has deeper CRM pipeline integration.',
+  },
+  {
+    question: 'How long until high-AOV email shows results?',
+    answer: 'Expect 90–120 days to see consideration-window and full-price metrics move meaningfully. High-AOV is not a channel for weekly optimization panic — it rewards sequences that sustain trust over months. Report rolling 90-day trends, not single-send spikes.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -42,7 +85,7 @@ const comparisonApps = [
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps">Full app rankings</a>
         <a class="btn btn-secondary" href="/use-cases/browse-abandonment">Browse abandonment</a>
-        <a class="btn btn-secondary" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a>
+        <a class="btn btn-secondary" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a>
       </div>
     </div>
   </section>
@@ -86,7 +129,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for high-AOV</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -97,7 +140,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -124,7 +167,7 @@ const comparisonApps = [
       'ActiveCampaign bridges high-AOV ecommerce and consultative sales. Pipeline stages for custom orders, financing applications, and consultation outcomes trigger conditional email sequences. Sales automations alert reps when high-value prospects re-engage.',
       'CRM notes combined with Shopify order data create unified customer view. Post-consultation follow-up sequences nurture buyers who need time after human conversation.',
       'Shopify-native depth trails Klaviyo. Best when sales workflow is revenue engine, not afterthought.',
-      'See <a class="link" href="/compare/activecampaign-vs-klaviyo">Klaviyo vs ActiveCampaign</a>.',
+      'See <a class="link" href="/compare/klaviyo-vs-activecampaign">Klaviyo vs ActiveCampaign</a>.',
     ]} />
 
     <ToolReview app={featuredApps[3]} rank={4} paragraphs={[
@@ -272,4 +315,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="High-AOV email FAQ" />
 </BaseLayout>

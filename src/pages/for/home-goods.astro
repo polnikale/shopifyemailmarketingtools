@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,6 +24,44 @@ const comparisonApps = [
   'aftership-email', 'marsello', 'postscript',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for home goods stores?',
+    answer: 'Sequenzy ranks first for home goods because large catalogs and delayed purchase cycles need room-by-room segmentation, inspiration content series, and cross-sell by project completion — lifecycle strategy that agent-first playbooks accelerate. Klaviyo wins on catalog depth at scale. Drip suits operators building custom room-based workflow branches.',
+  },
+  {
+    question: 'How should home goods brands segment email by room?',
+    answer: 'Tag customers by collection purchased and browse behavior: living room, bedroom, kitchen, outdoor. Cross-sell complements within room projects before jumping categories. A customer who bought dining chairs is ready for tableware, not patio furniture — unless browse data says otherwise.',
+  },
+  {
+    question: 'Why is Mailchimp still mentioned for home goods?',
+    answer: 'Some established home retailers already run Mailchimp and need Shopify-connected campaigns without immediate migration. Mailchimp handles broadcasts and simple automations but trails ecommerce natives on browse abandonment by collection and project-based cross-sell. Most lifecycle-focused home brands migrate to Sequenzy or Klaviyo within 12 months.',
+  },
+  {
+    question: 'How long are home goods consideration cycles in email?',
+    answer: 'Typically 4–16 weeks for major pieces; shorter for accessories and decor. Use engagement-based nurture — continue inspiration content while opens and clicks stay active. Seasonal refresh campaigns align with moving, holidays, and spring renovation windows.',
+  },
+  {
+    question: 'What content works best for home goods email?',
+    answer: 'Inspiration-first: room reveals, styling tips, customer home photos, project completion guides. Promo-second: discounts after multiple inspiration touches. Education reduces return rates on size-sensitive items like rugs and furniture.',
+  },
+  {
+    question: 'What metrics should home goods email programs track?',
+    answer: 'Cross-sell revenue per room segment, browse-to-purchase window, catalog engagement depth, and project completion rate (customers buying complementary items within same room within 90 days).',
+  },
+  {
+    question: 'Can Shopify Email work for home goods brands?',
+    answer: 'For basic sale announcements and new collection blasts, yes. For room segmentation, extended browse nurture, and cross-sell by project stage, no — dedicated lifecycle platforms deliver materially more revenue.',
+  },
+  {
+    question: 'How do seasonal refresh campaigns differ from fashion seasonality?',
+    answer: 'Home refresh ties to life events — moving, new baby, holiday hosting — more than runway calendars. Build segments around purchase history and browse intent for seasonal categories: outdoor in spring, cozy textiles in fall, organization in January.',
+  },
+  {
+    question: 'Should home goods stores invest in back-in-stock email?',
+    answer: 'Yes for high-demand furniture and decor with long lead times. Variant and availability sync matters. See <a class="link" href="/use-cases/back-in-stock">back-in-stock guide</a>. Pair with browse abandonment when customers viewed unavailable items.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -89,7 +128,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for home goods</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -100,7 +139,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -273,4 +312,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Home goods email FAQ" />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -13,6 +14,44 @@ const desc = description(site, 'guides/consent-compliance');
 
 const featuredApps = ['sequenzy', 'klaviyo', 'postscript', 'omnisend', 'privy'].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What consent do I need for Shopify marketing email?',
+    answer: 'CAN-SPAM: clear identification, physical address, one-click unsubscribe, no deceptive subject lines. GDPR/UK GDPR if EU/UK customers: lawful basis typically consent or legitimate interest with opt-out; document which. Marketing email to non-consented EU profiles is high risk. US-focused DTC still needs documented consent for deliverability and TCPA-adjacent best practice.',
+  },
+  {
+    question: 'Does Shopify checkout marketing checkbox count as consent?',
+    answer: 'Yes when unchecked by default, label clear ("Email me news and offers"), and syncs to ESP with timestamp. Pre-checked boxes are non-compliant in EU and poor practice US. Verify Klaviyo, Sequenzy, or Omnisend receives Shopify marketing consent property — not all sync paths automatic.',
+  },
+  {
+    question: 'TCPA and SMS on Shopify — what is required?',
+    answer: 'Express written consent before marketing SMS — not email opt-in alone. Checkout SMS checkbox separate from email. Postscript and Attentive provide compliance tooling; quiet hours, opt-out keywords, consent logging. Two-party consent states need extra care on message content.',
+  },
+  {
+    question: 'Can I email purchased customers without separate opt-in?',
+    answer: 'Transactional order emails yes. Marketing post-purchase cross-sell depends on jurisdiction and checkout consent. US practice: soft opt-in from purchase relationship common but include unsubscribe and honor opt-out immediately. EU: typically requires marketing consent unless documented legitimate interest assessment.',
+  },
+  {
+    question: 'Double opt-in — required or optional?',
+    answer: 'Required for clear GDPR consent proof. Optional US but improves list quality and deliverability — popup single opt-in attracts typos and bots. Recommended for giveaway and high-incentive capture; product-page single opt-in acceptable with engagement monitoring.',
+  },
+  {
+    question: 'How do I handle unsubscribe versus suppression?',
+    answer: 'Unsubscribe is legal permanent marketing stop — sync to ESP within 48 hours maximum, ideally real-time. Suppression is operational — in cart flow, temporary hold. Never email marketing to unsubscribed profiles even if "suppression expired."',
+  },
+  {
+    question: 'Re-permission campaigns — compliance safe?',
+    answer: 'Yes to engaged-ish profiles who have not unsubscribed — "want to stay on list?" Non-openers 180 days, not cold imports. Never re-permission purchased lists or scraped addresses. Include easy opt-out; honor immediately.',
+  },
+  {
+    question: 'Privy popup consent — what to verify?',
+    answer: 'Checkbox not pre-checked, privacy policy linked, incentive does not obscure consent language, SMS separate checkbox if collecting phone. Tags passed to ESP should include consent timestamp and source URL.',
+  },
+  {
+    question: 'International Shopify stores — multi-region consent?',
+    answer: 'Segment EU/UK customers for stricter consent rules. Canada CASL needs documented consent or implied from purchase with unsubscribe. Australia Spam Act similar identification requirements. Geo-segment at capture when possible.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -211,4 +250,5 @@ const featuredApps = ['sequenzy', 'klaviyo', 'postscript', 'omnisend', 'privy'].
       <p class="mt-4 text-[17px] leading-8 text-slate-700">SMS consent rules differ — cross-read Postscript and Attentive app pages before enabling cart SMS branches.</p>
     </div>
   </section>
+  <FaqSection faqs={faqs} title="Consent & compliance FAQ" />
 </BaseLayout>

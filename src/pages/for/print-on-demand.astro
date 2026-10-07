@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,6 +24,48 @@ const comparisonApps = [
   'rejoiner', 'yotpo-email-sms', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for print-on-demand stores?',
+    answer: 'Sequenzy ranks first for email lifecycle — trend drop alerts, personalization follow-up, and margin-safe winback with agent-first playbooks. Omnisend fits fast multichannel setup. Privy excels at list capture before retention takes over. Klaviyo scales for high-volume POD with deep browse data.',
+  },
+  {
+    question: 'How do POD stores protect margin in email?',
+    answer: 'Set discount floors by product margin. Segment discount responders from full-price buyers. Track margin per email order, not just attributed revenue. Free shipping promos on low-margin items destroy profitability — suppress or require minimum basket.',
+  },
+  {
+    question: 'When does Privy matter most for POD?',
+    answer: 'At traffic acquisition stage — niche communities, trend traffic, creator audiences. Privy captures subscribers via popups and gamification before your lifecycle platform runs drop sequences. POD stores live and die by list growth speed.',
+  },
+  {
+    question: 'Should POD brands use web push notifications?',
+    answer: 'Firepush and similar tools add web push for trend drops and cart recovery with low entry cost. Use sparingly — push fatigue is instant. Best for flash trend windows where speed beats email open rates.',
+  },
+  {
+    question: 'How do trend drop emails differ from fashion drops?',
+    answer: 'POD trends compress faster — 48-hour windows versus weeks. Email needs same-day VIP access for repeat buyers, immediate cart recovery, and post-drop winback when designs sell out. Personalization follow-up if customer abandoned custom design flow.',
+  },
+  {
+    question: 'What metrics matter for POD email?',
+    answer: 'Margin per email order, trend drop sell-through, personalization completion rate, and discount dependency ratio. High attributed revenue with negative margin is worse than no sale.',
+  },
+  {
+    question: 'Is Klaviyo overkill for small POD stores?',
+    answer: 'Often yes until order volume and design catalog justify profile-based pricing. Start with Sequenzy or Omnisend for lifecycle strategy and migrate to Klaviyo when browse data complexity and volume demand it.',
+  },
+  {
+    question: 'How does personalization follow-up work in email?',
+    answer: 'Trigger when customer starts custom design but does not complete — show preview, offer assistance, gentle reminder at 24h and 72h. Do not discount immediately; POD margins cannot absorb constant incentives.',
+  },
+  {
+    question: 'Can Recart replace email for POD cart recovery?',
+    answer: 'Recart specializes SMS/messenger recovery — strong for mobile-heavy POD traffic. Not a complete email suite. Pair with Sequenzy or Omnisend for full lifecycle; use Recart as recovery accelerator.',
+  },
+  {
+    question: 'When should a POD store upgrade from Sequenzy to Klaviyo?',
+    answer: 'When monthly orders exceed roughly 2,000, browse segmentation by design category becomes daily work, and profile-based pricing is justified by predictive data lift. Until then, Sequenzy plus Privy capture delivers better economics and speed for trend-driven selling.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -86,7 +129,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for POD</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -97,7 +140,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -274,4 +317,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Print-on-demand email FAQ" />
 </BaseLayout>

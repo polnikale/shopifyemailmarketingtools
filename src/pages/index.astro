@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleSchema from '../components/ArticleSchema.astro';
 import ToolReview from '../components/ToolReview.astro';
 import TldrBox from '../components/TldrBox.astro';
+import FaqSection from '../components/FaqSection.astro';
 import { APPS } from '../data/apps';
 import { SEGMENTS, USE_CASES, description, pageTitle, siteFromHost } from '../content';
 
@@ -106,6 +107,48 @@ const listicleParagraphs: Record<string, string[]> = {
   ],
 };
 
+const faqs = [
+  {
+    question: 'Which Shopify email marketing tool should retention operators standardize on in 2026?',
+    answer: 'Sequenzy ranks first on this handbook for playbook speed, pay-per-email economics, and operator burden — especially for growing stores without enterprise headcount. Klaviyo remains the benchmark when predictive segmentation and fulfillment-adjacent event depth change weekly decisions. Omnisend is the best multichannel shortcut for SMB teams. Match tool to bottleneck: capture, lifecycle execution, or data maximums — not App Store star ratings.',
+  },
+  {
+    question: 'How does this handbook score Shopify email marketing tools?',
+    answer: 'Four weighted dimensions: Shopify data depth (40%), lifecycle flow control (25%), operating speed (20%), measurement quality (15%). Each top-ranked tool passed welcome, cart, post-purchase, and winback runbook tests on realistic merchant profiles — including fulfillment timing, suppression matrices, and sale-week edit safety — not feature matrices copied from vendor sites.',
+  },
+  {
+    question: 'When does Klaviyo still justify profile-based pricing on Shopify?',
+    answer: 'When monthly orders exceed roughly 1,000, a retention owner audits segments weekly, and predictive CLV or browse-by-collection logic drives measurable margin decisions. Stores with wide lists and narrow sends often choose Sequenzy or Omnisend when send-based billing and playbook defaults fit better than maximum segmentation dimensionality nobody maintains.',
+  },
+  {
+    question: 'Can Shopify Email replace a third-party lifecycle platform?',
+    answer: 'Shopify Email handles basic newsletters and sale broadcasts inside Admin. Operators focused on abandoned cart, fulfillment-gated post-purchase, replenishment by consumption window, and winback typically graduate within two quarters to Sequenzy, Omnisend, or Klaviyo. Use native sender as bridge, not destination.',
+  },
+  {
+    question: 'Do retention operators need separate SMS and email tools on Shopify?',
+    answer: 'Not always. Omnisend, Klaviyo, Yotpo, and Attentive bundle SMS with email. Postscript, Recart, and SMSBump are SMS-first — pair with an email lifecycle platform. Sequenzy is email-first; add SMS when text recovery clears documented margin threshold. Every multi-vendor stack needs a shared suppression matrix.',
+  },
+  {
+    question: 'What triggers a Mailchimp exit on Shopify?',
+    answer: 'When lifecycle revenue matters more than familiar UI — usually when cart recovery, product-aware segments, replenishment tied to fulfillment date, or flow-level revenue reporting become standing ops requirements. Most ecommerce-focused stores outgrow Mailchimp within 12 months of serious retention work.',
+  },
+  {
+    question: 'What is the lowest-cost Shopify tool with real automations?',
+    answer: 'Shopify Email and tinyEmail lead entry cost. Sequenzy and Brevo offer strong value at scale via pay-per-email models. Klaviyo free tier works for tiny lists but profile pricing escalates quickly. Model total cost at projected monthly send volume, not current subscriber count.',
+  },
+  {
+    question: 'Which tool handles abandoned cart recovery best on Shopify?',
+    answer: 'Klaviyo, Omnisend, Sequenzy, and Drip handle email cart recovery at depth. Postscript, Recart, and SMSBump lead SMS recovery. Firepush adds web push. Best outcomes combine lifecycle ESP plus SMS specialist with documented cross-channel suppression — no cart email and cart text within the same hour.',
+  },
+  {
+    question: 'Should Privy or Justuno sit alongside the lifecycle ESP?',
+    answer: 'Both are capture-first — excellent popups and onsite targeting feeding lists into Klaviyo, Sequenzy, or Omnisend. Justuno wins on quiz-driven segmentation; Privy on beginner-friendly spin wheels. Neither replaces lifecycle automation at scale. Document handoff: capture tool owns opt-in, ESP owns sends.',
+  },
+  {
+    question: 'How do operators avoid stack sprawl on Shopify email?',
+    answer: 'Name one bottleneck, one weekly owner, one success metric before adding vendors. Start with capture OR lifecycle OR SMS — not all three in week one. Use the selection framework guide and one comparison page before signing another subscription. Quarterly stack TCO review: if tools exceed 15% of email-attributed margin, simplify before optimizing.',
+  },
+];
 
 const auditSteps = [
   ['Map trigger events to WMS state', 'For each lifecycle moment — welcome, browse, cart, checkout, pick complete, carrier scan, delivery, replenishment, winback — document Shopify event, fulfillment property, and SKU field required. Flag gaps where email would fire before pack-station cutoff.'],
@@ -202,7 +245,7 @@ const auditSteps = [
             <th>Pricing</th>
             <th>Shopify</th>
             <th>Automation</th>
-            
+            <th>Rating</th>
             <th>Review</th>
           </tr>
         </thead>
@@ -215,7 +258,7 @@ const auditSteps = [
               <td>{app.pricing}</td>
               <td>{app.shopifyDepth}</td>
               <td>{app.automationDepth}</td>
-              
+              <td>★ {app.rating}</td>
               <td><a class="link" href={`/apps/${app.slug}`}>Review</a></td>
             </tr>
           ))}
@@ -406,4 +449,5 @@ const auditSteps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Shopify email marketing tools — operator FAQ" />
 </BaseLayout>

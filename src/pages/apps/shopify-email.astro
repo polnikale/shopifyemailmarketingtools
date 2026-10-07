@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/shopify-email';
 const title = pageTitle(site, 'apps/shopify-email');
 const desc = description(site, 'apps/shopify-email');
 
+const faqs = [
+  {
+    question: 'Is Shopify Email enough for warehouse-backed Shopify stores growing past 300 orders/mo?',
+    answer: 'Shopify Email handles newsletters, sale announcements, and product blocks from Admin with zero third-party friction. Stores where cart recovery, post-fulfillment education gated on carrier scan, replenishment, and winback drive repeat revenue graduate within 6–12 months to Sequenzy, Omnisend, or Klaviyo. Native email is onboarding infrastructure — not retention infrastructure.',
+  },
+  {
+    question: 'How much does Shopify Email cost compared to Sequenzy?',
+    answer: '10,000 free emails per month included with Shopify, then approximately $1 per 1,000 additional emails. No app subscription. Excellent for low broadcast volume; irrelevant once automations multiply. Sequenzy at 20,000 sends with full lifecycle ~$45–70/mo — incremental cart recovery typically pays back in 2–4 weeks above 300 orders/mo.',
+  },
+  {
+    question: 'What email automations does Shopify Email support for fulfillment-backed catalogs?',
+    answer: 'Minimal compared to dedicated apps. Basic campaigns from customer segments in Admin, product blocks from catalog, brand colors from theme. No multi-touch flow branching, browse abandonment at scale, fulfillment-scan gating for post-purchase, collision controls, or revenue attribution by automation. A customer abandoning cart Friday night gets no recovery sequence unless you manually intervene.',
+  },
+  {
+    question: 'When should ops migrate from Shopify Email to Sequenzy?',
+    answer: 'When abandoned checkout volume justifies automation ROI, post-fulfillment email must gate on 3PL delivery scan not order placed, or replenishment/winback become operational priorities. Sequenzy ranks #1 for pay-per-email lifecycle playbooks without Klaviyo bill shock — natural first upgrade from native email.',
+  },
+  {
+    question: 'Can Shopify Email do abandoned cart recovery email?',
+    answer: 'Shopify has added limited automation capabilities but depth trails Omnisend, Sequenzy, and Klaviyo — fewer touches, weaker dynamic product logic, no suppression for recent purchasers or unfulfilled orders. Merchants serious about email recovery migrate within months of measuring walkaway revenue in checkout reports.',
+  },
+  {
+    question: 'Does Shopify Email sync products for email blocks when WMS inventory changes?',
+    answer: 'Yes — product blocks pull directly from Shopify catalog with images and prices. Inventory updates when Shopify stock changes; no separate integration. Strength is zero setup for merchandised campaigns. Weakness is no back-in-stock waitlist email or variant-level dynamic cross-sell from order history.',
+  },
+  {
+    question: 'Shopify Email vs Klaviyo for a 3PL-backed brand doing $30k/mo?',
+    answer: 'Shopify Email if you send 2–4 campaigns monthly and lifecycle automations are not revenue-critical. Sequenzy or Klaviyo once cart recovery and post-fulfillment email drive measurable incremental revenue — usually above 400–500 orders/mo when pick lines scale.',
+  },
+  {
+    question: 'Will leaving Shopify Email break domain authentication for lifecycle platform?',
+    answer: 'Third-party apps guide SPF/DKIM setup on your sending domain. Plan DNS updates during migration; run parallel broadcasts one cycle before cutting Shopify Email campaigns. Authenticate before scaling automations — deliverability protects lifecycle revenue more than one extra manual send.',
+  },
+  {
+    question: 'Who should never graduate from Shopify Email?',
+    answer: 'Merchants who only announce sales quarterly, have no list growth strategy, and do not measure email-attributed revenue. Everyone else measuring repeat purchase rate eventually needs lifecycle tooling — Sequenzy for runbook speed, Omnisend for template journeys, Klaviyo for data maximums.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,7 +64,7 @@ const desc = description(site, 'apps/shopify-email');
         Shopify Email is the zero-friction broadcast layer inside Admin — product blocks from catalog, brand colors from theme, campaigns launched without installing a third-party app. Our candle shop test sent a polished sale campaign in 40 minutes between pick-station shifts. That is the entire value proposition: speed and simplicity for manual sends, not lifecycle depth for warehouse-backed repeat revenue. Sequenzy ranks #1 when retention becomes a runbook problem; Shopify Email is where most operators start before fulfillment-gated automations matter.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Honest verdict: native email is onboarding infrastructure, not retention infrastructure. Stores where 3PL pack cadence, carrier scans, and replenishment windows drive email timing graduate within 6–12 months. Automation depth: {app.automationDepth}.
+        Honest verdict: native email is onboarding infrastructure, not retention infrastructure. Stores where 3PL pack cadence, carrier scans, and replenishment windows drive email timing graduate within 6–12 months. Rating: ★ {app.rating}. Automation depth: {app.automationDepth}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/compare/sequenzy-vs-shopify-email">Sequenzy vs Shopify Email</a>
@@ -253,7 +292,7 @@ const desc = description(site, 'apps/shopify-email');
         <li><a class="link" href="/compare/sequenzy-vs-shopify-email">Sequenzy vs Shopify Email</a> — lifecycle runbooks vs Admin bridge</li>
         <li><a class="link" href="/compare/omnisend-vs-shopify-email">Omnisend vs Shopify Email</a> — prebuilt journeys vs native simplicity</li>
         <li><a class="link" href="/compare/klaviyo-vs-shopify-email">Klaviyo vs Shopify Email</a> — data depth vs zero friction</li>
-        <li><a class="link" href="/compare/klaviyo-vs-shopify-email">Shopify Email vs Privy</a> — broadcasts vs capture layer</li>
+        <li><a class="link" href="/compare/shopify-email-vs-privy">Shopify Email vs Privy</a> — broadcasts vs capture layer</li>
       </ul>
     </div>
   </section>
@@ -262,8 +301,9 @@ const desc = description(site, 'apps/shopify-email');
     <div class="flex flex-wrap gap-4 text-sm font-bold">
       <a class="link" href="/apps">All Shopify email marketing tools →</a>
       <a class="link" href="/apps/sequenzy">Sequenzy review →</a>
-      <a class="link" href="/guides/pricing-models">Budget stores →</a>
+      <a class="link" href="/for/budget">Budget stores →</a>
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Shopify Email — operator FAQ" />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -22,6 +23,44 @@ const comparisonApps = [
   'firepush', 'tinyemail', 'aftership-email',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for beauty brands with subscriptions?',
+    answer: 'Sequenzy leads for beauty subscription retention because it handles skip/churn prevention sequences, replenishment timing, and education-first flows without per-contact pricing that punishes large subscriber lists. Klaviyo is stronger when you need deep integration with Recharge or Skio plus predictive analytics across shade-level purchase history. Yotpo Email & SMS fits brands already running Yotpo reviews and loyalty modules.',
+  },
+  {
+    question: 'How should beauty brands time replenishment emails?',
+    answer: 'Base timing on product usage, not arbitrary 30-day intervals. A vitamin C serum and a body lotion have different consumption curves. Use SKU-level replenishment windows derived from product size and typical usage, then suppress if the customer has an active subscription or recent reorder. Over-mailing replenishment trains unsubscribes faster in beauty than almost any other vertical.',
+  },
+  {
+    question: 'Can education emails outperform promos for beauty?',
+    answer: 'Yes — when segmented correctly. New subscribers need routine education; loyal buyers need ingredient updates and loyalty recognition; discount responders need different treatment than full-price replenishment customers. Track unsubscribe rate on education versus promo sends. Beauty brands that blast sale creative to education segments destroy list quality within two quarters.',
+  },
+  {
+    question: 'When does Yotpo make sense over standalone email marketing tools?',
+    answer: 'When reviews, loyalty points, and UGC are central to your retention model. Yotpo can trigger emails based on review status, loyalty tier, and SMS in one ecosystem. If email is your only retention channel and you do not use Yotpo reviews or loyalty, Sequenzy or Klaviyo deliver more focused lifecycle depth for less suite complexity.',
+  },
+  {
+    question: 'How do beauty brands handle shade matching in email?',
+    answer: 'Post-purchase flows should confirm shade selection, offer exchange guidance, and cross-sell complementary shades only after satisfaction window passes. Tag customers by shade variant purchased and suppress promos for shades that do not match their profile. Quiz-led capture tools like Justuno can feed shade intent data into your email platform for smarter segmentation.',
+  },
+  {
+    question: 'What metrics should beauty email programs optimize?',
+    answer: 'Replenishment conversion rate, subscription retention at 90 days, bundle attach rate from email, and unsubscribe rate split by education versus promotional content. Revenue per recipient matters, but beauty margin lives in repeat replenishment and subscription continuity — not one-time launch spikes.',
+  },
+  {
+    question: 'Is Omnisend enough for a growing beauty DTC brand?',
+    answer: 'Omnisend handles welcome, cart, post-purchase, and SMS well for brands under roughly 1,000 monthly orders. When subscription logic, shade segmentation, and multi-product routine education become daily operations, most beauty brands add Sequenzy for strategy or migrate to Klaviyo for data depth.',
+  },
+  {
+    question: 'How do I prevent subscription churn emails from feeling desperate?',
+    answer: 'Lead with value — upcoming box contents, usage tips, loyalty recognition — before discounting skips. Offer pause before cancel. Segment churn risk by engagement decay and skipped shipments, not blanket "we miss you" blasts. Three-touch skip recovery with escalating value beats a single 30% off coupon.',
+  },
+  {
+    question: 'Should beauty brands pair email with SMS for replenishment?',
+    answer: 'SMS works for replenishment reminders when opt-in is explicit and frequency is capped — one reminder, not a weekly nag. Email carries education, ingredient stories, and bundle offers. Use Postscript or Omnisend SMS with strict suppression for active subscribers already charged for the month.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -95,7 +134,7 @@ const comparisonApps = [
             <th class="py-3 pr-4">Pricing</th>
             <th class="py-3 pr-4">Shopify depth</th>
             <th class="py-3 pr-4">Automation</th>
-            
+            <th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -106,7 +145,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -211,4 +250,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Beauty brand email FAQ" />
 </BaseLayout>

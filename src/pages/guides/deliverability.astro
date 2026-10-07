@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
 
@@ -31,6 +32,48 @@ const entries = [
   ['tinyemail','Lean campaigns with a smaller operating surface','tinyEmail may suit a small store that wants a lightweight campaign workflow and does not need a large event model. Validate Shopify sync, unsubscribe propagation, domain authentication, and reporting exports first; a low subscription price does not remove the cost of poor list hygiene.','Best for lean teams with simple campaign requirements. Pros: low operational complexity; approachable publishing. Cons: limited advanced diagnostics and event branching. Pricing caveat: check current contact, send, automation, and support ceilings rather than relying on old comparisons.']
 ].map(([slug,best,paragraph,tradeoffs], index) => ({ app: appBySlug(slug)!, best, paragraph, tradeoffs, official: official[slug], index })).filter((x) => x.app);
 
+const faqs = [
+  {
+    question: 'What should a Shopify deliverability pilot prove?',
+    answer: 'It should prove domain authentication, consent and unsubscribe propagation, event timestamps, suppression rules, duplicate prevention, complaint and bounce visibility, and a rollback path. Open rate alone is not enough evidence.',
+  },
+  {
+    question: 'Should I choose a dedicated deliverability tool or an ESP?',
+    answer: 'Start with the failure you can observe. If the problem is domain reputation or authentication, investigate the sending setup and monitoring. If the problem is audience state or duplicate automation, test the ESP and Shopify event contract. Do not buy a second tool before identifying the control gap.',
+  },
+  {
+    question: 'Are vendor prices comparable?',
+    answer: 'Not without a common forecast. Compare active profiles, monthly sends, SMS segments, transactional volume, inactive-contact treatment, onboarding, dedicated infrastructure, and overages using the same 90-day Shopify scenario.',
+  },
+  {
+    question: 'Which Shopify tools are strongest for deliverability control?',
+    answer: 'Klaviyo offers the deepest ecommerce-native controls: subdomain authentication, engaged-segment sunset flows, and per-flow complaint visibility. Brevo supports dedicated IPs for volume senders; Postscript and Attentive apply SMS-specific carrier and compliance controls. Small native setups — Shopify Email plus consistent hygiene — often outperform a sophisticated tool operated carelessly. Match the control to the failure you can actually observe.',
+  },
+  {
+    question: 'How do Gmail and Yahoo sender requirements affect Shopify stores?',
+    answer: 'Bulk senders must authenticate with SPF and DKIM, publish DMARC, honor one-click unsubscribe, and keep spam-complaint rates very low. Practical implications for a Shopify store: send from an authenticated subdomain, wire unsubscribe at the platform level, and treat complaint spikes over 0.3% as a reputation-affecting incident. Gmail and Yahoo show placement and complaint data inside the tools, but you must monitor it weekly.',
+  },
+  {
+    question: 'How often should I sunset unengaged contacts?',
+    answer: 'Build an automatic definition — no opens or clicks in 90–120 days — and run it before your high-volume season, not after. Suppressed contacts stop paying for themselves twice: they no longer inflate profile- or contact-based bills, and they stop dragging complaint risk. Sunset is a margin decision as much as a deliverability one; verify each platform’s billing treatment of suppressed contacts on the official pricing page before modeling savings.',
+  },
+  {
+    question: 'Do abandoned-cart flows hurt deliverability?',
+    answer: 'Healthy cart flows usually help, because they send relevant email to people with recent intent. They hurt when purchase suppression lags, when the same shopper receives cart plus welcome plus browse messages in one afternoon, or when discount-heavy copy trains recipients to mark messages as spam. Cap total messages per shopper per day across all flows and verify the purchase exit with staff test orders.',
+  },
+  {
+    question: 'Are dedicated IPs worth it for a Shopify store?',
+    answer: 'Usually not until sustained volume above roughly 100k emails/month with consistently engaged audiences. A dedicated IP concentrates reputation on you — good if sending is disciplined, bad if volume spiking and dipping. Shared infrastructure on a well-hydrated, authenticated subdomain performs better for most Shopify stores. Verify IP-specific pricing and requirements on each official pricing page; Brevo and several full-service ESPs gate dedicated IPs by tier.',
+  },
+  {
+    question: 'How does a platform migration affect deliverability?',
+    answer: 'Temporary risk, manageable with sequencing. Authenticate the new sending domain before any large send, ramp with flowed email to engaged segments first, keep the incumbent sender for transactional traffic until the swap moment, and never run both platforms’ cart flows simultaneously. Most migration-week deliverability damage comes from duplicate sends and full-list day-one imports, not from the new vendor itself.',
+  },
+  {
+    question: 'What should I do in the week after a complaint spike?',
+    answer: 'First identify the sending flow and the recipient cohort — the platform logs usually answer both. Pause or suppress that cohort, not the entire program. Reduce volume to engaged segments for several days, fix or delete the offending content pattern, and document the threshold breach in the runbook. Do not change authentication or DNS during an active incident unless misalignment is confirmed — that compounds the problem.',
+  },
+];
 ---
 <BaseLayout title={title} description={desc} site={site} path={path}>
   <ArticleSchema title={title} description={desc} siteName={site.name} domain={site.domain} path={path} />
@@ -166,6 +209,7 @@ const entries = [
       <p class="px-5 py-4 text-sm text-slate-600">Exact tools for each step are in the profiles above; the checklist is vendor-neutral on purpose so it survives a platform switch.</p>
     </div>
   </section>
+  <FaqSection faqs={faqs} title="Shopify deliverability FAQ" />
 
   <div class="container pb-16 max-w-4xl">
     <p class="font-black text-slate-950">Related reading</p>

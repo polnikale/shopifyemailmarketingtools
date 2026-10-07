@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -21,6 +22,48 @@ const comparisonApps = [
   'shopify-email', 'brevo', 'sendlane', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for replenishment reminders?',
+    answer: 'Sequenzy ranks first for consumption-based replenishment runbooks with subscription collision rules and SKU-specific timing from metafields. Klaviyo wins at scale with line-item triggers and predictive reorder dates. Postscript is optional SMS pairing for one-tap reorder on mobile.',
+  },
+  {
+    question: 'How do ops calculate replenishment timing?',
+    answer: 'Map each consumable SKU to expected days of supply from usage research — not universal 30-day default. Reminder at 80% of consumption window; follow-up at 100%; subscription upsell at 120% if not reordered. Pet food, serums, and coffee differ radically.',
+  },
+  {
+    question: 'Should replenishment emails include discounts?',
+    answer: 'Default full-price for habitual buyers who already trust product. Discount only for lapsed replenishment responders who missed 100% window. Subscription upsell in follow-up often beats discount on margin.',
+  },
+  {
+    question: 'How do replenishment and subscription apps interact?',
+    answer: 'Exclude active subscribers on same SKU from replenishment email. Recharge, Skio, or Shopify Subscription status must sync to email platform. Double messaging causes skips and cancellations.',
+  },
+  {
+    question: 'Can one reminder timing work for all products?',
+    answer: 'No — most common replenishment failure. Universal 30-day reminder trains wrong expectations and annoys customers on 90-day supply SKUs. Build per-SKU or per-category consumption table in ops wiki.',
+  },
+  {
+    question: 'What replenishment conversion rate is good?',
+    answer: '15–35% for well-timed consumables with established buyers. Higher on pet food and coffee; lower on discretionary beauty. Measure days early/late versus optimal — precision matters more than blast conversion.',
+  },
+  {
+    question: 'Does email work for replenishment versus SMS?',
+    answer: 'Email is default for replenishment — habitual buyers expect inbox reminder with reorder link. Optional SMS branch for mobile-first segments who opted in; cap at one SMS per consumption cycle. Postscript pairs with Sequenzy or Klaviyo email.',
+  },
+  {
+    question: 'How does replenishment relate to winback?',
+    answer: 'Customers between replenishment cycles are not lapsed — exclude from winback. Winback targets true purchase lapse beyond category-appropriate windows.',
+  },
+  {
+    question: 'What if customer subscribes mid-replenishment flow?',
+    answer: 'Exit replenishment immediately on subscription start for same SKU. Tag subscription-active in Shopify sync. Double messaging causes skips.',
+  },
+  {
+    question: 'What is early replenishment signal?',
+    answer: 'Customer reorders before reminder fires — update timer from actual reorder date, suppress pending reminder. Shopify repeat order event cancels in-flight sequence. Prevents annoying best customers.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -95,7 +138,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Replenishment fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -104,7 +147,7 @@ const comparisonApps = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -217,4 +260,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Replenishment FAQ" />
 </BaseLayout>

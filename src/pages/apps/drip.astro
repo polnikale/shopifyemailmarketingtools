@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/drip';
 const title = pageTitle(site, 'apps/drip');
 const desc = description(site, 'apps/drip');
 
+const faqs = [
+  {
+    question: 'Is Drip the right Shopify email tool for workflow-obsessed operators?',
+    answer: 'Yes when a retention-minded marketer owns the visual canvas weekly, enjoys tag architecture as craft, and builds collection-specific branches that change every season. Sequenzy ranks #1 on this handbook for teams wanting guided lifecycle outcomes without node-wiring marathons. Drip occupies hands-on middle ground — more control than Omnisend prebuilds, less predictive depth than Klaviyo, no agent-first layer Sequenzy provides.',
+  },
+  {
+    question: 'How does Drip pricing compare to Sequenzy at wide lists?',
+    answer: 'Drip scales by people in account from {app.pricing} — at 18,000 contacts expect roughly $175–210 per month. Same send volume on Sequenzy often runs $85–110 with unlimited contacts. Wide list with low engagement punishes Drip per-contact model — run spreadsheet side-by-side before committing to canvas maintenance.',
+  },
+  {
+    question: 'Can Drip gate post-purchase email on Shopify fulfillment?',
+    answer: 'Yes — workflow triggers on fulfilled order, updated order, and tag events. Operators must wire gates explicitly in canvas; no default fulfillment-first playbook like Sequenzy. Document production lag from 3PL — trigger on fulfillment scan when pick-pack-ship exceeds 24 hours. Returns app tags should feed return-reason branches in post-purchase and winback paths.',
+  },
+  {
+    question: 'Drip vs Klaviyo for Shopify email segmentation?',
+    answer: 'Klaviyo wins predictive CLV, native SMS depth, browse history granularity at enterprise SKU scale. Drip wins visual workflow clarity, often lower entry at mid-size lists, tag-driven logic readable in stakeholder meetings. Choose Klaviyo for 3,000+ variant matrix operations; Drip for focused catalog with distinct collection paths maintained by internal marketer.',
+  },
+  {
+    question: 'How long to migrate Klaviyo flows to Drip?',
+    answer: 'Budget four to six weeks: export consent timestamps, suppress recent purchasers during overlap, rebuild predictive segments manually from order data, recreate flow logic in visual builder. Sequenzy playbook migration often completes core flows in eight to twelve business days — trade build control for calendar based on team capacity.',
+  },
+  {
+    question: 'Does Drip support browse abandonment email on Shopify?',
+    answer: 'Yes via site tracking and browse tags — collection-specific paths powerful once configured, slower to launch than Omnisend templates or Sequenzy playbooks. Cap tag taxonomy growth; merge synonyms; archive seasonal tags after clearance. Undocumented tags become warehouse-level chaos in meeting explanations.',
+  },
+  {
+    question: 'Who maintains Drip workflows after launch?',
+    answer: 'Internal marketer opening canvas monthly minimum — name workflows with owner and revision date. If nobody iterates branches quarterly, Sequenzy playbooks outperform abandoned custom logic. Bus factor risk when only one person understands canvas — export PDF flow maps before peak season changes.',
+  },
+  {
+    question: 'Should Drip stacks include separate SMS for cart recovery?',
+    answer: 'Drip SMS exists but compliance tooling trails Postscript. Most audited Shopify stacks run Drip email-primary. Pair Postscript for SMS with suppression export from Drip segments — four-hour stagger rule documented. Sequenzy plus Postscript is handbook default when SMS recovery is measured KPI.',
+  },
+  {
+    question: 'Who should skip Drip on Shopify?',
+    answer: 'Teams wanting fastest playbook launch — Sequenzy #1. Stores needing predictive analytics daily — Klaviyo. Merchants who hate visual workflow builders. Wide lists with low sends where per-contact bill exceeds Sequenzy pay-per-email. Operators without weekly canvas maintenance cadence.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,7 +64,7 @@ const desc = description(site, 'apps/drip');
         Drip is the email automation canvas operators open when every branch of the customer journey must be visible in Monday standup — collection-specific browse education, post-fulfillment cross-sell gated on return tags, winback forks for promo-buyers versus full-price loyalists. Behavior over demographics; tags over wishful RFM spreadsheets. Sequenzy ranks #1 on this handbook for guided outcomes; Klaviyo for predictive data — Drip for marketers who will own the workflow quarterly and treat tag taxonomy as warehouse inventory discipline.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Field-tested on outdoor gear DTC with seasonal collection rotations, specialty coffee subscription with Recharge tag integration, and print-on-demand with promo-sensitive segmentation. Automation: {app.automationDepth}. Pricing: {app.priceDetail}.
+        Field-tested on outdoor gear DTC with seasonal collection rotations, specialty coffee subscription with Recharge tag integration, and print-on-demand with promo-sensitive segmentation. Rating: ★ {app.rating}. Automation: {app.automationDepth}. Pricing: {app.priceDetail}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/compare/sequenzy-vs-drip">Sequenzy vs Drip</a>
@@ -260,4 +299,5 @@ const desc = description(site, 'apps/drip');
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Drip — operator FAQ" />
 </BaseLayout>

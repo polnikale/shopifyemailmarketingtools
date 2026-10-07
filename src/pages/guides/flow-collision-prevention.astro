@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -13,6 +14,44 @@ const desc = description(site, 'guides/flow-collision-prevention');
 
 const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sms'].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is a flow collision in Shopify email?',
+    answer: 'Two or more active automations sending conflicting messages to the same customer within a short window — welcome discount plus cart discount plus browse offer, or winback while replenishment active. Customer receives three codes in 48 hours; margin and trust erode.',
+  },
+  {
+    question: 'Which flow has priority when collisions occur?',
+    answer: 'Cart recovery beats browse abandonment beats welcome promotional beats winback for discount authority. Post-purchase transactional beats all promotional. VIP segments often suppress all discount flows. Document matrix in ops wiki — not tribal knowledge.',
+  },
+  {
+    question: 'How do I suppress welcome when cart is active?',
+    answer: 'Tag or segment: "in-cart-flow" set at cart enrollment, cleared at purchase or 72-hour flow exit. Welcome promotional emails exclude in-cart-flow. Test: staff signup then add to cart within 1 hour — should not receive welcome discount while cart sequence runs.',
+  },
+  {
+    question: 'Does Sequenzy handle collision natively?',
+    answer: 'Sequenzy cart and welcome playbooks include explicit collision suppression templates — cart suppresses welcome offer, winback suppresses active replenishment. Still requires verification on your specific flow variants after agent edits.',
+  },
+  {
+    question: 'Klaviyo flow priority settings — enough?',
+    answer: 'Helpful but not complete. Flow priority does not replace exclusion segments and mutual tags. Complex stacks need both priority order and explicit "not in flow X" conditions on each automation.',
+  },
+  {
+    question: 'How often to audit collisions?',
+    answer: 'Quarterly full matrix test on staff accounts. Immediately when enabling new flow, changing discount logic, or after customer support ticket about stacked codes. BFCM prep requires peak collision review — promotional plus lifecycle overlap.',
+  },
+  {
+    question: 'SMS and email collision?',
+    answer: 'SMS cart at hour 4 should not fire if email cart one sent discount in last 24 hours unless intentional escalation ladder. Coordinate Postscript with ESP via shared suppression tags or Klaviyo integration where configured.',
+  },
+  {
+    question: 'Browse versus cart — same customer?',
+    answer: 'Cart wins — suppress browse promotional while cart flow active. Customer who added to cart showed higher intent; browse discount while cart pending trains waiting.',
+  },
+  {
+    question: 'BFCM promotional collision with lifecycle?',
+    answer: 'Pause or suppress lifecycle discount branches during BFCM window — use single BFCM code or exclusive early access for VIP. Lifecycle winback and cart discount during sitewide 30% creates support chaos and margin leak.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -211,4 +250,5 @@ const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sm
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Global promo pause toggle tested sixty days before Black Friday — sale week is wrong time to discover pause doesn't kill cart discount.</p>
     </div>
   </section>
+  <FaqSection faqs={faqs} title="Flow collision prevention FAQ" />
 </BaseLayout>

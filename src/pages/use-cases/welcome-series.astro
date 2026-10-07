@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -21,6 +22,44 @@ const comparisonApps = [
   'yotpo-email-sms', 'mailchimp', 'brevo', 'tinyemail',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for welcome series?',
+    answer: 'Sequenzy ranks first because welcome is a runbook problem before a design problem — source branching, proof-before-discount logic, and existing-customer suppression require lifecycle thinking, not a three-email template. Klaviyo wins when signup metadata spans multiple popup tools and predictive first-purchase scoring drives weekly iteration.',
+  },
+  {
+    question: 'How many welcome emails should ops deploy?',
+    answer: 'Three to five emails over 7–14 days for most DTC. Email one within five minutes delivers promised incentive and brand story. Email two at 24 hours builds proof. Email three at 72 hours handles objections. High-AOV and subscription stores often extend to five touches over three weeks. Never send discount escalation before proof lands for cold-traffic subscribers.',
+  },
+  {
+    question: 'Should welcome offer a discount on email one?',
+    answer: 'Only when signup source signals discount intent — spin-to-win, coupon popup, checkout capture. Product-page and content subscribers get proof-first welcome: social proof, education, curated entry SKU. Leading every welcome with 20% off trains the file to ignore full-price sends within two months.',
+  },
+  {
+    question: 'How do ops branch welcome by signup source?',
+    answer: 'Pass popup ID, landing page URL, or UTM source into Shopify customer metafields or ESP custom properties at opt-in. Branch email one creative and offer logic by source. Giveaway entrants differ from serum PDP subscribers. Klaviyo, Sequenzy, and Drip support property-based branching when capture tools pass metadata cleanly.',
+  },
+  {
+    question: 'What if an existing customer re-subscribes?',
+    answer: 'Exclude from new-buyer welcome immediately. Route to loyalty acknowledgment or replenishment if order history exists. Re-subscribed customers receiving "10% off your first order" destroy trust and inflate discount dependency metrics. Sync Shopify tag has_placed_order before welcome fires.',
+  },
+  {
+    question: 'Can Privy run the full welcome series?',
+    answer: 'Privy handles capture and basic welcome — sufficient under 150 orders per month with simple offers. Lacks sophisticated branching, collision suppression with cart flows, and long nurture for high-consideration catalogs. Pair Privy capture with Sequenzy or Klaviyo execution once list growth outpaces basic automation.',
+  },
+  {
+    question: 'What metrics prove welcome success for ops?',
+    answer: 'First purchase within 14 days, welcome revenue per subscriber, unsubscribe rate by source, full-price versus discounted first order ratio. Click rate alone misleads — aggressive discount drives clicks that erode margin. Track whether email-acquired buyers repurchase without incentive within 60 days.',
+  },
+  {
+    question: 'How does welcome interact with abandoned cart?',
+    answer: 'Suppress welcome discount offers for subscribers who enter cart abandonment within 48 hours of opt-in — they receive cart recovery, not competing incentives. Priority: cart flow wins over welcome email three. Document collision logic before launch; overlap causes double-discount support tickets.',
+  },
+  {
+    question: 'Is Shopify Email enough for welcome automation?',
+    answer: 'Shopify Email can send a single welcome-style campaign manually. It cannot branch by source, suppress existing customers automatically, or run multi-touch nurture with behavioral triggers. Stores serious about first-purchase conversion graduate within months.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -114,7 +153,7 @@ const comparisonApps = [
             <th class="py-3 pr-4">Pricing</th>
             <th class="py-3 pr-4">Shopify depth</th>
             <th class="py-3 pr-4">Automation</th>
-            
+            <th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -125,7 +164,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -234,4 +273,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Welcome series FAQ" />
 </BaseLayout>

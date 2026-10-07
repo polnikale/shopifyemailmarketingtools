@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,6 +24,48 @@ const comparisonApps = [
   'tinyemail', 'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for B2B wholesale stores?',
+    answer: 'Sequenzy ranks first for account onboarding, bulk order reminders, and lifecycle playbooks with pay-per-email economics for large account lists. ActiveCampaign leads when CRM pipelines and rep-triggered follow-up dominate. Klaviyo provides Shopify data depth for hybrid B2B/B2C operations.',
+  },
+  {
+    question: 'When does ActiveCampaign beat Klaviyo for B2B wholesale?',
+    answer: 'When revenue flows through account approval workflows, sales rep assignments, bulk quote follow-up, and pipeline stages. ActiveCampaign\'s CRM and conditional automations are purpose-built for account-based selling that pure ecommerce tools handle poorly.',
+  },
+  {
+    question: 'How should account approval emails work?',
+    answer: 'Immediate confirmation on application submission. Status updates at each approval stage. Welcome onboarding series on approval: catalog navigation, MOQ explanation, rep introduction, first order incentive (if margin allows). Track account activation rate — approved but never ordered accounts are email failure.',
+  },
+  {
+    question: 'What are bulk order reminder emails?',
+    answer: 'Triggered by reorder cadence per account based on historical purchase frequency. "Your usual Q2 inventory order" beats generic promos. Include MOQ reminders, new catalog items in their category, and rep contact for questions.',
+  },
+  {
+    question: 'How do rep-triggered follow-ups integrate?',
+    answer: 'Wire CRM pipeline stage changes or rep manual triggers to email sequences. ActiveCampaign excels here natively. Sequenzy supports API-triggered sends for rep-initiated follow-up from external CRM or Shopify B2B apps.',
+  },
+  {
+    question: 'Is Brevo viable for B2B wholesale email?',
+    answer: 'Brevo handles volume affordably for account communications and transactional messages. Advanced account segmentation and CRM overlap trail ActiveCampaign and Sequenzy. Good for budget-conscious wholesale operations with simpler account models.',
+  },
+  {
+    question: 'What metrics matter for B2B wholesale email?',
+    answer: 'Account activation rate, bulk reorder frequency, rep-attributed revenue, and MOQ compliance from email prompts. Revenue per account matters more than revenue per email open.',
+  },
+  {
+    question: 'Should B2B wholesale use the same tools as DTC?',
+    answer: 'Partially. Shopify order data still matters, but account-level logic, approval workflows, and rep coordination push toward CRM-capable platforms. Pure DTC tools miss account hierarchy and approval state.',
+  },
+  {
+    question: 'How does Sequenzy handle B2B wholesale specifically?',
+    answer: 'Account onboarding playbooks, bulk reorder reminders by purchase cadence, catalog/MOQ update campaigns, and API triggers for rep-initiated follow-up. Pay-per-email suits large account lists where many accounts order quarterly, not monthly.',
+  },
+  {
+    question: 'How do I prevent wholesale and DTC email collision?',
+    answer: 'Maintain separate segments by company account versus individual customer from first order. Audit quarterly for leakage — consumer promos to wholesale buyers damage relationship and margin. Use Shopify B2B company metafields and explicit segment rules in Sequenzy, Klaviyo, or ActiveCampaign.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -41,7 +84,7 @@ const comparisonApps = [
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps">Full app rankings</a>
-        <a class="btn btn-secondary" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a>
+        <a class="btn btn-secondary" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a>
         <a class="btn btn-secondary" href="/use-cases/segmentation">Segmentation guide</a>
       </div>
     </div>
@@ -75,7 +118,7 @@ const comparisonApps = [
         Wholesale accounts progress through states: applied, approved, activated (first order), reordering, dormant, churned. Each state needs different email — and approved-but-never-ordered accounts represent the biggest leak. Generic promotional blasts ignore MOQ requirements, rep relationships, and seasonal ordering patterns that define wholesale purchasing.
       </p>
       <p>
-        Shopify B2B features (company accounts, catalogs, payment terms) add data your email platform should read. Account approval status, credit terms, and catalog access shape messaging. See <a class="link" href="/use-cases/segmentation">segmentation</a> and <a class="link" href="/compare/activecampaign-vs-klaviyo">Klaviyo vs ActiveCampaign</a> for hybrid stack decisions.
+        Shopify B2B features (company accounts, catalogs, payment terms) add data your email platform should read. Account approval status, credit terms, and catalog access shape messaging. See <a class="link" href="/use-cases/segmentation">segmentation</a> and <a class="link" href="/compare/klaviyo-vs-activecampaign">Klaviyo vs ActiveCampaign</a> for hybrid stack decisions.
       </p>
     </div>
 
@@ -86,7 +129,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for B2B</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -97,7 +140,7 @@ const comparisonApps = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -117,7 +160,7 @@ const comparisonApps = [
       'ActiveCampaign is the CRM-native choice for B2B wholesale when sales reps, approval workflows, and pipeline stages drive revenue. Account records, deal stages, and conditional automations trigger emails from business events — not just Shopify orders.',
       'Rep-triggered follow-up: when rep moves account to "quoted" stage, email sequence activates. When account goes dormant 90 days, rep notification plus account winback email fires. Lead scoring identifies accounts worth personal outreach.',
       'Shopify integration provides order data but ActiveCampaign\'s strength is the overlap between ecommerce events and sales process. Hybrid wholesale/DTC brands benefit from unified contact records across channels.',
-      'Setup can become complex — best with someone owning CRM hygiene. Compare <a class="link" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a> for division of labor.',
+      'Setup can become complex — best with someone owning CRM hygiene. Compare <a class="link" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a> for division of labor.',
     ]} />
 
     <ToolReview app={featuredApps[2]} rank={3} paragraphs={[
@@ -145,7 +188,7 @@ const comparisonApps = [
       'Shopify Email can broadcast catalog updates to all customers — dangerous for B2B when consumer and wholesale recipients receive identical promos without segmentation.',
       'No account approval workflows, reorder cadence by company, rep triggers, or MOQ-aware messaging. B2B wholesale on Shopify Email alone leaves approved-but-dormant accounts invisible.',
       'Wholesale operators should skip Shopify Email entirely unless purely DTC side business under 50 orders monthly. Start Sequenzy or ActiveCampaign when first wholesale account approves.',
-      'See <a class="link" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a> for B2B stack decisions.',
+      'See <a class="link" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a> for B2B stack decisions.',
     ]} />
   </section>
 
@@ -275,4 +318,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="B2B wholesale email FAQ" />
 </BaseLayout>

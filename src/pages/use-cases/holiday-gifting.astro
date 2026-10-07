@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -21,6 +22,48 @@ const comparisonApps = [
   'shopify-email', 'postscript', 'mailchimp', 'aftership-email',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for holiday gifting campaigns?',
+    answer: 'Sequenzy ranks first for gift-season orchestration — gift buyer branching, carrier deadline urgency, gift guide sequencing, self-purchase suppression. Klaviyo wins at scale with gift order detection and market-specific holiday calendars. Omnisend helps SMB deploy multichannel gift reminders fast.',
+  },
+  {
+    question: 'When should holiday gift guide emails start?',
+    answer: 'Four weeks before primary domestic carrier cutoff — gift inspiration and bundles. Two weeks: deadline urgency with dynamic cutoff copy. One week: last standard shipping. Final 72 hours: digital gift cards and express cutoff reminders.',
+  },
+  {
+    question: 'How do ops segment gift buyers from self-purchasers?',
+    answer: 'Gift message at checkout, separate ship-to name, or "this is a gift" checkbox property. Branch post-purchase and gift guides away from self-purchase replenishment. Klaviyo, Sequenzy, and Drip support order property branching.',
+  },
+  {
+    question: 'Should gift messaging go to the entire list?',
+    answer: 'No — gift creative to gift-intent segments and gift guide page browsers. Self-purchase replenishment segments get different holiday content or exclusion from gift urgency.',
+  },
+  {
+    question: 'How do shipping deadlines work in email?',
+    answer: 'Dynamic deadline copy by market and carrier — update daily final week. After cutoff, pivot to gift card and digital product email. Suppress physical product urgency past cutoff.',
+  },
+  {
+    question: 'What about gift card last-minute email?',
+    answer: 'Essential final 72 hours — instant delivery value prop. Separate creative from physical deadlines. Track gift card revenue separately in <a class="link" href="/use-cases/analytics">analytics runbook</a>.',
+  },
+  {
+    question: 'How does holiday gifting relate to Black Friday?',
+    answer: 'BFCM captures deal seekers; gifting sequence captures deadline-anxious buyers December onward. Suppress recent BFCM purchasers from duplicate gift discount stacks.',
+  },
+  {
+    question: 'Should gift emails mention returns?',
+    answer: 'Yes — gift return policy and extended window reduce buyer anxiety. Prominent in deadline week when purchase urgency peaks. Reduces post-holiday support load on warehouse returns line.',
+  },
+  {
+    question: 'How do international gift deadlines differ?',
+    answer: 'Shopify Markets requires market-specific deadline emails — EU cutoffs differ from US. Suppress physical gift urgency when market past cutoff; pivot to digital gift card in local currency.',
+  },
+  {
+    question: 'Should gift emails lead with discounts?',
+    answer: 'Gift buyers often less price-sensitive than self-purchasers — lead with arrival certainty and curation over percentage off. Deep promotions work BFCM week; December deadline emails emphasize delivery confidence.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -95,7 +138,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Gifting fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -104,7 +147,7 @@ const comparisonApps = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -208,4 +251,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Holiday gifting FAQ" />
 </BaseLayout>

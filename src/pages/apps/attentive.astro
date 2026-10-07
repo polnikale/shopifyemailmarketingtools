@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/attentive';
 const title = pageTitle(site, 'apps/attentive');
 const desc = description(site, 'apps/attentive');
 
+const faqs = [
+  {
+    question: 'Does Attentive belong in a Shopify email marketing tools handbook?',
+    answer: 'Yes as cross-channel orchestration reference — Attentive includes email journeys coordinated with SMS, but acquisition and list growth remain SMS-first. For email-primary lifecycle, Sequenzy ranks #1 on this handbook with agent playbooks and pay-per-send. Attentive fits when enterprise brands consolidate SMS acquisition with email touches in one journey builder and legal/creative teams demand managed services.',
+  },
+  {
+    question: 'When is Attentive email worth the enterprise contract versus Sequenzy?',
+    answer: 'When SMS list exceeds 40k engaged subscribers, mobile traffic dominates acquisition, and duplicate-touch bugs between separate ESP and SMS vendor cost more than unified platform premium. Sequenzy delivers superior email lifecycle depth and economics for most growing DTC. Attentive email wins coordination scenarios — cart email then SMS after unopened — not standalone welcome or replenishment programs.',
+  },
+  {
+    question: 'How should ops run Attentive email alongside Klaviyo or Sequenzy?',
+    answer: 'Common enterprise pattern 12–24 months: Attentive owns SMS acquisition and drop-day text; Sequenzy or Klaviyo owns welcome, post-fulfillment education, replenishment, winback email. Nightly segment sync for suppression mandatory. Draw message ownership matrix before install — duplicate cart email plus SMS without coordination trains ignore behavior on both channels.',
+  },
+  {
+    question: 'What does Attentive email implementation timeline look like on Shopify?',
+    answer: 'Budget six to fourteen weeks enterprise rollout: legal template review, creative production, journey mapping, Shopify integration, staged launch with holdout. Never parallel Attentive launch with ESP migration. Sequenzy email core flows often live in eight to twelve business days — different procurement category entirely.',
+  },
+  {
+    question: 'How does Attentive pricing affect email marketing budget planning?',
+    answer: 'Custom contracts typically {app.priceDetail} plus optional creative retainers — no public calculator. Model incremental lift with holdout groups before annual sign. Postscript plus Sequenzy email often delivers 85% of recovery value at 30–40% of quoted Attentive minimum for sub-$1M per month brands.',
+  },
+  {
+    question: 'Can Attentive email replace post-purchase flows gated on delivery?',
+    answer: 'Attentive journeys can include post-delivery email touches when Shopify and tracking events feed platform — but delivery-confirmed timing depth trails AfterShip Email native carrier events. Pair AfterShip for logistics email; Sequenzy for education and cross-sell; Attentive for SMS drop alerts if enterprise contract already signed.',
+  },
+  {
+    question: 'What is the biggest Attentive email plus SMS mistake?',
+    answer: 'Signing before holdout measurement — attributed revenue inflates when email and SMS duplicate touches. Insist incremental methodology in contract. Second mistake: letting Attentive email replace Sequenzy lifecycle depth prematurely — email module matures but Klaviyo/Sequenzy still win replenishment and winback sophistication.',
+  },
+  {
+    question: 'Attentive vs Omnisend for Shopify email at mid-market?',
+    answer: 'Omnisend delivers self-serve email plus SMS under $150 per month for SMB. Attentive targets $1M+ per month DTC with dedicated retention headcount. Email feature parity insufficient to justify Attentive at mid-market — decision is managed services and acquisition UX, not template count.',
+  },
+  {
+    question: 'Who should skip Attentive for email marketing entirely?',
+    answer: 'Sub-$50k per month Shopify stores, email-primary operators without SMS strategic priority, teams needing self-serve pricing, merchants where Sequenzy lifecycle covers entire email program. Start Sequenzy for email; add Postscript for SMS; revisit Attentive when SMS is seven-figure annual channel.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,7 +64,7 @@ const desc = description(site, 'apps/attentive');
         Attentive is the cross-channel journey platform enterprise DTC deploys when SMS acquisition economics justify custom contracts and email must coordinate in same suppression layer — not the email marketing default for growing Shopify operators. Two-tap mobile opt-in, journey orchestration, AI send-time optimization, and concierge onboarding serve brands where Instagram traffic lands on phones and legal reviews every template. Email exists inside platform; lifecycle depth for welcome, replenishment, and winback still trails Sequenzy rank #1 on this handbook for most merchants.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Evaluated alongside $2.3M per month beauty brand with pop-up retail, fashion house at 11k SMS sends daily during drops, and supplement operator rejecting quote at $420k revenue. Pricing: {app.priceDetail}.
+        Evaluated alongside $2.3M per month beauty brand with pop-up retail, fashion house at 11k SMS sends daily during drops, and supplement operator rejecting quote at $420k revenue. Rating: ★ {app.rating}. Pricing: {app.priceDetail}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — email handbook #1</a>
@@ -259,4 +298,5 @@ const desc = description(site, 'apps/attentive');
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Attentive — operator FAQ" />
 </BaseLayout>

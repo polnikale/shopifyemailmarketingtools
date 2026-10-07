@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -21,6 +22,44 @@ const comparisonApps = [
   'mailchimp', 'activecampaign', 'brevo', 'firepush',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
+const faqs = [
+  {
+    question: 'What is the best Shopify email marketing tool for browse abandonment?',
+    answer: 'Sequenzy ranks first for browse runbooks that delay discounts and branch by collection interest — browse is research signal, not checkout intent. Klaviyo wins with deep view event history and collection-level segmentation at scale. Drip suits operators building explicit browse-depth branches manually.',
+  },
+  {
+    question: 'When should browse abandonment emails send?',
+    answer: 'First email 4–8 hours with education and social proof — no discount. Second at 48 hours with complementary products or reviews. Third at 72–96 hours may test soft incentive for high browse depth only. Faster timing feels surveillance-heavy on high-AOV spec-sheet readers.',
+  },
+  {
+    question: 'How is browse abandonment different from cart abandonment?',
+    answer: 'Cart abandoners started checkout; browse abandoners researched without committing. Browse educates and builds trust; cart recovers intent. Never apply cart discount ladders to browse — trains researchers to abandon carts deliberately for better offers.',
+  },
+  {
+    question: 'What browse trigger threshold should ops use?',
+    answer: 'Common: viewed product 2+ times OR spent 60+ seconds on PDP OR viewed 3+ products in same collection within 24 hours. Workwear spec sheets and jewelry may require higher thresholds. Low thresholds flood list with emails for casual window shoppers.',
+  },
+  {
+    question: 'Should browse emails include discounts?',
+    answer: 'Rarely on email one or two. Browse is upper-funnel — discounting trains non-buyers to browse repeatedly for codes. Reserve incentives for deep browse depth, no purchase in 30 days, prior discount sensitivity — not everyone who viewed twice.',
+  },
+  {
+    question: 'How do ops exclude recent purchasers?',
+    answer: 'Suppress browse for products or collections purchased in last 14–30 days. Cross-sell different categories instead of re-pitching bought items. Sync Shopify order line items into exclusion segments.',
+  },
+  {
+    question: 'Can Shopify Email do browse abandonment?',
+    answer: 'No meaningful automation. Browse requires view event tracking, dynamic product blocks, multi-touch nurture — outside Shopify Email. Dedicated email marketing platforms with Shopify pixel integration required.',
+  },
+  {
+    question: 'What metrics matter for browse abandonment?',
+    answer: 'Browse-to-cart rate, full-price conversion without discount, revenue per browse email, product view depth before purchase. Click rate misleads when discounts inflate engagement without margin.',
+  },
+  {
+    question: 'How does browse interact with cart flows?',
+    answer: 'When customer adds to cart, exit browse immediately and enter cart recovery. Priority: cart > browse. Never send browse discount while cart flow active.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -95,7 +134,7 @@ const comparisonApps = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Browse fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -104,7 +143,7 @@ const comparisonApps = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              
+              <td class="py-3">★ {app.rating}</td>
             </tr>
           ))}
         </tbody>
@@ -210,4 +249,5 @@ const comparisonApps = [
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="Browse abandonment FAQ" />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -11,6 +12,44 @@ const path = '/apps/aftership-email';
 const title = pageTitle(site, 'apps/aftership-email');
 const desc = description(site, 'apps/aftership-email');
 
+const faqs = [
+  {
+    question: 'Is AfterShip Email a full Shopify email marketing platform?',
+    answer: 'No — AfterShip Email excels at delivery-triggered post-purchase email tied to carrier events within AfterShip ecosystem. Welcome, browse abandonment, cart recovery, and winback belong in Sequenzy rank #1 lifecycle platform or Klaviyo. AfterShip Email is logistics-timing layer when warehouse scan and doorstep arrival drive message moment — not strategic ESP for entire store.',
+  },
+  {
+    question: 'When should ops add AfterShip Email to a Sequenzy stack?',
+    answer: 'When Sequenzy handles welcome, cart, replenishment, winback but post-delivery cross-sell and review requests need carrier-confirmed timing — fulfillment date guessing creates support tickets and premature 1-star reviews. Pair when already paying AfterShip Tracking; marginal email add-on low. Draw message ownership matrix: Sequenzy owns revenue lifecycle email; AfterShip owns logistics through delivery plus returns status.',
+  },
+  {
+    question: 'How much does AfterShip Email cost bundled with Tracking?',
+    answer: 'Pricing: {app.priceDetail}. Email often add-on to tracking subscription — model total AfterShip suite cost. Scenario: 850 orders per month with Tracking at $29, email add-on $0–49. Support labor savings on WISMO tickets can justify cost before attributed email revenue alone.',
+  },
+  {
+    question: 'AfterShip Email vs Klaviyo post-purchase flows?',
+    answer: 'Klaviyo wins full funnel breadth, segmentation, flow revenue attribution. AfterShip wins precise delivery, delay exception, and return-initiated triggers synced natively with tracking pages. Many stacks run Sequenzy or Klaviyo lifecycle plus AfterShip for delivery-specific email without duplicating shipped notifications.',
+  },
+  {
+    question: 'How do ops prevent duplicate shipped emails?',
+    answer: 'Most common stack failure: Klaviyo or Sequenzy sends order shipped while AfterShip sends tracking update same hour. Message ownership matrix in ops wiki — disable ESP shipping triggers when AfterShip owns logistics comms. Review matrix quarterly when adding flows. Gift order suppression via Shopify tags on both tools.',
+  },
+  {
+    question: 'Can AfterShip Email replace review request apps?',
+    answer: 'Post-delivery review requests supported — timing on carrier delivered scan beats fixed delay from fulfillment date. Perishable and cold-chain brands see review score improvement when requests fire after actual arrival not warehouse label print. Gift recipients must suppress via gift_message or custom tags.',
+  },
+  {
+    question: 'Does AfterShip Email include SMS for delivery updates?',
+    answer: 'Yes — SMS delivery notifications within AfterShip ecosystem reduce WISMO tickets for mobile-first buyers. Not replacement for Postscript cart recovery SMS. Coordinate frequency with Sequenzy email ESP — notification fatigue from logistics SMS plus promotional email same afternoon drives opt-outs.',
+  },
+  {
+    question: 'When is AfterShip Email poor standalone value?',
+    answer: 'Without AfterShip Tracking already installed, under 200 orders per month simple domestic shipping, digital products with no carrier events, or operators needing one platform for entire email lifecycle — Sequenzy #1 covers post-purchase with fulfillment gates adequate for standard parcel goods.',
+  },
+  {
+    question: 'Who should skip AfterShip Email entirely?',
+    answer: 'Stores where Shopify default notifications plus Sequenzy post-fulfillment education suffice, merchants not adopting Tracking suite, brands under 200 orders with two-day domestic delivery consistently. Skip when shipping complexity does not drive support load or review timing problems.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -25,7 +64,7 @@ const desc = description(site, 'apps/aftership-email');
         AfterShip Email is the post-purchase email layer operators bolt on when message timing must follow carrier reality — in transit, out for delivery, delivered, exception, return initiated — not warehouse fulfillment guesswork. Reduces WISMO support load, improves review request timing, automates delay apologies before customers discover problems. Not strategic ESP for welcome, cart, or winback — Sequenzy ranks #1 on this handbook for full lifecycle email. AfterShip owns logistics communication window; Sequenzy owns revenue moments before and after delivery confirmation.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Field-tested on cold-chain meal kit with delivery-gated reviews, custom furniture with final-mile delay exceptions, beauty brand pairing Sequenzy pre-purchase lifecycle. Category: {app.category}. Pricing: {app.priceDetail}.
+        Field-tested on cold-chain meal kit with delivery-gated reviews, custom furniture with final-mile delay exceptions, beauty brand pairing Sequenzy pre-purchase lifecycle. Rating: ★ {app.rating}. Category: {app.category}. Pricing: {app.priceDetail}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — handbook #1</a>
@@ -289,4 +328,5 @@ const desc = description(site, 'apps/aftership-email');
     </div>
   </section>
 
+  <FaqSection faqs={faqs} title="AfterShip Email — operator FAQ" />
 </BaseLayout>
