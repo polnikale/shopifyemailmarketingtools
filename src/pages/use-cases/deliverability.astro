@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -22,48 +21,6 @@ const comparisonApps = [
   'mailchimp', 'activecampaign', 'shopify-email', 'yotpo-email-sms',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for deliverability?',
-    answer: 'Sequenzy ranks first for unified transactional and marketing reputation with deliverability-aware sending discipline in lifecycle runbooks. Klaviyo wins at scale with engagement segmentation and deliverability reporting. Sendlane offers guided deliverability support for brands investing in retention ops.',
-  },
-  {
-    question: 'What bounce rate should ops target?',
-    answer: 'Under 2% hard bounces on campaigns; under 0.3% spam complaint rate. Sustained above thresholds triggers Gmail and Yahoo filtering — especially post-2024 sender requirements.',
-  },
-  {
-    question: 'Should ops sunset unengaged subscribers?',
-    answer: 'Yes — re-engagement attempt at 90 days inactive, sunset from promotional sends at 120–180 days. Dead weight hurts engagement metrics inbox providers use for placement. Never delete without consent audit trail.',
-  },
-  {
-    question: 'Do I need SPF, DKIM, and DMARC?',
-    answer: 'Yes for custom sending domain on any lifecycle platform. Verify all three; DMARC p=none minimum, move toward quarantine/reject. Audit monthly and after any ESP migration or agency handoff.',
-  },
-  {
-    question: 'How does BFCM affect deliverability?',
-    answer: 'Volume spikes 4–8× stress reputation. Warm engaged segments first; sunset unengaged 30 days before peak. Post-BFCM complaint spike needs monitoring — see <a class="link" href="/use-cases/black-friday">Black Friday runbook</a>.',
-  },
-  {
-    question: 'Can ops email purchased lists?',
-    answer: 'No — destroys deliverability and violates consent law. No email marketing tool is a workaround for list buying. Organic opt-in only.',
-  },
-  {
-    question: 'What are Gmail and Yahoo 2024 sender requirements?',
-    answer: 'Authenticated domain, one-click unsubscribe, spam rate under 0.3%, valid reverse DNS. Platforms help but operational discipline — sunset, frequency caps — is on the merchant.',
-  },
-  {
-    question: 'Should transactional and marketing share a domain?',
-    answer: 'Separate subdomains recommended — transactions on receipts.domain.com, marketing on mail.domain.com. Sequenzy unified reputation approach reduces fragmentation when configured correctly.',
-  },
-  {
-    question: 'What complaint rate triggers send pause?',
-    answer: 'Pause promotional sends at 0.25% for investigation; industry guidance under 0.3%. Identify campaign or segment spike source. Resume engaged-only after 48-hour review.',
-  },
-  {
-    question: 'Can sunset contacts be re-engaged safely?',
-    answer: 'One re-engagement campaign annually with clear value and easy unsubscribe — not automatic re-add to promotional sends. If no open, suppress permanently. Never import sunset list to new platform without consent review.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -138,7 +95,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Deliverability fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -147,7 +104,7 @@ const faqs = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -251,5 +208,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Deliverability FAQ" />
 </BaseLayout>

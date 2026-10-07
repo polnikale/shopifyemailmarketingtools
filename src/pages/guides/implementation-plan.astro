@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -14,44 +13,6 @@ const desc = description(site, 'guides/implementation-plan');
 
 const featuredApps = ['sequenzy', 'klaviyo', 'omnisend', 'drip', 'privy'].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What order should Shopify lifecycle flows go live?',
-    answer: 'Post-purchase and deliverability foundation first. Welcome with source branching second. Cart and browse with collision rules third. Vertical retention — replenishment, VIP, launch — fourth. Winback and seasonal peaks last. Parallel launch of six flows produces collision bugs discovered only after sends fire.',
-  },
-  {
-    question: 'How long does full implementation take on Sequenzy?',
-    answer: 'Eight to ten weeks for six core flows with agent-first setup — compressed from fourteen on Klaviyo for equivalent logic. Allow two weeks minimum per workflow for testing, suppression verification, and staff-account QA regardless of platform.',
-  },
-  {
-    question: 'Should I pause all email during implementation?',
-    answer: 'Never pause transactional or order confirmation. Pause promotional broadcasts and broken automations. Run new flows parallel to old for two weeks when migrating — cutover only after suppression tests pass on staff accounts.',
-  },
-  {
-    question: 'Who should own the implementation plan?',
-    answer: 'Single retention lead with Shopify Admin access, ESP admin access, and authority to change discount codes. Founder can own at under 1,000 orders/month. Agency implements only with internal owner signing off each flow go-live.',
-  },
-  {
-    question: 'What is the minimum viable flow set?',
-    answer: 'Post-purchase, welcome, abandoned cart — three flows. Add browse abandonment when catalog exceeds 200 SKUs. Add replenishment when repeat purchase exceeds 25% of revenue. Winback and BFCM wait until foundations stable.',
-  },
-  {
-    question: 'How do I test flows before go-live?',
-    answer: 'Staff accounts with real email addresses, tagged test profiles, and documented expected send sequence over 14 days. Flow collision prevention guide priority matrix tested explicitly — signup plus cart within 48 hours must not stack discounts.',
-  },
-  {
-    question: 'Can I implement during Q4?',
-    answer: 'New flow builds yes with caution. Platform migrations no — deliverability risk during peak send volume. BFCM flow changes freeze October 15 unless emergency. Implementation plan assumes Q1–Q3 primary build window.',
-  },
-  {
-    question: 'What metrics prove implementation success?',
-    answer: 'Per-flow incremental revenue, unsubscribe rate below vertical baseline, collision incident count zero in first 30 days, deliverability placement stable, time-to-second-order improving for welcome cohort. Not aggregate email revenue alone.',
-  },
-  {
-    question: 'How does implementation plan relate to use-case playbooks?',
-    answer: 'Use-case pages define what each flow should do — triggers, timing, exclusions. Implementation plan defines when and in what order you build them. Read post-purchase use-case before week one; read cart use-case before week five.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -256,5 +217,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Implementation plan FAQ" />
 </BaseLayout>

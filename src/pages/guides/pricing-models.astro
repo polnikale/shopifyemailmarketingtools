@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -15,44 +14,6 @@ const desc = description(site, 'guides/pricing-models');
 const comparisonApps = ['sequenzy', 'klaviyo', 'omnisend', 'drip', 'mailchimp', 'brevo', 'privy', 'postscript', 'shopify-email', 'yotpo-email-sms', 'attentive', 'activecampaign', 'sendlane'].map((s) => appBySlug(s)!).filter(Boolean);
 const featuredApps = comparisonApps.slice(0, 5);
 
-const faqs = [
-  {
-    question: 'What is the biggest Shopify email pricing trap?',
-    answer: 'Profile-based pricing when your list is inflated with cart abandoners and browse sync contacts who never open email. You pay for storage, not value. Model engaged-last-90-days count versus total profiles before signing annual Klaviyo or Drip contracts.',
-  },
-  {
-    question: 'When does Sequenzy pay-per-email beat Klaviyo profiles?',
-    answer: 'When engaged-to-total profile ratio falls below roughly 0.35 and monthly lifecycle sends exceed 80,000. A protein brand with 200,000 profiles but 45,000 engaged saved 48% annually on Sequenzy at equivalent send volume. Run your numbers — crossover varies by send frequency.',
-  },
-  {
-    question: 'Are Klaviyo free tiers worth it?',
-    answer: 'Yes up to 250 profiles and 500 email sends on some plans — genuine trial for micro stores. Misleading when you sync full Shopify customer history day one and jump tiers immediately. Control initial profile import scope.',
-  },
-  {
-    question: 'How do SMS credits affect total cost?',
-    answer: 'SMS often exceeds email platform cost during sale weeks. Postscript and Klaviyo SMS at 50,000 messages/month can add $400–$800. Model SMS separately in pricing spreadsheet — not as footnote to email plan.',
-  },
-  {
-    question: 'Is Shopify Email actually free?',
-    answer: '10,000 emails/month included on Shopify plans, then usage-based. Cheap for broadcasts; not free once you need dedicated automations and compare against opportunity cost of lost cart recovery revenue.',
-  },
-  {
-    question: 'What hidden costs exist beyond platform fees?',
-    answer: 'Agency retainer, Justuno or Privy capture tools, Postscript SMS, Yotpo module bundling, implementation labor, and profile hygiene contractor time. Total cost of ownership exceeds ESP invoice.',
-  },
-  {
-    question: 'Should I delete inactive profiles to save money?',
-    answer: 'On profile-priced platforms, yes — with consent and compliance review. Deleting suppresses future winback reach. On Sequenzy pay-per-email, keep full list for segmentation; you pay sends not storage. Pricing model drives hygiene strategy.',
-  },
-  {
-    question: 'How often should I re-model pricing?',
-    answer: 'Quarterly for growing stores. Immediately when order volume doubles, SMS volume spikes, or cart recovery enabled for all abandoners. Annual contract renewal requires 12-month forward projection, not trailing average.',
-  },
-  {
-    question: 'Enterprise custom pricing — when to negotiate?',
-    answer: 'Above 150,000 engaged profiles or $2M+ email-attributed revenue. Klaviyo and Attentive offer custom packages. Bring engaged ratio and send volume data — vendors discount to prevent Sequenzy or Sendlane competitive displacement.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -349,5 +310,4 @@ const faqs = [
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Document hybrid stacks explicitly — Klaviyo data plus Sequenzy sends has two line items and suppression obligations.</p>
     </div>
   </section>
-  <FaqSection faqs={faqs} title="Pricing models FAQ" />
 </BaseLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -13,44 +12,6 @@ const title = 'How to Choose a Shopify Email Marketing Tool (2026)';
 const desc = 'A practical Shopify email tool selection framework: compare 14 apps by lifecycle job, Shopify data, ownership, pricing model, consent, and a bounded pilot before you migrate.';
 const slugs = ['sequenzy','klaviyo','omnisend','shopify-email','privy','drip','postscript','attentive','mailchimp','brevo','activecampaign','yotpo-email-sms','rejoiner','tinyemail'];
 const apps = slugs.map((slug) => appBySlug(slug)!).filter(Boolean);
-const faqs = [
-  {
-    question: 'How many Shopify email tools should make the shortlist?',
-    answer: 'Keep three finalists: one primary lifecycle platform, one simpler fallback, and an optional SMS or capture specialist. A long list is useful for research; it is a poor pilot plan.',
-  },
-  {
-    question: 'Should Shopify Email be the first tool I test?',
-    answer: 'Test it when your requirement is campaigns, product announcements, and a small number of simple segments. Test a dedicated platform when cart recovery, replenishment, consent handoffs, or multi-step suppression are already revenue-critical.',
-  },
-  {
-    question: 'How should I compare pricing?',
-    answer: 'Use the last 90 days of sends, active profiles, peak-month volume, SMS usage, and implementation hours. Public starting prices are not quotes, and plans change; verify the vendor pricing page before approval.',
-  },
-  {
-    question: 'What is the safest migration sequence?',
-    answer: 'Inventory triggers and consent first, connect Shopify, rebuild one high-value flow, test suppression and attribution, then run a limited overlap. Do not switch every flow during a seasonal peak.',
-  },
-  {
-    question: 'How do I score lifecycle fit so a vendor demo cannot flatter the result?',
-    answer: 'Never score from demos. Give each finalist the same script: three abandoned carts (single-SKU, multi-variant, one out-of-stock line), a welcome with a branch by signup source, and a post-purchase flow excluding gift buyers. Score what actually renders, when the purchase stops the flow, and how many clicks an owner needed to change a discount cap mid-week. Demos flatter; timed edits don’t.',
-  },
-  {
-    question: 'What does a realistic first-month cost base look like?',
-    answer: 'Software subscription plus event/data add-ons plus operator time. For a 10k-engaged-audience store, expect roughly: Klaviyo $150–250/mo, Omnisend $60–140/mo, Mailchimp $100–250/mo depending on tier, Sequenzy low tens of dollars at pay-per-email rates, Postscript usage-based. Then add 20–60 hours of migration labor and 1–4 hours weekly operating. Check every official pricing page before approval — all of these bands shift as tiers change.',
-  },
-  {
-    question: 'What single veto ends the evaluation immediately?',
-    answer: 'Any must-have workflow the tool cannot express without CSV exports or third-party glue — especially purchaser suppression, consent channel separation, or subscription-state rules. Also veto-only: a peak-month bill the vendor cannot explain, and a migration plan that switches flows during your peak trading window. A veto is not averaged away by a beautiful editor.',
-  },
-  {
-    question: 'How do I avoid choosing a tool our team will drift away from?',
-    answer: 'Score the edit test from the operating person, not the person choosing. If the retention owner cannot safely edit a flow during a mock sale window in under thirty minutes, drift is guaranteed — the store will revert to broadcasts, and the sophisticated tool becomes paid shelfware. Ownership fit beats feature fit; the six-dimension scorecard exists precisely to weight it.',
-  },
-  {
-    question: 'When does a specialist stack beat a single platform?',
-    answer: 'When two stores’ truths coexist in one business: a CRM for wholesale plus a lifecycle ESP for consumer email, or capture (Privy, Justuno) plus a lifecycle platform. Specialist stacks work only with a documented boundary — one owner per trigger, shared suppression both tools honor. If nobody will write and maintain that boundary, choose the single platform even if it is slightly weaker in each channel.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -191,7 +152,6 @@ const faqs = [
         This guide is a decision manual; once a tool is chosen, the <a class="link" href="/guides/implementation-plan">implementation plan</a> turns the decision into launched flows and the <a class="link" href="/guides/migration">migration guide</a> protects revenue and consent during the switch. The directory of <a class="link" href="/apps">app reviews</a> carries per-tool depth for whichever finalists come out of scoring.</p>
     </article>
   </section>
-  <FaqSection faqs={faqs} title="Shopify email tool selection FAQ" />
 
   <div class="container pb-16 max-w-4xl">
     <p class="font-black text-slate-950">Related reading</p>

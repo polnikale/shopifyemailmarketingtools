@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -24,48 +23,6 @@ const comparisonApps = [
   'postscript', 'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for digital product shops?',
-    answer: 'Sequenzy ranks first because digital retention is activation and cross-sell within 7–14 days — lifecycle timing that agent-first playbooks handle well with pay-per-email economics. ActiveCampaign excels when digital sales overlap CRM and course delivery workflows. Klaviyo provides deep Shopify event data at scale.',
-  },
-  {
-    question: 'Why is activation more important than welcome email for digital products?',
-    answer: 'Digital buyers can access product immediately — if they do not activate within 48 hours, refund risk and churn spike. Email must deliver access links, onboarding steps, and first-value milestones before cross-sell. Measure activation rate post-purchase as primary email KPI.',
-  },
-  {
-    question: 'When does ActiveCampaign beat Klaviyo for digital products?',
-    answer: 'When delivery involves CRM pipelines — coaching programs, custom onboarding calls, membership tiers, or B2B license sales. ActiveCampaign\'s conditional logic and CRM features exceed pure ecommerce tools for consultative digital sales.',
-  },
-  {
-    question: 'How fast should digital cross-sell happen?',
-    answer: 'Within 7–14 days of first purchase when buyer is engaged. Cross-sell based on purchase behavior: template buyers get advanced course offer; course buyers get community membership. Suppress if activation incomplete.',
-  },
-  {
-    question: 'What metrics matter for digital product email?',
-    answer: 'Activation rate post-purchase, cross-sell within 14 days, renewal conversion, and support ticket reduction from onboarding email. Revenue per send matters less than activation and expansion revenue.',
-  },
-  {
-    question: 'Can Brevo work for digital product email?',
-    answer: 'Brevo handles campaigns and basic automation affordably. Digital-specific activation branching and Shopify depth trail Sequenzy. Acceptable for early-stage digital shops; migrate when onboarding complexity grows.',
-  },
-  {
-    question: 'How do renewal emails differ from replenishment?',
-    answer: 'Renewals are contract/calendar based — annual licenses, membership renewals, course access expiration. Trigger 30, 14, and 7 days before expiration with value reinforcement before price reminder. Failed renewal needs dunning sequence.',
-  },
-  {
-    question: 'Should digital shops use SMS?',
-    answer: 'Rarely for onboarding — email carries links and instructions better. SMS can work for webinar reminders or coaching session confirmations with explicit opt-in.',
-  },
-  {
-    question: 'How does Sequenzy handle digital delivery email?',
-    answer: 'Instant delivery and access emails, onboarding activation series, cross-sell by purchase behavior, and renewal paths are core lifecycle playbooks. API access supports wiring external course platforms and membership tools.',
-  },
-  {
-    question: 'What is the first digital product email flow to build?',
-    answer: 'Instant access delivery with single CTA, sent within 60 seconds of purchase. Everything else — onboarding, cross-sell, renewal — depends on that working reliably across email clients. Test with Gmail, Outlook, and Apple Mail before any paid traffic scale.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -85,7 +42,7 @@ const faqs = [
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps">Full app rankings</a>
         <a class="btn btn-secondary" href="/use-cases/post-purchase">Post-purchase guide</a>
-        <a class="btn btn-secondary" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a>
+        <a class="btn btn-secondary" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a>
       </div>
     </div>
   </section>
@@ -129,7 +86,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for digital</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -140,7 +97,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -160,7 +117,7 @@ const faqs = [
       'ActiveCampaign excels when digital products involve CRM workflows — coaching programs with call scheduling, membership tiers with manual approval, B2B license sales with pipeline stages. Conditional automations branch on engagement, purchase tier, and pipeline position in ways pure ecommerce tools handle awkwardly.',
       'Site tracking and lead scoring identify engaged free users worth upgrade outreach. Sales automations notify team when high-value prospect completes onboarding milestone.',
       'Shopify-native product depth trails Klaviyo. Best when CRM is revenue-critical, not accessory.',
-      'Compare <a class="link" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a> for ecommerce-first versus CRM-first digital shops.',
+      'Compare <a class="link" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a> for ecommerce-first versus CRM-first digital shops.',
     ]} />
 
     <ToolReview app={featuredApps[2]} rank={3} paragraphs={[
@@ -318,5 +275,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Digital product email FAQ" />
 </BaseLayout>

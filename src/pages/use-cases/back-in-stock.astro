@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -22,48 +21,6 @@ const comparisonApps = [
   'postscript', 'yotpo-email-sms', 'shopify-email', 'rejoiner',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for back-in-stock alerts?',
-    answer: 'Sequenzy ranks first for waitlist-to-alert runbooks with variant accuracy and priority queue discipline. Klaviyo wins at scale with native variant inventory sync and waitlist segmentation. Privy captures waitlist signups on PDP when inventory is zero.',
-  },
-  {
-    question: 'When should back-in-stock emails send?',
-    answer: 'Immediately on confirmed WMS restock for waitlisted SKU or variant — priority by signup order. Expire offer after 48 hours for urgency without endless open loops. Re-alert only if customer did not purchase and inventory remains above buffer threshold.',
-  },
-  {
-    question: 'Should back-in-stock go to the entire list?',
-    answer: 'No — only waitlist signups and optionally VIP who explicitly opted in for that SKU. Broadcasting to full list causes false urgency and unsubscribes when product sells out again during pick wave.',
-  },
-  {
-    question: 'How do ops handle variant-level back-in-stock?',
-    answer: 'Alert only for variant waitlisted — size 32 restock must not email size 34 waitlisters. Klaviyo and Sequenzy support variant-level triggers when Shopify sync includes inventory by variant from WMS.',
-  },
-  {
-    question: 'What if product sells out again before email sends?',
-    answer: 'Inventory check at send time mandatory — pause alert or route to new waitlist if OOS again. False alerts damage trust worse than delayed alerts. Log false alert rate monthly.',
-  },
-  {
-    question: 'Can Privy handle back-in-stock alone?',
-    answer: 'Privy captures waitlist on PDP — execution often pairs with Klaviyo or Sequenzy for alert send. Native Privy alert capability basic for simple SKUs.',
-  },
-  {
-    question: 'What back-in-stock conversion rate is good?',
-    answer: '25–45% for high-intent waitlist on hero SKUs. Lower on commodity items with substitutes. Measure time to sell-through after alert — fast sellout validates demand capture for next production run.',
-  },
-  {
-    question: 'How does back-in-stock differ from product launch?',
-    answer: 'Back-in-stock fulfills existing SKU demand — narrower audience, immediate urgency. Launch is net-new product orchestration. See <a class="link" href="/use-cases/product-launch">product launch runbook</a>.',
-  },
-  {
-    question: 'Should back-in-stock alerts include discounts?',
-    answer: 'Usually no for waitlist — demand already exists. Discount trains waitlist gaming. Exception: waitlist duration over 60 days may test small incentive on non-converters only.',
-  },
-  {
-    question: 'How do back-in-stock alerts interact with abandoned cart?',
-    answer: 'Suppress cart recovery when customer is on active waitlist for same variant — two urgency emails compete. Route to waitlist confirmation first, then cart if they add after alert. Document in cart recovery runbook.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -138,7 +95,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Back-in-stock fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -147,7 +104,7 @@ const faqs = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -250,5 +207,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Back-in-stock FAQ" />
 </BaseLayout>

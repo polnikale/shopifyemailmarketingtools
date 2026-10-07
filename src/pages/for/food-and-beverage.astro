@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -24,48 +23,6 @@ const comparisonApps = [
   'aftership-email', 'marsello', 'activecampaign',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for food and beverage brands?',
-    answer: 'Sequenzy ranks first for F&B because replenishment by consumption, subscription skip recovery, and launch sell-through need lifecycle strategy with pay-per-email economics. Klaviyo excels at scale with deep Shopify sync. Rejoiner fits brands wanting managed lifecycle help alongside software.',
-  },
-  {
-    question: 'How should food brands time replenishment emails?',
-    answer: 'Base on consumption rate per SKU — coffee bags by weekly usage, hot sauce by monthly usage, meal kits by delivery schedule. Suppress active subscribers. Track reorder rate by product and adjust timing from actual data, not generic 30-day defaults.',
-  },
-  {
-    question: 'When does Rejoiner make sense for food brands?',
-    answer: 'When you want experts designing cart recovery, replenishment, and subscription retention alongside software — not DIY flow building. Rejoiner is not cheap self-serve but fits brands prioritizing strategic help over platform tinkering.',
-  },
-  {
-    question: 'How do limited-time flavor launches work in email?',
-    answer: 'VIP early access for repeat buyers, waitlist for new subscribers, launch sell-through tracking by segment. Post-launch: winback for waitlist non-buyers when restock happens. Never train entire list to wait for launches via perpetual "coming soon" without purchase paths.',
-  },
-  {
-    question: 'Should food brands emphasize perishability in email?',
-    answer: 'Yes — shipping clarity, storage instructions, and freshness windows reduce support tickets and build trust. Post-purchase education on storage beats immediate cross-sell for perishable products.',
-  },
-  {
-    question: 'What metrics matter for food and beverage email?',
-    answer: 'Reorder rate by product, subscription skip recovery, launch sell-through from email, and margin after shipping promos. Track whether email-driven orders maintain margin or depend on free shipping incentives.',
-  },
-  {
-    question: 'Is Omnisend enough for subscription food brands?',
-    answer: 'Omnisend handles core automations and SMS for SMB food DTC brands. Complex subscription skip logic and consumption-based replenishment at scale push growing brands toward Sequenzy or Klaviyo.',
-  },
-  {
-    question: 'How do shipping promos affect food email strategy?',
-    answer: 'Free shipping promos erode margin on heavy/low-AOV items. Segment shipping offers by order history and basket size. Track margin after shipping promos — not just attributed revenue.',
-  },
-  {
-    question: 'Can SMS replace email for food replenishment?',
-    answer: 'SMS complements email for replenishment reminders with strict opt-in and frequency caps. Email carries recipe content, launch stories, and subscription box previews. Do not duplicate reminders same-day across channels.',
-  },
-  {
-    question: 'Should food brands send replenishment and promo same week?',
-    answer: 'Avoid stacking replenishment and heavy promo to the same subscriber in one week unless strategically intentional. Replenishment should feel helpful; promos should feel occasional. Frequency collision increases unsubscribes and trains ignore behavior on both message types.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -129,7 +86,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for F&B</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -140,7 +97,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -315,5 +272,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Food & beverage email FAQ" />
 </BaseLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -24,48 +23,6 @@ const comparisonApps = [
   'aftership-email', 'marsello', 'activecampaign',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for subscription box brands?',
-    answer: 'Sequenzy ranks first for box preview emails, skip recovery, churn prevention at risk months, and referral campaigns — core subscription lifecycle playbooks with pay-per-email pricing. Klaviyo excels at scale with subscription integrations. Rejoiner fits brands wanting managed retention expertise.',
-  },
-  {
-    question: 'When do subscribers typically churn from subscription boxes?',
-    answer: 'Month 3–4 is the danger zone — novelty fades, skips accumulate, and value perception drops. Build risk detection at month 2.5: declining engagement, consecutive skips, support complaints. Intervene with box previews and value content before discounting.',
-  },
-  {
-    question: 'How should box preview emails work?',
-    answer: 'Send 5–7 days before charge date. Highlight hero items, include photos, share usage tips. Goal is excitement that prevents skip — not surprise that triggers refund requests. Track box preview engagement correlation with retention.',
-  },
-  {
-    question: 'What is the best skip recovery sequence?',
-    answer: 'Three touches: (1) preview what they would miss, (2) offer pause not cancel, (3) optional incentive only if value touches failed. Never lead with discount — trains skip behavior. Track skip-to-active recovery rate monthly.',
-  },
-  {
-    question: 'When does Rejoiner make sense for subscription boxes?',
-    answer: 'When you want experts optimizing skip recovery, churn prevention, and referral programs alongside software. Subscription box retention is Rejoiner\'s sweet spot — managed lifecycle with proven cart and retention heritage.',
-  },
-  {
-    question: 'Should subscription boxes use referral email campaigns?',
-    answer: 'Yes — referred subscribers retain better and cost less to acquire. Trigger referral invites after positive box experience (high email engagement + no skip history). Reward both referrer and friend without eroding box margin.',
-  },
-  {
-    question: 'What metrics matter for subscription box email?',
-    answer: 'Skip-to-active recovery rate, churn by subscriber month, referral revenue from email, and box preview engagement correlation with retention. Month-4 retention rate is the north star.',
-  },
-  {
-    question: 'Can Omnisend handle subscription box email?',
-    answer: 'Core automations and SMS yes; sophisticated skip/churn logic at scale pushes growing box brands toward Sequenzy or Klaviyo. Omnisend remains strong SMB starting point.',
-  },
-  {
-    question: 'How do gifting campaigns work for subscription boxes?',
-    answer: 'Holiday gifting pushes need deadline clarity and gift-specific onboarding. Gift recipients need welcome series explaining box schedule, skip options, and account access. Segment gift subscribers from self-subscribers permanently.',
-  },
-  {
-    question: 'How do I measure subscription box email success?',
-    answer: 'Track skip-to-active recovery rate, month-4 cohort retention, box preview open rate correlation with skips, and referral revenue from email. Revenue per send matters less than subscriber month retention — one saved subscriber month often exceeds dozens of promotional conversions.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -129,7 +86,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for boxes</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -140,7 +97,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -317,5 +274,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Subscription box email FAQ" />
 </BaseLayout>

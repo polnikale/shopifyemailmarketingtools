@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -14,44 +13,6 @@ const desc = description(site, 'guides/discount-discipline');
 
 const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'privy'].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'Should abandoned cart email one include a discount?',
-    answer: 'No by default. Email one recovers intent with product reminder, trust, shipping clarity. Reserve discounts for email two or three, capped by cart value and prior redemption history. See abandoned-cart use case for value-band ladder.',
-  },
-  {
-    question: 'What is a discount governance ladder?',
-    answer: 'Documented rules: which flows can offer discounts, maximum percentage by segment and cart value, minimum margin floor approved by finance, and mutual exclusion when multiple flows active. Ladder lives in ops wiki, not scattered Klaviyo flow notes.',
-  },
-  {
-    question: 'How do I stop training coupon hunters?',
-    answer: 'Delay first discount touch in welcome to email 4+. Never discount VIP full-price loyalists in cart. Cap combined incentive exposure per customer per 30 days. Track full-price repeat rate alongside attributed revenue — margin matters.',
-  },
-  {
-    question: 'Should welcome series lead with 10% off?',
-    answer: 'Rarely. Popup discount subscribers convert fast then churn. Brand story and product education first; discount for non-buyers after 7–14 days. Jewelry and high-AOV stores may never discount welcome — financing and trust instead.',
-  },
-  {
-    question: 'How does Sequenzy help discount discipline?',
-    answer: 'Playbooks encode value-based discount caps and collision suppression by default — agent prompts express "no cart discount for customers with 2+ full-price orders" without manual boolean hunting. Strategy layer before creative defaults to 10% off everyone.',
-  },
-  {
-    question: 'Winback discount escalation — what is sane?',
-    answer: 'Email one: full-price "we miss you" with hero product. Email two: social proof. Email three: 10% capped once per 180 days for discount responders only. Never start winback at 25% — sets anchor for next lapse.',
-  },
-  {
-    question: 'How do I audit discount leakage?',
-    answer: 'Monthly: redemption rate by flow, average discount depth by segment, full-price order rate trend, stacked code incidents from support tickets. Finance margin report cross-check. Spike in redemption without revenue lift signals discipline failure.',
-  },
-  {
-    question: 'BFCM discount versus lifecycle discount — conflict?',
-    answer: 'Yes. Lifecycle flows should suppress promotional codes during BFCM window or use exclusive single-use BFCM codes — not stack 15% welcome with 30% sitewide. Flow collision prevention guide covers peak calendar rules.',
-  },
-  {
-    question: 'Free shipping versus percentage discount?',
-    answer: 'Free shipping preserves AOV perception better for orders above $75 — test by margin band. Percentage discounts erode brand for luxury and jewelry. Document which incentive type each segment receives in governance ladder.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -248,5 +209,4 @@ const faqs = [
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Log every discount test with hypothesis and margin outcome — prevents repeating failed ten-percent cart tests annually.</p>
     </div>
   </section>
-  <FaqSection faqs={faqs} title="Discount discipline FAQ" />
 </BaseLayout>

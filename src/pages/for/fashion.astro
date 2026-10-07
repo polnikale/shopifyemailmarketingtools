@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,44 +22,6 @@ const comparisonApps = [
   'tinyemail', 'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for fashion stores with frequent drops?',
-    answer: 'Sequenzy ranks first for fashion drops because it combines agent-first sequence setup with revenue-focused lifecycle playbooks — you can spin up waitlist-to-launch, VIP early access, and post-drop winback without rebuilding flows every season. Klaviyo is the stronger choice when you need variant-level back-in-stock and predictive CLV at scale. Omnisend works if you want email, SMS, and push live in days for smaller DTC labels.',
-  },
-  {
-    question: 'How should fashion brands handle size and fit in email automation?',
-    answer: 'Treat size as a segmentation property, not a footnote. After first purchase, tag customers by size ordered and suppress promos for sold-out variants in their size. Post-purchase flows should include fit guides, measurement reminders, and exchange policy clarity before you pitch the next collection. Apps with deep Shopify variant sync — Klaviyo, Sequenzy, Drip — make this practical without manual list exports.',
-  },
-  {
-    question: 'When is Klaviyo worth the profile cost for a fashion Shopify store?',
-    answer: 'Klaviyo pays for itself when you have enough order volume to justify profile-based pricing and you rely on browse abandonment, collection-level segmentation, and predictive analytics daily. If you are doing 500+ orders per month with multiple collections, size matrices, and seasonal clearance windows, the native Shopify depth usually outweighs the bill. Smaller boutiques often start with Sequenzy or Omnisend and graduate once catalog complexity explodes.',
-  },
-  {
-    question: 'Should fashion stores use SMS for drop alerts?',
-    answer: 'SMS works for VIP early access and cart recovery on hype drops, but it is easy to train customers to wait for texts instead of buying at full price. Pair Postscript or Omnisend SMS with strict frequency caps and suppress recent purchasers. Email remains the backbone for lookbooks, styling content, and winback before clearance — channels should complement, not duplicate.',
-  },
-  {
-    question: 'How do I reduce return-driven list fatigue in fashion email?',
-    answer: 'Segment by return history and product category. Customers who returned for fit issues should receive education and size confidence content, not another 20% off code. Customers who returned for style preference are better winback candidates for a different collection. Suppression rules between post-purchase, replenishment (for basics), and promotional sends prevent the "discount treadmill" that erodes margin.',
-  },
-  {
-    question: 'What metrics matter most for fashion email programs?',
-    answer: 'Revenue per recipient by collection, second purchase within 60 days, full-price versus discount purchase ratio, and return rate by email segment. Fashion email that only optimizes click rate usually over-discounts. Track whether email-acquired buyers repurchase at full price after the first incentivized order — that tells you if your flows are building habit or renting transactions.',
-  },
-  {
-    question: 'Can Privy replace a full lifecycle platform for fashion?',
-    answer: 'Privy solves capture — exit intent, spin-to-win, and list growth before a drop. It is not a replacement for drop orchestration, browse abandonment by collection, or seasonal winback. Most growing fashion brands use Privy at the top of the funnel and Sequenzy or Klaviyo for everything after opt-in.',
-  },
-  {
-    question: 'How far ahead should seasonal winback start before clearance?',
-    answer: 'Start winback 3–4 weeks before you move to deep clearance, segmented by collection engagement and purchase recency. Full-price loyalists get new-arrival previews; lapsed browsers get styled edits with social proof; one-time buyers get a reason to try a second category. Waiting until everything is 60% off trains the list to ignore full-price sends.',
-  },
-  {
-    question: 'Is Shopify Email enough for a fashion brand on Shopify?',
-    answer: 'Shopify Email handles basic sale blasts and product blocks from the admin. Fashion retention needs variant-aware back-in-stock, browse abandonment by collection, drop waitlists, and collision control between flows — capabilities that push most apparel merchants to a dedicated platform within 6–12 months.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -135,7 +96,7 @@ const faqs = [
             <th class="py-3 pr-4">Pricing</th>
             <th class="py-3 pr-4">Shopify depth</th>
             <th class="py-3 pr-4">Automation</th>
-            <th class="py-3">Rating</th>
+            
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -146,7 +107,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -272,5 +233,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Fashion store email FAQ" />
 </BaseLayout>

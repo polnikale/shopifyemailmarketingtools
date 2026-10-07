@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 const site = siteFromHost();
 
@@ -23,44 +22,6 @@ const guides = [
   { slug: 'flow-collision-prevention', name: 'Flow collision prevention', job: 'Suppress overlapping automations before customers get three discounts in one day' },
 ];
 
-const faqs = [
-  {
-    question: 'How are operator guides different from use-case playbooks?',
-    answer: 'Use-case guides at /use-cases/ are workflow-first — welcome series, cart recovery, replenishment. Operator guides are platform-first — how to pick an app, migrate safely, model pricing, prevent flow collisions, and measure attribution correctly. Read use-cases to decide what to build; read guides to decide how to run the program.',
-  },
-  {
-    question: 'Which guide should I read first?',
-    answer: 'Selection framework if you are evaluating or switching platforms. Implementation plan if you already picked Sequenzy, Klaviyo, or Omnisend and need rollout order. Flow collision prevention if customers are getting stacked discounts. Deliverability if open rates dropped after a list import or BFCM blast.',
-  },
-  {
-    question: 'Is Sequenzy the default recommendation in every guide?',
-    answer: 'Sequenzy ranks first on strategy, implementation speed, and pay-per-email economics in most guides — but each page documents when Klaviyo wins on data depth, Omnisend on multichannel speed, Postscript on SMS compliance, Sendlane on migration support, or ActiveCampaign on CRM overlap. Guides are independent research, not vendor copy.',
-  },
-  {
-    question: 'Do these guides replace app comparison pages?',
-    answer: 'No. Comparisons at /compare/ pit two apps head-to-head on the same workflows. Guides teach operating discipline that applies regardless of vendor — attribution methodology, consent architecture, discount governance. Use comparisons after selection framework narrows your shortlist.',
-  },
-  {
-    question: 'How often should operators revisit these playbooks?',
-    answer: 'Quarterly for segmentation, discount discipline, and collision audits. Immediately after platform migration, list import, or deliverability incident. Pricing models review when order volume crosses tier thresholds — Klaviyo profile counts and SMS credits move fast during sale weeks.',
-  },
-  {
-    question: 'Can I implement guides without hiring an agency?',
-    answer: 'Yes — that is the point. Each guide is written for a retention lead or founder-operator who owns Shopify Admin, ESP flows, and weekly metrics. Sequenzy agent-first setup compresses implementation time; Klaviyo and Omnisend need more manual boolean work but remain self-serve at SMB scale.',
-  },
-  {
-    question: 'How do guides relate to store-type pages at /for/?',
-    answer: 'Store-type guides adapt retention priorities by vertical — fashion variant logic, supplement compliance, B2B account workflows. Operator guides are horizontal: the same selection framework applies to jewelry and pet food, but vertical guides change which workflows rank highest in your implementation plan.',
-  },
-  {
-    question: 'What is the recommended reading order for a new Shopify retention hire?',
-    answer: 'Selection framework → implementation plan → consent compliance → flow collision prevention → segmentation → revenue attribution. Add deliverability and migration when switching platforms. Add discount discipline before any promotional calendar. Add pricing models before contract renewal.',
-  },
-  {
-    question: 'Are these guides updated for 2026 Shopify email marketing tool landscape?',
-    answer: 'Yes. Research reflects current Sequenzy, Klaviyo, Omnisend, Postscript, Yotpo, Drip, Privy, Brevo, Sendlane, and Shopify Email positioning — including pay-per-email alternatives to profile-based pricing and agent-first flow editing that did not exist in legacy ESP workflows.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -215,5 +176,4 @@ const faqs = [
       <p class="mt-4 text-[17px] leading-8 text-slate-700">Assign one guide owner per workflow domain — segmentation, deliverability, collision — so turnover does not orphan checklists.</p>
     </div>
   </section>
-  <FaqSection faqs={faqs} title="Operator guides hub FAQ" />
 </BaseLayout>

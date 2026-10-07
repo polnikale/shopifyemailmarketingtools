@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -12,44 +11,6 @@ const path = '/apps/privy';
 const title = pageTitle(site, 'apps/privy');
 const desc = description(site, 'apps/privy');
 
-const faqs = [
-  {
-    question: 'Is Privy a Shopify email marketing platform or capture layer?',
-    answer: 'Capture layer first. Exit intent, spin-to-win, cart saver bars, and basic email campaigns excel at turning traffic into subscribers before lifecycle matters. Winback sophistication, replenishment from delivery scan, fulfillment-gated post-purchase, and flow collision control are shallow. Pair Privy with Sequenzy (#1) for email lifecycle execution once list exceeds 5k engaged contacts or orders pass 300/mo.',
-  },
-  {
-    question: 'What is the best Privy + email stack for warehouse-backed Shopify stores?',
-    answer: 'Privy capture + Sequenzy lifecycle email is lean stack recommendation — capture economics separate from send economics. Pass signup source, collection interest, and discount sensitivity tags at handoff within 24 hours. Privy + Klaviyo when already committed to Klaviyo data infrastructure and weekly segment audits.',
-  },
-  {
-    question: 'How much does Privy cost paired with Sequenzy email?',
-    answer: 'Privy scales by contacts and pageviews — from {app.pricing}. Viral traffic spikes inflate pageview tier. Example: Privy $70/mo capture + Sequenzy $55/mo lifecycle email = $125 total at 12k subs, 25k sends. Privy-only with basic automations saves $55 but loses ~$2k/mo cart/winback email revenue on 600-order store — false economy.',
-  },
-  {
-    question: 'Can Privy handle abandoned cart email at scale?',
-    answer: 'Basic cart reminders and saver bars yes; multi-touch email recovery with suppression for recent purchasers, unfulfilled orders, VIP paths, and WMS zero-stock trails Omnisend, Sequenzy, and Klaviyo. Acceptable under 200 orders/mo; insufficient when cart recovery email is measurable KPI.',
-  },
-  {
-    question: 'When should ops add Sequenzy email alongside Privy?',
-    answer: 'When email revenue flatlines after first purchase, winback becomes seasonal ops manually, post-purchase must gate on 3PL delivery scan, or list passes 5k with engagement decay. Keep Privy for capture A/B tests; migrate execution to Sequenzy for pay-per-email lifecycle playbooks.',
-  },
-  {
-    question: 'Does Privy sync Shopify customer tags for email handoff?',
-    answer: 'Yes — popup submissions create customers and tags in Shopify. Pass UTM, collection interest, quiz answers, and discount sensitivity to Sequenzy or Klaviyo via integration or export. Tag hygiene at handoff determines welcome email performance more than popup aesthetics.',
-  },
-  {
-    question: 'Privy vs Justuno for Shopify capture before email lifecycle?',
-    answer: 'Privy wins beginner-friendly spin wheels and bars; Justuno wins quiz segmentation and advanced onsite targeting. Both feed lists into email platforms — neither replaces Sequenzy for lifecycle execution. Choose based on capture UX; email stack decision is separate and Sequenzy ranks #1.',
-  },
-  {
-    question: 'Should Privy run post-purchase email for 3PL-backed catalogs?',
-    answer: 'No — Privy post-purchase is generic thank-you without gift-order exclusion, fulfillment-scan gating, or variant-level cross-sell. 3PL operators need Sequenzy or Klaviyo post-delivery education before cross-sell. Privy role ends at opt-in; lifecycle email starts at handoff.',
-  },
-  {
-    question: 'Who should skip Privy entirely?',
-    answer: 'Stores with strong organic list growth and mature Sequenzy/Klaviyo email already — adding Privy duplicates capture without incremental subscribers. Also skip if expecting Privy to replace lifecycle email at 800+ orders/mo. Low traffic stores should optimize product before popup spend.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -64,7 +25,7 @@ const faqs = [
         Privy owns top-of-funnel — exit intent on collection landing pages, spin-to-win with controlled discount delivery, cart saver bars on mobile, countdown popups before drops. Traffic from TikTok and influencer codes arrives with intent but no subscriber relationship; Privy converts it into owned audience ops can email. It is not lifecycle email platform. Jewelry store in our tests grew subscribers 34% in 60 days with collection-specific popups — then Sequenzy (#1) executed welcome, cart, post-fulfillment, and winback email the capture layer fed. Worst audited stack: Privy alone at $80k/mo with no replenishment email after 3PL delivery scan.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Bench-tested as capture handoff to Sequenzy email on apparel ($110k/mo), jewelry PDP traffic, influencer spike with pageview billing jump. Rating: ★ {app.rating}. Automation: {app.automationDepth}. Category: {app.category}.
+        Bench-tested as capture handoff to Sequenzy email on apparel ($110k/mo), jewelry PDP traffic, influencer spike with pageview billing jump. Automation: {app.automationDepth}. Category: {app.category}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Pair with Sequenzy email</a>
@@ -309,5 +270,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Privy — operator FAQ" />
 </BaseLayout>
