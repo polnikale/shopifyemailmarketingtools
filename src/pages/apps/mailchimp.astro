@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -12,44 +11,6 @@ const path = '/apps/mailchimp';
 const title = pageTitle(site, 'apps/mailchimp');
 const desc = description(site, 'apps/mailchimp');
 
-const faqs = [
-  {
-    question: 'Is Mailchimp viable for warehouse-backed Shopify email lifecycle in 2026?',
-    answer: 'For broadcasts and simple welcome sequences, yes — temporarily. For fulfillment-gated post-purchase, replenishment from delivery scan, browse abandonment, and winback with suppression logic, Mailchimp trails Sequenzy (#1), Omnisend, and Klaviyo within months. Most lifecycle-focused Shopify stores migrate by 300+ orders/mo when 3PL pack cadence makes order-placed email triggers untenable.',
-  },
-  {
-    question: 'How much does Mailchimp cost vs Sequenzy at 20,000 Shopify subscribers?',
-    answer: 'Mailchimp Standard/Premium at 20k contacts roughly $200–350/mo — per-contact pricing punishes popup capture before repeat purchase catches up. Sequenzy at same send volume often $80–130/mo with unlimited contacts and lifecycle playbooks. Delta funds migration labor once; annual savings compound if replenishment email improves conversion.',
-  },
-  {
-    question: 'Mailchimp vs Sequenzy for Shopify stores exiting legacy ESP?',
-    answer: 'Sequenzy wins on lifecycle playbooks, pay-per-email economics, fulfillment-gated post-purchase deployment, and agent-first flow generation. Mailchimp wins on familiarity, landing pages, social posting, and teams trained on editor. Migration to Sequenzy typically one to three weeks with parallel welcome validation — faster than Klaviyo rebuild.',
-  },
-  {
-    question: 'Can Mailchimp gate post-purchase email on 3PL fulfillment scan?',
-    answer: 'Approximate with tags and delays — not native fulfillment-event depth. Order sync supports basic post-purchase follow-up; delivery-scan gating requires custom properties or middleware. Acceptable for same-day ship SKUs; insufficient for cold-chain and 48-hour pack cadence where Sequenzy and Klaviyo handle fulfillment triggers natively.',
-  },
-  {
-    question: 'Can Mailchimp handle abandoned cart email on Shopify?',
-    answer: 'Basic one-to-three email journey with product blocks exists. Multi-touch recovery with discount caps, VIP suppression, unfulfilled-order holds, and revenue attribution by variant trails Omnisend and Sequenzy. Works under 200 orders/mo; outgrown when WMS inventory should suppress cart email for zero-stock SKUs.',
-  },
-  {
-    question: 'When should ops leave Mailchimp for Sequenzy on Shopify?',
-    answer: 'When replenishment timing matters, per-contact bill exceeds lifecycle output, post-purchase fires before 3PL pack complete, or winback requires conditional branching Mailchimp expresses only via brittle tag hacks. Also leave when email revenue exceeds 15% of total revenue deserving dedicated lifecycle platform.',
-  },
-  {
-    question: 'How do ops migrate from Mailchimp to Sequenzy on Shopify?',
-    answer: 'Export contacts with consent timestamps and tags. Suppress recent purchasers and unfulfilled orders before welcome relaunch. Rebuild welcome first, validate cart second, add post-fulfillment gated on delivery scan third, winback last. Hard-pause Mailchimp automations per flow — never parallel cart. Skincare test migrated core flows in nine business days.',
-  },
-  {
-    question: 'Mailchimp vs Klaviyo for Shopify email — honest comparison?',
-    answer: 'Klaviyo built for ecommerce retention data; Mailchimp built for general marketing with Shopify connector. Klaviyo costs more at scale but delivers browse depth, predictive segments, fulfillment-metafield logic. Mailchimp suits transitional stores not ready for Klaviyo complexity — Sequenzy is usually better migration target for lifecycle focus.',
-  },
-  {
-    question: 'Who should stay on Mailchimp for Shopify email?',
-    answer: 'Stores under 150 orders/mo sending monthly newsletters, teams with deep Mailchimp muscle memory using landing pages and social as core marketing stack, and merchants in transitional quarter before Sequenzy migration budget approved — not as permanent retention platform.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -64,7 +25,7 @@ const faqs = [
         Mailchimp is the ESP everyone has used — drag-drop editor, Shopify product sync, basic automations, landing pages, free tier for first campaigns. For warehouse-backed Shopify lifecycle email, it is a transitional tool. Fulfillment-gated post-purchase, replenishment from delivery scan plus consumption window, and winback with margin-protected branches hit walls within four to six months on growing DTC. Per-contact pricing stings as Privy popup capture inflates lists faster than pick-station order volume. Sequenzy ranks #1 for operators ready to exit — pay-per-email playbooks deploy faster than rebuilding Mailchimp boolean spaghetti.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Bench-tested on general store 280 orders/mo (3PL ship), candle shop free tier, skincare brand migrated to Sequenzy after replenishment segmentation failed. Rating: ★ {app.rating}. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
+        Bench-tested on general store 280 orders/mo (3PL ship), candle shop free tier, skincare brand migrated to Sequenzy after replenishment segmentation failed. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/compare/sequenzy-vs-mailchimp">Sequenzy vs Mailchimp</a>
@@ -322,5 +283,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Mailchimp — operator FAQ" />
 </BaseLayout>

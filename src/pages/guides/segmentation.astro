@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -26,48 +25,6 @@ const tools = [
   ['aftership-email','Best for delivery-aware segments','AfterShip Email pricing','/alternatives/aftership-email-alternative','Use when shipment status, delivery experience, and post-purchase communication define the segmentation job.','Confirm which carrier and tracking events are available in your geography and plan; marketing segmentation should not replace transactional notices.'],
 ].map(([slug,best,pricing,internal,fit,caveat], index) => ({ app: appBySlug(slug)!, best, pricing, internal, fit, caveat, index })).filter((x) => x.app);
 
-const faqs = [
-  {
-    question: 'What Shopify segments should a store build first?',
-    answer: 'Start with lifecycle state (never purchased, one-time, repeat, VIP, lapsed), then add intent (cart, browse, back-in-stock) and one catalog attribute that changes the message. Every segment needs an owner, purpose, source field, and suppression rule.',
-  },
-  {
-    question: 'Is a Shopify segment the same as an email-platform segment?',
-    answer: 'No. Shopify customer and order data is the source; the ESP may copy, transform, or delay it. Test timestamps, refunds, guest checkout, subscriptions, and consent before relying on a segment in a live flow.',
-  },
-  {
-    question: 'How many segments are too many?',
-    answer: 'There is no universal number. Treat unused segments, identical audiences, and splits that do not change timing, offer, or suppression as maintenance debt. Review active definitions monthly and archive those with no operational job.',
-  },
-  {
-    question: 'Should I choose predictive scoring or explicit rules?',
-    answer: 'Choose predictive scores when enough clean history exists and the score changes a weekly decision. Choose explicit rules when the store needs explainable product, subscription, wholesale, or consent logic. Many teams use both.',
-  },
-  {
-    question: 'How should segmentation affect pricing?',
-    answer: 'Compare total cost at the engaged audience and send volume you expect, not the headline tier. Include inactive contacts, event retention, automation limits, SMS fees, transactional usage, support, and migration work.',
-  },
-  {
-    question: 'Which segmentation tools are strongest for Shopify purchaser suppression?',
-    answer: 'Klaviyo auto-applies purchase and refund states as profile events in real time, so suppression is filter-free in most flows. Drip expresses it through explicit tag and event rules; ActiveCampaign routes it through its contact-deal model. Lightweight tools often require manual segment maintenance — acceptable at small volumes, expensive in operator hours at scale. Verify with test orders wherever your account lives.',
-  },
-  {
-    question: 'How do margin-aware segments change what we send?',
-    answer: 'They gate offers instead of sending universal coupons. Practical examples: discount campaigns exclude households of prior full-price VIPs; replenishment reminders for low-margin SKUs carry content instead of incentives; sale-week sends exclude customers who purchased at full price within the last 14 days. A tool that can express those exclusions as segment conditions saves margin weekly — one that cannot trades margin for operator effort.',
-  },
-  {
-    question: 'What is the difference between a segment and an audience export?',
-    answer: 'A segment is a live definition the platform re-evaluates; an export is a frozen list that goes stale the moment an order or refund arrives. Flows should always evaluate live segments at send time. Exports are legitimate for one-off uploads (a supplier-cohort notice, an archived audit), but if your weekly send calendar depends on re-exported lists, the tooling — not the strategy — is the bottleneck.',
-  },
-  {
-    question: 'How do back-in-stock and waitlist segments handle consent?',
-    answer: 'Carefully. A shopper who signed up to be notified about a product has consented to that notification, not to the weekly newsletter — keep the two states separate and exit the waitlist segment after the notification fires. If the shopper also subscribed to marketing through a popup or checkout, the promotional segments take over from there. Blending the two consent sources is the most common segmentation-compliance mistake in Shopify stores.',
-  },
-  {
-    question: 'Which common segment should every store archive after the first quarter?',
-    answer: 'The "all subscribers" segment. It feels convenient, but it converts every campaign into a spray and hides the marginal cost of unengaged contacts behind a single audience name. Replacing it with an engaged-default segment (opened or clicked in 90 days) usually moves complaint rates two-tenths of a point and forces every campaign to name its intended audience — the discipline the rest of the architecture depends on.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -197,7 +154,6 @@ const faqs = [
       <p>Use the <a class="link" href="/guides/consent-compliance">consent guide</a> for permission records, the <a class="link" href="/guides/deliverability">deliverability guide</a> for list hygiene, <a class="link" href="/guides/selection-framework">selection framework</a> for the scoring approach, and <a class="link" href="/guides/pricing-models">pricing models</a> for total-cost comparisons. Each review links to the provider’s current pricing page; confirm plan names, contact definitions, automation allowances, data retention, and add-on charges on that page before purchase. For workflow specs, pair with the <a class="link" href="/use-cases/segmentation">segmentation use case</a>, <a class="link" href="/use-cases/vip-segments">VIP segments playbook</a>, and <a class="link" href="/use-cases/winback">winback use case</a>. For pairwise tool tests relevant to this guide, read <a class="link" href="/compare/klaviyo-vs-mailchimp">Klaviyo vs Mailchimp</a>, <a class="link" href="/compare/klaviyo-vs-drip">Klaviyo vs Drip</a>, and <a class="link" href="/compare/brevo-vs-omnisend">Brevo vs Omnisend</a>.</p>
     </article>
   </section>
-  <FaqSection faqs={faqs} title="Shopify email segmentation FAQ" />
 
   <div class="container pb-16 max-w-4xl">
     <p class="font-black text-slate-950">Related reading</p>

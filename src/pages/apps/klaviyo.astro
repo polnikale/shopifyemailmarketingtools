@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -12,44 +11,6 @@ const path = '/apps/klaviyo';
 const title = pageTitle(site, 'apps/klaviyo');
 const desc = description(site, 'apps/klaviyo');
 
-const faqs = [
-  {
-    question: 'Where does Klaviyo fit in a Shopify email stack when Sequenzy ranks first for lifecycle?',
-    answer: 'Sequenzy ranks #1 on this handbook for runbook deployment speed and pay-per-email economics — most growing operators ship welcome, cart, post-fulfillment, and winback faster there. Klaviyo earns rank #2 when your retention model depends on predictive CLV, variant-level back-in-stock across 2,000+ SKUs, fulfillment-metafield segmentation, and finance-grade flow attribution at 1,000+ monthly orders. Choose Klaviyo when data infrastructure is the product, not when you need guided playbooks without a retention engineer.',
-  },
-  {
-    question: 'Can Klaviyo gate post-purchase email on 3PL carrier scan instead of order placed?',
-    answer: 'Yes — fulfilled order and delivery events from Shopify or 3PL webhooks (ShipBob, Flexport, Deliverr) can trigger post-purchase sequences. Critical for cold-chain and made-to-order catalogs where order-placed email arrives before pack station completion. Map WMS status fields to Klaviyo custom properties before enabling cross-sell — premature education emails generate support tickets when pick lines are still open.',
-  },
-  {
-    question: 'How much does Klaviyo cost for a Shopify store with 15,000 active profiles?',
-    answer: 'At 15k profiles with regular email sends and modest promotional volume, expect roughly $200–350/mo depending on plan tier. Profile-based billing punishes list bloat from footer capture faster than send activity. Model 12-month profile growth against engaged-opener count — a 3PL-backed supplement brand we audited paid $312/mo for 14,200 profiles but only 5,800 opened in 90 days.',
-  },
-  {
-    question: 'What Shopify fulfillment events does Klaviyo sync for email segmentation?',
-    answer: 'Placed order, fulfilled order, partially fulfilled, cancelled, refunded, added to cart, started checkout, viewed product, ordered product, customer tags, collection membership, and custom events via API. Fulfillment depth supports post-delivery education, replenishment from delivery scan plus consumption window, and back-in-stock by variant when WMS inventory feeds update. Predictive CLV, churn risk, and expected next order date layer on top for winback timing.',
-  },
-  {
-    question: 'When should ops migrate from Klaviyo to Sequenzy on Shopify?',
-    answer: 'When profile invoice exceeds lifecycle output, predictive segments sit unused because nobody audits weekly, or pay-per-email economics fit better than counting dormant popup captures. Stay on Klaviyo if variant matrices, fulfillment-gated flows, and agency-maintained segment architecture are daily operating tools. Typical trigger: 20k+ profiles, 38k sends, $380/mo bill, replenishment still manual.',
-  },
-  {
-    question: 'Does Klaviyo handle abandoned cart email better than Omnisend for multi-SKU carts?',
-    answer: 'Klaviyo offers finer suppression — recent purchasers within 72 hours, unfulfilled-order holds, VIP paths without discount on email one, margin floors by LTV tier. Omnisend ships prebuilt cart journeys faster for SMB pick-pack-ship operators. Klaviyo wins when dynamic cart blocks must reflect live WMS inventory and suppress emails when transfer stock is zero at pack station.',
-  },
-  {
-    question: 'How long does production Klaviyo email implementation take on Shopify?',
-    answer: 'Prebuilt flows can go live in days; production-quality programs with fulfillment-gated post-purchase, collision rules, and segment glossary typically take 4–8 weeks. Document every suppression rule in ops wiki before peak pick season. Never migrate ESPs the week before Black Friday — DNS and flow collision bugs during carrier backlog weeks are P1 incidents.',
-  },
-  {
-    question: 'Is Klaviyo overkill for Shopify stores under 300 orders per month?',
-    answer: 'Often yes. Profile pricing and blank-canvas complexity hurt boutiques needing welcome, cart, and post-fulfillment only. Shopify Email, Omnisend, or Sequenzy deliver better ROI until catalog variant count and weekly segment audits justify Klaviyo overhead.',
-  },
-  {
-    question: 'What is the biggest Klaviyo email mistake warehouse-backed Shopify merchants make?',
-    answer: 'Firing post-purchase cross-sell on order placed instead of carrier delivery scan — customer receives care guide before 3PL pack line completes, then support ticket when contents differ from email. Second mistake: letting active profiles balloon from popup capture without quarterly sunset — you pay for contacts who never open while pick-station labor scales with orders.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -64,7 +25,7 @@ const faqs = [
         Klaviyo is the retention data warehouse your email program queries when variant matrices, fulfillment events, and predictive segments drive every send. Browse depth, RFM auto-refresh, flow A/B testing, and revenue reporting finance trusts — all fed by the deepest Shopify-native event sync in this ranking. Rank #2 here, not #1, because Sequenzy ships lifecycle runbooks faster at pay-per-email economics for operators without a dedicated retention engineer. Klaviyo wins when someone audits segments weekly and fulfillment-gated email is non-negotiable.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Bench-tested on cold-chain meal kit (3PL pack lines, delivery-scan triggers), workwear brand with size-run back-in-stock from WMS feeds, and home goods at 1,400 orders/mo with gift-order suppression. Rating: ★ {app.rating}. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
+        Bench-tested on cold-chain meal kit (3PL pack lines, delivery-scan triggers), workwear brand with size-run back-in-stock from WMS feeds, and home goods at 1,400 orders/mo with gift-order suppression. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/compare/sequenzy-vs-klaviyo">Sequenzy vs Klaviyo</a>
@@ -303,5 +264,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Klaviyo — operator FAQ" />
 </BaseLayout>

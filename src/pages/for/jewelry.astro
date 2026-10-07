@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -24,44 +23,6 @@ const comparisonApps = [
   'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for jewelry stores?',
-    answer: 'Sequenzy ranks first for jewelry because high-consideration purchases need extended nurture, trust-building education, and gift-timing campaigns — lifecycle strategy problems that benefit from agent-first playbooks. Klaviyo excels at browse abandonment and predictive segmentation at scale. ActiveCampaign fits jewelers combining ecommerce with consultative sales follow-up.',
-  },
-  {
-    question: 'How long should jewelry nurture sequences run?',
-    answer: 'Plan 2–12 week consideration windows depending on AOV and purchase occasion. Engagement-based branching matters more than fixed timers — continue nurture while browse and email engagement stays active; shift to winback only after true dormancy. Gift buyers need different paths than self-purchasers.',
-  },
-  {
-    question: 'When does ActiveCampaign make sense for jewelry?',
-    answer: 'When your Shopify store overlaps with CRM pipelines — custom orders, consultation bookings, high-ticket follow-up calls, or B2B wholesale accounts. ActiveCampaign\'s pipeline and conditional logic exceed pure ecommerce tools for consultative jewelry sales, though Shopify-native depth trails Klaviyo.',
-  },
-  {
-    question: 'How should jewelry brands handle gift occasion email?',
-    answer: 'Capture occasion and relationship data at purchase or via post-purchase survey. Build anniversary and milestone reminder automations 21–30 days before typical gift dates. Segment gift buyers separately from self-purchasers — they need different product recommendations and timing.',
-  },
-  {
-    question: 'Should jewelry stores use heavy discounts in email?',
-    answer: 'Discounting trains high-AOV customers to wait — devastating for margin. Lead with craftsmanship stories, warranty details, financing options, and social proof. Reserve incentives for cart abandonment after multiple nurture touches, not first contact. Track full-price purchase percentage from email segments.',
-  },
-  {
-    question: 'What metrics matter for jewelry email programs?',
-    answer: 'Gift purchase attribution, average consideration time, high-AOV conversion from nurture, and repeat gift buyer rate. Revenue per recipient matters less than conversion rate on considered purchases — one $2,400 sale beats fifty $40 click-throughs.',
-  },
-  {
-    question: 'Can Privy work for jewelry list building?',
-    answer: 'Privy helps capture gift guide visitors and consultation leads via popups and quizzes. It does not replace extended nurture platforms. Pair Privy capture with Sequenzy or Klaviyo for the 8-week consideration journey that jewelry requires.',
-  },
-  {
-    question: 'How do financing and warranty fit into jewelry email?',
-    answer: 'Include financing education in browse abandonment and nurture sequences — not as a footer afterthought. Warranty and authenticity proof reduce purchase anxiety on high-AOV items. Dedicated trust-building emails at day 3, 7, and 14 of consideration outperform jumping straight to product promos.',
-  },
-  {
-    question: 'Is SMS useful for jewelry brands?',
-    answer: 'Limited. High-AOV consideration purchases rarely convert from SMS blasts. SMS can work for appointment reminders, custom order updates, and VIP event invitations with explicit opt-in. Keep promotional SMS rare to protect brand perception.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -117,7 +78,7 @@ const faqs = [
         Gift purchases add another layer. Valentine\'s Day, anniversaries, and milestone birthdays drive revenue spikes, but only if you captured occasion data and built reminder automations months earlier. Gift buyers and self-purchasers need entirely different post-purchase and cross-sell logic. Generic ecommerce flows treat them identically — and waste the gift buyer\'s future occasion potential.
       </p>
       <p>
-        See <a class="link" href="/use-cases/browse-abandonment">browse abandonment</a>, <a class="link" href="/use-cases/holiday-gifting">holiday gifting</a>, and <a class="link" href="/compare/sequenzy-vs-activecampaign">Sequenzy vs ActiveCampaign</a> for operational depth behind these rankings.
+        See <a class="link" href="/use-cases/browse-abandonment">browse abandonment</a>, <a class="link" href="/use-cases/holiday-gifting">holiday gifting</a>, and <a class="link" href="/compare/activecampaign-vs-klaviyo">Sequenzy vs ActiveCampaign</a> for operational depth behind these rankings.
       </p>
     </div>
 
@@ -128,7 +89,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for jewelry</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -139,7 +100,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -166,7 +127,7 @@ const faqs = [
       'ActiveCampaign enters the jewelry rankings because many fine jewelers blur ecommerce and consultative sales. Custom engagement rings, bespoke pieces, and high-ticket orders often involve phone calls, showroom visits, and pipeline stages that pure ecommerce email tools handle awkwardly. ActiveCampaign\'s CRM pipelines and conditional automations bridge that gap.',
       'Trigger follow-up sequences from consultation form submissions, abandoned high-AOV carts, and pipeline stage changes. Combine Shopify order data with CRM notes for unified customer view. Sales automations notify reps when a high-value browser re-engages after weeks of dormancy.',
       'Shopify-native depth trails Klaviyo — expect more integration setup for product-level triggers. Best when CRM workflow is central to revenue, not an afterthought. Custom jewelry studios and brands with showroom + ecommerce hybrid models benefit most.',
-      'Compare <a class="link" href="/compare/klaviyo-vs-activecampaign">Klaviyo vs ActiveCampaign</a> when deciding between ecommerce data depth and CRM logic.',
+      'Compare <a class="link" href="/compare/activecampaign-vs-klaviyo">Klaviyo vs ActiveCampaign</a> when deciding between ecommerce data depth and CRM logic.',
     ]} />
 
     <ToolReview app={featuredApps[3]} rank={4} paragraphs={[
@@ -301,5 +262,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Jewelry store email FAQ" />
 </BaseLayout>

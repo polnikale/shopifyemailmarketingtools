@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -23,44 +22,6 @@ const comparisonApps = [
   'tinyemail', 'aftership-email', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for supplement brands?',
-    answer: 'Sequenzy ranks first because supplement retention requires compliance-conscious education sequences, replenishment by consumption cycle, and subscription management — all lifecycle design problems that benefit from agent-first playbooks and pay-per-email economics. Klaviyo wins on raw Shopify data depth at scale. Drip suits teams who want visual control over education branching.',
-  },
-  {
-    question: 'How do supplement brands keep email claims compliant?',
-    answer: 'Structure education around structure/function language, usage instructions, and ingredient transparency — not disease treatment claims. Build a compliance review step before any new automation goes live. Sequenzy and Klaviyo both support content workflows; the discipline is operational. Archive approved copy blocks and reuse them rather than rewriting claims per campaign.',
-  },
-  {
-    question: 'When should supplement stores choose Drip over Klaviyo?',
-    answer: 'When your team prefers building explicit visual workflows for education paths and replenishment branching, and your catalog is focused enough that you do not need Klaviyo\'s predictive enterprise layer. Drip\'s per-contact pricing still applies — compare total cost at your list size before deciding.',
-  },
-  {
-    question: 'Is Brevo viable for supplement email on Shopify?',
-    answer: 'Brevo works for budget-conscious brands needing dependable email volume and basic automation. Shopify-specific segmentation and replenishment depth are lighter than Sequenzy or Klaviyo. Acceptable for early-stage brands; most migrate once subscription logic and compliance workflows mature.',
-  },
-  {
-    question: 'How should replenishment timing work for supplements?',
-    answer: 'Map each SKU to consumption duration based on serving size and typical usage. A 60-count daily supplement triggers differently than a 30-serving protein powder. Suppress replenishment for active subscribers. Track replenishment conversion by SKU and adjust timing quarterly from actual reorder data.',
-  },
-  {
-    question: 'What email metrics matter for supplement brands?',
-    answer: 'Subscription churn from email touchpoints, replenishment revenue per active subscriber, compliance review pass rate, and LTV by acquisition source. Click rate alone misleads — a high-click promo with non-compliant claims is worse than a moderate-click education send that retains subscribers.',
-  },
-  {
-    question: 'Can Omnisend handle supplement subscription emails?',
-    answer: 'Omnisend handles welcome, cart, post-purchase, and basic replenishment for SMB supplement brands. Complex subscription skip logic and multi-SKU education paths usually push growing brands toward Sequenzy or Klaviyo. Omnisend remains a solid fast-start option.',
-  },
-  {
-    question: 'How do I reduce unsubscribes on supplement education email?',
-    answer: 'Segment by purchase stage and product category. New buyers need onboarding; repeat buyers need ingredient updates and stack suggestions. Never send beginner education to 12-month subscribers. Frequency cap education separately from promotional sends and monitor unsubscribes by content type monthly.',
-  },
-  {
-    question: 'Should supplement brands use SMS for replenishment?',
-    answer: 'SMS can work for replenishment reminders with explicit opt-in and strict frequency limits. Email remains better for ingredient education and compliance-reviewed content. Pair Postscript or Omnisend SMS with your primary email platform; do not duplicate reminders across channels on the same day.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -129,7 +90,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for supplements</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -140,7 +101,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -288,5 +249,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Supplement store email FAQ" />
 </BaseLayout>

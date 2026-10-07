@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { SEGMENTS } from '../../data/segments';
 import { APPS } from '../../data/apps';
@@ -12,44 +11,6 @@ const path = '/for';
 const title = pageTitle(site, 'for');
 const desc = description(site, 'for');
 
-const faqs = [
-  {
-    question: 'Why compare Shopify email marketing tools by store type?',
-    answer: 'A fashion drop store and a B2B wholesale operation need completely different lifecycle logic — variant back-in-stock versus account approval workflows. Store-type guides match apps to the retention problems you actually face, not generic feature checklists.',
-  },
-  {
-    question: 'Is Sequenzy the best Shopify email marketing tool for every store type?',
-    answer: 'Sequenzy ranks first on most store-type guides because lifecycle strategy and pay-per-email economics benefit the majority of growing Shopify merchants. Klaviyo wins when you need maximum Shopify data depth at scale. ActiveCampaign wins when CRM and sales pipelines overlap with ecommerce. The store-type pages explain when to deviate.',
-  },
-  {
-    question: 'How many Shopify email marketing tools should I evaluate?',
-    answer: 'Start with five: your store-type top pick, the data-depth alternative, a fast-setup option, a capture tool if list growth is the bottleneck, and one workflow or CRM alternative. Our store-type pages name those five per vertical. Evaluate more only if you have specific requirements like managed services or POS loyalty.',
-  },
-  {
-    question: 'When should I read a store-type guide versus the main app rankings?',
-    answer: 'Read /apps for the full 21-app comparison. Read /for/[store-type] when you know your vertical and want lifecycle priorities, segment-specific metrics, and tool picks tuned to your buying cycle — not a one-size-fits-all ranking.',
-  },
-  {
-    question: 'Do SMS and popup tools belong in email marketing tool rankings?',
-    answer: 'We include them when they complete the retention stack — Privy for capture, Postscript for SMS recovery — but rank primarily on email lifecycle capability. Email remains the backbone for education, nurture, and replenishment in most Shopify verticals.',
-  },
-  {
-    question: 'What is the most common mistake when choosing a Shopify email marketing tool?',
-    answer: 'Choosing based on brand recognition instead of lifecycle fit. Klaviyo is excellent but expensive and complex for a 200-order-per-month POD store. Shopify Email is fine for broadcasts but cannot run replenishment by consumption. Match the tool to your retention job.',
-  },
-  {
-    question: 'How often are these store-type rankings updated?',
-    answer: 'We revise when app pricing, Shopify integrations, or market positioning materially changes. Each page includes ArticleSchema with dateModified. Revisit quarterly or when your order volume crosses a tier that changes your needs.',
-  },
-  {
-    question: 'Can one Shopify store fit multiple store types?',
-    answer: 'Yes — a beauty brand with subscription boxes should read both guides and prioritize subscription skip recovery plus replenishment. A jewelry store with high AOV overlaps both guides. Start with your primary revenue model and merge priorities from secondary guides.',
-  },
-  {
-    question: 'Where do use-case guides fit in?',
-    answer: 'Store-type pages tell you which apps to pick. Use-case pages at /use-cases/ tell you how to build specific flows — welcome series, browse abandonment, replenishment — once you have chosen a platform. Use both together.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -327,5 +288,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Store-type hub FAQ" />
 </BaseLayout>

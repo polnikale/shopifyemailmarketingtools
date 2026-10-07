@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { useCaseBySlug } from '../../data/use-cases';
@@ -22,48 +21,6 @@ const comparisonApps = [
   'yotpo-email-sms', 'mailchimp', 'brevo', 'marsello',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for segmentation?',
-    answer: 'Sequenzy ranks first for lifecycle segmentation strategy — behavioral segments with defined actions, not tag clutter. Klaviyo wins with deepest Shopify event history and predictive segments at scale. ActiveCampaign fits CRM-overlapping stores needing pipeline segments alongside ecommerce.',
-  },
-  {
-    question: 'What segments should every Shopify store start with?',
-    answer: 'Buyers versus non-buyers, recency bands (0–30, 31–90, 91–180, 180+ days), discount-sensitive versus full-price, VIP threshold, engaged email (opened/clicked 90 days) versus unengaged. Build actions for each before exotic segments.',
-  },
-  {
-    question: 'How often should ops audit segments?',
-    answer: 'Weekly for active campaign segments; monthly for automation enrollment; quarterly full RFM recalc and overlap review. Stale segments cause wrong offers and deliverability damage.',
-  },
-  {
-    question: 'Are Shopify tags enough for segmentation?',
-    answer: 'Tags supplement but do not replace behavioral segments from order and browse events. Tags drift when staff apply manually. Event-based segments from Shopify sync stay current if triggers are configured correctly.',
-  },
-  {
-    question: 'What is segment overlap and why does it matter?',
-    answer: 'Customers matching multiple segments receive conflicting emails if priority rules absent. Document priority: cart > welcome > browse > promotional. Measure overlap percentage monthly.',
-  },
-  {
-    question: 'Should ops delete unengaged contacts or segment them?',
-    answer: 'Segment first for sunset re-engagement; suppress from paid plans after failed re-engagement. Deletion without sunset risks deliverability if re-imported later. See <a class="link" href="/use-cases/deliverability">deliverability runbook</a>.',
-  },
-  {
-    question: 'How does segmentation support replenishment?',
-    answer: 'Per-SKU buyer segments with consumption timers — not "all customers." Subscription-active segments exclude from replenishment. See <a class="link" href="/use-cases/replenishment">replenishment runbook</a>.',
-  },
-  {
-    question: 'Can Mailchimp segment Shopify behavior deeply?',
-    answer: 'Basic order and tag sync; lacks browse depth, predictive metrics, real-time event granularity of Klaviyo or Sequenzy. Adequate for simple lists; insufficient for complex lifecycle programs.',
-  },
-  {
-    question: 'How many segments is too many?',
-    answer: 'When operators cannot name segment purpose and last send date from memory — too many. Prune quarterly. Under twenty active segments with clear actions beats fifty stale boolean definitions.',
-  },
-  {
-    question: 'What is segment priority documentation?',
-    answer: 'Written rule when customer matches cart abandon and winback simultaneously — cart wins. Store in team wiki and replicate as suppression flags in platform. Undocumented overlap causes double sends weekly at scale.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -138,7 +95,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Segmentation fit</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -147,7 +104,7 @@ const faqs = [
               <td class="py-3 pr-4 font-bold text-slate-950"><a class="link" href={`/apps/${app.slug}`}>{i + 1}. {app.name}</a></td>
               <td class="py-3 pr-4">{app.bestFor}</td><td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td><td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -251,5 +208,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Segmentation FAQ" />
 </BaseLayout>

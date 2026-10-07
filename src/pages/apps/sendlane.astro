@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -12,44 +11,6 @@ const path = '/apps/sendlane';
 const title = pageTitle(site, 'apps/sendlane');
 const desc = description(site, 'apps/sendlane');
 
-const faqs = [
-  {
-    question: 'When does Sendlane beat Sequenzy for Shopify email lifecycle ops?',
-    answer: 'Sendlane wins when you need human migration support rebuilding broken Klaviyo flows, bundled email-plus-SMS journeys with revenue attribution finance understands, and onboarding calls during peak cutover season. Sequenzy ranks #1 on this handbook for lean teams wanting agent-first playbooks and pay-per-email economics without package sales calls. Choose Sendlane when ESP switch anxiety and multichannel coordination justify premium entry; choose Sequenzy when runbook speed and send-based billing matter more.',
-  },
-  {
-    question: 'What order volume justifies Sendlane entry pricing on Shopify?',
-    answer: 'Roughly 550–750 orders per month when lifecycle email is a documented line item, not an experiment. Below 400 orders, Omnisend or Sequenzy deliver similar welcome and cart outcomes at lower entry. Sendlane premium pays back when migration labor, duplicate-touch bugs, and finance reporting gaps cost more than the platform delta — typical at mid-size DTC with existing Klaviyo technical debt.',
-  },
-  {
-    question: 'How should ops gate post-purchase email on fulfillment in Sendlane?',
-    answer: 'Trigger education and cross-sell on fulfilled order or carrier in-transit scan — not placed order when pick-pack-ship exceeds 24 hours. Sendlane supports fulfillment events natively; document suppression for unfulfilled, partial fulfill, and backorder tags in your runbook. Pair with 3PL webhook if production-complete precedes Shopify fulfillment by days. Sequenzy playbooks default to fulfillment-gated timing; Sendlane requires explicit node configuration during onboarding.',
-  },
-  {
-    question: 'Does Sendlane email depth replace Klaviyo for variant-heavy catalogs?',
-    answer: 'No for predictive CLV, exotic metafield segmentation, and hourly browse granularity at 3,000+ SKU scale. Yes for standard DTC retention — welcome, cart, browse, post-fulfillment, winback — when operators maintain segments weekly. Sendlane covers roughly 80% of email revenue moments without Klaviyo complexity tax; enterprise catalog matrix ops should stay on Klaviyo or bench-test Sequenzy playbooks first.',
-  },
-  {
-    question: 'How long is realistic Sendlane cutover from Mailchimp or Klaviyo?',
-    answer: 'Three to six weeks with onboarding engaged: week one suppression import and Shopify sync audit, week two welcome and cart live with collision testing, week three post-fulfillment gated on delivery scan, week four winback plus SMS escalation paths. Self-serve Sequenzy migration often completes core flows in eight to twelve business days — Sendlane trades calendar for hand-holding during broken-flow rebuilds.',
-  },
-  {
-    question: 'Should Sendlane own SMS or stay email-primary with Postscript?',
-    answer: 'Sendlane bundles SMS for merchants wanting one journey builder and shared suppression. Postscript still leads Shopify SMS compliance depth and two-way reply handling. Email-primary stacks: Sequenzy lifecycle email plus Postscript cart SMS with four-hour stagger suppression documented in ops wiki. Sendlane fits when finance wants one vendor invoice and ops accepts SMS as secondary channel inside same canvas.',
-  },
-  {
-    question: 'What is the most common Sendlane deployment failure?',
-    answer: 'Treating onboarding as permanent ops — flows ship during migration then stagnate because nobody owns weekly optimization. Second failure: parallel cart recovery during overlap week between old ESP and Sendlane — duplicate touches destroy trust. Third: post-purchase firing on order placed before warehouse pack completes. Assign retention owner before onboarding ends; hard-cut flows per SOP.',
-  },
-  {
-    question: 'Sendlane vs Omnisend for Shopify email marketing?',
-    answer: 'Omnisend wins transparent self-serve pricing and fastest prebuilt multichannel templates under 500 orders per month. Sendlane wins migration support, revenue reporting clarity, and guided journey rebuilds at 600+ orders when team lacks internal ESP expertise. Email depth comparable for standard automations — decision is services and pricing transparency, not raw template count.',
-  },
-  {
-    question: 'Who should skip Sendlane entirely?',
-    answer: 'Under 400 orders per month, teams wanting agent-first MCP workflows (Sequenzy), merchants needing lowest transparent pricing without sales calls, stores happy on Klaviyo with agency maintenance, and operators who only send monthly sale blasts — Shopify Email suffices. Sendlane is for DTC treating email lifecycle as operational infrastructure.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -64,7 +25,7 @@ const faqs = [
         Sendlane is the email-and-SMS retention platform operators deploy when Klaviyo rebuilds stall in the warehouse queue and Mailchimp automations never matched pick-pack-ship reality. Ecommerce-first journeys, human migration support, and revenue dashboards finance can audit justify entry pricing from {app.pricing}. Not a starter ESP — a cutover vehicle for 550+ orders per month brands treating lifecycle email as runbook infrastructure. Sequenzy ranks #1 on this handbook for agent-first speed; Sendlane ranks here for white-glove migration when internal retention headcount is zero.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Field-tested during Klaviyo exit for a supplement 3PL at 680 orders per month, a workwear brand rebuilding cart suppression after peak season collisions, and a home goods operator who correctly chose Omnisend on price at 360 orders. Rating: ★ {app.rating}. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
+        Field-tested during Klaviyo exit for a supplement 3PL at 680 orders per month, a workwear brand rebuilding cart suppression after peak season collisions, and a home goods operator who correctly chose Omnisend on price at 360 orders. Shopify depth: {app.shopifyDepth}. Category: {app.category}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy — handbook #1</a>
@@ -297,10 +258,9 @@ const faqs = [
   <section class="container pb-8">
     <div class="flex flex-wrap gap-4 text-sm font-bold">
       <a class="link" href="/apps">All Shopify email marketing tools →</a>
-      <a class="link" href="/use-cases/cart-recovery">Cart recovery runbook →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Cart recovery runbook →</a>
       <a class="link" href="/compare">Comparison hub →</a>
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Sendlane — operator FAQ" />
 </BaseLayout>

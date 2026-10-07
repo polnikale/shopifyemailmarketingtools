@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { appBySlug } from '../../data/apps';
 const site = siteFromHost();
@@ -12,44 +11,6 @@ const path = '/apps/postscript';
 const title = pageTitle(site, 'apps/postscript');
 const desc = description(site, 'apps/postscript');
 
-const faqs = [
-  {
-    question: 'Where does Postscript fit in a Shopify email marketing stack?',
-    answer: 'Postscript is not your email platform — it complements the email stack when mobile urgency converts cart and drop intent faster than inbox latency. Sequenzy ranks #1 for lifecycle email: welcome, post-fulfillment education, replenishment, winback. Postscript handles checkout-stage SMS recovery and sale-day broadcasts. Shared suppression matrix mandatory — recent purchasers must not get cart email and SMS within four hours from disconnected tools.',
-  },
-  {
-    question: 'When should ops add Postscript alongside Sequenzy email?',
-    answer: 'When cart recovery email plateaus and mobile-first customers respond to text urgency after email one unopened 4+ hours. Sequenzy owns welcome, fulfillment-gated post-purchase, and winback email; Postscript owns checkout abandonment SMS and VIP drop broadcasts. Sync Sequenzy segment exports to Postscript suppressions within 24 hours of first text send.',
-  },
-  {
-    question: 'How much does Postscript cost paired with Sequenzy email at scale?',
-    answer: 'Postscript usage-based — roughly $80–350/mo depending on message volume and MMS usage. Sequenzy 28,000 email sends ~$88–118/mo pay-per-send. Combined stack ~$200–280/mo vs Klaviyo unified $350–480/mo at similar profile counts. Postscript + Sequenzy wins when email volume moderate but SMS urgency drives disproportionate recovery after email touch one.',
-  },
-  {
-    question: 'Postscript vs Klaviyo for Shopify stores needing one email platform?',
-    answer: 'Klaviyo wins when email and SMS must share one flow builder, suppression layer, and revenue dashboard. Postscript wins as email-stack complement when Sequenzy or Klaviyo already owns lifecycle email and SMS needs compliance rigor, two-way replies, and cart templates tuned for DTC — not bolted onto email product as afterthought.',
-  },
-  {
-    question: 'How do ops prevent email and Postscript SMS collision on cart recovery?',
-    answer: 'Document channel priority in ops wiki: email first touch from Sequenzy, SMS second after 4 hours if email one unopened — or inverse for VIP SMS-only segments. Map Sequenzy recent purchaser and unfulfilled-order suppressions to Postscript before launch. Duplicate recovery trains ignore behavior on both channels; finance cannot measure incremental lift without holdout.',
-  },
-  {
-    question: 'Does Postscript replace email for post-fulfillment education?',
-    answer: 'No. Post-purchase care guides, replenishment timing from delivery scan, and winback before clearance need email depth — Sequenzy playbooks or Klaviyo segments. Postscript suits back-in-stock SMS alerts for waitlisted SKUs when email educates and text alerts on WMS restock — different intent, shared suppression on active subscribers.',
-  },
-  {
-    question: 'How long does Postscript implementation take alongside existing email ESP?',
-    answer: 'Basic cart SMS and keyword opt-in: 3–5 business days. Full coordination with Sequenzy email — suppression sync, VIP segmentation, sale-week frequency caps — typically 2–3 weeks. Never launch SMS cart recovery same week you migrate email ESP; collision bugs during 3PL backlog weeks are P1.',
-  },
-  {
-    question: 'What is the biggest Postscript mistake when email stack exists?',
-    answer: 'Running cart SMS and cart email without shared suppression — customer gets Sequenzy email and Postscript text within an hour, unsubscribes from both. Second mistake: treating Postscript as email replacement instead of complement — welcome and post-fulfillment email still missing while SMS bill compounds.',
-  },
-  {
-    question: 'Who should skip Postscript and invest in email only?',
-    answer: 'Stores under 150 orders/mo where SMS list cannot justify per-message economics. Brands with no owner for reply handling. Merchants whose cart recovery email from Sequenzy already hits target recovery rate — SMS adds cost before proving email ceiling. One-platform mandate: Klaviyo email+SMS instead of stack sprawl.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -64,12 +25,12 @@ const faqs = [
         Postscript is not reviewed here as a replacement for your email platform — it is the mobile urgency layer that complements Sequenzy (#1), Klaviyo, or Omnisend when cart recovery email plateaus and checkout-stage intent decays before Promotions tab opens. Lifecycle email owns welcome, fulfillment-gated post-purchase, replenishment from delivery scan, and winback. Postscript owns compliant cart SMS, VIP drop broadcasts, and two-way replies when warehouse-backed catalogs need speed after email touch one fails. Stack deliberately or duplicate channels without suppression.
       </p>
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-        Bench-tested as email-stack complement: Sequenzy lifecycle + Postscript cart SMS on streetwear ($180k/mo), Klaviyo email + Postscript VIP drop on beauty flash sales, Sequenzy replenishment email + Postscript back-in-stock SMS on supplement waitlists. SMS attributed 22% incremental cart recovery on apparel after email holdout. Rating: ★ {app.rating}. Shopify depth: {app.shopifyDepth}.
+        Bench-tested as email-stack complement: Sequenzy lifecycle + Postscript cart SMS on streetwear ($180k/mo), Klaviyo email + Postscript VIP drop on beauty flash sales, Sequenzy replenishment email + Postscript back-in-stock SMS on supplement waitlists. SMS attributed 22% incremental cart recovery on apparel after email holdout. Shopify depth: {app.shopifyDepth}.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="/apps/sequenzy">Sequenzy email stack</a>
         <a class="btn btn-secondary" href="/compare/klaviyo-vs-postscript">Klaviyo vs Postscript</a>
-        <a class="btn btn-secondary" href="/use-cases/cart-recovery">Cart recovery runbook</a>
+        <a class="btn btn-secondary" href="/use-cases/abandoned-cart">Cart recovery runbook</a>
       </div>
     </div>
   </section>
@@ -309,9 +270,8 @@ const faqs = [
     <div class="flex flex-wrap gap-4 text-sm font-bold">
       <a class="link" href="/apps">All Shopify email marketing tools →</a>
       <a class="link" href="/apps/sequenzy">Sequenzy review →</a>
-      <a class="link" href="/use-cases/cart-recovery">Cart recovery runbook →</a>
+      <a class="link" href="/use-cases/abandoned-cart">Cart recovery runbook →</a>
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Postscript — email stack FAQ" />
 </BaseLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description, pageTitle } from '../../content';
 import { segmentBySlug } from '../../data/segments';
@@ -24,44 +23,6 @@ const comparisonApps = [
   'aftership-email', 'marsello', 'activecampaign',
 ].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is the best Shopify email marketing tool for pet product stores?',
-    answer: 'Sequenzy ranks first because pet retention requires life-stage segmentation, consumption-based reorder math, and new pet onboarding — lifecycle problems that agent-first playbooks solve efficiently. Klaviyo excels at scale. Omnisend fits fast multichannel setup for growing pet DTC brands.',
-  },
-  {
-    question: 'How should pet brands segment by life stage?',
-    answer: 'Tag by pet age and size at capture: puppy/kitten, adult, senior. Life-stage transitions trigger product education — puppy food buyers need senior food reminders years later. Capture pet type, breed size, and birth date via post-purchase survey or quiz popup.',
-  },
-  {
-    question: 'How does reorder timing work for pet products?',
-    answer: 'Calculate consumption by product type and pet size: 30lb dog on dry food empties a 30lb bag in roughly 45 days; treats last longer. Build SKU-specific reorder windows. Suppress active subscribers. Track reorder rate by pet segment.',
-  },
-  {
-    question: 'What is new pet onboarding email?',
-    answer: '7-email series for first-time pet product buyers: product usage, portion guidance, vet checkup reminders (careful with claims), complementary product introductions staggered over 30 days. Reduces churn from confused new pet parents.',
-  },
-  {
-    question: 'Should pet brands use breed-specific recommendations?',
-    answer: 'Yes when data exists. Large breed owners need different products than toy breeds. Email recommendations based on captured breed/size outperform generic "top sellers" blocks. Quiz capture via Justuno feeding into email platform enables this.',
-  },
-  {
-    question: 'What metrics matter for pet email programs?',
-    answer: 'Reorder rate by pet segment, life-stage transition revenue, subscription retention, and education-to-purchase conversion. LTV by pet life-stage cohort reveals whether puppy acquisitions become adult loyalists.',
-  },
-  {
-    question: 'Does Yotpo make sense for pet brands?',
-    answer: 'When reviews and loyalty drive retention — think treat brands with UGC and repeat purchase rewards. Yotpo consolidates reviews, loyalty, and email. If email is standalone need, Sequenzy or Klaviyo deliver more focused depth.',
-  },
-  {
-    question: 'Can Omnisend handle pet subscription emails?',
-    answer: 'Core automations yes; complex life-stage branching and consumption math at scale push growing pet brands toward Sequenzy or Klaviyo. Omnisend remains strong SMB starting point.',
-  },
-  {
-    question: 'How do pet brands avoid over-emailing?',
-    answer: 'Separate education, replenishment, and promo frequency caps. Pet parents unsubscribe fast from daily promos. One replenishment reminder, one education email, one promo per week maximum for most segments.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -125,7 +86,7 @@ const faqs = [
         <thead>
           <tr class="border-b border-cyan-900/15 text-xs font-black uppercase tracking-wider text-cyan-800">
             <th class="py-3 pr-4">App</th><th class="py-3 pr-4">Best for pet</th><th class="py-3 pr-4">Pricing</th>
-            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th><th class="py-3">Rating</th>
+            <th class="py-3 pr-4">Shopify depth</th><th class="py-3 pr-4">Automation</th>
           </tr>
         </thead>
         <tbody class="text-slate-700">
@@ -136,7 +97,7 @@ const faqs = [
               <td class="py-3 pr-4">{app.pricing}</td>
               <td class="py-3 pr-4">{app.shopifyDepth}</td>
               <td class="py-3 pr-4">{app.automationDepth}</td>
-              <td class="py-3">★ {app.rating}</td>
+              
             </tr>
           ))}
         </tbody>
@@ -309,5 +270,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Pet product email FAQ" />
 </BaseLayout>

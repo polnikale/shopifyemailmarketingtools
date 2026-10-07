@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import TldrBox from '../../components/TldrBox.astro';
-import FaqSection from '../../components/FaqSection.astro';
 import ToolReview from '../../components/ToolReview.astro';
 import { siteFromHost, description } from '../../content';
 import { appBySlug } from '../../data/apps';
@@ -14,44 +13,6 @@ const desc = description(site, 'guides/revenue-attribution');
 
 const featuredApps = ['sequenzy', 'klaviyo', 'drip', 'omnisend', 'yotpo-email-sms'].map((s) => appBySlug(s)!).filter(Boolean);
 
-const faqs = [
-  {
-    question: 'What is wrong with default ESP revenue attribution?',
-    answer: 'Last-click within 5–7 day window over-credits email for orders that would have happened anyway. Cart recovery claims full order value when customer was returning regardless. Winback credits subscription renewals. Default attribution inflates ROI and hides discount margin destruction.',
-  },
-  {
-    question: 'What is incremental revenue for email?',
-    answer: 'Orders that would not have occurred without the specific send — measured via holdout tests, send/no-send cohort comparison, or conservative attribution windows. Hard to prove perfectly; directional rigor beats dashboard vanity.',
-  },
-  {
-    question: 'How do I run an email holdout test?',
-    answer: 'Randomly exclude 5–10% of eligible segment from flow for 30–60 days. Compare purchase rate and revenue versus sent cohort. Account for seasonality. Klaviyo and Sequenzy support exclusion branches; document test in ops wiki.',
-  },
-  {
-    question: 'Should I trust Klaviyo attributed revenue dashboard?',
-    answer: 'Use as directional flow comparison, not finance truth. Cross-check with UTM-tagged links, Shopify order tag from ESP, and margin after discount. Compare flows relative to each other — welcome vs cart — more than absolute dollars.',
-  },
-  {
-    question: 'How does discount affect attributed revenue quality?',
-    answer: 'High attributed revenue with 25% average discount may be negative margin. Report revenue per send AND profit per send where finance provides COGS. Read discount-discipline guide alongside attribution.',
-  },
-  {
-    question: 'SMS attribution separate from email?',
-    answer: 'Yes — unique UTM parameters per channel, separate last-click windows. Postscript revenue report does not automatically deduplicate Klaviyo email credit on same order. Spreadsheet merge for true incrementality until unified UTM discipline.',
-  },
-  {
-    question: 'Subscription revenue attribution trap?',
-    answer: 'Recurring Recharge charges auto-attributed to winback or random campaign if click preceded renewal. Exclude active subscribers from winback. Tag subscription renewal orders separately in Shopify; filter from flow attribution exports.',
-  },
-  {
-    question: 'What UTM structure for Shopify email?',
-    answer: 'utm_source=klaviyo or sequenzy, utm_medium=email, utm_campaign=flow-slug-email-position. Consistent naming enables GA4 and Shopify analytics cross-check. SMS uses utm_medium=sms.',
-  },
-  {
-    question: 'How often to recalibrate attribution methodology?',
-    answer: 'Quarterly review of windows and holdout results. Immediately when adding subscription, wholesale, or new market — order types change incrementality assumptions.',
-  },
-];
 ---
 
 <BaseLayout title={title} description={desc} site={site} path={path}>
@@ -247,5 +208,4 @@ const faqs = [
     </div>
   </section>
 
-  <FaqSection faqs={faqs} title="Revenue attribution FAQ" />
 </BaseLayout>
